@@ -72,3 +72,4 @@ markdown_extensions:
 
 hooks:
   - hooks/wrap_source_tags.py
+  - hooks/embed_local_media.py
