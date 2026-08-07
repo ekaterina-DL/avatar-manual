@@ -1,0 +1,21 @@
+INHERIT: mkdocs.yml
+site_dir: ../../avatar-manual-build/build-pdf
+
+extra_css:
+  - site/theme/extra.css
+  - site/pdf/pdf-extra.css
+
+plugins:
+  - print-site:
+      add_to_navigation: true
+      print_page_title: 'Весь мануал (для печати в PDF)'
+      add_table_of_contents: true
+      toc_depth: 2
+      add_full_urls: false
+      enumerate_headings: false
+      enumerate_figures: false
+      add_cover_page: true
+      cover_page_template: ""
+      path_to_pdf: ""
+      exclude:
+        - site/home/index.md
