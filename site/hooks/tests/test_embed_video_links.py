@@ -37,3 +37,22 @@ def test_youtube_shorts_link():
 def test_unrelated_text_untouched():
     md = "Обычный текст без ссылок на видео."
     assert on_page_markdown(md, None, None, None) == md
+
+
+def test_youtube_shorts_inside_markdown_link():
+    md = "- ❌ [FqnaRHnTwck](https://www.youtube.com/shorts/FqnaRHnTwck) — не подходит."
+    result = on_page_markdown(md, None, None, None)
+    assert (
+        '<iframe class="embedded-video" '
+        'src="https://www.youtube.com/embed/FqnaRHnTwck" '
+        'loading="lazy" allowfullscreen></iframe>'
+    ) in result
+    assert "[FqnaRHnTwck]" not in result
+    assert "](<iframe" not in result
+
+
+def test_vk_link_inside_markdown_link():
+    md = "[смотреть](https://vkvideo.ru/video712360465_456239217)"
+    result = on_page_markdown(md, None, None, None)
+    assert "oid=712360465&id=456239217" in result
+    assert "[смотреть]" not in result
