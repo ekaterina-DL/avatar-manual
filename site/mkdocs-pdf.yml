@@ -18,4 +18,4 @@ plugins:
       cover_page_template: ""
       path_to_pdf: ""
       exclude:
-        - site/home/index.md
+        - index.md

@@ -1,6 +1,7 @@
 site_name: Мануал асессора «Аватар»
 site_dir: ../../avatar-manual-build/build
 docs_dir: ..
+site_url: https://ekaterina-dl.github.io/avatar-manual/
 
 exclude_docs: |
   _raw-sources/
@@ -43,7 +44,7 @@ extra_javascript:
 
 # Новая страница мануала должна быть добавлена сюда вручную — иначе будет собрана, но останется недоступной через меню/поиск
 nav:
-  - Главная: site/home/index.md
+  - Главная: index.md
   - 2 этап:
       - Обзор проекта: manual-2-etap/00-overview.md
       - Общие требования: manual-2-etap/01-general-requirements.md
