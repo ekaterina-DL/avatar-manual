@@ -1,0 +1,15 @@
+# Служебные материалы — не публикуются в репозитории
+/_raw-sources/
+/voprosy-zakazchiku.md
+/manual-2-etap/_sources-log.md
+/manual-3-etap/_sources-log.md
+
+# Сборка сайта — генерируется заново каждый раз
+/site/build/
+/site/build-pdf/
+/site/*.pdf
+
+# Служебные файлы окружения
+__pycache__/
+*.pyc
+.DS_Store
