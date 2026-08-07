@@ -15,6 +15,7 @@ exclude_docs: |
   site/theme/
   site/hooks/
   site/pdf/
+  site/prototype-reference/
   docs/
   .git/
   .github/
