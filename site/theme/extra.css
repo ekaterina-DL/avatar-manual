@@ -1,0 +1,59 @@
+/* Шрифты: Golos Text для заголовков/интерфейса, PT Serif для основного текста */
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=PT+Serif:wght@400;700&display=swap');
+
+:root {
+  /* Тёплый янтарный акцент — точное значение с утверждённого макета,
+     см. site/prototype-reference/README.md */
+  --md-accent-fg-color: #B96A22;
+
+  /* Холодные нейтральные серые (slate-подобная шкала) */
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-300: #CBD5E1;
+  --gray-600: #475569;
+  --gray-900: #0F172A;
+
+  /* Зелёно-красная пара — только для «допустимо/недопустимо»,
+     точные значения с утверждённого макета */
+  --ok-color: #2E7D4F;
+  --ok-bg: rgba(46, 125, 79, 0.09);
+  --no-color: #B23B32;
+  --no-bg: rgba(178, 59, 50, 0.08);
+}
+
+body, .md-typeset {
+  font-family: 'PT Serif', Georgia, serif;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-header,
+.md-nav,
+.md-tabs {
+  font-family: 'Golos Text', -apple-system, sans-serif;
+}
+
+/* Метки-источников: скрыты на сайте, видны в PDF-профиле (там это правило
+   переопределяется в site/pdf/pdf-extra.css из Task 6) */
+.source-tag {
+  display: none;
+}
+
+/* Видео-плеер, вставленный хуком из Task 4 */
+.md-typeset video {
+  display: block;
+  margin: 1em 0;
+  border-radius: 4px;
+  border: 1px solid var(--gray-300);
+}
+
+.compare-ok {
+  background: var(--ok-bg);
+  border-left: 3px solid var(--ok-color);
+}
+.compare-no {
+  background: var(--no-bg);
+  border-left: 3px solid var(--no-color);
+}

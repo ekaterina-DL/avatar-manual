@@ -38,6 +38,9 @@ theme:
 extra_css:
   - theme/extra.css
 
+extra_javascript:
+  - theme/compare-tables.js
+
 nav:
   - Главная: site/home/index.md
   - 2 этап:
