@@ -34,6 +34,26 @@ ERROR - Config value 'site_dir': The 'site_dir' should not be within the 'docs_d
 - Работает одинаково локально (итог: `<родитель проекта>/avatar-manual-build/build`) и в GitHub Actions (`actions/checkout` кладёt репозиторий в `$GITHUB_WORKSPACE`, тот же относительный путь уводит за его пределы, но всё ещё внутри `runner`-workspace — писать туда можно).
 - Все упоминания `site/build`/`site/build-pdf` ниже по плану заменены на новые пути. `.gitignore` из Task 1 уже закоммичен со старыми путями (`/site/build/`, `/site/build-pdf/`) — они безвредны (просто ничего не будут матчить, так как эти папки больше не создаются внутри репозитория), переделывать Task 1 не нужно.
 
+**Второе следствие того же корня, найденное при выполнении Task 5:** раз `docs_dir: ..` — это
+корень проекта, а не `site/`, то и все пути в `exclude_docs:`/`extra_css:`/`extra_javascript:`
+должны считаться от корня проекта, а не от `site/`. План в исходном виде везде писал их как
+`theme/extra.css`, как будто `site/` — это и есть `docs_dir`. Из-за этого ловились две
+независимые проблемы:
+- `exclude_docs:` исключал **целиком** `site/theme/` и `site/pdf/` — из-за этого файлы
+  `theme/extra.css`/`theme/compare-tables.js`/`pdf/pdf-extra.css` не копировались в сборку
+  вообще (хотя `<link>`/`<script>` на них исправно генерировались — 404 в браузере). Исправлено:
+  исключать точечно то, что реально не должно попасть в сайт (`site/theme/overrides/`,
+  `site/hooks/`, `site/pdf/render_pdf.py`, `site/prototype-reference/`), а не директории целиком.
+- `extra_css:`/`extra_javascript:` указывали `theme/extra.css` вместо `site/theme/extra.css` —
+  MkDocs ищет эти файлы по пути **от `docs_dir`**, то есть от корня проекта, поэтому без
+  префикса `site/` получалась ссылка на несуществующий путь (404). Исправлено везде ниже по
+  плану (`site/theme/extra.css`, `site/theme/compare-tables.js`, `site/pdf/pdf-extra.css`).
+
+`custom_dir: theme/overrides` в `theme:` — отдельный случай, его не трогаем: MkDocs считает
+этот путь не от `docs_dir`, а от расположения самого `mkdocs.yml` (то есть от `site/`) —
+подтверждено чтением исходника (`config_options.py`, валидация `custom_dir`), там `theme/overrides`
+и так был верным.
+
 ## ⚠️ Решение, которое нужно подтвердить до Task 1 (не могу решить сам)
 
 **Публичный или приватный репозиторий на GitHub.** Бесплатный GitHub Pages для `<username>.github.io/avatar-manual` работает "из коробки" только для **публичного** репозитория (для приватного — нужен платный план). В `_raw-sources/` лежат исходные материалы заказчика (ТЗ, служебная переписка, ОС) — по духу это внутренние документы Sber/Data Light, не предназначенные для публичного репозитория, даже несмотря на то что сама PII асессоров из них уже не публикуется. **Рекомендация (заложена в Task 1):** репозиторий публичный, но `_raw-sources/`, `_sources-log.md` обоих мануалов и `voprosy-zakazchiku.md` в git **не попадают** (только на диске, не в репозитории и не на сайте) — в публичный репозиторий и на сайт идёт только сам полированный мануал. Если нужно приватный репозиторий — скажите, тогда деплой на Pages потребует дополнительного шага (публикация только собранного `site/build` в отдельный публичный репозиторий/ветку).
@@ -166,11 +186,11 @@ Expected: строка вида `mkdocs, version 1.6.x from ...` (без оши�
 Проект состоит из двух независимых этапов с разными классификаторами и правилами.
 Выберите свой этап:
 
-## [2 этап →](../manual-2-etap/00-overview.md)
+## [2 этап →](../../manual-2-etap/00-overview.md)
 
 Заявки 26, 27, 28. Поиск подходящего сегмента внутри длинного видео.
 
-## [3 этап →](../manual-3-etap/00-overview.md)
+## [3 этап →](../../manual-3-etap/00-overview.md)
 
 Заявка 46. Классификация уже нарезанного фрагмента целиком.
 
@@ -179,6 +199,11 @@ Expected: строка вида `mkdocs, version 1.6.x from ...` (без оши�
 Не уверены, какой у вас этап? Спросите руководителя проекта — интерфейс разметки и
 классификатор у этапов разные, важно не перепутать.
 ```
+
+(Ссылки — `../../manual-2-etap/...` и `../../manual-3-etap/...`, а не `../manual-...`: файл
+физически лежит в `site/home/index.md`, то есть на два уровня ниже корня проекта — `docs_dir`
+считает относительные ссылки от реального расположения файла на диске, не от `nav`. Найдено и
+исправлено при выполнении Task 2: с одним уровнем `..` строгая сборка не проходила.)
 
 - [ ] **Шаг 4: Создать `site/mkdocs.yml`**
 
@@ -197,9 +222,10 @@ exclude_docs: |
   site/requirements.txt
   site/mkdocs.yml
   site/mkdocs-pdf.yml
-  site/theme/
+  site/theme/overrides/
   site/hooks/
-  site/pdf/
+  site/pdf/render_pdf.py
+  site/prototype-reference/
   docs/
   .git/
   .github/
@@ -220,7 +246,7 @@ theme:
     - content.code.copy
 
 extra_css:
-  - theme/extra.css
+  - site/theme/extra.css   # префикс site/ обязателен — см. "✅ Исправление архитектуры"
 
 nav:
   - Главная: site/home/index.md
@@ -546,8 +572,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 ```yaml
 extra_javascript:
-  - theme/compare-tables.js
+  - site/theme/compare-tables.js
 ```
+
+(Префикс `site/` обязателен по той же причине, что и у `extra_css` выше — см. «✅ Исправление
+архитектуры» в начале плана.)
 
 Добавить в конец `site/theme/extra.css`:
 
@@ -636,8 +665,8 @@ INHERIT: mkdocs.yml
 site_dir: ../../avatar-manual-build/build-pdf
 
 extra_css:
-  - theme/extra.css
-  - pdf/pdf-extra.css
+  - site/theme/extra.css   # префикс site/ обязателен — см. "✅ Исправление архитектуры"
+  - site/pdf/pdf-extra.css
 
 plugins:
   - print-site:
@@ -738,7 +767,15 @@ def main():
         browser = p.chromium.launch()
         page = browser.new_page()
         page.goto(SOURCE_HTML.as_uri())
-        page.wait_for_load_state("networkidle")
+        # НЕ "networkidle": страница содержит ~800 <video preload="metadata"> (хук Task 4
+        # встраивает все .mp4-ссылки мануала как плееры) — Chromium бесконечно догружает их
+        # метаданные, networkidle не наступает и за 180 секунд (проверено при выполнении
+        # Task 7). "load" + короткая пауза достаточно для CSS/веб-шрифтов; здесь важно
+        # именно не блокировать сеть целиком (например, через set_offline), иначе вместе
+        # с видео перестанут грузиться и веб-шрифты Google Fonts из site/theme/extra.css —
+        # в PDF нужен тот же типографический вид, что и на сайте (Task 5).
+        page.wait_for_load_state("load")
+        page.wait_for_timeout(3000)
         page.pdf(
             path=str(OUTPUT_PDF),
             format="A4",
