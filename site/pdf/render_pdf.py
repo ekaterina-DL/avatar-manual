@@ -24,14 +24,16 @@ def main():
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
-        # Print-страница встраивает ~800 внешних .mp4-плееров (авто-embed из Task 6).
-        # В PDF видео всё равно не проигрываются, а сотни сетевых догрузок метаданных
-        # не дают наступить networkidle (проверено эмпирически: без этой строки не
-        # укладывается и в 180с). offline=True блокирует сетевые запросы, но не file://,
-        # поэтому сама печатная страница (локальный файл) грузится и рендерится как обычно.
-        page.context.set_offline(True)
         page.goto(SOURCE_HTML.as_uri())
-        page.wait_for_load_state("networkidle")
+        # НЕ "networkidle": страница содержит ~800 <video preload="metadata"> (хук Task 4
+        # встраивает все .mp4-ссылки мануала как плееры) — Chromium бесконечно догружает их
+        # метаданные, networkidle не наступает и за 180 секунд (проверено при выполнении
+        # Task 7). "load" + короткая пауза достаточно для CSS/веб-шрифтов; здесь важно
+        # именно не блокировать сеть целиком (например, через set_offline), иначе вместе
+        # с видео перестанут грузиться и веб-шрифты Google Fonts из site/theme/extra.css —
+        # в PDF нужен тот же типографический вид, что и на сайте (Task 5).
+        page.wait_for_load_state("load")
+        page.wait_for_timeout(3000)
         page.pdf(
             path=str(OUTPUT_PDF),
             format="A4",
