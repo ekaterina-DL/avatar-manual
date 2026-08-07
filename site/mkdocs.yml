@@ -41,6 +41,7 @@ extra_css:
 extra_javascript:
   - site/theme/compare-tables.js
 
+# Новая страница мануала должна быть добавлена сюда вручную — иначе будет собрана, но останется недоступной через меню/поиск
 nav:
   - Главная: site/home/index.md
   - 2 этап:
@@ -76,3 +77,4 @@ markdown_extensions:
 hooks:
   - hooks/wrap_source_tags.py
   - hooks/embed_local_media.py
+  - hooks/neutralize_excluded_links.py
