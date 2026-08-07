@@ -36,10 +36,10 @@ theme:
     - content.code.copy
 
 extra_css:
-  - theme/extra.css
+  - site/theme/extra.css
 
 extra_javascript:
-  - theme/compare-tables.js
+  - site/theme/compare-tables.js
 
 nav:
   - Главная: site/home/index.md
