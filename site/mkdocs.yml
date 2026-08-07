@@ -1,0 +1,70 @@
+site_name: Мануал асессора «Аватар»
+site_dir: ../../avatar-manual-build/build
+docs_dir: ..
+
+exclude_docs: |
+  _raw-sources/
+  README.md
+  voprosy-zakazchiku.md
+  manual-2-etap/_sources-log.md
+  manual-3-etap/_sources-log.md
+  site/PLAN.md
+  site/requirements.txt
+  site/mkdocs.yml
+  site/mkdocs-pdf.yml
+  site/theme/
+  site/hooks/
+  site/pdf/
+  docs/
+  .git/
+  .github/
+
+theme:
+  name: material
+  custom_dir: theme/overrides
+  language: ru
+  palette:
+    primary: white
+    accent: amber
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+extra_css:
+  - theme/extra.css
+
+nav:
+  - Главная: site/home/index.md
+  - 2 этап:
+      - Обзор проекта: manual-2-etap/00-overview.md
+      - Общие требования: manual-2-etap/01-general-requirements.md
+      - Сегменты: manual-2-etap/02-segments.md
+      - Качество видео: manual-2-etap/03-video-quality.md
+      - Классификатор: manual-2-etap/04-classifier.md
+      - Что размечаем: manual-2-etap/05-what-to-label.md
+      - Частые ошибки: manual-2-etap/06-common-mistakes.md
+      - FAQ: manual-2-etap/07-faq.md
+      - Лайфхаки: manual-2-etap/08-lifehacks.md
+      - Спорные моменты: manual-2-etap/09-disputed-points.md
+      - Журнал проверок ОС: manual-2-etap/10-qa-log.md
+      - Банк примеров: manual-2-etap/11-example-library.md
+  - 3 этап:
+      - Обзор проекта: manual-3-etap/00-overview.md
+      - Общие правила: manual-3-etap/06-general-requirements.md
+      - Классификатор: manual-3-etap/01-classifier.md
+      - Критерии качества: manual-3-etap/04-video-quality.md
+      - Банк примеров: manual-3-etap/07-example-library.md
+      - Открытые вопросы: manual-3-etap/02-open-questions.md
+      - Частые ошибки: manual-3-etap/03-common-mistakes.md
+      - Разбор кейсов (FAQ): manual-3-etap/05-faq.md
+
+markdown_extensions:
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
