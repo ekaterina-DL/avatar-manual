@@ -17,6 +17,23 @@
 - Без пароля/логина на сайт (не индексируется поисковиками через `robots.txt` / meta-тег, но доступен по прямой ссылке).
 - PDF не должен требовать WeasyPrint/GTK на Windows (исторически ломается) — только чистый Python + Playwright (у Playwright свой bundled Chromium, никаких системных библиотек ставить не нужно).
 
+## ✅ Исправление архитектуры, найденное при выполнении Task 2
+
+При первой реальной сборке (`mkdocs build -f site/mkdocs.yml --strict`) MkDocs 1.6.1 падает на этапе валидации конфига, ещё до применения `exclude_docs`:
+
+```
+ERROR - Config value 'site_dir': The 'site_dir' should not be within the 'docs_dir'...
+```
+
+Это безусловная проверка в самом MkDocs (`mkdocs/config/config_options.py`, класс `SiteDir`) — она не смотрит на `exclude_docs`, не отключается никаким флагом. При `docs_dir: ..` (корень проекта, чтобы читать `manual-2-etap/`/`manual-3-etap/` напрямую) **любой** `site_dir` внутри корня проекта (в т.ч. `site/build`) гарантированно ловит эту ошибку — план в исходном виде не мог быть собран. Подтверждено чтением исходника MkDocs, воспроизводится в 1.6.1.
+
+**Решение (подтверждено пользователем):** папка сборки переносится за пределы корня проекта — на уровень выше него, рядом (а не внутрь), чтобы сохранить главное архитектурное решение плана («читаем markdown напрямую, без копирования и без симлинков» — Task 2 Architecture). Новое расположение:
+
+- Из `site/mkdocs.yml` / `site/mkdocs-pdf.yml` (пути считаются относительно самого файла конфига, то есть от `site/`): `site_dir: ../../avatar-manual-build/build` и `../../avatar-manual-build/build-pdf` соответственно.
+- Из корня проекта — то есть во всех shell-командах ниже по плану, которые выполняются с `cwd` = корень проекта (`find`, `grep`, GitHub Actions steps): `../avatar-manual-build/build` и `../avatar-manual-build/build-pdf`.
+- Работает одинаково локально (итог: `<родитель проекта>/avatar-manual-build/build`) и в GitHub Actions (`actions/checkout` кладёt репозиторий в `$GITHUB_WORKSPACE`, тот же относительный путь уводит за его пределы, но всё ещё внутри `runner`-workspace — писать туда можно).
+- Все упоминания `site/build`/`site/build-pdf` ниже по плану заменены на новые пути. `.gitignore` из Task 1 уже закоммичен со старыми путями (`/site/build/`, `/site/build-pdf/`) — они безвредны (просто ничего не будут матчить, так как эти папки больше не создаются внутри репозитория), переделывать Task 1 не нужно.
+
 ## ⚠️ Решение, которое нужно подтвердить до Task 1 (не могу решить сам)
 
 **Публичный или приватный репозиторий на GitHub.** Бесплатный GitHub Pages для `<username>.github.io/avatar-manual` работает "из коробки" только для **публичного** репозитория (для приватного — нужен платный план). В `_raw-sources/` лежат исходные материалы заказчика (ТЗ, служебная переписка, ОС) — по духу это внутренние документы Sber/Data Light, не предназначенные для публичного репозитория, даже несмотря на то что сама PII асессоров из них уже не публикуется. **Рекомендация (заложена в Task 1):** репозиторий публичный, но `_raw-sources/`, `_sources-log.md` обоих мануалов и `voprosy-zakazchiku.md` в git **не попадают** (только на диске, не в репозитории и не на сайте) — в публичный репозиторий и на сайт идёт только сам полированный мануал. Если нужно приватный репозиторий — скажите, тогда деплой на Pages потребует дополнительного шага (публикация только собранного `site/build` в отдельный публичный репозиторий/ветку).
@@ -122,7 +139,7 @@ Expected: пустой вывод (ничего не найдено)
 
 **Interfaces:**
 - Consumes: git-репозиторий из Task 1 (чистый `10-qa-log.md`).
-- Produces: рабочий `mkdocs build -f site/mkdocs.yml`, кладущий готовый сайт в `site/build/`, с полной навигацией по обоим мануалам.
+- Produces: рабочий `mkdocs build -f site/mkdocs.yml`, кладущий готовый сайт в `../avatar-manual-build/build/` (за пределами корня проекта — см. «✅ Исправление архитектуры» в начале плана), с полной навигацией по обоим мануалам.
 
 - [ ] **Шаг 1: Создать `site/requirements.txt`**
 
@@ -167,7 +184,7 @@ Expected: строка вида `mkdocs, version 1.6.x from ...` (без оши�
 
 ```yaml
 site_name: Мануал асессора «Аватар»
-site_dir: build
+site_dir: ../../avatar-manual-build/build
 docs_dir: ..
 
 exclude_docs: |
@@ -183,8 +200,6 @@ exclude_docs: |
   site/theme/
   site/hooks/
   site/pdf/
-  site/build/
-  site/build-pdf/
   docs/
   .git/
   .github/
@@ -254,7 +269,7 @@ Expected: команда завершается без ошибок (exit code 0
 
 - [ ] **Шаг 7: Проверить, что служебные файлы не попали в собранный сайт**
 
-Run: `find site/build -iname "*sources-log*" -o -iname "*raw-sources*"`
+Run: `find ../avatar-manual-build/build -iname "*sources-log*" -o -iname "*raw-sources*"`
 Expected: пустой вывод
 
 - [ ] **Шаг 8: Коммит**
@@ -315,7 +330,7 @@ Expected: exit code 0, без ошибок.
 
 - [ ] **Шаг 4: Проверить, что конкретная метка обёрнута в span**
 
-Run: `grep -o '<span class="source-tag">\[Инстр[^<]*</span>' site/build/manual-2-etap/01-general-requirements/index.html | head -1`
+Run: `grep -o '<span class="source-tag">\[Инстр[^<]*</span>' ../avatar-manual-build/build/manual-2-etap/01-general-requirements/index.html | head -1`
 Expected: непустая строка вида `<span class="source-tag">[Инстр. Kandinsky-Аватар, стр.1]</span>`
 
 - [ ] **Шаг 5: Коммит**
@@ -390,12 +405,12 @@ Expected: exit code 0.
 
 - [ ] **Шаг 4: Проверить локальное видео стало плеером**
 
-Run: `grep -o '<video[^>]*><source src="assets/example-1.mp4"[^>]*>' site/build/manual-3-etap/07-example-library/index.html`
+Run: `grep -o '<video[^>]*><source src="assets/example-1.mp4"[^>]*>' ../avatar-manual-build/build/manual-3-etap/07-example-library/index.html`
 Expected: непустая строка (в файле `manual-3-etap/07-example-library.md` есть ссылка `[example-1.mp4](assets/example-1.mp4)`).
 
 - [ ] **Шаг 5: Проверить, что ссылка на Яндекс.Диск НЕ стала плеером (осталась обычной ссылкой)**
 
-Run: `grep -o '<a[^>]*disk.yandex.ru/i/6WmBFAJtREVl4w[^>]*>' site/build/manual-2-etap/00-overview/index.html`
+Run: `grep -o '<a[^>]*disk.yandex.ru/i/6WmBFAJtREVl4w[^>]*>' ../avatar-manual-build/build/manual-2-etap/00-overview/index.html`
 Expected: непустая строка вида `<a href="https://disk.yandex.ru/i/6WmBFAJtREVl4w">` — обычный `<a>`, не `<video>`.
 
 - [ ] **Шаг 6: Проверить исключение для длинных обучающих видео (`training-*`), даже если файла ещё нет на диске**
@@ -552,12 +567,12 @@ extra_javascript:
 Run: `python3 -m mkdocs build -f site/mkdocs.yml --strict`
 Expected: exit code 0.
 
-Run: `grep -c "Golos+Text" site/build/manual-2-etap/00-overview/index.html`
+Run: `grep -c "Golos+Text" ../avatar-manual-build/build/manual-2-etap/00-overview/index.html`
 Expected: `1` (или больше — главное, не `0`)
 
 - [ ] **Шаг 4: Проверить, что метка-источник действительно скрыта в собранном CSS**
 
-Run: `grep -A1 "\.source-tag" site/build/assets/stylesheets/*.css 2>/dev/null || grep -A1 "\.source-tag" site/theme/extra.css`
+Run: `grep -A1 "\.source-tag" ../avatar-manual-build/build/assets/stylesheets/*.css 2>/dev/null || grep -A1 "\.source-tag" site/theme/extra.css`
 
 (MkDocs Material инлайнит `extra_css` файлы как отдельные `<link>`, поэтому проверяем сам файл темы, а не собранный CSS-бандл Material)
 
@@ -590,7 +605,7 @@ git commit -m "Визуальная тема: шрифты Golos Text/PT Serif, 
 
 **Interfaces:**
 - Consumes: `site/mkdocs.yml` из Task 2-5 (через `INHERIT`), тот же контент и те же хуки.
-- Produces: `mkdocs build -f site/mkdocs-pdf.yml` кладёт в `site/build-pdf/` версию сайта, где `mkdocs-print-site-plugin` дополнительно генерирует одну большую страницу `print_page/index.html` со всем мануалом подряд, и метки-источников на ней **видны** (в отличие от обычного сайта).
+- Produces: `mkdocs build -f site/mkdocs-pdf.yml` кладёт в `../avatar-manual-build/build-pdf/` версию сайта, где `mkdocs-print-site-plugin` дополнительно генерирует одну большую страницу `print_page/index.html` со всем мануалом подряд, и метки-источников на ней **видны** (в отличие от обычного сайта).
 
 - [ ] **Шаг 1: Добавить `mkdocs-print-site-plugin` в зависимости (уже добавлен в Task 2 requirements.txt — проверить)**
 
@@ -618,7 +633,7 @@ Expected: `mkdocs-print-site-plugin>=2.5`
 
 ```yaml
 INHERIT: mkdocs.yml
-site_dir: build-pdf
+site_dir: ../../avatar-manual-build/build-pdf
 
 extra_css:
   - theme/extra.css
@@ -643,7 +658,7 @@ plugins:
 - [ ] **Шаг 4: Собрать PDF-профиль**
 
 Run: `python3 -m mkdocs build -f site/mkdocs-pdf.yml --strict`
-Expected: exit code 0, создаётся `site/build-pdf/print_page/index.html`.
+Expected: exit code 0, создаётся `../avatar-manual-build/build-pdf/print_page/index.html`.
 
 - [ ] **Шаг 5: Проверить, что в PDF-профиле метка-источник видна (в отличие от сайта из Task 5)**
 
@@ -654,7 +669,7 @@ Expected:
   display: inline;
 ```
 
-Run: `grep -c "source-tag" site/build-pdf/print_page/index.html`
+Run: `grep -c "source-tag" ../avatar-manual-build/build-pdf/print_page/index.html`
 Expected: число больше `0` (метки физически присутствуют в HTML — видимость управляется только CSS, который здесь другой)
 
 - [ ] **Шаг 6: Коммит**
@@ -673,8 +688,8 @@ git commit -m "PDF-профиль сборки: print-site plugin, метки-и
 - Modify: `site/requirements.txt` (добавить `playwright`)
 
 **Interfaces:**
-- Consumes: `site/build-pdf/print_page/index.html` из Task 6.
-- Produces: `site/build-pdf/Аватар-мануал.pdf` — один файл, пригодный для скачивания и печати.
+- Consumes: `../avatar-manual-build/build-pdf/print_page/index.html` из Task 6.
+- Produces: `../avatar-manual-build/build-pdf/Аватар-мануал.pdf` — один файл, пригодный для скачивания и печати.
 
 - [ ] **Шаг 1: Добавить Playwright в зависимости**
 
@@ -697,14 +712,17 @@ Expected: строка вида `Version 1.4x.x` без ошибок.
 
 ```python
 # site/pdf/render_pdf.py
-"""Рендерит собранную print-страницу мануала (site/build-pdf/print_page/index.html)
+"""Рендерит собранную print-страницу мануала (../avatar-manual-build/build-pdf/print_page/index.html)
 в один PDF-файл через headless Chromium (Playwright). Отдельный шаг от `mkdocs build`,
 т.к. сама генерация PDF из HTML — не задача MkDocs, а задача браузерного движка.
 """
 import pathlib
 from playwright.sync_api import sync_playwright
 
-BUILD_DIR = pathlib.Path(__file__).resolve().parent.parent / "build-pdf"
+# __file__ = site/pdf/render_pdf.py; parents[0]=site/pdf, [1]=site, [2]=корень проекта,
+# [3]=родитель корня проекта — см. "Исправление архитектуры" в начале плана:
+# build-папка обязана лежать вне docs_dir (=корень проекта).
+BUILD_DIR = pathlib.Path(__file__).resolve().parents[3] / "avatar-manual-build" / "build-pdf"
 SOURCE_HTML = BUILD_DIR / "print_page" / "index.html"
 OUTPUT_PDF = BUILD_DIR / "Аватар-мануал.pdf"
 
@@ -746,7 +764,7 @@ Expected: строка `Готово: .../Аватар-мануал.pdf (... К�
 
 - [ ] **Шаг 5: Проверить, что PDF реально создан и не пустой**
 
-Run: `python3 -c "import pathlib; p = pathlib.Path('site/build-pdf/Аватар-мануал.pdf'); print(p.exists(), p.stat().st_size)"`
+Run: `python3 -c "import pathlib; p = pathlib.Path('../avatar-manual-build/build-pdf/Аватар-мануал.pdf'); print(p.exists(), p.stat().st_size)"`
 Expected: `True <число больше 1000000>` (мануал большой, меньше мегабайта — явно что-то не так)
 
 - [ ] **Шаг 6: Коммит**
@@ -756,7 +774,7 @@ git add site/pdf/render_pdf.py site/requirements.txt
 git commit -m "PDF: скрипт рендера print-страницы в файл через Playwright"
 ```
 
-(Сам файл `Аватар-мануал.pdf` не коммитим — он в `.gitignore` из Task 1 как `/site/*.pdf`/`build-pdf/`, генерируется заново при каждой сборке, в т.ч. автоматически в Task 8.)
+(Сам файл `Аватар-мануал.pdf` не коммитим — он теперь физически лежит вне репозитория, в `../avatar-manual-build/build-pdf/` — см. «Исправление архитектуры» в начале плана, коммитить нечего в принципе. Генерируется заново при каждой сборке, в т.ч. автоматически в Task 8.)
 
 ---
 
@@ -812,7 +830,7 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site/build
+          path: ../avatar-manual-build/build
 
   deploy:
     needs: build
@@ -838,14 +856,14 @@ jobs:
 ```yaml
       - name: Add robots.txt (no-index)
         run: |
-          printf 'User-agent: *\nDisallow: /\n' > site/build/robots.txt
+          printf 'User-agent: *\nDisallow: /\n' > ../avatar-manual-build/build/robots.txt
 ```
 
 Вставить этот шаг в `.github/workflows/deploy.yml` между `Build site` и `actions/upload-pages-artifact@v3`.
 
 - [ ] **Шаг 3: Локально проверить, что тот же билд-шаг проходит (workflow использует ту же команду)**
 
-Run: `python3 -m mkdocs build -f site/mkdocs.yml --strict && printf 'User-agent: *\nDisallow: /\n' > site/build/robots.txt && test -f site/build/robots.txt && echo OK`
+Run: `python3 -m mkdocs build -f site/mkdocs.yml --strict && printf 'User-agent: *\nDisallow: /\n' > ../avatar-manual-build/build/robots.txt && test -f ../avatar-manual-build/build/robots.txt && echo OK`
 Expected: `OK`
 
 - [ ] **Шаг 4: Закоммитить workflow**
@@ -893,7 +911,7 @@ Expected: оба — exit code 0.
 - [ ] **Шаг 2: Проверить приватность в собранном HTML (тот же список паттернов, что использовался в аудитах мануала)**
 
 ```bash
-grep -rEl "@(yandex\.ru|mail\.ru|gmail\.com|inbox\.ru|internet\.ru|vk\.com|list\.ru)" site/build/ site/build-pdf/ 2>/dev/null
+grep -rEl "@(yandex\.ru|mail\.ru|gmail\.com|inbox\.ru|internet\.ru|vk\.com|list\.ru)" ../avatar-manual-build/build/ ../avatar-manual-build/build-pdf/ 2>/dev/null
 ```
 
 Expected: пустой вывод (ни одного email-адреса в собранном сайте/PDF)
@@ -902,7 +920,7 @@ Expected: пустой вывод (ни одного email-адреса в со�
 
 ```bash
 git ls-files | grep -c raw-sources
-find site/build site/build-pdf -iname "*raw-sources*" 2>/dev/null
+find ../avatar-manual-build/build ../avatar-manual-build/build-pdf -iname "*raw-sources*" 2>/dev/null
 ```
 
 Expected: `0` и пустой вывод соответственно.
