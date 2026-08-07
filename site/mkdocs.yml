@@ -12,9 +12,9 @@ exclude_docs: |
   site/requirements.txt
   site/mkdocs.yml
   site/mkdocs-pdf.yml
-  site/theme/
+  site/theme/overrides/
   site/hooks/
-  site/pdf/
+  site/pdf/render_pdf.py
   site/prototype-reference/
   docs/
   .git/
