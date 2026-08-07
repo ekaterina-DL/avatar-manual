@@ -69,3 +69,6 @@ markdown_extensions:
   - md_in_html
   - toc:
       permalink: true
+
+hooks:
+  - hooks/wrap_source_tags.py
