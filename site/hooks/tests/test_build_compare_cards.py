@@ -17,8 +17,10 @@ def test_converts_table_to_compare_cards():
     assert '<div class="compare">' in result
     assert '<div class="compare-card good">' in result
     assert '<div class="compare-card bad">' in result
-    assert 'src="assets/timeline-correct-spacing.png"' in result
-    assert 'src="assets/timeline-incorrect-overlap.png"' in result
+    # "../" — поправка на use_directory_urls, см. _path_utils.fix_local_asset_path: без неё
+    # браузер запрашивает несуществующий .../02-segments/assets/... и картинка не грузится.
+    assert 'src="../assets/timeline-correct-spacing.png"' in result
+    assert 'src="../assets/timeline-incorrect-overlap.png"' in result
     assert "✓ Правильно" in result
     assert "✗ Неправильно" in result
     assert "Между красным и зелёным сегментом есть промежуток" in result

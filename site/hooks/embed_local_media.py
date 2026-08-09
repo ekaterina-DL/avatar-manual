@@ -1,5 +1,7 @@
 import re
 
+from _path_utils import fix_local_asset_path
+
 # [текст](путь-или-url.mp4) — ровно markdown-ссылка, ведущая на файл с расширением .mp4
 BRACKETED_MP4_RE = re.compile(r"\[([^\]]*)\]\(([^)\s]+\.mp4)\)")
 
@@ -19,6 +21,7 @@ def _video_tag(src, alt_text=""):
     filename = src.rsplit("/", 1)[-1]
     if filename.startswith(LONG_TRAINING_VIDEO_PREFIX):
         return None
+    src = fix_local_asset_path(src)
     return (
         f'<video controls preload="metadata" style="max-width:100%">'
         f'<source src="{src}" type="video/mp4">'

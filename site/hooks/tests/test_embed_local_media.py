@@ -9,7 +9,9 @@ class FakePage:
 def test_bracketed_link_still_works():
     md = "- [antiexample-1.mp4](assets/antiexample-1.mp4) — низкое качество."
     result = on_page_markdown(md, FakePage(), None, None)
-    assert '<source src="assets/antiexample-1.mp4" type="video/mp4">' in result
+    # "../" — поправка на use_directory_urls (страница собирается на уровень глубже, чем .md),
+    # см. _path_utils.fix_local_asset_path. Без неё видео молча не грузится в браузере.
+    assert '<source src="../assets/antiexample-1.mp4" type="video/mp4">' in result
     assert "antiexample-1.mp4</video>" in result
 
 

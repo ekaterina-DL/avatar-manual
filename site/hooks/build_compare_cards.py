@@ -1,5 +1,7 @@
 import re
 
+from _path_utils import fix_local_asset_path
+
 _TABLE_RE = re.compile(
     r'\|\s*Правильно\s*\|\s*Неправильно\s*\|\n'
     r'\|[-: ]+\|[-: ]+\|\n'
@@ -10,6 +12,8 @@ _TABLE_RE = re.compile(
 
 def _render(match):
     alt_good, src_good, alt_bad, src_bad, cap_good, cap_bad = match.groups()
+    src_good = fix_local_asset_path(src_good)
+    src_bad = fix_local_asset_path(src_bad)
     return (
         '<div class="compare">'
         '<div class="compare-card good">'
