@@ -84,6 +84,16 @@ def _build_preview_markdown(mapping):
         anchor = _slugify(mapping["source_heading"])
         link = f"{Path(mapping['source_file']).name}#{anchor}"
         lines.append(f"\n→ ещё {remaining} прим. в [банке примеров]({link})")
+    # Пустая строка обязательна перед закрывающим </div> независимо от remaining: без неё, когда
+    # remaining == 0 (превью показывает вообще все примеры раздела, "ещё N" не добавляется),
+    # </div> оказывается на строке сразу после последнего пункта списка без пустой строки-разделителя
+    # между ними. group_media_lists.py (следующий по порядку хук) сканирует список видео-пунктов и
+    # останавливается только на пустой строке — без неё "</div>" ошибочно затягивается внутрь
+    # последнего пункта как продолжение подписи, а _parse_video_item() затем кладёт этот "</div>"
+    # прямо в caption, что даёт битую вложенность тегов на странице:
+    # `<div class="vi-cap"><span markdown="1"></div></span></div>`. Обнаружено на
+    # 04-classifier.md → превью "Ракурс" (ровно 2 примера в разделе-источнике = remaining 0).
+    lines.append("")
     lines.append("</div>")
     lines.append("")
     return "\n".join(lines)
