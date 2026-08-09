@@ -10,3 +10,20 @@
 .md-typeset h1 {
   page-break-before: always;
 }
+
+/* Task 9 плана переупаковки: в PDF картинки/карточки остаются в обычном размере — там нет
+   наведения курсора, а цель PDF — полнота, не компактность. */
+.md-typeset img {
+  max-width: 100% !important;
+  max-height: none !important;
+  box-shadow: none !important;
+  cursor: default !important;
+  transition: none !important;
+}
+.md-typeset img:hover { transform: none !important; }
+.example-card .embedded-video,
+.compare-card img,
+.example-grid,
+.video-grid {
+  break-inside: avoid;
+}
