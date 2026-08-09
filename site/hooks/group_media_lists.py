@@ -89,10 +89,43 @@ def _render_video_block(heading, items):
     )
 
 
+def _render_list_block(current_heading, items):
+    """items — список (raw_text, parsed) для ОДНОГО непрерывного markdown-списка (без пустых
+    строк внутри). Не требует, чтобы список был однородным целиком: разбивает его на подряд
+    идущие "прогоны" видео-пунктов и обычных пунктов, и группирует в .video-block только прогоны
+    из 2+ видео-пунктов подряд — остальное (обычные пункты, картинки, одиночные видео-пункты)
+    остаётся как есть, на своём месте в списке.
+
+    Понадобилось из-за реального случая: manual-3-etap/07-example-library.md, раздел
+    "Антипримеры" — 8 пунктов-видео подряд и ОДИН последний пункт-картинка
+    (antiexample-8.jpg, сознательно оставлен картинкой, не видео — источник не скачан).
+    Старая версия требовала однородности ВСЕГО списка (единый блок между пустыми строками) —
+    из-за одной картинки в конце все 8 видео тоже оставались нераспакованным вертикальным
+    стеком плееров на всю ширину, хотя сами по себе были бы валидным поводом для сетки."""
+    runs = []
+    for raw_text, parsed in items:
+        is_video = parsed is not None
+        if runs and runs[-1][0] == is_video:
+            runs[-1][1].append((raw_text, parsed))
+        else:
+            runs.append((is_video, [(raw_text, parsed)]))
+
+    rendered = []
+    for is_video, run_items in runs:
+        if is_video and len(run_items) >= 2:
+            flat_cards = [pair for _, parsed in run_items for pair in parsed]
+            rendered.append(_render_video_block(current_heading, flat_cards))
+        else:
+            rendered.append("\n".join(raw_text for raw_text, _ in run_items))
+    return "\n".join(rendered)
+
+
 def on_page_markdown(markdown, page, config, files):
-    """Находит подряд идущие пункты списка (2 и более), каждый из которых содержит один или
-    несколько встроенных <video>, и оборачивает такую группу в .video-block/.video-grid. Пункт
-    списка без единого <video> — сигнал, что это не список примеров, список не трогаем целиком."""
+    """Находит подряд идущие пункты списка, каждый из которых содержит один или несколько
+    встроенных <video>, и оборачивает подряд идущие прогоны из 2+ таких пунктов в
+    .video-block/.video-grid — не обязательно весь список целиком (см. _render_list_block:
+    список из 8 видео + 1 картинки в конце всё равно даст 8-карточную сетку + отдельную
+    картинку, а не полный отказ от группировки из-за одного несовпавшего пункта)."""
     lines = markdown.split("\n")
     out_lines = []
     current_heading = ""
@@ -113,13 +146,10 @@ def on_page_markdown(markdown, page, config, files):
                     break
                 j += 1
             list_lines = lines[i:j]
-            items = split_list_items("\n".join(list_lines))
-            parsed = [_parse_video_item(item) for item in items]
-            if items and all(p is not None for p in parsed) and len(items) >= 2:
-                # Один пункт списка может дать несколько карточек (несколько видео в одном
-                # пункте, см. _parse_video_item) — разворачиваем в плоский список карточек.
-                flat_cards = [pair for group in parsed for pair in group]
-                out_lines.append(_render_video_block(current_heading, flat_cards))
+            items_text = split_list_items("\n".join(list_lines))
+            items = [(text, _parse_video_item(text)) for text in items_text]
+            if items:
+                out_lines.append(_render_list_block(current_heading, items))
             else:
                 out_lines.extend(list_lines)
             i = j

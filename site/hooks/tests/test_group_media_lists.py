@@ -73,6 +73,48 @@ def test_leading_caption_before_video_now_grouped():
     assert "Медленный темп" in result
 
 
+def test_trailing_non_video_item_does_not_sink_whole_list():
+    """Регрессия: manual-3-etap/07-example-library.md, раздел "Антипримеры" — 8 пунктов-видео
+    подряд, ЗАТЕМ один пункт-картинка (antiexample-8.jpg, источник видео не скачан, сознательно
+    оставлен картинкой). Раньше однородность требовалась для ВСЕГО списка целиком — из-за одной
+    картинки в конце все 8 видео тоже оставались нераспакованным вертикальным стеком
+    полноразмерных плееров. Теперь прогон из 8 видео-пунктов группируется в .video-block,
+    а картинка остаётся обычным пунктом списка после него."""
+    md = (
+        "## Примеры\n\n"
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/a.mp4" type="video/mp4">a</video> — плохое.\n'
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/b.mp4" type="video/mp4">b</video> — тоже плохое.\n'
+        "- ![кадр с наложением](assets/antiexample-8.jpg)\n"
+        "  Наложение кадров, сохранено как картинка.\n"
+    )
+    result = on_page_markdown(md, None, None, None)
+    assert '<div class="video-block">' in result
+    assert result.count('<div class="video-item">') == 2
+    assert 'src="https://example.com/a.mp4"' in result
+    assert 'src="https://example.com/b.mp4"' in result
+    # картинка осталась как обычный markdown-пункт списка, не потерялась и не попала в карточку
+    assert "![кадр с наложением](assets/antiexample-8.jpg)" in result
+    assert "Наложение кадров, сохранено как картинка." in result
+
+
+def test_leading_video_run_before_trailing_non_video_item_groups_only_the_run():
+    """То же самое, но с одиночным (не сгруппированным) видео-пунктом в прогоне — прогон из
+    1 видео короче порога группировки (нужно 2+), поэтому должен остаться как обычный пункт,
+    а не потеряться."""
+    md = (
+        "## Раздел\n\n"
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/a.mp4" type="video/mp4">a</video>.\n'
+        "- обычный пункт без видео.\n"
+    )
+    result = on_page_markdown(md, None, None, None)
+    assert "video-block" not in result
+    assert '<source src="https://example.com/a.mp4" type="video/mp4">' in result
+    assert "обычный пункт без видео." in result
+
+
 def test_leading_caption_with_two_videos_in_one_item_splits_into_two_cards():
     """Тот же раздел "Темп речи": пункт "Быстрая речь" содержит ДВА видео в одном пункте списка
     (два примера через запятую) — должны получиться 2 отдельные карточки, не одна с двумя
