@@ -9,7 +9,9 @@ _BLOCK_START_RE = re.compile(
     r'\*\*((?:Анти)?[Пп]ример) (\d+):\*\*[ \t]*(<iframe.*?</iframe>)[ \t]*\n'
 )
 _IMAGE_LINE_RE = re.compile(r'!\[[^\]]*\]\([^)]+\)\n?')
-_SOURCE_TAG_RE = re.compile(r'\n(`\[[^`\n]*\]`)\s*$')
+_SOURCE_TAG_RE = re.compile(
+    r'\n((?:`\[[^`\n]*\]`)|(?:<span class="source-tag">\[[^\n]*?\]</span>))\s*$'
+)
 
 
 def _split_blocks(section_body):

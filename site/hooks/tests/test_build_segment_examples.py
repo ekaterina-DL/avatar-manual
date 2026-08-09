@@ -77,3 +77,34 @@ def test_untouched_on_other_pages():
         file = OtherFile()
 
     assert on_page_markdown(SEGMENTS_MD, OtherPage(), None, None) == SEGMENTS_MD
+
+
+def test_span_wrapped_source_tag_kept_outside_cards():
+    """В реальном конвейере hooks/wrap_source_tags.py отрабатывает РАНЬШЕ этого хука (см.
+    site/mkdocs.yml) и уже успевает обернуть `[...]` в <span class="source-tag">[...]</span>
+    до того, как build_segment_examples его увидит. Тег всё равно должен остаться отдельным
+    абзацем СНАРУЖИ .example-grid, а не быть проглоченным в подпись последней карточки."""
+    span_md = SEGMENTS_MD.replace(
+        "`[Инстр. Kandinsky-Аватар, стр.5-7]`",
+        '<span class="source-tag">[Инстр. Kandinsky-Аватар, стр.5-7]</span>',
+    ).replace(
+        "`[Инстр. Kandinsky-Аватар, стр.7-10]`",
+        '<span class="source-tag">[Инстр. Kandinsky-Аватар, стр.7-10]</span>',
+    )
+    result = on_page_markdown(span_md, FakePage(), None, None)
+
+    assert '<span class="source-tag">[Инстр. Kandinsky-Аватар, стр.5-7]</span>' in result
+    assert '<span class="source-tag">[Инстр. Kandinsky-Аватар, стр.7-10]</span>' in result
+
+    # Обе карточные сетки закрываются четырьмя подряд </div> (markdown-div, ec-body,
+    # card, grid) — тег должен идти сразу ПОСЛЕ этой последовательности отдельным абзацем,
+    # а не оказаться замешан внутрь последней карточки (что и было багом со старой регуляркой,
+    # рассчитанной только на форму с обратными кавычками).
+    assert (
+        '</div></div></div></div>\n\n'
+        '<span class="source-tag">[Инстр. Kandinsky-Аватар, стр.5-7]</span>'
+    ) in result
+    assert (
+        '</div></div></div></div>\n\n'
+        '<span class="source-tag">[Инстр. Kandinsky-Аватар, стр.7-10]</span>'
+    ) in result
