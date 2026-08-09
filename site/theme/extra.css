@@ -220,3 +220,49 @@ body, .md-typeset {
   color: var(--gray-600);
   line-height: 1.55;
 }
+
+/* Сетка карточек примеров/антипримеров, собираемая build_segment_examples.py (Task 7) */
+.example-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 1.4em 0;
+}
+@media (max-width: 820px) { .example-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .example-grid { grid-template-columns: 1fr; } }
+.example-card {
+  border: 1px solid var(--card-line);
+  border-radius: 10px;
+  background: var(--gray-50);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+}
+.example-card .embedded-video {
+  border-radius: 10px 10px 0 0;
+  margin: 0;
+}
+.example-card .ec-body {
+  padding: 10px 11px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.example-card .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  border-radius: 5px;
+  background: var(--accent-bg);
+  color: var(--accent-ink);
+  font-family: 'Golos Text', sans-serif;
+  font-size: .68rem;
+  font-weight: 700;
+}
+.example-card.bad .num { background: var(--no-bg); color: var(--no-color); }
+.example-card .ec-body p,
+.example-card .ec-body div { font-size: .85rem; line-height: 1.5; color: var(--gray-600); margin: 0; }
+.example-card .ec-body ul,
+.example-card .ec-body ol { padding-left: 1.2em; margin: .3em 0 0; }
