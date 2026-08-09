@@ -1,0 +1,115 @@
+import re
+from pathlib import Path
+
+from _section_utils import extract_section
+from _list_utils import split_list_items
+
+DOCS_DIR = Path(__file__).resolve().parents[2]
+
+# Явная таблица соответствий: где на целевой странице вставить превью, и откуда его взять.
+# position="after_line" — сразу после строки, содержащей anchor; "before_line" — прямо перед ней.
+MAPPINGS = [
+    {
+        "target_file": "manual-2-etap/04-classifier.md",
+        "anchor": "- **Темп речи:** быстрый / медленный",
+        "position": "after_line",
+        "source_file": "manual-2-etap/11-example-library.md",
+        "source_heading": "Темп речи",
+        "max_items": 3,
+    },
+    {
+        "target_file": "manual-2-etap/04-classifier.md",
+        "anchor": "- **Смена эмоций внутри одного ролика**",
+        "position": "before_line",
+        "source_file": "manual-2-etap/11-example-library.md",
+        "source_heading": "Эмоции",
+        "max_items": 3,
+    },
+    {
+        "target_file": "manual-2-etap/04-classifier.md",
+        "anchor": "- **Группа данных:**",
+        "position": "before_line",
+        "source_file": "manual-2-etap/11-example-library.md",
+        "source_heading": "Ракурс",
+        "max_items": 2,
+    },
+    {
+        "target_file": "manual-2-etap/04-classifier.md",
+        "anchor": "- **Освещение:**",
+        "position": "before_line",
+        "source_file": "manual-2-etap/11-example-library.md",
+        "source_heading": "Диалоги и закадровый голос",
+        "max_items": 2,
+    },
+    {
+        "target_file": "manual-3-etap/04-video-quality.md",
+        "anchor": '## Когда сразу «Битое» (не отвечая на вопросы классификатора)',
+        "position": "after_line",
+        "source_file": "manual-3-etap/07-example-library.md",
+        "source_heading": "1. Размечено битое видео (хотя должно было быть отправлено в «битое»)",
+        "max_items": 3,
+    },
+    {
+        "target_file": "manual-3-etap/04-video-quality.md",
+        "anchor": '## Когда отмечать «Артефакт», но всё равно отвечать на вопросы',
+        "position": "after_line",
+        "source_file": "manual-3-etap/07-example-library.md",
+        "source_heading": "2. Наличие артефакта (не проставлен)",
+        "max_items": 3,
+    },
+]
+
+
+def _slugify(heading):
+    slug = heading.lower().strip()
+    slug = re.sub(r'[«»"\'()]', "", slug)
+    slug = re.sub(r'[^\w\-]+', "-", slug, flags=re.UNICODE)
+    return slug.strip("-")
+
+
+def _build_preview_markdown(mapping):
+    source_path = DOCS_DIR / mapping["source_file"]
+    source_text = source_path.read_text(encoding="utf-8")
+    section_body = extract_section(source_text, mapping["source_heading"])
+    if section_body is None:
+        return None
+    items = split_list_items(section_body)
+    if not items:
+        return None
+    preview_items = items[: mapping["max_items"]]
+    remaining = len(items) - len(preview_items)
+    lines = ["", '<div markdown="1">', "**Примеры из банка:**", ""]
+    lines.extend(preview_items)
+    if remaining > 0:
+        anchor = _slugify(mapping["source_heading"])
+        link = f"{Path(mapping['source_file']).name}#{anchor}"
+        lines.append(f"\n→ ещё {remaining} прим. в [банке примеров]({link})")
+    lines.append("</div>")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _apply_mapping(markdown, mapping):
+    preview = _build_preview_markdown(mapping)
+    if preview is None:
+        return markdown
+    lines = markdown.split("\n")
+    for idx, line in enumerate(lines):
+        if mapping["anchor"] in line:
+            insert_at = idx + 1 if mapping["position"] == "after_line" else idx
+            new_lines = lines[:insert_at] + preview.split("\n") + lines[insert_at:]
+            return "\n".join(new_lines)
+    return markdown
+
+
+def on_page_markdown(markdown, page, config, files):
+    """Вставляет компактное превью (2-3 примера) из банка примеров рядом с конкретным полем
+    классификатора/критерием — только там, где явно прописано соответствие в MAPPINGS. Ничего
+    не выдумывает: если якорь или раздел-источник не найден, страница остаётся без изменений."""
+    src_uri = page.file.src_uri.replace("\\", "/")
+    applicable = [m for m in MAPPINGS if m["target_file"] == src_uri]
+    if not applicable:
+        return markdown
+    for mapping in applicable:
+        markdown = _apply_mapping(markdown, mapping)
+    return markdown
