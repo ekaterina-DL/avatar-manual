@@ -19,6 +19,14 @@
   --ok-bg: rgba(46, 125, 79, 0.09);
   --no-color: #B23B32;
   --no-bg: rgba(178, 59, 50, 0.08);
+
+  /* Доп. переменные для карточек (Task 4-7 плана переупаковки) — точные значения
+     с утверждённого макета, см. site/prototype-reference/README.md */
+  --card-line: rgba(27, 34, 38, 0.13);
+  --card-shadow: 0 1px 2px rgba(20, 24, 27, .04), 0 8px 24px -12px rgba(20, 24, 27, .18);
+  --card-shadow-hover: 0 22px 46px -12px rgba(0, 0, 0, .45), 0 0 0 1px rgba(27, 34, 38, .22);
+  --accent-bg: rgba(185, 106, 34, 0.10);
+  --accent-ink: #8F5119;
 }
 
 body, .md-typeset {
@@ -66,4 +74,49 @@ body, .md-typeset {
   display: block;
   border-radius: 4px;
   margin: 1em 0;
+}
+
+/* Картинки в тексте — маленькие карточки, увеличиваются по наведению курсора.
+   Исключение — интерфейсные/справочные изображения, см. список ниже. */
+.md-typeset img {
+  max-width: 220px;
+  max-height: 220px;
+  width: auto;
+  border-radius: 10px;
+  border: 1px solid var(--gray-300);
+  box-shadow: var(--card-shadow);
+  cursor: zoom-in;
+  transition: transform .22s ease, box-shadow .22s ease;
+  position: relative;
+}
+.md-typeset img:hover {
+  transform: scale(1.8);
+  z-index: 30;
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Исключения: интерфейсные скриншоты и плотные справочные диаграммы — остаются
+   крупными и читаемыми, без уменьшения и без zoom по наведению. */
+.md-typeset img[src$="interface-overview.jpeg"],
+.md-typeset img[src$="classifier-panel-fields.png"],
+.md-typeset img[src$="classifier-single-checkboxes.png"],
+.md-typeset img[src$="classifier-multi-checkboxes.png"],
+.md-typeset img[src$="trim-buttons.png"],
+.md-typeset img[src$="anthropomorph-calibration-chart.png"] {
+  max-width: 100%;
+  max-height: none;
+  border-radius: 4px;
+  box-shadow: none;
+  cursor: default;
+  transition: none;
+}
+.md-typeset img[src$="interface-overview.jpeg"]:hover,
+.md-typeset img[src$="classifier-panel-fields.png"]:hover,
+.md-typeset img[src$="classifier-single-checkboxes.png"]:hover,
+.md-typeset img[src$="classifier-multi-checkboxes.png"]:hover,
+.md-typeset img[src$="trim-buttons.png"]:hover,
+.md-typeset img[src$="anthropomorph-calibration-chart.png"]:hover {
+  transform: none;
+  z-index: auto;
+  box-shadow: none;
 }
