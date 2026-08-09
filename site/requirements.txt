@@ -2,3 +2,7 @@ mkdocs>=1.6
 mkdocs-material>=9.5
 mkdocs-print-site-plugin>=2.5
 playwright>=1.45
+# Уже тянется транзитивно через mkdocs-material, но hooks/inject_example_previews.py теперь
+# импортирует pymdownx.slugs напрямую (unicode-slugify для кириллических якорей) — фиксируем
+# явно, чтобы зависимость не потерялась при будущих апдейтах mkdocs-material.
+pymdown-extensions>=10

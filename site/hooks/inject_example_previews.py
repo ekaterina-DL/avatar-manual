@@ -1,8 +1,16 @@
-import re
 from pathlib import Path
+
+from pymdownx.slugs import slugify as _pymdownx_slugify
 
 from _section_utils import extract_section
 from _list_utils import split_list_items
+
+# Та же функция, что site/mkdocs.yml подключает для markdown_extensions.toc.slugify — иначе
+# id, который реально проставит MkDocs на заголовок (например "темп-речи"), и якорь, который эта
+# функция подставит в ссылку "→ ещё N прим.", могут разойтись, и клик по ссылке не долистает до
+# нужного раздела (см. комментарий в mkdocs.yml — до этой правки заголовки из чистой кириллицы
+# вообще получали нечитаемый id "_N", теперь оба места используют один и тот же алгоритм).
+_slugify_heading = _pymdownx_slugify(case="lower")
 
 DOCS_DIR = Path(__file__).resolve().parents[2]
 
@@ -60,13 +68,6 @@ MAPPINGS = [
 ]
 
 
-def _slugify(heading):
-    slug = heading.lower().strip()
-    slug = re.sub(r'[«»"\'()]', "", slug)
-    slug = re.sub(r'[^\w\-]+', "-", slug, flags=re.UNICODE)
-    return slug.strip("-")
-
-
 def _build_preview_markdown(mapping):
     source_path = DOCS_DIR / mapping["source_file"]
     source_text = source_path.read_text(encoding="utf-8")
@@ -81,7 +82,7 @@ def _build_preview_markdown(mapping):
     lines = ["", '<div markdown="1">', "**Примеры из банка:**", ""]
     lines.extend(preview_items)
     if remaining > 0:
-        anchor = _slugify(mapping["source_heading"])
+        anchor = _slugify_heading(mapping["source_heading"], "-")
         link = f"{Path(mapping['source_file']).name}#{anchor}"
         lines.append(f"\n→ ещё {remaining} прим. в [банке примеров]({link})")
     # Пустая строка обязательна перед закрывающим </div> независимо от remaining: без неё, когда

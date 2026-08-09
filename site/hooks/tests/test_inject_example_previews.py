@@ -74,6 +74,28 @@ def test_preview_with_no_remaining_items_has_blank_line_before_closing_div():
     )
 
 
+def test_more_link_anchor_matches_real_mkdocs_heading_id():
+    """Регрессия: "→ ещё N прим." должна вести на якорь, который MkDocs реально проставит на
+    заголовок раздела-источника. До этой правки inject_example_previews.py считал якорь своей
+    отдельной (иначе написанной) функцией _slugify(), а site/mkdocs.yml вообще не задавал
+    unicode-slugify для markdown_extensions.toc — из-за этого заголовки из чистой кириллицы
+    («Темп речи», «Ракурс» и т.д., без единой латинской буквы/цифры) получали нечитаемый
+    порядковый id "_N" вместо slug, и клик по ссылке никуда не долистывал (scrollY оставался 0,
+    проверено вживую в Task 10). Теперь оба места используют одну и ту же
+    pymdownx.slugs.slugify(case="lower") — здесь просто фиксируем, что она вообще выдаёт
+    непустой, ожидаемо читаемый slug для целевых заголовков из MAPPINGS."""
+    from inject_example_previews import MAPPINGS, _slugify_heading
+
+    for mapping in MAPPINGS:
+        slug = _slugify_heading(mapping["source_heading"], "-")
+        assert slug, f"пустой slug для {mapping['source_heading']!r} — снова получим id=\"_N\""
+        assert slug == slug.lower()
+        assert " " not in slug
+
+    assert _slugify_heading("Темп речи", "-") == "темп-речи"
+    assert _slugify_heading("Диалоги и закадровый голос", "-") == "диалоги-и-закадровый-голос"
+
+
 def test_injected_preview_survives_group_media_lists_without_broken_html():
     """Интеграционная регрессия на реальное взаимодействие двух хуков в порядке mkdocs.yml:
     inject_example_previews → (embed_local_media в реальном пайплайне превращает голые .mp4
