@@ -167,3 +167,56 @@ body, .md-typeset {
   font-size: .78rem;
   background: var(--gray-100);
 }
+
+/* Карточки сравнения "Правильно/Неправильно", собираемые build_compare_cards.py (Task 6) */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 1.4em 0;
+}
+@media (max-width: 560px) { .compare { grid-template-columns: 1fr; } }
+.compare-card {
+  border-radius: 10px;
+  border: 1px solid var(--card-line);
+  background: var(--gray-50);
+  box-shadow: var(--card-shadow);
+}
+.compare-card.good { border-color: var(--ok-color); }
+.compare-card.bad { border-color: var(--no-color); }
+.compare-card img {
+  max-width: 100%;
+  max-height: none;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px 10px 0 0;
+  border: none;
+  margin: 0;
+  cursor: zoom-in;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.compare-card:hover img {
+  transform: scale(1.9);
+  transform-origin: top center;
+  z-index: 30;
+  box-shadow: var(--card-shadow-hover);
+}
+.compare-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-family: 'Golos Text', sans-serif;
+  font-size: .76rem;
+  font-weight: 700;
+}
+.compare-card.good .compare-tag { background: var(--ok-bg); color: var(--ok-color); }
+.compare-card.bad .compare-tag { background: var(--no-bg); color: var(--no-color); }
+.compare-cap {
+  padding: 10px 12px 13px;
+  font-size: .85rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+}
