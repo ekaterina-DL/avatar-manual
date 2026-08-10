@@ -88,11 +88,15 @@ markdown_extensions:
           case: lower
 
 hooks:
+  # shorten_prose.py — первым: сокращения ищут точное совпадение с "сырым" текстом мануала;
+  # wrap_source_tags.py (следующий по списку) оборачивает пометки-источники `[...]` в
+  # <span class="source-tag">, и если бы он шёл раньше, точный поиск в shorten_prose.py
+  # переставал бы находить абзацы, заканчивающиеся такой пометкой.
+  - hooks/shorten_prose.py
   - hooks/wrap_source_tags.py
   - hooks/inject_example_previews.py
   - hooks/hide_site_only_sections.py
   - hooks/fix_stage_relationship.py
-  - hooks/shorten_prose.py
   - hooks/embed_local_media.py
   - hooks/embed_video_links.py
   - hooks/group_media_lists.py
