@@ -76,6 +76,22 @@ body, .md-typeset {
   margin: 1em 0;
 }
 
+/* Подпись под встроенным плеером — только когда исходная ссылка была markdown-ссылкой
+   [подпись](url) (Fix 2 итогового обзора: голые ссылки подписи не имеют, там просто iframe без
+   <figure>-обёртки). Сброс дефолтного отступа браузера у <figure> (обычно margin: 1em 40px). */
+.embedded-video-figure {
+  margin: 1em 0;
+}
+.embedded-video-figure .embedded-video {
+  margin: 0;
+}
+.embedded-video-figure figcaption {
+  margin-top: 6px;
+  font-family: 'Golos Text', sans-serif;
+  font-size: .78rem;
+  color: var(--gray-600);
+}
+
 /* Картинки в тексте — маленькие карточки, увеличиваются по наведению курсора.
    Исключение — интерфейсные/справочные изображения, см. список ниже. */
 .md-typeset img {
@@ -167,6 +183,10 @@ body, .md-typeset {
   font-size: .78rem;
   background: var(--gray-100);
 }
+/* markdown="1" (Fix 1 итогового обзора, нужен, чтобы подпись реально обрабатывалась как
+   markdown) оборачивает однострочную подпись в <p> — без сброса margin внутри и без того
+   маленькой .vi-cap появлялся лишний отступ снизу. */
+.video-item .vi-cap p { margin: 0; }
 
 /* Карточки сравнения "Правильно/Неправильно", собираемые build_compare_cards.py (Task 6) */
 .compare {
@@ -220,6 +240,11 @@ body, .md-typeset {
   color: var(--gray-600);
   line-height: 1.55;
 }
+/* markdown="1" (Fix 1 итогового обзора, нужен для корректной обработки подписи) оборачивает
+   и картинку, и подпись в <p> — img/span не входят в markdown.util.BLOCK_LEVEL_ELEMENTS,
+   в отличие от iframe/video. Без сброса margin у <p> появлялся лишний отступ под картинкой и
+   под подписью, которого не было в исходном (домарковском) дизайне карточки. */
+.compare-card p { margin: 0; }
 
 /* Сетка карточек примеров/антипримеров, собираемая build_segment_examples.py (Task 7) */
 .example-grid {

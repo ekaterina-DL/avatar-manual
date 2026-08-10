@@ -1,5 +1,6 @@
 from embed_local_media import on_page_markdown as embed_local_media
 from group_media_lists import on_page_markdown
+from _render_helpers import render_html
 
 
 def test_groups_two_consecutive_video_items():
@@ -13,12 +14,62 @@ def test_groups_two_consecutive_video_items():
         '3 склейки подряд</video>.\n'
     )
     result = on_page_markdown(md, None, None, None)
-    assert '<div class="video-block">' in result
-    assert result.count('<div class="video-item">') == 2
+    assert '<div class="video-block" markdown="1">' in result
+    assert result.count('<div class="video-item" markdown="1">') == 2
     assert 'src="https://example.com/a.mp4"' in result
     assert "Низкое качество, полоса в районе рта." in result
     assert "3 склейки подряд." in result
     assert '<span class="eyebrow">Примеры «Битое» (для калибровки, что считается явным браком)</span>' in result
+
+
+def test_rendered_html_caption_bold_markup_becomes_strong_not_literal_asterisks():
+    """Fix 1 итогового обзора: markdown="1" стоял только на внутреннем <span>, а не на всех
+    div-предках (.video-block/.video-grid/.video-item/.vi-cap), и подпись шла в одну строку с
+    тегами — markdown="1" был мёртвым, **bold** утекал в вывод буквально. Проверяем через
+    настоящий рендер (см. tests/_render_helpers.py), а не промежуточную строку хука."""
+    md = (
+        '## Раздел\n\n'
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/a.mp4" type="video/mp4">a — **плохое**</video>.\n'
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/b.mp4" type="video/mp4">b</video> — тоже плохое.\n'
+    )
+    result = on_page_markdown(md, None, None, None)
+    html = render_html(result)
+    assert 'markdown="1"' not in html
+    assert "**" not in html
+    assert "<strong>плохое</strong>" in html
+
+
+def test_rendered_html_video_block_followed_by_plain_list_item_keeps_boundary_intact():
+    """Регрессия-риск явно отмеченный в итоговом обзоре (Fix 1, п.3): восстановление
+    markdown="1" на всех div-предках .video-block не должно склеить или сместить границу с
+    ОБЫЧНЫМ пунктом списка сразу ПОСЛЕ .video-block (без пустой строки между ними) — реальный
+    случай manual-3-etap/07-example-library.md, раздел "Антипримеры" (видео-прогон + картинка
+    antiexample-8.jpg последним пунктом). Проверяем через настоящий рендер: закрывающий блок
+    .video-block должен закрыться сам по себе, а картиночный пункт — стать отдельным <li> вне
+    .video-block, а не потеряться и не оказаться внутри последней карточки."""
+    md = (
+        "## Примеры\n\n"
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/a.mp4" type="video/mp4">a</video> — плохое.\n'
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/b.mp4" type="video/mp4">b</video> — тоже плохое.\n'
+        "- ![кадр с наложением](assets/antiexample-8.jpg)\n"
+        "  Наложение кадров, сохранено как картинка.\n"
+    )
+    result = on_page_markdown(md, None, None, None)
+    html = render_html(result)
+    assert 'markdown="1"' not in html
+    assert html.count('<div class="video-item">') == 2
+    # закрывающий </div> .video-block идёт до <ul> с картиночным пунктом, не внутри него
+    video_block_end = html.index("</div>\n</div>\n</div>")
+    ul_start = html.index("<ul>")
+    assert video_block_end < ul_start
+    assert '<img alt="кадр с наложением" src="assets/antiexample-8.jpg"' in html
+    assert "Наложение кадров, сохранено как картинка." in html
+    # картинка не осталась внутри последнего .video-item/vi-cap
+    assert "antiexample-8.jpg" not in html[: html.index("<ul>")]
 
 
 def test_handles_wrapped_caption_and_trailing_text_after_video_tag():
@@ -33,7 +84,7 @@ def test_handles_wrapped_caption_and_trailing_text_after_video_tag():
         'Мелкая пиксельность, небольшая дымка на видео</video> — допустимо.\n'
     )
     result = on_page_markdown(md, None, None, None)
-    assert '<div class="video-block">' in result
+    assert '<div class="video-block" markdown="1">' in result
     assert "если мимика всё равно видна неплохо, такой фрагмент разметить можно." in result
 
 
@@ -67,8 +118,8 @@ def test_leading_caption_before_video_now_grouped():
         '<source src="https://example.com/slow.mp4" type="video/mp4">пример</video>\n'
     )
     result = on_page_markdown(md, None, None, None)
-    assert '<div class="video-block">' in result
-    assert result.count('<div class="video-item">') == 2
+    assert '<div class="video-block" markdown="1">' in result
+    assert result.count('<div class="video-item" markdown="1">') == 2
     assert 'src="https://example.com/mid.mp4"' in result
     assert "Средний темп" in result
     assert "Медленный темп" in result
@@ -91,8 +142,8 @@ def test_trailing_non_video_item_does_not_sink_whole_list():
         "  Наложение кадров, сохранено как картинка.\n"
     )
     result = on_page_markdown(md, None, None, None)
-    assert '<div class="video-block">' in result
-    assert result.count('<div class="video-item">') == 2
+    assert '<div class="video-block" markdown="1">' in result
+    assert result.count('<div class="video-item" markdown="1">') == 2
     assert 'src="https://example.com/a.mp4"' in result
     assert 'src="https://example.com/b.mp4"' in result
     # картинка осталась как обычный markdown-пункт списка, не потерялась и не попала в карточку
@@ -275,8 +326,8 @@ def test_leading_caption_with_two_videos_in_one_item_splits_into_two_cards():
         '<source src="https://example.com/mid.mp4" type="video/mp4">пример</video>\n'
     )
     result = on_page_markdown(md, None, None, None)
-    assert '<div class="video-block">' in result
-    assert result.count('<div class="video-item">') == 3
+    assert '<div class="video-block" markdown="1">' in result
+    assert result.count('<div class="video-item" markdown="1">') == 3
     assert 'src="https://example.com/fast1.mp4"' in result
     assert 'src="https://example.com/fast2.mp4"' in result
     assert "Быстрая речь" in result

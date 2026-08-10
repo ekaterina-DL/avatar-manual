@@ -11,22 +11,32 @@ _TABLE_RE = re.compile(
 
 
 def _render(match):
+    """markdown="1" должен стоять на КАЖДОМ вложенном <div>-предке подписи (.compare,
+    .compare-card, .compare-cap), а сама подпись — на отдельной строке. Иначе md_in_html не
+    перерабатывает markdown внутри подписи — см. Fix 1 итогового обзора. Побочный эффект: img
+    (span-level тег в терминах markdown.util.BLOCK_LEVEL_ELEMENTS, в отличие от iframe/video)
+    внутри markdown="1"-блока тоже оборачивается в <p> — нейтрализовано в extra.css
+    (".compare-card p { margin: 0; }"), чтобы не появился лишний отступ под картинкой/подписью."""
     alt_good, src_good, alt_bad, src_bad, cap_good, cap_bad = match.groups()
     src_good = fix_local_asset_path(src_good)
     src_bad = fix_local_asset_path(src_bad)
     return (
-        '<div class="compare">'
-        '<div class="compare-card good">'
-        f'<img src="{src_good}" alt="{alt_good}">'
-        '<div class="compare-tag">✓ Правильно</div>'
-        f'<div class="compare-cap"><span markdown="1">{cap_good}</span></div>'
-        '</div>'
-        '<div class="compare-card bad">'
-        f'<img src="{src_bad}" alt="{alt_bad}">'
-        '<div class="compare-tag">✗ Неправильно</div>'
-        f'<div class="compare-cap"><span markdown="1">{cap_bad}</span></div>'
-        '</div>'
-        '</div>'
+        '<div class="compare" markdown="1">\n'
+        '<div class="compare-card good" markdown="1">\n'
+        f'<img src="{src_good}" alt="{alt_good}">\n'
+        '<div class="compare-tag">✓ Правильно</div>\n'
+        '<div class="compare-cap" markdown="1">\n'
+        f'{cap_good}\n'
+        "</div>\n"
+        "</div>\n"
+        '<div class="compare-card bad" markdown="1">\n'
+        f'<img src="{src_bad}" alt="{alt_bad}">\n'
+        '<div class="compare-tag">✗ Неправильно</div>\n'
+        '<div class="compare-cap" markdown="1">\n'
+        f'{cap_bad}\n'
+        "</div>\n"
+        "</div>\n"
+        "</div>"
     )
 
 

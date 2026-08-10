@@ -103,24 +103,37 @@ def _parse_video_item(item_text):
 
 
 def _render_video_block(heading, items):
+    """markdown="1" должен стоять на КАЖДОМ вложенном <div>-предке подписи (video-block,
+    video-grid, video-item, vi-cap), а сама подпись — на отдельной строке, а не в одной строке
+    со всеми окружающими тегами. Иначе md_in_html не перерабатывает markdown внутри подписи —
+    см. Fix 1 итогового обзора. Подписи здесь всегда однострочные (собраны через _flatten в
+    _parse_video_item), поэтому, в отличие от build_segment_examples.py, пустая строка перед
+    списком не нужна — списков в подписи не бывает."""
     cards = []
     for src, caption in items:
-        cap_html = (
-            f'<div class="vi-cap"><span markdown="1">{caption}</span></div>'
-            if caption.strip(" .")
-            else ""
-        )
-        cards.append(
-            '<div class="video-item">'
-            f'<video controls preload="metadata" src="{src}"></video>'
-            f'{cap_html}'
-            "</div>"
-        )
+        if caption.strip(" ."):
+            card = (
+                '<div class="video-item" markdown="1">\n'
+                f'<video controls preload="metadata" src="{src}"></video>\n'
+                '<div class="vi-cap" markdown="1">\n'
+                f'{caption}\n'
+                "</div>\n"
+                "</div>"
+            )
+        else:
+            card = (
+                '<div class="video-item">'
+                f'<video controls preload="metadata" src="{src}"></video>'
+                "</div>"
+            )
+        cards.append(card)
     eyebrow = f'<span class="eyebrow">{heading}</span>' if heading else ""
     return (
-        '<div class="video-block">'
-        f'<div class="vb-head">{eyebrow}</div>'
-        f'<div class="video-grid">{"".join(cards)}</div>'
+        '<div class="video-block" markdown="1">\n'
+        f'<div class="vb-head">{eyebrow}</div>\n'
+        '<div class="video-grid" markdown="1">\n'
+        + "\n".join(cards) +
+        "\n</div>\n"
         "</div>"
     )
 
