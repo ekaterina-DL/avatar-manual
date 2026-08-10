@@ -115,6 +115,52 @@ def test_leading_video_run_before_trailing_non_video_item_groups_only_the_run():
     assert "обычный пункт без видео." in result
 
 
+def test_eyebrow_marker_sets_label_and_is_stripped_from_output():
+    """Регрессия (Concern 1 из отчёта Task 10): инжектированные превью из
+    inject_example_previews.py вставляются посреди прозы без собственного markdown-заголовка,
+    поэтому раньше эйброу .video-block наследовал ближайший ПРЕДЫДУЩИЙ настоящий заголовок
+    страницы (например, "Уточнения по конкретным полям (памятка асессоров)" вместо "Темп речи").
+    Фикс: inject_example_previews.py эмитит приватный маркер-комментарий
+    "<!-- video-eyebrow: Темп речи -->" прямо перед списком; group_media_lists.py распознаёт его,
+    выставляет current_heading = "Темп речи" и вырезает саму строку-маркер из вывода (она не
+    должна попасть в финальный HTML — это внутренний сигнал между двумя хуками, не контент)."""
+    md = (
+        "## Уточнения по конкретным полям (памятка асессоров)\n\n"
+        "some unrelated prose here.\n\n"
+        "<!-- video-eyebrow: Темп речи -->\n"
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/a.mp4" type="video/mp4">a</video>\n'
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/b.mp4" type="video/mp4">b</video>\n'
+    )
+    result = on_page_markdown(md, None, None, None)
+    assert '<span class="eyebrow">Темп речи</span>' in result
+    assert "Уточнения по конкретным полям" not in _eyebrow_text(result)
+    assert "<!-- video-eyebrow:" not in result
+    assert "video-eyebrow" not in result
+
+
+def _eyebrow_text(html):
+    start = html.index('<span class="eyebrow">') + len('<span class="eyebrow">')
+    end = html.index("</span>", start)
+    return html[start:end]
+
+
+def test_eyebrow_marker_does_not_leak_when_run_too_short_to_group():
+    """Если после маркера прогон видео короче порога группировки (< 2), video-block не
+    создаётся вовсе — но маркер-строка всё равно не должна просочиться в вывод как видимый
+    текст."""
+    md = (
+        "## Раздел\n\n"
+        "<!-- video-eyebrow: Одиночный -->\n"
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/a.mp4" type="video/mp4">a</video>\n'
+    )
+    result = on_page_markdown(md, None, None, None)
+    assert "<!-- video-eyebrow:" not in result
+    assert "video-eyebrow" not in result
+
+
 def test_leading_caption_with_two_videos_in_one_item_splits_into_two_cards():
     """Тот же раздел "Темп речи": пункт "Быстрая речь" содержит ДВА видео в одном пункте списка
     (два примера через запятую) — должны получиться 2 отдельные карточки, не одна с двумя

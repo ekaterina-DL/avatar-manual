@@ -4,6 +4,12 @@ from _list_utils import split_list_items
 
 _HEADING_RE = re.compile(r'^(#{2,6})\s+(.*?)\s*$')
 _ITEM_START_RE = re.compile(r'^-\s+')
+# Приватный сигнал от inject_example_previews.py: инжектированные превью полей классификатора
+# вставляются посреди прозы целевой страницы без собственного markdown-заголовка, поэтому без
+# этого маркера .video-block ниже унаследовал бы эйброу от ближайшего ПРЕДЫДУЩЕГО настоящего
+# заголовка страницы (см. Concern 1 в отчёте Task 10) — а не название поля, которому превью
+# реально посвящено. Строка вырезается из финального вывода, в HTML попасть не должна.
+_EYEBROW_MARKER_RE = re.compile(r'^<!-- video-eyebrow: (.*) -->$')
 _VIDEO_TAG_RE = re.compile(
     r'<video\b[^>]*><source\s+src="([^"]+)"\s+type="video/mp4">(.*?)</video>',
     re.DOTALL,
@@ -136,6 +142,14 @@ def on_page_markdown(markdown, page, config, files):
         if heading_match:
             current_heading = heading_match.group(2)
             out_lines.append(lines[i])
+            i += 1
+            continue
+
+        eyebrow_match = _EYEBROW_MARKER_RE.match(lines[i])
+        if eyebrow_match:
+            current_heading = eyebrow_match.group(1)
+            # Строка-маркер намеренно НЕ добавляется в out_lines — это приватный сигнал между
+            # хуками, не контент, ему не место в собранном HTML.
             i += 1
             continue
 

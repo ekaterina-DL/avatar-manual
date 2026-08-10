@@ -24,6 +24,7 @@ MAPPINGS = [
         "source_file": "manual-2-etap/11-example-library.md",
         "source_heading": "Темп речи",
         "max_items": 3,
+        "label": "Темп речи",
     },
     {
         "target_file": "manual-2-etap/04-classifier.md",
@@ -32,6 +33,7 @@ MAPPINGS = [
         "source_file": "manual-2-etap/11-example-library.md",
         "source_heading": "Эмоции",
         "max_items": 3,
+        "label": "Эмоции",
     },
     {
         "target_file": "manual-2-etap/04-classifier.md",
@@ -40,6 +42,7 @@ MAPPINGS = [
         "source_file": "manual-2-etap/11-example-library.md",
         "source_heading": "Ракурс",
         "max_items": 2,
+        "label": "Ракурс",
     },
     {
         "target_file": "manual-2-etap/04-classifier.md",
@@ -48,6 +51,7 @@ MAPPINGS = [
         "source_file": "manual-2-etap/11-example-library.md",
         "source_heading": "Диалоги и закадровый голос",
         "max_items": 2,
+        "label": "Диалоги и закадровый голос",
     },
     {
         "target_file": "manual-3-etap/04-video-quality.md",
@@ -56,6 +60,7 @@ MAPPINGS = [
         "source_file": "manual-3-etap/07-example-library.md",
         "source_heading": "1. Размечено битое видео (хотя должно было быть отправлено в «битое»)",
         "max_items": 3,
+        "label": "Битое",
     },
     {
         "target_file": "manual-3-etap/04-video-quality.md",
@@ -64,6 +69,7 @@ MAPPINGS = [
         "source_file": "manual-3-etap/07-example-library.md",
         "source_heading": "2. Наличие артефакта (не проставлен)",
         "max_items": 3,
+        "label": "Артефакт",
     },
 ]
 
@@ -79,7 +85,20 @@ def _build_preview_markdown(mapping):
         return None
     preview_items = items[: mapping["max_items"]]
     remaining = len(items) - len(preview_items)
-    lines = ["", '<div markdown="1">', "**Примеры из банка:**", ""]
+    # Приватный маркер для group_media_lists.py (следующий хук в пайплайне): превью вставляется
+    # посреди прозы целевой страницы, без собственного markdown-заголовка — без этой строки
+    # group_media_lists.py взял бы эйброу .video-block из ближайшего ПРЕДЫДУЩЕГО настоящего
+    # заголовка целевой страницы (например, "Уточнения по конкретным полям..."), а не из
+    # названия поля, которому реально посвящено превью. group_media_lists.py распознаёт эту
+    # строку, использует её как current_heading именно с этой точки документа и вырезает саму
+    # строку из финального вывода — она не должна попасть в HTML как видимый текст.
+    lines = [
+        "",
+        f'<!-- video-eyebrow: {mapping["label"]} -->',
+        '<div markdown="1">',
+        "**Примеры из банка:**",
+        "",
+    ]
     lines.extend(preview_items)
     if remaining > 0:
         anchor = _slugify_heading(mapping["source_heading"], "-")

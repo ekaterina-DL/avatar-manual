@@ -38,10 +38,63 @@ def test_classifier_tempo_preview_inserted_after_anchor():
     assert result.index("example1.mp4") < result.index("Язык и акценты:")
 
 
+def test_preview_markdown_contains_eyebrow_marker_with_mapping_label():
+    """Concern 1 из отчёта Task 10: сырой markdown, который эта функция вставляет на целевую
+    страницу, должен нести приватный маркер "<!-- video-eyebrow: <label> -->" непосредственно
+    перед списком примеров — group_media_lists.py (следующий хук в пайплайне) читает его, чтобы
+    выставить эйброу .video-block в название поля, а не в случайный ambient-заголовок целевой
+    страницы. Маркер здесь — обычный текст в сыром markdown (ещё ДО прогона group_media_lists.py),
+    так что он ожидаемо виден на этом этапе; то, что он вырезается из финального HTML — отдельно
+    проверяется в test_group_media_lists.py::test_eyebrow_marker_sets_label_and_is_stripped_from_output."""
+    target_md = (
+        "- **Темп речи:** быстрый / медленный (цель по команде в целом — "
+        "равномерное распределение).\n"
+        "- **Язык и акценты:** русский / английский / другое.\n"
+    )
+    page = FakePage("manual-2-etap/04-classifier.md")
+    result = on_page_markdown(target_md, page, None, None)
+    assert "<!-- video-eyebrow: Темп речи -->" in result
+    # маркер должен идти непосредственно перед списком примеров, не где попало
+    assert result.index("<!-- video-eyebrow: Темп речи -->") < result.index("example1.mp4")
+
+
+def test_preview_markdown_eyebrow_marker_for_rakurs_mapping():
+    from inject_example_previews import MAPPINGS
+
+    mapping = next(m for m in MAPPINGS if m["source_heading"] == "Ракурс")
+    target_md = (
+        "- **Группа данных:** «Студия» / «Естественная среда».\n"
+        "- **Речь / Пение:** взаимоисключающие варианты.\n"
+    )
+    page = FakePage(mapping["target_file"])
+    result = on_page_markdown(target_md, page, None, None)
+    assert "<!-- video-eyebrow: Ракурс -->" in result
+
+
 def test_mapping_table_covers_expected_targets():
     targets = {m["target_file"] for m in MAPPINGS}
     assert "manual-2-etap/04-classifier.md" in targets
     assert "manual-3-etap/04-video-quality.md" in targets
+
+
+def test_mapping_table_has_label_for_every_entry():
+    """Concern 1 из отчёта Task 10: эйброу .video-block у инжектированных превью раньше
+    наследовал случайный ambient-заголовок целевой страницы вместо названия поля. Каждая запись
+    MAPPINGS должна явно нести короткий человекочитаемый label — источник правды для
+    "<!-- video-eyebrow: ... -->" маркера, который _build_preview_markdown() эмитит для
+    group_media_lists.py (см. test_group_media_lists.py::test_eyebrow_marker_*)."""
+    expected_labels_by_source_heading = {
+        "Темп речи": "Темп речи",
+        "Эмоции": "Эмоции",
+        "Ракурс": "Ракурс",
+        "Диалоги и закадровый голос": "Диалоги и закадровый голос",
+        "1. Размечено битое видео (хотя должно было быть отправлено в «битое»)": "Битое",
+        "2. Наличие артефакта (не проставлен)": "Артефакт",
+    }
+    assert len(MAPPINGS) == len(expected_labels_by_source_heading)
+    for mapping in MAPPINGS:
+        assert mapping.get("label"), f"нет label у mapping с source_heading={mapping['source_heading']!r}"
+        assert mapping["label"] == expected_labels_by_source_heading[mapping["source_heading"]]
 
 
 def test_untouched_on_unrelated_page():
@@ -119,3 +172,8 @@ def test_injected_preview_survives_group_media_lists_without_broken_html():
     assert "</div></span>" not in result, "битая вложенность vi-cap/span не должна встречаться"
     assert 'exampleA.mp4' in result
     assert 'exampleB.mp4' in result
+    # Concern 1 из отчёта Task 10: эйброу теперь "Ракурс" (из label в MAPPINGS), а не случайный
+    # заголовок целевой страницы ("Уточнения" из target_md выше) — и маркер-комментарий не
+    # просочился в финальный HTML.
+    assert '<span class="eyebrow">Ракурс</span>' in result
+    assert "video-eyebrow" not in result
