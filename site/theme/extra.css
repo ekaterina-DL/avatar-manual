@@ -188,6 +188,59 @@ body, .md-typeset {
    маленькой .vi-cap появлялся лишний отступ снизу. */
 .video-item .vi-cap p { margin: 0; }
 
+/* Схема "Как устроено оспаривание ошибки", собираемая build_dispute_flow.py */
+.apeal-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin: 1.4em 0;
+}
+@media (max-width: 640px) {
+  .apeal-flow { flex-direction: column; }
+  .apeal-arrow { transform: rotate(90deg); }
+}
+.apeal-step {
+  flex: 1;
+  border: 1px solid var(--card-line);
+  border-radius: 10px;
+  background: var(--gray-50);
+  box-shadow: var(--card-shadow);
+  padding: 12px 14px;
+}
+.apeal-step .apeal-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--accent-bg);
+  color: var(--accent-ink);
+  font-family: 'Golos Text', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  margin-right: 8px;
+}
+.apeal-step .apeal-title {
+  font-family: 'Golos Text', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+}
+.apeal-step p {
+  margin: 6px 0 0;
+  font-size: .85rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+.apeal-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--gray-300);
+  flex: 0 0 auto;
+}
+
 /* Карточки сравнения "Правильно/Неправильно", собираемые build_compare_cards.py (Task 6) */
 .compare {
   display: grid;

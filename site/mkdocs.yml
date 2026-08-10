@@ -91,9 +91,12 @@ hooks:
   - hooks/wrap_source_tags.py
   - hooks/inject_example_previews.py
   - hooks/hide_site_only_sections.py
+  - hooks/fix_stage_relationship.py
   - hooks/embed_local_media.py
   - hooks/embed_video_links.py
   - hooks/group_media_lists.py
   - hooks/build_segment_examples.py
   - hooks/build_compare_cards.py
+  - hooks/build_dispute_flow.py
+  - hooks/friendly_md_link_text.py
   - hooks/neutralize_excluded_links.py
