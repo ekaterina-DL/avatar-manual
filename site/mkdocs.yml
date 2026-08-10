@@ -92,6 +92,7 @@ hooks:
   - hooks/inject_example_previews.py
   - hooks/hide_site_only_sections.py
   - hooks/fix_stage_relationship.py
+  - hooks/shorten_prose.py
   - hooks/embed_local_media.py
   - hooks/embed_video_links.py
   - hooks/group_media_lists.py
