@@ -98,5 +98,6 @@ hooks:
   - hooks/build_segment_examples.py
   - hooks/build_compare_cards.py
   - hooks/build_dispute_flow.py
+  - hooks/link_bare_qa_log_mentions.py
   - hooks/friendly_md_link_text.py
   - hooks/neutralize_excluded_links.py
