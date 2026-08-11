@@ -299,6 +299,20 @@ body, .md-typeset {
    под подписью, которого не было в исходном (домарковском) дизайне карточки. */
 .compare-card p { margin: 0; }
 
+/* Статус-плашки в 09-disputed-points.md (хук build_status_badges.py, волна 3 дедупа) */
+.status-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-family: 'Golos Text', sans-serif;
+  font-size: .78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.status-badge.status-ok { background: var(--ok-bg); color: var(--ok-color); }
+.status-badge.status-open { background: var(--no-bg); color: var(--no-color); }
+.status-badge.status-partial { background: var(--accent-bg); color: var(--accent-ink); }
+
 /* Сетка карточек примеров/антипримеров, собираемая build_segment_examples.py (Task 7) */
 .example-grid {
   display: grid;
