@@ -1,6 +1,4 @@
-from pathlib import Path
-
-from shorten_prose import on_page_markdown
+from shorten_prose import REPLACEMENTS, on_page_markdown
 
 VALIDATOR_SECTION = (
     "### Валидатор тоже может ошибаться\n\n"
@@ -153,6 +151,7 @@ def test_shortens_exam_format_and_removes_realistic_pace_paragraph():
 def test_segments_now_noop_after_consolidation_moved_into_source():
     """02-segments.md больше не в REPLACEMENTS — текст консолидации живёт прямо в файле
     (см. docs/superpowers/plans/2026-08-11-segments-dedup.md). Хук должен быть чистым no-op."""
+    assert "manual-2-etap/02-segments.md" not in REPLACEMENTS
     page = FakePage("manual-2-etap/02-segments.md")
     src = "- Длительность одного сегмента: **от 10 до 300 секунд**.\n"
     result = on_page_markdown(src, page, SITE_CONFIG, None)
