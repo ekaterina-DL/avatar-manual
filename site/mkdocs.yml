@@ -47,6 +47,7 @@ nav:
   - Главная: index.md
   - 2 этап:
       - Обзор проекта: manual-2-etap/00-overview.md
+      - Экзамен и допуск: manual-2-etap/00b-exam.md
       - Общие требования: manual-2-etap/01-general-requirements.md
       - Сегменты: manual-2-etap/02-segments.md
       - Качество видео: manual-2-etap/03-video-quality.md
