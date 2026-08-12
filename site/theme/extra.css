@@ -358,3 +358,104 @@ body, .md-typeset {
 .example-card .ec-body div { font-size: .85rem; line-height: 1.5; color: var(--gray-600); margin: 0; }
 .example-card .ec-body ul,
 .example-card .ec-body ol { padding-left: 1.2em; margin: .3em 0 0; }
+
+/* Градиентная шкала многоуровневых порогов (02-segments.md) — прямой HTML-блок в исходнике,
+   без отдельного хука. См. addendum 12.08.2026 к
+   docs/superpowers/specs/2026-08-11-stage2-dedup-design.md. Заливка трека (linear-gradient) —
+   inline style в самом HTML-блоке каждой шкалы, т.к. точки остановки у шкал разные. */
+.threshold-scale {
+  margin: 1.4em 0;
+  padding: 16px 18px 34px;
+  border: 1px solid var(--card-line);
+  border-radius: 10px;
+  background: var(--gray-50);
+  box-shadow: var(--card-shadow);
+}
+.threshold-scale .ts-caption {
+  font-family: 'Golos Text', sans-serif;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  margin-bottom: 26px;
+}
+.threshold-scale .ts-track {
+  position: relative;
+  height: 8px;
+  border-radius: 5px;
+  margin: 0 8px;
+}
+.threshold-scale .ts-tick {
+  position: absolute;
+  top: -20px;
+  transform: translateX(-50%);
+  font-family: 'Golos Text', sans-serif;
+  font-size: .72rem;
+  color: var(--gray-600);
+  white-space: nowrap;
+}
+.threshold-scale .ts-tick::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  width: 1px;
+  height: 8px;
+  background: var(--gray-300);
+}
+.threshold-scale .ts-zone {
+  position: absolute;
+  top: 16px;
+  transform: translateX(-50%);
+  width: 110px;
+  font-size: .72rem;
+  color: var(--gray-600);
+  text-align: center;
+}
+@media (max-width: 480px) {
+  .threshold-scale .ts-caption { margin-bottom: 34px; }
+  .threshold-scale .ts-zone { font-size: .66rem; width: 84px; }
+}
+
+/* Карточки-исходы блок-схемы «Сегмент или Битое?» (02-segments.md) — самостоятельный класс, не
+   переиспользует .compare-card: тот показывается и в PDF (настоящие фотопримеры), а этот
+   декоративный элемент в PDF, наоборот, скрывается (см. site/pdf/pdf-extra.css). */
+.decision-outcome {
+  margin: 1.4em 0;
+}
+.decision-outcome .do-question {
+  font-size: .95rem;
+  margin: 0 0 12px;
+}
+.decision-outcome .do-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 560px) {
+  .decision-outcome .do-cards { grid-template-columns: 1fr; }
+}
+.decision-outcome .do-card {
+  border-radius: 10px;
+  border: 1px solid var(--card-line);
+  background: var(--gray-50);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+.decision-outcome .do-card.good { border-color: var(--ok-color); }
+.decision-outcome .do-card.bad { border-color: var(--no-color); }
+.decision-outcome .do-tag {
+  padding: 8px 12px;
+  font-family: 'Golos Text', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+}
+.decision-outcome .do-card.good .do-tag { background: var(--ok-bg); color: var(--ok-color); }
+.decision-outcome .do-card.bad .do-tag { background: var(--no-bg); color: var(--no-color); }
+.decision-outcome .do-body {
+  padding: 10px 12px 13px;
+  font-size: .85rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}

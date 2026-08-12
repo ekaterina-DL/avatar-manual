@@ -27,3 +27,11 @@
 .video-grid {
   break-inside: avoid;
 }
+
+/* Декоративные визуальные добавки (градиентная шкала, карточки-исходы «Сегмент/Битое») —
+   только сайт; PDF показывает уже присутствующий рядом полный текст без изменений.
+   См. addendum 12.08.2026 к docs/superpowers/specs/2026-08-11-stage2-dedup-design.md */
+.threshold-scale,
+.decision-outcome {
+  display: none;
+}
