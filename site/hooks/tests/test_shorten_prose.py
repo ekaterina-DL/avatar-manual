@@ -128,7 +128,8 @@ def test_shortens_frod_norm_and_warning_decision_paragraphs():
     page = FakePage("manual-2-etap/00-overview.md")
     result = on_page_markdown(QUALITY_THRESHOLD_SECTION, page, SITE_CONFIG, None)
     assert "Команда несколько раз спрашивала заказчика" not in result
-    assert "точный процент выборки не разглашается." in result
+    assert "на основании которых принято решение." in result
+    assert "точный процент выборки не разглашается" not in result
     assert "практика считать «фродом»" in result
     assert "**игнорирует\nтребования инструкции**" in result  # bold-критерии сохранены
     assert "- С 23.02.2026 — порог качества повышен до **85%**." in result  # соседний текст не тронут
