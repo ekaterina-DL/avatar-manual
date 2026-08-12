@@ -459,3 +459,22 @@ body, .md-typeset {
   color: var(--gray-600);
   line-height: 1.5;
 }
+
+/* Карточки-вердикты таблицы калибровки (manual-3-etap/03-common-mistakes.md), собираемые
+   build_verdict_examples.py — расширяет уже существующие .example-grid/.example-card двумя
+   новыми модификаторами (good/warn, третий — bad — уже существовал) и тегом-вердиктом
+   .ec-verdict (вместо маленького кружка-номера .num, который тут неуместен — не индекс примера,
+   а сам вердикт). См. addendum 12.08.2026 к
+   docs/superpowers/specs/2026-08-12-stage3-visual-system-design.md */
+.example-card .ec-verdict {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-family: 'Golos Text', sans-serif;
+  font-size: .74rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.example-card.good .ec-verdict { background: var(--ok-bg); color: var(--ok-color); }
+.example-card.bad .ec-verdict { background: var(--no-bg); color: var(--no-color); }
+.example-card.warn .ec-verdict { background: var(--accent-bg); color: var(--accent-ink); }

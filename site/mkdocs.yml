@@ -103,6 +103,7 @@ hooks:
   - hooks/group_media_lists.py
   - hooks/build_segment_examples.py
   - hooks/build_compare_cards.py
+  - hooks/build_verdict_examples.py
   - hooks/build_dispute_flow.py
   - hooks/build_status_badges.py
   - hooks/link_bare_qa_log_mentions.py
