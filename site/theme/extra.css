@@ -43,6 +43,36 @@ body, .md-typeset {
   font-family: 'Golos Text', -apple-system, sans-serif;
 }
 
+/* Заголовки страниц и разделов — акцентный цвет с полупрозрачной заливкой, чтобы деление на
+   разделы считывалось визуально при беглом скролле, а не только по размеру шрифта. Использует
+   уже существующие токены --accent-bg/--accent-ink (та же пара, что у .status-badge/.ec-verdict
+   в карточках), чтобы не вводить в дизайн-систему сайта новый цвет. Три уровня (h1 → h2 → h3)
+   идут по убыванию отступов, h4 — только цвет текста без заливки: на некоторых страницах
+   (например, manual-2-etap/00b-exam.md) h4 используется для плотной последовательности
+   подгрупп примеров, и заливка на каждой была бы избыточной поверх уже закрашенных карточек
+   .video-block ниже.*/
+.md-typeset h1 {
+  color: var(--accent-ink);
+  background: var(--accent-bg);
+  padding: 16px 22px;
+  border-radius: 12px;
+}
+.md-typeset h2 {
+  color: var(--accent-ink);
+  background: var(--accent-bg);
+  padding: 10px 18px;
+  border-radius: 10px;
+}
+.md-typeset h3 {
+  color: var(--accent-ink);
+  background: var(--accent-bg);
+  padding: 7px 16px;
+  border-radius: 8px;
+}
+.md-typeset h4 {
+  color: var(--accent-ink);
+}
+
 /* Метки-источников: скрыты на сайте, видны в PDF-профиле (там это правило
    переопределяется в site/pdf/pdf-extra.css из Task 6) */
 .source-tag {
