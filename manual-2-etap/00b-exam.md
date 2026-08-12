@@ -4,6 +4,19 @@
 > действующий порог качества уже работающей команды — это два разных порога, не путать один с
 > другим.
 
+<div class="keyfacts">
+<div class="kf-stats">
+<div class="kf-stat">
+<div class="kf-value">≥80<span>%</span></div>
+<div class="kf-label">порог входного экзамена</div>
+</div>
+<div class="kf-stat">
+<div class="kf-value">85<span>%</span></div>
+<div class="kf-label">текущий порог качества</div>
+</div>
+</div>
+</div>
+
 ## Обучение и входной экзамен «Ступень 2»
 
 Новые асессоры проходят обучение и калибровку на отдельном тренировочном пуле, который в

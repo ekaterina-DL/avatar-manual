@@ -12,6 +12,25 @@
 
 ## Определение и границы
 
+<div class="keyfacts">
+<div class="kf-stats">
+<div class="kf-stat">
+<div class="kf-value">10–300<span>сек</span></div>
+<div class="kf-label">длительность одного сегмента</div>
+</div>
+</div>
+<div class="kf-forbid">
+<div class="kf-forbid-label">🚫 Сегмент не должен содержать</div>
+<div class="kf-tags">
+<span class="kf-tag">смену кадра</span>
+<span class="kf-tag">склейки</span>
+<span class="kf-tag">рамки</span>
+<span class="kf-tag">водяные знаки</span>
+<span class="kf-tag">наложенный текст</span>
+</div>
+</div>
+</div>
+
 - ⏱️ **Длительность** сегмента — **от 10 до 300 секунд**; для этого в видео должна быть хотя бы
   **одна непрерывная сцена** (без смены ракурса, без склейки) с говорящим человеком
   длительностью более 10 сек — это минимальное условие, чтобы вообще можно было выделить
@@ -94,6 +113,15 @@
 </div>
 
 ## Ограничения интерфейса
+
+<div class="keyfacts">
+<div class="kf-stats">
+<div class="kf-stat">
+<div class="kf-value">10<span>сегментов</span></div>
+<div class="kf-label">максимум на одном видео</div>
+</div>
+</div>
+</div>
 
 - На одном видео можно выделить **максимум 10 сегментов** (слоты пронумерованы от 1 до 10,
   выбираются в любом порядке — не обязательно по порядку от 1).
