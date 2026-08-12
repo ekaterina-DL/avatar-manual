@@ -15,3 +15,7 @@ __pycache__/
 .DS_Store
 .claude/*
 !.claude/settings.json
+
+# Служебные файлы Claude Code (прогресс-леджер subagent-driven-development,
+# мокапы визуального помощника brainstorming) — не публикуются в репозитории
+/.superpowers/
