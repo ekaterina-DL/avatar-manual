@@ -35,3 +35,9 @@
 .decision-outcome {
   display: none;
 }
+
+/* Карточки-факты — декоративное дублирование чисел, уже присутствующих в прозе рядом; только
+   сайт. См. docs/superpowers/specs/2026-08-12-fact-cards-design.md */
+.keyfacts {
+  display: none;
+}
