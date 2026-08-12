@@ -5,7 +5,7 @@ SECTION_MD = (
     "**Как устроено оспаривание ошибки:**\n"
     "1. Асессор пишет в тред Mattermost, указывая ссылку на видео и аргументированное возражение.\n"
     "2. Наставник из числа опытных асессоров валидирует запрос: либо возвращает возражение, либо\n"
-    "   принимает его и оформляет к передаче заказчику.\n"
+    "   принимает его и передаёт руководителю для дальнейшей отправки заказчику.\n"
     "3. Возражение передаётся заказчику: он либо подтверждает ошибку (её исправят), либо нет — и\n"
     "   объясняет почему.\n\n"
     "## Полезные материалы\n"
@@ -78,3 +78,16 @@ def test_diagram_renders_as_html_block_not_swallowed_into_paragraph():
     assert '<div class="apeal-flow">' in html
     # div не должен оказаться внутри <p> — иначе браузер молча разорвёт разметку
     assert "<p>" + '<div class="apeal-flow">' not in html.replace("\n", "")
+
+
+def test_item_3_second_line_fully_consumed_not_left_dangling_after_diagram():
+    # Регрессия: пункт 3 переносится на вторую строку ("   объясняет почему."), а нежадный
+    # ".*?\n" в самом конце цепочки регэкспа останавливался на первом переносе и не захватывал
+    # эту вторую строку — она оставалась висеть в виде текста сразу под уже собранной схемой.
+    page = FakePage("manual-2-etap/00-overview.md")
+    config = FakeConfig("/repo/avatar-manual-build/build")
+    result = on_page_markdown(SECTION_MD, page, config, None)
+    diagram_end = result.index("</div>\n</div>") + len("</div>\n</div>")
+    tail = result[diagram_end:]
+    assert "объясняет" not in tail
+    assert "## Полезные материалы" in tail
