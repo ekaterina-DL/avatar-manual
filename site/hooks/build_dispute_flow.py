@@ -6,9 +6,9 @@ from _build_profile import is_pdf_build
 # (manual-2-etap/00-overview.md) — без нечёткого сопоставления. Если исходный текст изменится,
 # regex просто не совпадёт и хук ничего не сделает (на сайте останется исходный список).
 _LIST_RE = re.compile(
-    r"1\. Асессор смотрит эксель-таблицу.*?\n"
-    r"2\. Data Light рассматривает обращение.*?\n"
-    r"3\. Заказчик либо соглашается.*?\n",
+    r"1\. Асессор пишет в тред Mattermost.*?\n"
+    r"2\. Наставник из числа опытных асессоров валидирует запрос.*?\n"
+    r"3\. Возражение передаётся заказчику.*?\n",
     re.S,
 )
 
@@ -16,17 +16,17 @@ _DIAGRAM = (
     '<div class="apeal-flow">\n'
     '<div class="apeal-step">\n'
     '<span class="apeal-num">1</span><span class="apeal-title">Асессор</span>\n'
-    "<p>не согласен с ОС → пишет в тред команды Data Light</p>\n"
+    "<p>не согласен с ОС → пишет в тред Mattermost со ссылкой на видео и аргументом</p>\n"
     "</div>\n"
     '<div class="apeal-arrow">→</div>\n'
     '<div class="apeal-step">\n'
-    '<span class="apeal-num">2</span><span class="apeal-title">Data Light</span>\n'
-    "<p>рассматривает обращение → бракует апелляцию или передаёт заказчику</p>\n"
+    '<span class="apeal-num">2</span><span class="apeal-title">Наставник</span>\n'
+    "<p>валидирует запрос → возвращает возражение или передаёт заказчику</p>\n"
     "</div>\n"
     '<div class="apeal-arrow">→</div>\n'
     '<div class="apeal-step">\n'
     '<span class="apeal-num">3</span><span class="apeal-title">Заказчик</span>\n'
-    "<p>подтверждает (ошибку исправят) или нет</p>\n"
+    "<p>подтверждает (ошибку исправят) или нет — объясняет почему</p>\n"
     "</div>\n"
     "</div>"
 )
