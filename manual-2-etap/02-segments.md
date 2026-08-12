@@ -68,6 +68,31 @@
 
 `[Инстр. Kandinsky-Аватар, стр.2, 10]`
 
+<div class="threshold-scale">
+<div class="ts-caption">🔇 Молчание — допустимая длительность</div>
+<div class="ts-track" style="background:linear-gradient(90deg,var(--ok-color) 0%,var(--ok-color) 35%,var(--md-accent-fg-color) 35%,var(--md-accent-fg-color) 62%,var(--ok-color) 62%,var(--ok-color) 78%,var(--no-color) 78%,var(--no-color) 100%)">
+<span class="ts-tick" style="left:0%">0с</span>
+<span class="ts-tick" style="left:35%">2с</span>
+<span class="ts-tick" style="left:62%">3–5с</span>
+<span class="ts-tick" style="left:78%">&gt;5с</span>
+<span class="ts-zone" style="left:17%">ок везде</span>
+<span class="ts-zone" style="left:48%">граница/внутри</span>
+<span class="ts-zone" style="left:89%">резать</span>
+</div>
+</div>
+
+<div class="threshold-scale">
+<div class="ts-caption">🤐 Перекрытие рта — насколько критично</div>
+<div class="ts-track" style="background:linear-gradient(90deg,var(--ok-color) 0%,var(--ok-color) 40%,var(--md-accent-fg-color) 40%,var(--md-accent-fg-color) 75%,var(--no-color) 75%,var(--no-color) 100%)">
+<span class="ts-tick" style="left:0%">доля сек.</span>
+<span class="ts-tick" style="left:40%">неск. сек.</span>
+<span class="ts-tick" style="left:75%">&gt;50% сегмента</span>
+<span class="ts-zone" style="left:20%">ок</span>
+<span class="ts-zone" style="left:57%">обрезать участок</span>
+<span class="ts-zone" style="left:90%">сегмент целиком не подходит</span>
+</div>
+</div>
+
 ## Ограничения интерфейса
 
 - На одном видео можно выделить **максимум 10 сегментов** (слоты пронумерованы от 1 до 10,
@@ -163,6 +188,20 @@
 «Битое» важно убедиться, что во всём видео действительно нет ни одного подходящего отрезка от
 10 секунд — наличие одного «плохого» признака (например, где-то есть склейка) не значит, что
 всё видео нужно браковать целиком. `[Памятка «Аватар 2 этап», стр.3]`
+
+<div class="decision-outcome">
+<div class="do-question">Есть ≥1 непрерывный участок 10+ сек без артефактов?</div>
+<div class="do-cards">
+<div class="do-card good">
+<div class="do-tag">✅ Да → Сегмент</div>
+<div class="do-body">Выделяем найденный участок</div>
+</div>
+<div class="do-card bad">
+<div class="do-tag">🚫 Нет → Битое</div>
+<div class="do-body">Только если во всём видео нет ни одного такого участка</div>
+</div>
+</div>
+</div>
 
 Это два взаимоисключающих варианта: **либо** выделяются сегменты, **либо** ставится «Битое» —
 никогда не то и другое одновременно. `[ОС заказчика, 17.07.2026]`
