@@ -19,6 +19,11 @@ _BADGE_EMOJI = {
     "Не решено": "🔴",
 }
 
+_TARGET_FILES = {
+    "manual-2-etap/09-disputed-points.md",
+    "manual-3-etap/02-open-questions.md",
+}
+
 
 def _render(match):
     label = match.group(1)
@@ -31,11 +36,13 @@ def on_page_markdown(markdown, page, config, files):
     """Строка "- Статус: **Решено**/**Частично решено**/**Не решено**" (канонический словарь,
     см. шапку manual-2-etap/09-disputed-points.md, "Формат записи") превращается в цветную
     плашку. Матчит только сам ярлык в начале строки — текст пояснения после него (факты, даты,
-    ссылки, цитаты) не трогает. Вложенные упоминания "Статус:" не в начале bullet-а (например,
-    внутри абзаца про точную границу 10:00 в разделе про макс. длину видео) не матчатся — regex
-    заякорен на начало строки через re.M. PDF-профиль не трогаем: там остаётся обычный текст."""
+    ссылки, цитаты) не трогает. Вложенные упоминания "Статус:" не в начале bullet-а не матчатся —
+    regex заякорен на начало строки через re.M. Применяется к обоим файлам, использующим этот
+    формат (manual-2-etap/09-disputed-points.md и manual-3-etap/02-open-questions.md, второй
+    добавлен 12.08.2026) — сама regex-логика файл-агностична. PDF-профиль не трогаем: там
+    остаётся обычный текст."""
     if is_pdf_build(config):
         return markdown
-    if page.file.src_uri.replace("\\", "/") != "manual-2-etap/09-disputed-points.md":
+    if page.file.src_uri.replace("\\", "/") not in _TARGET_FILES:
         return markdown
     return _STATUS_RE.sub(_render, markdown)
