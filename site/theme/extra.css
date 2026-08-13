@@ -677,3 +677,39 @@ body, .md-typeset {
   .anthro-card .anthro-media video,
   .anthro-card .anthro-media iframe { width: 100%; }
 }
+
+/* Модификатор .anthro-card--stack: медиа сверху, описание снизу мельче шрифтом — компактная
+   раскладка для карточек внутри двухколоночной сетки .anthro-grid (в отличие от .anthro-list,
+   где карточка на всю ширину строки, медиа слева и текст справа). */
+.anthro-card--stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+.anthro-card--stack .anthro-media {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.anthro-card--stack .anthro-body {
+  font-size: .8rem;
+}
+/* Карточка с двумя картинками рядом на одном уровне (объединённый пример «Овца + Куры») —
+   картинки уже сами сжаты (.anthro-media--pair), чтобы обе поместились в ряд без переноса. */
+.anthro-media--pair img {
+  max-width: 130px;
+  max-height: 130px;
+}
+
+/* Двухколоночная сетка карточек .anthro-card--stack — по две в ряд, на мобильных в одну
+   колонку (тот же брейкпоинт, что у .anthro-card выше). */
+.anthro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+@media (max-width: 560px) {
+  .anthro-grid { grid-template-columns: 1fr; }
+}

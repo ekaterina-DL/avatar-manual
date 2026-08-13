@@ -36,9 +36,9 @@
 
 #### ✅ Подходит
 
-<div class="anthro-list" markdown="1">
+<div class="anthro-grid" markdown="1">
 
-<div class="anthro-card" markdown="1">
+<div class="anthro-card anthro-card--stack" markdown="1">
 <div class="anthro-media"><img src="../assets/mike-wazowski-and-sully.png" alt="Майк Вазовски и Салли"></div>
 <div class="anthro-body" markdown="1">
 
@@ -48,7 +48,7 @@
 </div>
 </div>
 
-<div class="anthro-card" markdown="1">
+<div class="anthro-card anthro-card--stack" markdown="1">
 <div class="anthro-media"><img src="../assets/mr-potato-head.png" alt="Мистер Картофельная Голова"></div>
 <div class="anthro-body" markdown="1">
 
@@ -57,7 +57,7 @@
 </div>
 </div>
 
-<div class="anthro-card" markdown="1">
+<div class="anthro-card anthro-card--stack" markdown="1">
 <div class="anthro-media"><img src="../assets/cody-maverick.png" alt="Коди Мэверик"></div>
 <div class="anthro-body" markdown="1">
 
@@ -66,7 +66,7 @@
 </div>
 </div>
 
-<div class="anthro-card" markdown="1">
+<div class="anthro-card anthro-card--stack" markdown="1">
 <div class="anthro-media">https://www.youtube.com/watch?v=g2IF5NG2vU4</div>
 <div class="anthro-body" markdown="1">
 
@@ -111,7 +111,9 @@
 </div>
 </div>
 
-<div class="anthro-card" markdown="1">
+<div class="anthro-grid" markdown="1">
+
+<div class="anthro-card anthro-card--stack" markdown="1">
 <div class="anthro-media">https://www.youtube.com/watch?v=Mrwtdd6W3mw</div>
 <div class="anthro-body" markdown="1">
 
@@ -121,7 +123,7 @@
 </div>
 </div>
 
-<div class="anthro-card" markdown="1">
+<div class="anthro-card anthro-card--stack" markdown="1">
 <div class="anthro-media">https://www.youtube.com/shorts/FqnaRHnTwck</div>
 <div class="anthro-body" markdown="1">
 
@@ -133,13 +135,15 @@
 
 </div>
 
+</div>
+
 `[Уточнение по антропоморфам, 07.08.2026]`
 
 #### 🟡 В зависимости от контекста
 
-<div class="anthro-list" markdown="1">
+<div class="anthro-grid" markdown="1">
 
-<div class="anthro-card" markdown="1">
+<div class="anthro-card anthro-card--stack" markdown="1">
 <div class="anthro-media"><img src="../assets/cat-family.jpg" alt="«Коты-аристократы»"></div>
 <div class="anthro-body" markdown="1">
 
@@ -149,28 +153,20 @@
 </div>
 </div>
 
-<div class="anthro-card" markdown="1">
-<div class="anthro-media"><img src="../assets/shaun-the-sheep.jpg" alt="Барашек Шон"></div>
+<div class="anthro-card anthro-card--stack" markdown="1">
+<div class="anthro-media anthro-media--pair">
+<img src="../assets/shaun-the-sheep.jpg" alt="Барашек Шон">
+<img src="../assets/chicken-run.jpg" alt="Куры из «Побега из курятника»">
+</div>
 <div class="anthro-body" markdown="1">
 
-**Овца из «Барашка Шона»** анатомически подходит под антропоморфа, но «у таких мультфильмов
-обычно рваная динамика, плохая артикуляция» — из-за этого конкретный ролик всё равно может не
-подойти.
+Анатомически подходят под антропоморфа, но «у таких мультфильмов обычно рваная динамика, плохая
+артикуляция» — из-за этого конкретный ролик всё равно может не подойти.
 
 </div>
 </div>
 
-<div class="anthro-card" markdown="1">
-<div class="anthro-media"><img src="../assets/chicken-run.jpg" alt="Куры из «Побега из курятника»"></div>
-<div class="anthro-body" markdown="1">
-
-**Куры из «Побега из курятника»** — та же история: анатомически подходят под антропоморфа, но
-динамика и артикуляция часто проблемные, конкретный ролик может не подойти.
-
-</div>
-</div>
-
-<div class="anthro-card" markdown="1">
+<div class="anthro-card anthro-card--stack" markdown="1">
 <div class="anthro-media"><img src="../assets/hamster.jpg" alt="Хомяк из мультфильма «Болт»"></div>
 <div class="anthro-body" markdown="1">
 
