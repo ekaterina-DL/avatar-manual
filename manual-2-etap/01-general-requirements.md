@@ -49,19 +49,19 @@
 </div>
 
 <div class="anthro-card anthro-card--stack" markdown="1">
-<div class="anthro-media"><img src="../assets/mr-potato-head.png" alt="Мистер Картофельная Голова"></div>
+<div class="anthro-media"><img src="../assets/cody-maverick.png" alt="Коди Мэверик"></div>
 <div class="anthro-body" markdown="1">
 
-**Мистер Картофельная Голова** («История игрушек») — есть лицо, руки, ноги.
+**Пингвин Коди Мэверик** («Лови волну!») — стоит и ходит на двух лапах, как человек.
 
 </div>
 </div>
 
 <div class="anthro-card anthro-card--stack" markdown="1">
-<div class="anthro-media"><img src="../assets/cody-maverick.png" alt="Коди Мэверик"></div>
+<div class="anthro-media"><img src="../assets/mr-potato-head.png" alt="Мистер Картофельная Голова"></div>
 <div class="anthro-body" markdown="1">
 
-**Пингвин Коди Мэверик** («Лови волну!») — стоит и ходит на двух лапах, как человек.
+**Мистер Картофельная Голова** («История игрушек») — есть лицо, руки, ноги.
 
 </div>
 </div>
@@ -154,23 +154,24 @@
 </div>
 
 <div class="anthro-card anthro-card--stack" markdown="1">
+<div class="anthro-media"><img src="../assets/hamster.jpg" alt="Хомяк из мультфильма «Болт»"></div>
+<div class="anthro-body" markdown="1">
+
+**Хомяк из мультфильма «Болт»** — пример животного, которое подходит.
+
+</div>
+</div>
+
+<div class="anthro-card anthro-card--stack anthro-card--full" markdown="1">
 <div class="anthro-media anthro-media--pair">
 <img src="../assets/shaun-the-sheep.jpg" alt="Барашек Шон">
 <img src="../assets/chicken-run.jpg" alt="Куры из «Побега из курятника»">
 </div>
 <div class="anthro-body" markdown="1">
 
-Анатомически подходят под антропоморфа, но «у таких мультфильмов обычно рваная динамика, плохая
-артикуляция» — из-за этого конкретный ролик всё равно может не подойти.
-
-</div>
-</div>
-
-<div class="anthro-card anthro-card--stack" markdown="1">
-<div class="anthro-media"><img src="../assets/hamster.jpg" alt="Хомяк из мультфильма «Болт»"></div>
-<div class="anthro-body" markdown="1">
-
-**Хомяк из мультфильма «Болт»** — пример животного, которое подходит.
+**Овца из «Барашка Шона»** и **Куры из «Побега из курятника»** — анатомически подходят под
+антропоморфа, но «у таких мультфильмов обычно рваная динамика, плохая артикуляция» — из-за этого
+конкретный ролик всё равно может не подойти.
 
 </div>
 </div>

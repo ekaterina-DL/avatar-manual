@@ -713,3 +713,8 @@ body, .md-typeset {
 @media (max-width: 560px) {
   .anthro-grid { grid-template-columns: 1fr; }
 }
+/* Модификатор .anthro-card--full: карточка растягивается на всю ширину сетки (обе колонки) —
+   для объединённого примера «Овца + Куры», который стоит отдельным сплошным блоком внизу. */
+.anthro-card--full {
+  grid-column: 1 / -1;
+}
