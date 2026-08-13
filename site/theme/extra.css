@@ -701,6 +701,11 @@ body, .md-typeset {
   max-width: 130px;
   max-height: 130px;
 }
+/* Хомяк — картинка крупнее обычного лимита (220px) на 20%, по запросу. */
+.anthro-card .anthro-media img[src$="hamster.jpg"] {
+  max-width: 264px;
+  max-height: 264px;
+}
 
 /* Двухколоночная сетка карточек .anthro-card--stack — по две в ряд, на мобильных в одну
    колонку (тот же брейкпоинт, что у .anthro-card выше). */
