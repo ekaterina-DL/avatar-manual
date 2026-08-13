@@ -36,35 +36,137 @@
 
 #### ✅ Подходит
 
-- Майк Вазовски и Салли (монстры, «Корпорация монстров») — человекоподобное лицо, руки, ноги,
-  прямоходящие.
-- Мистер Картофельная Голова («История игрушек») — есть лицо, руки, ноги.
-- Антропоморфный пингвин (стоит и ходит на двух лапах, как человек).
-- https://www.youtube.com/watch?v=g2IF5NG2vU4 (с 35 секунды).
+<div class="anthro-list" markdown="1">
+
+<div class="anthro-card" markdown="1">
+<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Mike_Wazowski.png/250px-Mike_Wazowski.png" alt="Майк Вазовски"></div>
+<div class="anthro-body" markdown="1">
+
+**Майк Вазовски и Салли** (монстры, «Корпорация монстров») — человекоподобное лицо, руки, ноги,
+прямоходящие.
+
+</div>
+</div>
+
+<div class="anthro-card" markdown="1">
+<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Mr_Potato_Head_at_Hasbro_Pawtucket_headquarters.jpg/250px-Mr_Potato_Head_at_Hasbro_Pawtucket_headquarters.jpg" alt="Мистер Картофельная Голова"></div>
+<div class="anthro-body" markdown="1">
+
+**Мистер Картофельная Голова** («История игрушек») — есть лицо, руки, ноги.
+
+</div>
+</div>
+
+<div class="anthro-card no-media" markdown="1">
+<div class="anthro-body" markdown="1">
+
+**Антропоморфный пингвин** (стоит и ходит на двух лапах, как человек).
+
+</div>
+</div>
+
+<div class="anthro-card" markdown="1">
+<div class="anthro-media">https://www.youtube.com/watch?v=g2IF5NG2vU4</div>
+<div class="anthro-body" markdown="1">
+
+Реальный пример из проверок (с 35 секунды).
+
+</div>
+</div>
+
+</div>
 
 #### ❌ Не подходит
 
-- Говорящая рыбка (например, Дори из «В поисках Немо») — это просто говорящий персонаж без
-  человекоподобной анатомии (нет ног, не прямоходящий), сам факт речи и мимики недостаточен.
-- Говорящие машинки (например, Молния Маккуин из «Тачек») — у машин нарисованы только глаза и
-  рот (на решётке радиатора/лобовом стекле), никакой человекоподобной фигуры, рук или ног нет.
-- Монстр-капля без выраженных рук/ног — анатомия важнее факта речи и мимики.
-- https://www.youtube.com/watch?v=Mrwtdd6W3mw (с 23 секунды) — дело не в монтаже/сменах сцен, а
-  именно в артикуляции персонажей — локально она прерывистая, неестественная; нужны более
-  плавные движения.
-- https://www.youtube.com/shorts/FqnaRHnTwck — это генерация нейросети (исключаем в принципе) и
-  вдобавок липсинк/артикуляция персонажа тоже не подходит.
+<div class="anthro-list" markdown="1">
+
+<div class="anthro-card" markdown="1">
+<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Dory_%28Finding_Nemo%29.png/250px-Dory_%28Finding_Nemo%29.png" alt="Дори"></div>
+<div class="anthro-body" markdown="1">
+
+**Говорящая рыбка** (например, Дори из «В поисках Немо») — это просто говорящий персонаж без
+человекоподобной анатомии (нет ног, не прямоходящий), сам факт речи и мимики недостаточен.
+
+</div>
+</div>
+
+<div class="anthro-card" markdown="1">
+<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/en/8/82/Lightning_McQueen.png" alt="Молния Маккуин"></div>
+<div class="anthro-body" markdown="1">
+
+**Говорящие машинки** (например, Молния Маккуин из «Тачек») — у машин нарисованы только глаза и
+рот (на решётке радиатора/лобовом стекле), никакой человекоподобной фигуры, рук или ног нет.
+
+</div>
+</div>
+
+<div class="anthro-card no-media" markdown="1">
+<div class="anthro-body" markdown="1">
+
+**Монстр-капля** без выраженных рук/ног — анатомия важнее факта речи и мимики.
+
+</div>
+</div>
+
+<div class="anthro-card" markdown="1">
+<div class="anthro-media">https://www.youtube.com/watch?v=Mrwtdd6W3mw</div>
+<div class="anthro-body" markdown="1">
+
+С 23 секунды — дело не в монтаже/сменах сцен, а именно в артикуляции персонажей: локально она
+прерывистая, неестественная, нужны более плавные движения.
+
+</div>
+</div>
+
+<div class="anthro-card" markdown="1">
+<div class="anthro-media">https://www.youtube.com/shorts/FqnaRHnTwck</div>
+<div class="anthro-body" markdown="1">
+
+Это генерация нейросети (исключаем в принципе) и вдобавок липсинк/артикуляция персонажа тоже не
+подходит.
+
+</div>
+</div>
+
+</div>
 
 `[Уточнение по антропоморфам, 07.08.2026]`
 
-#### В зависимости от контекста
+#### 🟡 В зависимости от контекста
 
-- Коты из «Аристократов»: «Если они сидят, как кошки, то не надо. Если ходят на задних лапах,
-  то ок».
-- Овца из «Барашка Шона» и куры из «Побега из курятника» анатомически подходят под
-  антропоморфа, но «у таких мультфильмов обычно рваная динамика, плохая артикуляция» — из-за
-  этого конкретный ролик всё равно может не подойти.
-- Хомяк из мультфильма «Болт» — пример животного, которое подходит.
+<div class="anthro-list" markdown="1">
+
+<div class="anthro-card" markdown="1">
+<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/Aristoposter.jpg/250px-Aristoposter.jpg" alt="«Аристокошки»"></div>
+<div class="anthro-body" markdown="1">
+
+**Коты из «Аристократов»:** «Если они сидят, как кошки, то не надо. Если ходят на задних лапах,
+то ок».
+
+</div>
+</div>
+
+<div class="anthro-card" markdown="1">
+<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Shaun_the_Sheep%2C_Sk%C3%A5nes_Djurpark.jpg/250px-Shaun_the_Sheep%2C_Sk%C3%A5nes_Djurpark.jpg" alt="Барашек Шон"></div>
+<div class="anthro-body" markdown="1">
+
+**Овца из «Барашка Шона» и куры из «Побега из курятника»** анатомически подходят под
+антропоморфа, но «у таких мультфильмов обычно рваная динамика, плохая артикуляция» — из-за
+этого конкретный ролик всё равно может не подойти.
+
+</div>
+</div>
+
+<div class="anthro-card" markdown="1">
+<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/Characters_bolt.jpeg/250px-Characters_bolt.jpeg" alt="Мультфильм «Болт»"></div>
+<div class="anthro-body" markdown="1">
+
+**Хомяк из мультфильма «Болт»** — пример животного, которое подходит.
+
+</div>
+</div>
+
+</div>
 
 `[Разметка ВК видео — ОС 07.08.2026]`
 

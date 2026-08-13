@@ -603,3 +603,53 @@ body, .md-typeset {
     border-top: 1px solid var(--card-line);
   }
 }
+
+/* Карточки «фото/видео слева — описание справа» для калибровочных примеров антропоморфов
+   (01-general-requirements.md) — прямой HTML-блок в исходнике, без отдельного хука (см. тот же
+   приём у .keyfacts/.apeal-flow выше: разовый, не переиспользуемый на других страницах паттерн). */
+.anthro-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 1.2em 0;
+}
+.anthro-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--card-line);
+  border-radius: 10px;
+  background: var(--gray-50);
+  box-shadow: var(--card-shadow);
+  padding: 12px 16px;
+}
+.anthro-card .anthro-media {
+  flex: 0 0 180px;
+  width: 180px;
+}
+.anthro-card .anthro-media img,
+.anthro-card .anthro-media video,
+.anthro-card .anthro-media iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  border: none;
+  border-radius: 7px;
+  box-shadow: none;
+  cursor: default;
+  max-width: 100%;
+  max-height: none;
+}
+.anthro-card .anthro-body {
+  flex: 1;
+  font-size: .88rem;
+  line-height: 1.55;
+  color: var(--gray-600);
+}
+.anthro-card.no-media .anthro-body { flex: 1 1 100%; }
+@media (max-width: 560px) {
+  .anthro-card { flex-direction: column; align-items: stretch; }
+  .anthro-card .anthro-media { width: 100%; flex: none; }
+}
