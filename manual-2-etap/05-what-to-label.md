@@ -2,8 +2,7 @@
 
 Это краткий чек-лист, что размечать. Что НЕ размечать и когда видео помечается «Битое» — см.
 [«Что не размечаем / Битое»](05b-what-not-to-label.md). Подробные критерии и обоснования — в
-[01-general-requirements.md](01-general-requirements.md), [02-segments.md](02-segments.md) и
-[03-video-quality.md](03-video-quality.md).
+[01-general-requirements.md](01-general-requirements.md) и [02-segments.md](02-segments.md).
 
 ## Размечаем (выделяем сегмент), если
 

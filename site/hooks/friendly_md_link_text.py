@@ -6,7 +6,6 @@ TITLES = {
     "manual-2-etap/00-overview.md": "Обзор проекта",
     "manual-2-etap/01-general-requirements.md": "Общие требования к видео и аудио",
     "manual-2-etap/02-segments.md": "Сегменты",
-    "manual-2-etap/03-video-quality.md": "Качество видео",
     "manual-2-etap/04-classifier.md": "Классификатор",
     "manual-2-etap/05-what-to-label.md": "Что размечаем",
     "manual-2-etap/06-common-mistakes.md": "Частые ошибки",
