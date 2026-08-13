@@ -4,7 +4,7 @@ import re
 # сопоставления — тот же принцип, что и в hide_site_only_sections.py.
 TITLES = {
     "manual-2-etap/00-overview.md": "Обзор проекта",
-    "manual-2-etap/01-general-requirements.md": "Общие требования",
+    "manual-2-etap/01-general-requirements.md": "Общие требования к видео и аудио",
     "manual-2-etap/02-segments.md": "Сегменты",
     "manual-2-etap/03-video-quality.md": "Качество видео",
     "manual-2-etap/04-classifier.md": "Классификатор",
