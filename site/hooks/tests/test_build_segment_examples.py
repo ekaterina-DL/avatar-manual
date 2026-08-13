@@ -33,7 +33,7 @@ SEGMENTS_MD = f"""## Примеры (позитивные)
 
 
 class FakeFile:
-    src_uri = "manual-2-etap/02-segments.md"
+    src_uri = "manual-2-etap/05-what-to-label.md"
 
 
 class FakePage:
@@ -100,10 +100,23 @@ def test_untouched_on_other_pages():
     assert on_page_markdown(SEGMENTS_MD, OtherPage(), SITE_CONFIG, None) == SEGMENTS_MD
 
 
+def test_untouched_on_segments_page():
+    """«Примеры (позитивные)» и «Антипримеры» изначально жили вместе на 02-segments.md, но оба
+    раздела переехали (сначала «Антипримеры» на 05b-what-not-to-label.md, затем «Примеры
+    (позитивные)» на 05-what-to-label.md) — 02-segments.md больше не должен быть целью хука."""
+    class SegmentsFile:
+        src_uri = "manual-2-etap/02-segments.md"
+
+    class SegmentsPage:
+        file = SegmentsFile()
+
+    assert on_page_markdown(SEGMENTS_MD, SegmentsPage(), SITE_CONFIG, None) == SEGMENTS_MD
+
+
 def test_also_runs_on_what_not_to_label_page():
-    """Раздел «Антипримеры» переехал с 02-segments.md на 05b-what-not-to-label.md (раздел
-    «Примеры (позитивные)» остался на 02-segments.md) — хук должен продолжать собирать карточки
-    и на новой странице, а не только на TARGET_FILE из старой (одиночной) версии."""
+    """«Примеры (позитивные)» и «Антипримеры» теперь живут на разных страницах
+    (05-what-to-label.md и 05b-what-not-to-label.md соответственно) — хук должен собирать
+    карточки на обеих, а не только на одной TARGET_FILE из старой (одиночной) версии."""
     class WhatNotFile:
         src_uri = "manual-2-etap/05b-what-not-to-label.md"
 
