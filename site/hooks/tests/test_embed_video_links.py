@@ -54,6 +54,28 @@ def test_youtube_shorts_link():
     ) in result
 
 
+def test_youtube_watch_link():
+    md = "**Пример:** https://www.youtube.com/watch?v=g2IF5NG2vU4"
+    result = on_page_markdown(md, None, SITE_CONFIG, None)
+    assert (
+        '<iframe class="embedded-video" '
+        'src="https://www.youtube.com/embed/g2IF5NG2vU4" '
+        'loading="lazy" allowfullscreen></iframe>'
+    ) in result
+
+
+def test_youtube_watch_link_inside_markdown_link():
+    md = "- [g2IF5NG2vU4](https://www.youtube.com/watch?v=g2IF5NG2vU4) (с 35 секунды) — подходит."
+    result = on_page_markdown(md, None, SITE_CONFIG, None)
+    assert (
+        '<iframe class="embedded-video" '
+        'src="https://www.youtube.com/embed/g2IF5NG2vU4" '
+        'loading="lazy" allowfullscreen></iframe>'
+    ) in result
+    assert '<figcaption>g2IF5NG2vU4</figcaption>' in result
+    assert "(с 35 секунды) — подходит." in result
+
+
 def test_unrelated_text_untouched():
     md = "Обычный текст без ссылок на видео."
     assert on_page_markdown(md, None, SITE_CONFIG, None) == md

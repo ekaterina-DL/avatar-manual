@@ -34,6 +34,14 @@ YOUTUBE_BRACKETED_RE = re.compile(
     r'\[([^\]]*)\]\(https?://(?:www\.)?youtube\.com/shorts/([A-Za-z0-9_-]+)\)'
 )
 YOUTUBE_BARE_RE = re.compile(r'(?<!["(])https?://(?:www\.)?youtube\.com/shorts/([A-Za-z0-9_-]+)')
+# Обычная (не /shorts/) ссылка на YouTube-видео, напр. ".../watch?v=g2IF5NG2vU4" — те же два
+# прохода (сначала markdown-ссылки, потом голые), тот же формат embed-плеера, что и у /shorts/.
+YOUTUBE_WATCH_BRACKETED_RE = re.compile(
+    r'\[([^\]]*)\]\(https?://(?:www\.)?youtube\.com/watch\?v=([A-Za-z0-9_-]+)(?:&\S*)?\)'
+)
+YOUTUBE_WATCH_BARE_RE = re.compile(
+    r'(?<!["(])https?://(?:www\.)?youtube\.com/watch\?v=([A-Za-z0-9_-]+)(?:&\S*)?'
+)
 
 
 def _replace_vk_bracketed(match):
@@ -47,7 +55,8 @@ def _replace_youtube_bracketed(match):
 
 
 def on_page_markdown(markdown, page, config, files):
-    """Превращает ссылки на vkvideo.ru и youtube.com/shorts во встроенный iframe-плеер —
+    """Превращает ссылки на vkvideo.ru и youtube.com (и /shorts/, и обычные /watch?v=) во
+    встроенный iframe-плеер —
     и голые ссылки (без подписи, просто плеер), и markdown-ссылки вида [текст](url) (плеер +
     видимая подпись <figcaption> с исходным текстом ссылки, см. Fix 2 итогового обзора — раньше
     подпись отбрасывалась целиком, что ломало визуальную согласованность списков, где соседние
@@ -67,4 +76,6 @@ def on_page_markdown(markdown, page, config, files):
     markdown = VK_BARE_RE.sub(lambda m: _vk_iframe(*m.groups()), markdown)
     markdown = YOUTUBE_BRACKETED_RE.sub(_replace_youtube_bracketed, markdown)
     markdown = YOUTUBE_BARE_RE.sub(lambda m: _youtube_iframe(*m.groups()), markdown)
+    markdown = YOUTUBE_WATCH_BRACKETED_RE.sub(_replace_youtube_bracketed, markdown)
+    markdown = YOUTUBE_WATCH_BARE_RE.sub(lambda m: _youtube_iframe(*m.groups()), markdown)
     return markdown
