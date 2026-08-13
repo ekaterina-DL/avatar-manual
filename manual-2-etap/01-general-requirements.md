@@ -163,7 +163,7 @@
 </div>
 
 <div class="anthro-card anthro-card--stack anthro-card--full" markdown="1">
-<div class="anthro-media anthro-media--pair">
+<div class="anthro-media">
 <img src="../assets/shaun-the-sheep.jpg" alt="Барашек Шон">
 <img src="../assets/chicken-run.jpg" alt="Куры из «Побега из курятника»">
 </div>
