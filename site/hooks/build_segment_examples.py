@@ -3,7 +3,10 @@ import re
 from _build_profile import is_pdf_build
 from _section_utils import extract_section
 
-TARGET_FILE = "manual-2-etap/02-segments.md"
+TARGET_FILES = {
+    "manual-2-etap/02-segments.md",
+    "manual-2-etap/05b-what-not-to-label.md",
+}
 SECTION_HEADINGS = ["Примеры (позитивные)", "Антипримеры"]
 
 # Строка списка (маркированная "- " или нумерованная "1. ") внутри подписи карточки. Нужна
@@ -121,10 +124,15 @@ def _transform_section(markdown, heading):
 
 
 def on_page_markdown(markdown, page, config, files):
-    """Специфично для manual-2-etap/02-segments.md: блоки "**Пример N:** <iframe>...</iframe>" +
-    картинка-кадр + подпись превращает в .example-grid/.example-card (карточка со встроенным
-    плеером вместо статичного кадра — кадр становится избыточным, раз видео уже играбельно).
-    Требует, чтобы embed_video_links.py уже отработал на этой странице раньше в конвейере хуков.
+    """Специфично для manual-2-etap/02-segments.md и manual-2-etap/05b-what-not-to-label.md:
+    блоки "**Пример N:** <iframe>...</iframe>" + картинка-кадр + подпись превращает в
+    .example-grid/.example-card (карточка со встроенным плеером вместо статичного кадра — кадр
+    становится избыточным, раз видео уже играбельно). После переноса раздела «Антипримеры» с
+    02-segments.md на 05b-what-not-to-label.md (раздел «Примеры (позитивные)» остался на месте)
+    хук проверяет оба файла на оба заголовка — extract_section просто не находит отсутствующий
+    заголовок и no-op'ает для него, так что каждый файл фактически обрабатывает только тот
+    раздел, который у него есть. Требует, чтобы embed_video_links.py уже отработал на странице
+    раньше в конвейере хуков.
 
     PDF-профиль — исключение (Fix 3 итогового обзора, человек решил): карточка со встроенным
     плеером в печати бесполезна (iframe нельзя кликнуть, постер не показывается), из-за чего
@@ -135,7 +143,7 @@ def on_page_markdown(markdown, page, config, files):
     if is_pdf_build(config):
         return markdown
     src_uri = page.file.src_uri.replace("\\", "/")
-    if src_uri != TARGET_FILE:
+    if src_uri not in TARGET_FILES:
         return markdown
     for heading in SECTION_HEADINGS:
         markdown = _transform_section(markdown, heading)

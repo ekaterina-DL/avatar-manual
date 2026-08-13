@@ -100,6 +100,20 @@ def test_untouched_on_other_pages():
     assert on_page_markdown(SEGMENTS_MD, OtherPage(), SITE_CONFIG, None) == SEGMENTS_MD
 
 
+def test_also_runs_on_what_not_to_label_page():
+    """Раздел «Антипримеры» переехал с 02-segments.md на 05b-what-not-to-label.md (раздел
+    «Примеры (позитивные)» остался на 02-segments.md) — хук должен продолжать собирать карточки
+    и на новой странице, а не только на TARGET_FILE из старой (одиночной) версии."""
+    class WhatNotFile:
+        src_uri = "manual-2-etap/05b-what-not-to-label.md"
+
+    class WhatNotPage:
+        file = WhatNotFile()
+
+    result = on_page_markdown(SEGMENTS_MD, WhatNotPage(), SITE_CONFIG, None)
+    assert result.count('<div class="example-grid" markdown="1">') == 2
+
+
 def test_rendered_html_has_no_leftover_markdown_1_or_literal_bold_markers():
     """Fix 1 итогового обзора: markdown="1" стоял только на самом внутреннем <div>, а не на
     ВСЕХ div-предках карточки, и подпись шла в одну строку с окружающими тегами — из-за этого
