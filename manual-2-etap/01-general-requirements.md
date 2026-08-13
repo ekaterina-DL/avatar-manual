@@ -39,7 +39,7 @@
 <div class="anthro-list" markdown="1">
 
 <div class="anthro-card" markdown="1">
-<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Mike_Wazowski.png/250px-Mike_Wazowski.png" alt="Майк Вазовски"></div>
+<div class="anthro-media"><img src="../assets/mike-wazowski-and-sully.png" alt="Майк Вазовски и Салли"></div>
 <div class="anthro-body" markdown="1">
 
 **Майк Вазовски и Салли** (монстры, «Корпорация монстров») — человекоподобное лицо, руки, ноги,
@@ -49,7 +49,7 @@
 </div>
 
 <div class="anthro-card" markdown="1">
-<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Mr_Potato_Head_at_Hasbro_Pawtucket_headquarters.jpg/250px-Mr_Potato_Head_at_Hasbro_Pawtucket_headquarters.jpg" alt="Мистер Картофельная Голова"></div>
+<div class="anthro-media"><img src="../assets/mr-potato-head.png" alt="Мистер Картофельная Голова"></div>
 <div class="anthro-body" markdown="1">
 
 **Мистер Картофельная Голова** («История игрушек») — есть лицо, руки, ноги.
@@ -57,10 +57,11 @@
 </div>
 </div>
 
-<div class="anthro-card no-media" markdown="1">
+<div class="anthro-card" markdown="1">
+<div class="anthro-media"><img src="../assets/cody-maverick.png" alt="Коди Мэверик"></div>
 <div class="anthro-body" markdown="1">
 
-**Антропоморфный пингвин** (стоит и ходит на двух лапах, как человек).
+**Пингвин Коди Мэверик** («Лови волну!») — стоит и ходит на двух лапах, как человек.
 
 </div>
 </div>
@@ -69,7 +70,7 @@
 <div class="anthro-media">https://www.youtube.com/watch?v=g2IF5NG2vU4</div>
 <div class="anthro-body" markdown="1">
 
-Реальный пример из проверок (с 35 секунды).
+**Базз Лайтер** («История игрушек») — реальный пример из проверок (с 35 секунды).
 
 </div>
 </div>
@@ -81,7 +82,7 @@
 <div class="anthro-list" markdown="1">
 
 <div class="anthro-card" markdown="1">
-<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Dory_%28Finding_Nemo%29.png/250px-Dory_%28Finding_Nemo%29.png" alt="Дори"></div>
+<div class="anthro-media"><img src="../assets/dory.png" alt="Дори"></div>
 <div class="anthro-body" markdown="1">
 
 **Говорящая рыбка** (например, Дори из «В поисках Немо») — это просто говорящий персонаж без
@@ -91,7 +92,7 @@
 </div>
 
 <div class="anthro-card" markdown="1">
-<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/en/8/82/Lightning_McQueen.png" alt="Молния Маккуин"></div>
+<div class="anthro-media"><img src="../assets/lightning-mcqueen.png" alt="Молния Маккуин"></div>
 <div class="anthro-body" markdown="1">
 
 **Говорящие машинки** (например, Молния Маккуин из «Тачек») — у машин нарисованы только глаза и
@@ -100,10 +101,12 @@
 </div>
 </div>
 
-<div class="anthro-card no-media" markdown="1">
+<div class="anthro-card" markdown="1">
+<div class="anthro-media"><img src="../assets/bob.png" alt="Б.О.Б."></div>
 <div class="anthro-body" markdown="1">
 
-**Монстр-капля** без выраженных рук/ног — анатомия важнее факта речи и мимики.
+**Монстр-капля Б.О.Б.** («Монстры против пришельцев») — без выраженных рук/ног, анатомия важнее
+факта речи и мимики.
 
 </div>
 </div>
@@ -137,28 +140,38 @@
 <div class="anthro-list" markdown="1">
 
 <div class="anthro-card" markdown="1">
-<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/Aristoposter.jpg/250px-Aristoposter.jpg" alt="«Аристокошки»"></div>
+<div class="anthro-media"><img src="../assets/cat-family.jpg" alt="«Коты-аристократы»"></div>
 <div class="anthro-body" markdown="1">
 
-**Коты из «Аристократов»:** «Если они сидят, как кошки, то не надо. Если ходят на задних лапах,
-то ок».
+**«Коты-аристократы»:** «Если они сидят, как кошки, то не надо. Если ходят на задних лапах, то
+ок».
 
 </div>
 </div>
 
 <div class="anthro-card" markdown="1">
-<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Shaun_the_Sheep%2C_Sk%C3%A5nes_Djurpark.jpg/250px-Shaun_the_Sheep%2C_Sk%C3%A5nes_Djurpark.jpg" alt="Барашек Шон"></div>
+<div class="anthro-media"><img src="../assets/shaun-the-sheep.jpg" alt="Барашек Шон"></div>
 <div class="anthro-body" markdown="1">
 
-**Овца из «Барашка Шона» и куры из «Побега из курятника»** анатомически подходят под
-антропоморфа, но «у таких мультфильмов обычно рваная динамика, плохая артикуляция» — из-за
-этого конкретный ролик всё равно может не подойти.
+**Овца из «Барашка Шона»** анатомически подходит под антропоморфа, но «у таких мультфильмов
+обычно рваная динамика, плохая артикуляция» — из-за этого конкретный ролик всё равно может не
+подойти.
 
 </div>
 </div>
 
 <div class="anthro-card" markdown="1">
-<div class="anthro-media"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/Characters_bolt.jpeg/250px-Characters_bolt.jpeg" alt="Мультфильм «Болт»"></div>
+<div class="anthro-media"><img src="../assets/chicken-run.jpg" alt="Куры из «Побега из курятника»"></div>
+<div class="anthro-body" markdown="1">
+
+**Куры из «Побега из курятника»** — та же история: анатомически подходят под антропоморфа, но
+динамика и артикуляция часто проблемные, конкретный ролик может не подойти.
+
+</div>
+</div>
+
+<div class="anthro-card" markdown="1">
+<div class="anthro-media"><img src="../assets/hamster.jpg" alt="Хомяк из мультфильма «Болт»"></div>
 <div class="anthro-body" markdown="1">
 
 **Хомяк из мультфильма «Болт»** — пример животного, которое подходит.
