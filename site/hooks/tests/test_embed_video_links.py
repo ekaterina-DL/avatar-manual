@@ -44,13 +44,19 @@ def test_vk_link_with_query_string_is_stripped():
     assert "list=" not in result
 
 
+YOUTUBE_ALLOW = (
+    'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; '
+    'picture-in-picture"'
+)
+
+
 def test_youtube_shorts_link():
     md = "**Антипример 1:** https://www.youtube.com/shorts/kLTpStNQRF0"
     result = on_page_markdown(md, None, SITE_CONFIG, None)
     assert (
         '<iframe class="embedded-video" '
-        'src="https://www.youtube.com/embed/kLTpStNQRF0" '
-        'loading="lazy" allowfullscreen></iframe>'
+        'src="https://www.youtube-nocookie.com/embed/kLTpStNQRF0" '
+        f'loading="lazy" {YOUTUBE_ALLOW} allowfullscreen></iframe>'
     ) in result
 
 
@@ -59,8 +65,8 @@ def test_youtube_watch_link():
     result = on_page_markdown(md, None, SITE_CONFIG, None)
     assert (
         '<iframe class="embedded-video" '
-        'src="https://www.youtube.com/embed/g2IF5NG2vU4" '
-        'loading="lazy" allowfullscreen></iframe>'
+        'src="https://www.youtube-nocookie.com/embed/g2IF5NG2vU4" '
+        f'loading="lazy" {YOUTUBE_ALLOW} allowfullscreen></iframe>'
     ) in result
 
 
@@ -69,8 +75,8 @@ def test_youtube_watch_link_inside_markdown_link():
     result = on_page_markdown(md, None, SITE_CONFIG, None)
     assert (
         '<iframe class="embedded-video" '
-        'src="https://www.youtube.com/embed/g2IF5NG2vU4" '
-        'loading="lazy" allowfullscreen></iframe>'
+        'src="https://www.youtube-nocookie.com/embed/g2IF5NG2vU4" '
+        f'loading="lazy" {YOUTUBE_ALLOW} allowfullscreen></iframe>'
     ) in result
     assert '<figcaption>g2IF5NG2vU4</figcaption>' in result
     assert "(с 35 секунды) — подходит." in result
@@ -92,8 +98,8 @@ def test_youtube_shorts_inside_markdown_link():
     result = on_page_markdown(md, None, SITE_CONFIG, None)
     assert (
         '<iframe class="embedded-video" '
-        'src="https://www.youtube.com/embed/FqnaRHnTwck" '
-        'loading="lazy" allowfullscreen></iframe>'
+        'src="https://www.youtube-nocookie.com/embed/FqnaRHnTwck" '
+        f'loading="lazy" {YOUTUBE_ALLOW} allowfullscreen></iframe>'
     ) in result
     assert '<figcaption>FqnaRHnTwck</figcaption>' in result
     assert '<figure class="embedded-video-figure">' in result
@@ -130,8 +136,8 @@ def test_real_line_05_what_to_label_keeps_caption_and_surrounding_text():
     result = on_page_markdown(md, None, SITE_CONFIG, None)
     assert (
         '<iframe class="embedded-video" '
-        'src="https://www.youtube.com/embed/FqnaRHnTwck" '
-        'loading="lazy" allowfullscreen></iframe>'
+        'src="https://www.youtube-nocookie.com/embed/FqnaRHnTwck" '
+        f'loading="lazy" {YOUTUBE_ALLOW} allowfullscreen></iframe>'
     ) in result
     assert '<figcaption>FqnaRHnTwck</figcaption>' in result
     assert "  - ❌ " in result

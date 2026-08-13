@@ -641,6 +641,14 @@ body, .md-typeset {
   cursor: default;
   max-width: 100%;
   max-height: none;
+  transition: none;
+}
+/* Переопределяет общий .md-typeset img:hover (зум 1.8x на всех картинках сайта) — внутри
+   карточки-примера при наведении не должно распирать макет. */
+.anthro-card .anthro-media img:hover {
+  transform: none;
+  z-index: auto;
+  box-shadow: none;
 }
 .anthro-card .anthro-body {
   flex: 1;

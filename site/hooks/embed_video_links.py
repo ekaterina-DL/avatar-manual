@@ -12,10 +12,17 @@ def _vk_iframe(oid, video_id):
 
 
 def _youtube_iframe(video_id):
+    # youtube-nocookie.com (режим «расширенной защиты конфиденциальности») вместо youtube.com —
+    # обычный домен youtube.com для встраивания в некоторых браузерах блокируется защитой от
+    # трекеров (Brave Shields, Firefox ETP, Safari ITP и т.п.), из-за чего плеер вместо
+    # проигрывания на месте откатывается к ссылке «Watch on YouTube», открывающей видео в новой
+    # вкладке — привязанный к видео cookie до взаимодействия с плеером не выставляется, что реже
+    # триггерит такую блокировку.
     return (
         f'<iframe class="embedded-video" '
-        f'src="https://www.youtube.com/embed/{video_id}" '
-        f'loading="lazy" allowfullscreen></iframe>'
+        f'src="https://www.youtube-nocookie.com/embed/{video_id}" '
+        f'loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; '
+        f'gyroscope; picture-in-picture" allowfullscreen></iframe>'
     )
 
 
