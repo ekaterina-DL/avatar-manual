@@ -797,3 +797,21 @@ body, .md-typeset {
   margin-right: 7px;
   vertical-align: -3px;
 }
+
+/* Вложенный список на тире вместо точки — чтобы визуально отличаться от основного маркера
+   списка (используется в требованиях к лицу, 05b-what-not-to-label.md). Селектор
+   ".md-typeset .dash-list" (а не просто ".dash-list") — иначе проигрывает по специфичности
+   правилу темы ".md-typeset ul { list-style-type: disc }", и точка остаётся поверх тире. */
+.md-typeset .dash-list {
+  list-style: none;
+  margin: 0.4em 0;
+  padding-left: 1.3em;
+}
+.dash-list > li {
+  position: relative;
+}
+.dash-list > li::before {
+  content: "—";
+  position: absolute;
+  left: -1.3em;
+}
