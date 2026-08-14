@@ -53,20 +53,6 @@
   Короткий кашель, шмыганье носом, смешок «на вдохе» — это не молчание.
   `[Переписка с заказчиком по заявкам 26-28, 06.07.2026 и 17.07.2026; Разметка ВК видео — ОС
   22.05/25.05/28.05 СТ2; Встреча с новичками по 2 этапу, 29.07.2026]`
-
-<div class="threshold-scale">
-<div class="ts-caption">🔇 Молчание — допустимая длительность</div>
-<div class="ts-track" style="background:linear-gradient(90deg,var(--ok-color) 0%,var(--ok-color) 35%,var(--md-accent-fg-color) 35%,var(--md-accent-fg-color) 62%,var(--ok-color) 62%,var(--ok-color) 78%,var(--no-color) 78%,var(--no-color) 100%)">
-<span class="ts-tick" style="left:0%">0с</span>
-<span class="ts-tick" style="left:35%">2с</span>
-<span class="ts-tick" style="left:62%">3–5с</span>
-<span class="ts-tick" style="left:78%">&gt;5с</span>
-<span class="ts-zone" style="left:17%">ок везде</span>
-<span class="ts-zone" style="left:48%">граница/внутри</span>
-<span class="ts-zone" style="left:89%">резать</span>
-</div>
-</div>
-
 - **Закадровый голос** (например, голос интервьюера, который не виден в кадре и не говорит на
   камеру): если такой фрагмент занимает **до 5 секунд** — он всё ещё подлежит разметке
   (закадровый голос просто не включаем в сегмент, см.
