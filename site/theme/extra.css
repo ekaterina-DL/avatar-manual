@@ -722,3 +722,42 @@ body, .md-typeset {
 .anthro-card--full {
   grid-column: 1 / -1;
 }
+
+/* Логотип слева — текст справа (00b-exam.md, абзац про Tagme). Картинка без явной высоты
+   растягивается наравне с текстовым абзацем (align-items: stretch по умолчанию у flex), ширина
+   при этом пересчитывается браузером по её собственным пропорциям — приём работает только когда
+   у img нет max-width/max-height (иначе они бы не дали вырасти выше своего лимита, как в кейсе
+   .anthro-media--pair ранее). Логотип плоский, поэтому карточное оформление общего .md-typeset
+   img (рамка/тень/зум по наведению) здесь не нужно — снимаем его отдельно. */
+.tagme-intro {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  margin: 1.2em 0;
+}
+.tagme-intro img {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: default;
+  transition: none;
+}
+.tagme-intro img:hover {
+  transform: none;
+  box-shadow: none;
+}
+.tagme-intro p {
+  margin: 0;
+  flex: 1;
+}
+@media (max-width: 560px) {
+  .tagme-intro { flex-direction: column; align-items: flex-start; }
+  .tagme-intro img { height: 48px; width: auto; }
+}
