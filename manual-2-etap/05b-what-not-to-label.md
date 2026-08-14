@@ -98,6 +98,9 @@
 сегмента — такой сегмент не подходит целиком, а не только в проблемной части.
 `[Разметка ВК видео — ОС 28.05 СТ2]`</p>
 
+</li>
+<li markdown="1">
+
 <p markdown="1">То же самое правило работает и для **перекрытия лица целиком** (не только рта): короткий
 эпизод перекрытия внутри длинного сегмента можно оставить как есть, но если участок с
 перекрытым лицом длится долго — сегмент нужно разделить на два (до и после), а не выделять
@@ -111,18 +114,6 @@
 
 </li>
 </ul>
-
-<div class="threshold-scale">
-<div class="ts-caption">🤐 Перекрытие рта — насколько критично</div>
-<div class="ts-track" style="background:linear-gradient(90deg,var(--ok-color) 0%,var(--ok-color) 40%,var(--md-accent-fg-color) 40%,var(--md-accent-fg-color) 75%,var(--no-color) 75%,var(--no-color) 100%)">
-<span class="ts-tick" style="left:0%">доля сек.</span>
-<span class="ts-tick" style="left:40%">неск. сек.</span>
-<span class="ts-tick" style="left:75%">&gt;50% сегмента</span>
-<span class="ts-zone" style="left:20%">ок</span>
-<span class="ts-zone" style="left:57%">обрезать участок</span>
-<span class="ts-zone" style="left:90%">сегмент целиком не подходит</span>
-</div>
-</div>
 
 - **Солнцезащитные очки** — допустимы, **кроме** случаев, когда через них совсем не видно глаз.
   `[Памятка «Аватар 2 этап», стр.3; Инстр. Kandinsky-Аватар, стр.2, 7-10]` Реальный пример брака
