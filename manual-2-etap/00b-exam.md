@@ -18,11 +18,11 @@
 `[Уточнение пользователя, 12.08.2026]`
 
 <div class="tagme-intro" markdown="1">
-<img src="../assets/tagme.png" alt="Логотип платформы Tagme">
-
+<div class="tagme-intro-media"><img src="../assets/tagme.png" alt="Логотип платформы Tagme"></div>
+<div class="tagme-intro-text" markdown="1">
 Экзамен и рабочие задания выполняются на платформе **Tagme**, в личном кабинете каждого асессора.
 Доступ к платформе выдаёт **руководитель группы Data Light**.
-
+</div>
 </div>
 
 Допуск к 2 этапу даёт только входной экзамен. Каждое задание проверяет валидатор вручную и даёт

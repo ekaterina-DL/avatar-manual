@@ -723,25 +723,36 @@ body, .md-typeset {
   grid-column: 1 / -1;
 }
 
-/* Логотип слева — текст справа (00b-exam.md, абзац про Tagme). Картинка без явной высоты
-   растягивается наравне с текстовым абзацем (align-items: stretch по умолчанию у flex), ширина
-   при этом пересчитывается браузером по её собственным пропорциям — приём работает только когда
-   у img нет max-width/max-height (иначе они бы не дали вырасти выше своего лимита, как в кейсе
-   .anthro-media--pair ранее). Логотип плоский, поэтому карточное оформление общего .md-typeset
-   img (рамка/тень/зум по наведению) здесь не нужно — снимаем его отдельно. */
+/* Логотип слева — текст справа (00b-exam.md, абзац про Tagme). Картинка и текст — в именованных
+   div (.tagme-intro-media/.tagme-intro-text), а не сырым <img> прямо во флекс-контейнере: у
+   python-markdown поведение вокруг такого <img> непредсказуемо зависит от пустых строк рядом
+   (то оборачивает его в <p>, то добавляет ещё и пустой <p> — оба варианта на практике проверены
+   вживую) — именованные div снимают эту случайность раз и навсегда.
+   .tagme-intro-media — ФИКСИРОВАННОЙ ширины (не auto): если оставить ширину картинки в auto и
+   тянуть только высоту под текст (align-items:stretch), браузер считает ширину РАНЬШЕ, чем
+   высоту (по auto flex-basis, т.е. по исходным 162px), и потом пересчитывает img по пропорциям
+   уже под растянутую высоту — картинка выходит шире контейнера и наезжает на текст (проверено
+   вживую: 197px картинка в 162px контейнере). Фиксированная ширина + overflow:hidden убирают
+   этот наезд, а object-fit:contain вписывает картинку без искажений (сверху/снизу может
+   остаться небольшой отступ, если строка текста выше, чем нужно логотипу при такой ширине).
+   Логотип плоский, поэтому карточное оформление общего .md-typeset img (рамка/тень/зум по
+   наведению) здесь не нужно — снимаем его отдельно. */
 .tagme-intro {
   display: flex;
   align-items: stretch;
-  gap: 16px;
+  gap: 12px;
   margin: 1.2em 0;
 }
-.tagme-intro img {
+.tagme-intro-media {
   flex: 0 0 auto;
-  width: auto;
-  height: auto;
-  max-width: none;
-  max-height: none;
+  width: 150px;
+  overflow: hidden;
+}
+.tagme-intro-media img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  display: block;
   margin: 0;
   border: none;
   border-radius: 0;
@@ -749,15 +760,17 @@ body, .md-typeset {
   cursor: default;
   transition: none;
 }
-.tagme-intro img:hover {
+.tagme-intro-media img:hover {
   transform: none;
   box-shadow: none;
 }
-.tagme-intro p {
-  margin: 0;
+.tagme-intro-text {
   flex: 1;
+}
+.tagme-intro-text p {
+  margin: 0;
 }
 @media (max-width: 560px) {
   .tagme-intro { flex-direction: column; align-items: flex-start; }
-  .tagme-intro img { height: 48px; width: auto; }
+  .tagme-intro-media { width: 130px; height: 50px; }
 }
