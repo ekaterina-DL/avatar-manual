@@ -774,3 +774,26 @@ body, .md-typeset {
   .tagme-intro { flex-direction: column; align-items: flex-start; }
   .tagme-intro-media { width: 130px; height: 50px; }
 }
+
+/* Заметное предупреждение "прочитайте инструкцию перед экзаменом" (00b-exam.md) — заметнее
+   обычного blockquote с ⚠️ (уже используется по сайту как более мягкая пометка), т.к. это первое,
+   что должен прочитать новый асессор. Использует тот же янтарный акцент, что и заливка
+   заголовков/status-badge (--accent-bg/--accent-ink), а не красную "недопустимо"-пару
+   (--no-color/--no-bg) — семантика здесь "важно", а не "запрещено". */
+.notice-warning {
+  background: var(--accent-bg);
+  border-left: 3px solid var(--accent-ink);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 1.2em 0;
+}
+.notice-warning p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--accent-ink);
+}
+.notice-warning-icon {
+  font-size: 1.25rem;
+  margin-right: 7px;
+  vertical-align: -3px;
+}
