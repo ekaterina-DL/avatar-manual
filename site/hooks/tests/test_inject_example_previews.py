@@ -26,9 +26,10 @@ def _docs_dir(monkeypatch):
 
 def test_classifier_tempo_preview_inserted_after_anchor():
     target_md = (
-        "- **Темп речи** (Медленный / Быстрый): цель по команде в целом — "
-        "равномерное распределение.\n"
-        "- **Язык и акценты** (Русский / Английский / Другой): ...\n"
+        "### Темп речи\n\n"
+        "Значения: Медленный / Быстрый.\n\n"
+        "### Язык и акценты\n\n"
+        "Значения: Русский / Английский / Другой.\n"
     )
     page = FakePage("manual-2-etap/04-classifier.md")
     result = on_page_markdown(target_md, page, None, None)
@@ -47,9 +48,10 @@ def test_preview_markdown_contains_eyebrow_marker_with_mapping_label():
     так что он ожидаемо виден на этом этапе; то, что он вырезается из финального HTML — отдельно
     проверяется в test_group_media_lists.py::test_eyebrow_marker_sets_label_and_is_stripped_from_output."""
     target_md = (
-        "- **Темп речи** (Медленный / Быстрый): цель по команде в целом — "
-        "равномерное распределение.\n"
-        "- **Язык и акценты** (Русский / Английский / Другой): ...\n"
+        "### Темп речи\n\n"
+        "Значения: Медленный / Быстрый.\n\n"
+        "### Язык и акценты\n\n"
+        "Значения: Русский / Английский / Другой.\n"
     )
     page = FakePage("manual-2-etap/04-classifier.md")
     result = on_page_markdown(target_md, page, None, None)
@@ -63,9 +65,10 @@ def test_preview_markdown_eyebrow_marker_for_rakurs_mapping():
 
     mapping = next(m for m in MAPPINGS if m["source_heading"] == "Ракурс")
     target_md = (
-        "- **Преобладающий ракурс** (Анфас / Полуоборот (3/4) / Профиль): решение «по наитию» "
-        "допустимо.\n"
-        "- **Освещение:** «Мягкое студийное» / «Естественное» / «Сложное».\n"
+        "### Преобладающий ракурс\n\n"
+        "Значения: Анфас / Полуоборот (3/4) / Профиль. Решение «по наитию» допустимо.\n\n"
+        "### Освещение\n\n"
+        "Значения: Мягкое студийное / Естественное / Сложное.\n"
     )
     page = FakePage(mapping["target_file"])
     result = on_page_markdown(target_md, page, None, None)
@@ -115,9 +118,10 @@ def test_preview_with_no_remaining_items_has_blank_line_before_closing_div():
 
     mapping = next(m for m in MAPPINGS if m["source_heading"] == "Ракурс")
     target_md = (
-        "- **Преобладающий ракурс** (Анфас / Полуоборот (3/4) / Профиль): решение «по наитию» "
-        "допустимо.\n"
-        "- **Освещение:** «Мягкое студийное» / «Естественное» / «Сложное».\n"
+        "### Преобладающий ракурс\n\n"
+        "Значения: Анфас / Полуоборот (3/4) / Профиль. Решение «по наитию» допустимо.\n\n"
+        "### Освещение\n\n"
+        "Значения: Мягкое студийное / Естественное / Сложное.\n"
     )
     page = FakePage(mapping["target_file"])
     result = on_page_markdown(target_md, page, None, None)
@@ -163,9 +167,10 @@ def test_injected_preview_survives_group_media_lists_without_broken_html():
     mapping = next(m for m in MAPPINGS if m["source_heading"] == "Ракурс")
     target_md = (
         "## Уточнения\n\n"
-        "- **Преобладающий ракурс** (Анфас / Полуоборот (3/4) / Профиль): решение «по наитию» "
-        "допустимо.\n"
-        "- **Освещение:** «Мягкое студийное» / «Естественное» / «Сложное».\n"
+        "### Преобладающий ракурс\n\n"
+        "Значения: Анфас / Полуоборот (3/4) / Профиль. Решение «по наитию» допустимо.\n\n"
+        "### Освещение\n\n"
+        "Значения: Мягкое студийное / Естественное / Сложное.\n"
     )
     page = FakePage(mapping["target_file"])
     md = on_page_markdown(target_md, page, None, None)
