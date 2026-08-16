@@ -37,34 +37,30 @@
 [04-classifier.md](04-classifier.md#поля-классификатора) и
 [01-general-requirements.md](01-general-requirements.md)):
 
-**Диалоги (эталонные примеры):**
-- https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/vk/13_02_2026/-219726985_456239131/-219726985_456239131.mp4
-- https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/vk/16_02_2026/-72226886_456253999/-72226886_456253999.mp4
-
-**Закадровый голос — примеры ошибки** (случаи, где закадровый голос был учтён/размечен
-неправильно):
-- https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/vk/11_02_2026/-206120801_456239194/-206120801_456239194.mp4
-- https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/vk/11_02_2026/-86899151_456254123/-86899151_456254123.mp4
-- https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/vk/11_02_2026/-171518287_456239691/-171518287_456239691.mp4
+- **Диалоги — эталонные примеры значения «Диалог (ответы на вопросы)»:**
+  [пример 1](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/vk/13_02_2026/-219726985_456239131/-219726985_456239131.mp4),
+  [пример 2](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/vk/16_02_2026/-72226886_456253999/-72226886_456253999.mp4)
+- **Закадровый голос учтён ошибочно (должно быть «Монолог», а не «Диалог»):**
+  [пример 1](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/vk/11_02_2026/-206120801_456239194/-206120801_456239194.mp4),
+  [пример 2](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/vk/11_02_2026/-86899151_456254123/-86899151_456254123.mp4),
+  [пример 3](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/vk/11_02_2026/-171518287_456239691/-171518287_456239691.mp4)
 
 `[Разметка ВК видео — диалоги и закадровый голос]`
 
 ## Эмоции
 
-**Счастье:**
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-58787336_456239767__segment_3_79_90__seg3.mp4
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-69205063_456239229__segment_1_0_16__seg1.mp4
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-157173570_456239093__segment_1_67_79__seg3.mp4
-
-**Нейтральная эмоция:**
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-119060192_456239034__segment_1_40_53__seg3.mp4
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-111933564_456239285__segment_2_47_164__seg2.mp4
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-102559235_456239254__segment_1_6_17.mp4
-
-**Другое** (не подходит под счастье/нейтральное/серьёзное):
-- [ирония](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-187830095_456244648__segment_4_81_101__seg4.mp4)
-- [сарказм](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-68053471_456247352__segment_4_69_111__seg4.mp4)
-- [выразительное чтение с долей мечтательности](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-85266554_456240722__segment_1_0_20.mp4) — не подходит под перечисленные эмоции
+- **Положительные (радость, счастье):**
+  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-58787336_456239767__segment_3_79_90__seg3.mp4),
+  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-69205063_456239229__segment_1_0_16__seg1.mp4),
+  [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-157173570_456239093__segment_1_67_79__seg3.mp4)
+- **Нейтральные/спокойные:**
+  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-119060192_456239034__segment_1_40_53__seg3.mp4),
+  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-111933564_456239285__segment_2_47_164__seg2.mp4),
+  [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-102559235_456239254__segment_1_6_17.mp4)
+- **«Другое» (не подходит под три основных значения):**
+  [ирония](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-187830095_456244648__segment_4_81_101__seg4.mp4),
+  [сарказм](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-68053471_456247352__segment_4_69_111__seg4.mp4),
+  [выразительное чтение с долей мечтательности](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-85266554_456240722__segment_1_0_20.mp4)
 
 Ещё 9 примеров по эмоциям — [ниже](#вопрос-3-эмоции-9-примеров).
 
@@ -86,9 +82,10 @@
 
 ## Ракурс
 
-**Ракурс меняется в пределах ролика (various):**
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-201254813_456239373__segment_1_2_45.mp4
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-186339672_456239137__segment_2_175_191__seg2.mp4
+- **Ракурс меняется в пределах ролика (берём преобладающее значение, это не «Битое»):**
+  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-201254813_456239373__segment_1_2_45.mp4)
+- **Ракурс меняется в пределах ролика (берём преобладающее значение, это не «Битое»):**
+  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-186339672_456239137__segment_2_175_191__seg2.mp4)
 
 Ещё 5 примеров (в т.ч. «фронтальный», «профиль», «лёгкий поворот», случай с двумя людьми в
 разных ракурсах) — [ниже](#вопрос-4-ракурс-5-примеров).
