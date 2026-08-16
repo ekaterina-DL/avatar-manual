@@ -34,7 +34,7 @@
 ## Диалоги и закадровый голос
 
 Калибровочный набор именно на эти два поля/правила (см.
-[04-classifier.md](04-classifier.md#колонка-2) и
+[04-classifier.md](04-classifier.md#поля-классификатора) и
 [01-general-requirements.md](01-general-requirements.md)):
 
 **Диалоги (эталонные примеры):**

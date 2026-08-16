@@ -64,9 +64,8 @@ def test_preview_markdown_eyebrow_marker_for_rakurs_mapping():
     mapping = next(m for m in MAPPINGS if m["source_heading"] == "Ракурс")
     target_md = (
         "- **Преобладающий ракурс** (Анфас / Полуоборот (3/4) / Профиль): решение «по наитию» "
-        "допустимо.\n\n"
-        "### Колонка 2\n\n"
-        "- **Группа данных** (Студия / Естественная среда): «Студия» / «Естественная среда».\n"
+        "допустимо.\n"
+        "- **Освещение:** «Мягкое студийное» / «Естественное» / «Сложное».\n"
     )
     page = FakePage(mapping["target_file"])
     result = on_page_markdown(target_md, page, None, None)
@@ -117,9 +116,8 @@ def test_preview_with_no_remaining_items_has_blank_line_before_closing_div():
     mapping = next(m for m in MAPPINGS if m["source_heading"] == "Ракурс")
     target_md = (
         "- **Преобладающий ракурс** (Анфас / Полуоборот (3/4) / Профиль): решение «по наитию» "
-        "допустимо.\n\n"
-        "### Колонка 2\n\n"
-        "- **Группа данных** (Студия / Естественная среда): «Студия» / «Естественная среда».\n"
+        "допустимо.\n"
+        "- **Освещение:** «Мягкое студийное» / «Естественное» / «Сложное».\n"
     )
     page = FakePage(mapping["target_file"])
     result = on_page_markdown(target_md, page, None, None)
@@ -166,9 +164,8 @@ def test_injected_preview_survives_group_media_lists_without_broken_html():
     target_md = (
         "## Уточнения\n\n"
         "- **Преобладающий ракурс** (Анфас / Полуоборот (3/4) / Профиль): решение «по наитию» "
-        "допустимо.\n\n"
-        "### Колонка 2\n\n"
-        "- **Группа данных** (Студия / Естественная среда): «Студия» / «Естественная среда».\n"
+        "допустимо.\n"
+        "- **Освещение:** «Мягкое студийное» / «Естественное» / «Сложное».\n"
     )
     page = FakePage(mapping["target_file"])
     md = on_page_markdown(target_md, page, None, None)
