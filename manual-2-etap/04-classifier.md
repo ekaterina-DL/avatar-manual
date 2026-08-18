@@ -113,12 +113,12 @@
 
 **Примеры из журнала проверок:**
 
-- [**Голова и плечи** — кисти не видны, ставить «голова и плечи» (78.4–95.9)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/eaccT4AP480/eaccT4AP480.mp4)
-- [**Голова и плечи** — кисти рук не видны, должно быть «Голова и плечи» (0:01.03–0:31.01)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/KTSC0ERroEY/KTSC0ERroEY.mp4)
-- [**Голова, плечи и руки** — должно быть «голова, плечи и руки» (53.9–64.0)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/OoieiT1G5DY/OoieiT1G5DY.mp4)
-- [**Голова, плечи и руки** — верно отмечено (18.9–29.3)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/18_05_2026/OlfLhQb4av8/OlfLhQb4av8.mp4)
-- [**Сидя в полный рост** — колени уже видны, ставить «сидя в полный рост» (до 0:53)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/alDyTf-EX1Y/alDyTf-EX1Y.mp4)
-- [**Стоя в полный рост** — колени уже видны, ставить «стоя в полный рост»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/3fhv7tzaLHw/3fhv7tzaLHw.mp4)
+- [**Голова и плечи** — кисти рук не видны (78.4–95.9)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/eaccT4AP480/eaccT4AP480.mp4)
+- [**Голова и плечи** — кисти рук не видны (0:01.03–0:31.01)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/KTSC0ERroEY/KTSC0ERroEY.mp4)
+- [**Голова, плечи и руки** — (53.9–64.0)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/OoieiT1G5DY/OoieiT1G5DY.mp4)
+- [**Голова, плечи и руки** — (18.9–29.3)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/18_05_2026/OlfLhQb4av8/OlfLhQb4av8.mp4)
+- [**Сидя в полный рост** — колени уже видны (до 0:53)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/alDyTf-EX1Y/alDyTf-EX1Y.mp4)
+- [**Стоя в полный рост** — колени уже видны](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/3fhv7tzaLHw/3fhv7tzaLHw.mp4)
 
 `[Журнал проверок ОС]`
 
