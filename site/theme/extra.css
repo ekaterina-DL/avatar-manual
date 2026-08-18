@@ -798,6 +798,88 @@ body, .md-typeset {
   vertical-align: -3px;
 }
 
+/* Круговые диаграммы целевых пропорций (01-general-requirements.md, «Визуальные параметры») —
+   прямой HTML-блок в исходнике, без markdown="1" (пиктограмма и подписи — чистый HTML, ни
+   единого символа markdown-разметки внутри, поэтому md_in_html блок можно оставить полностью
+   сырым — тот же приём, что у .keyfacts/.apeal-flow выше). Сама диаграмма — conic-gradient на
+   круглом div, без SVG/JS: PDF рендерится headless Chromium (site/pdf/render_pdf.py), тот же
+   движок, что показывает сайт, поэтому градиент одинаково работает в обоих профилях. Приглушённая
+   версия базовой категориальной палитры (25%-подмес нейтрального серого к каждому цвету), порядок
+   слотов и цвета проверены validate_palette.js (CVD-разделение и контраст) по кругу — включая
+   пару последний/первый слот, т.к. в круговой диаграмме они тоже соприкасаются. */
+.pie-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 1.4em 0;
+}
+@media (max-width: 720px) { .pie-grid { grid-template-columns: 1fr; } }
+.pie-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--card-line);
+  border-radius: 10px;
+  background: var(--gray-50);
+  box-shadow: var(--card-shadow);
+  padding: 16px;
+}
+.pie-chart {
+  flex: 0 0 auto;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--card-line);
+}
+.pie-legend {
+  flex: 1;
+  min-width: 0;
+}
+.pie-legend-title {
+  font-family: 'Golos Text', sans-serif;
+  font-weight: 700;
+  font-size: .88rem;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+.pie-legend ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.pie-legend li {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-size: .82rem;
+  color: var(--gray-600);
+  line-height: 1.4;
+}
+.pie-swatch {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  margin-top: 3px;
+}
+.pie-legend li .pie-label {
+  flex: 1 1 auto;
+}
+.pie-legend li strong {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding-left: 8px;
+  font-family: 'Golos Text', sans-serif;
+  color: var(--gray-900);
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .pie-card { flex-direction: column; align-items: stretch; }
+}
+
 /* Вложенный список на тире вместо точки — чтобы визуально отличаться от основного маркера
    списка (используется в требованиях к лицу, 05b-what-not-to-label.md). Селектор
    ".md-typeset .dash-list" (а не просто ".dash-list") — иначе проигрывает по специфичности

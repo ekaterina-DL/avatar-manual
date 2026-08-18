@@ -240,20 +240,71 @@
 
 #### Визуальные параметры
 
-**Объём и поза тела в кадре:** Голова ~10% · Голова и плечи ~20% · Голова, плечи и руки ~30% ·
-Сидя в полный рост ~20% · Стоя в полный рост ~20%
+<div class="pie-grid">
 
-**Преобладающий ракурс:** Анфас ~40% · Полуоборот (3/4) ~40% (поровну справа/слева) ·
-Профиль ~20% (поровну справа/слева)
+<div class="pie-card">
+<div class="pie-chart" style="background: conic-gradient(from 0deg, #3F79C0 0% 10%, #D16F48 10% 30%, #2F9E77 30% 60%, #D39A21 60% 80%, #D988A6 80% 100%);" role="img" aria-label="Объём и поза тела в кадре — целевое распределение: Голова 10%, Голова и плечи 20%, Голова, плечи и руки 30%, Сидя в полный рост 20%, Стоя в полный рост 20%"></div>
+<div class="pie-legend">
+<div class="pie-legend-title">Объём и поза тела в кадре</div>
+<ul>
+<li><span class="pie-swatch" style="background:#3F79C0"></span><span class="pie-label">Голова</span><strong>~10%</strong></li>
+<li><span class="pie-swatch" style="background:#D16F48"></span><span class="pie-label">Голова и плечи</span><strong>~20%</strong></li>
+<li><span class="pie-swatch" style="background:#2F9E77"></span><span class="pie-label">Голова, плечи и руки</span><strong>~30%</strong></li>
+<li><span class="pie-swatch" style="background:#D39A21"></span><span class="pie-label">Сидя в полный рост</span><strong>~20%</strong></li>
+<li><span class="pie-swatch" style="background:#D988A6"></span><span class="pie-label">Стоя в полный рост</span><strong>~20%</strong></li>
+</ul>
+</div>
+</div>
 
-**Освещение:** Мягкое студийное ~35% · Естественное (окно) ~35% · Сложное (контровой,
-боковое, неравномерное) ~30%
+<div class="pie-card">
+<div class="pie-chart" style="background: conic-gradient(from 0deg, #3F79C0 0% 40%, #D16F48 40% 80%, #2F9E77 80% 100%);" role="img" aria-label="Преобладающий ракурс — целевое распределение: Анфас 40%, Полуоборот 40%, Профиль 20%"></div>
+<div class="pie-legend">
+<div class="pie-legend-title">Преобладающий ракурс</div>
+<ul>
+<li><span class="pie-swatch" style="background:#3F79C0"></span><span class="pie-label">Анфас</span><strong>~40%</strong></li>
+<li><span class="pie-swatch" style="background:#D16F48"></span><span class="pie-label">Полуоборот (3/4), поровну справа/слева</span><strong>~40%</strong></li>
+<li><span class="pie-swatch" style="background:#2F9E77"></span><span class="pie-label">Профиль, поровну справа/слева</span><strong>~20%</strong></li>
+</ul>
+</div>
+</div>
 
-**Фон:** Нейтральный/размытый (студия) ~40% · Естественный, но статичный ~40% ·
-Динамичный/уличный (не отвлекающий) ~20%
+<div class="pie-card">
+<div class="pie-chart" style="background: conic-gradient(from 0deg, #3F79C0 0% 35%, #D16F48 35% 70%, #2F9E77 70% 100%);" role="img" aria-label="Освещение — целевое распределение: Мягкое студийное 35%, Естественное 35%, Сложное 30%"></div>
+<div class="pie-legend">
+<div class="pie-legend-title">Освещение</div>
+<ul>
+<li><span class="pie-swatch" style="background:#3F79C0"></span><span class="pie-label">Мягкое студийное</span><strong>~35%</strong></li>
+<li><span class="pie-swatch" style="background:#D16F48"></span><span class="pie-label">Естественное (окно)</span><strong>~35%</strong></li>
+<li><span class="pie-swatch" style="background:#2F9E77"></span><span class="pie-label">Сложное (контровой, боковое, неравномерное)</span><strong>~30%</strong></li>
+</ul>
+</div>
+</div>
 
-**Эмоции:** Нейтральное/спокойное ~50% · Положительные (радость, улыбка, интерес) ~30% ·
-Серьёзные/сосредоточенные/негативные ~20%
+<div class="pie-card">
+<div class="pie-chart" style="background: conic-gradient(from 0deg, #3F79C0 0% 40%, #D16F48 40% 80%, #2F9E77 80% 100%);" role="img" aria-label="Фон — целевое распределение: Нейтральный/размытый 40%, Естественный, но статичный 40%, Динамичный/уличный 20%"></div>
+<div class="pie-legend">
+<div class="pie-legend-title">Фон</div>
+<ul>
+<li><span class="pie-swatch" style="background:#3F79C0"></span><span class="pie-label">Нейтральный/размытый (студия)</span><strong>~40%</strong></li>
+<li><span class="pie-swatch" style="background:#D16F48"></span><span class="pie-label">Естественный, но статичный</span><strong>~40%</strong></li>
+<li><span class="pie-swatch" style="background:#2F9E77"></span><span class="pie-label">Динамичный/уличный (не отвлекающий)</span><strong>~20%</strong></li>
+</ul>
+</div>
+</div>
+
+<div class="pie-card">
+<div class="pie-chart" style="background: conic-gradient(from 0deg, #3F79C0 0% 50%, #D16F48 50% 80%, #2F9E77 80% 100%);" role="img" aria-label="Эмоции — целевое распределение: Нейтральное/спокойное 50%, Положительные 30%, Серьёзные/сосредоточенные/негативные 20%"></div>
+<div class="pie-legend">
+<div class="pie-legend-title">Эмоции</div>
+<ul>
+<li><span class="pie-swatch" style="background:#3F79C0"></span><span class="pie-label">Нейтральное/спокойное</span><strong>~50%</strong></li>
+<li><span class="pie-swatch" style="background:#D16F48"></span><span class="pie-label">Положительные (радость, улыбка, интерес)</span><strong>~30%</strong></li>
+<li><span class="pie-swatch" style="background:#2F9E77"></span><span class="pie-label">Серьёзные/сосредоточенные/негативные</span><strong>~20%</strong></li>
+</ul>
+</div>
+</div>
+
+</div>
 
 #### Речевые характеристики
 

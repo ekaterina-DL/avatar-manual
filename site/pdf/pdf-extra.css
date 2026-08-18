@@ -24,7 +24,8 @@
 .example-card .embedded-video,
 .compare-card img,
 .example-grid,
-.video-grid {
+.video-grid,
+.pie-card {
   break-inside: avoid;
 }
 
