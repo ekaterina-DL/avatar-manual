@@ -798,53 +798,74 @@ body, .md-typeset {
   vertical-align: -3px;
 }
 
-/* Круговые диаграммы целевых пропорций (01-general-requirements.md, «Визуальные параметры») —
-   прямой HTML-блок в исходнике, без markdown="1" (весь блок — чистый SVG/HTML, ни единого
-   символа markdown-разметки внутри, поэтому md_in_html блок можно оставить полностью сырым —
-   тот же приём, что у .keyfacts/.apeal-flow выше). Каждый сегмент подписан не общей легендой
-   сбоку, а собственной выноской (leader line) прямо от сектора — так подпись однозначно
-   привязана к своему сегменту даже при слабой контрастности пастельных цветов между собой.
-   Цвета — приглушённая пастельная версия базовой категориальной палитры (светлее и мягче
-   исходной по прямому запросу), подобрана через validate_palette.js: чётко проходит цветовой
-   порог и контраст с фоном, а разделение между соседними оттенками намеренно держится в
-   WARN-зоне (легально ровно потому, что identity здесь несёт не цвет, а подпись-выноска и
-   зазор фона между секторами, а не сам цвет по отдельности) — включая пару последний/первый
-   слот, т.к. в круговой диаграмме они тоже соприкасаются. Сектора разделены обводкой цвета
-   фона карточки (var(--gray-50)) — это и есть «чёткие границы» между сегментами вместо тёмной
-   обводки. Рендерится как обычный inline-SVG, без JS и conic-gradient — одинаково работает и на
+/* Горизонтальные столбчатые диаграммы целевых пропорций (01-general-requirements.md,
+   «Визуальные параметры») — прямой HTML-блок в исходнике, без markdown="1" (чистый HTML, ни
+   единого символа markdown-разметки внутри). Раньше здесь был вариант с круговыми диаграммами
+   (сначала conic-gradient + легенда, затем SVG-пироги с выносками) — заменено на горизонтальные
+   столбцы по прямому запросу. Один общий акцентный цвет на все столбцы всех карточек (не
+   отдельный цвет на категорию, как было у круга): у горизонтальных столбцов категории и так
+   однозначно подписаны своей строкой, самостоятельный цвет на каждую не нужен для узнавания
+   (см. dataviz-скилл, anti-pattern «value-ramp/rainbow на номинальных категориях» — один
+   цвет-слот на все столбцы там же и рекомендован). Цвет — пастельный тон того же акцентного
+   янтаря, что уже используется по всему сайту (--accent-ink/--accent-bg, см. :root выше) —
+   узнаваемо в общем дизайне страницы, без новой палитры и без повторной проверки
+   validate_palette.js (нужна только для многоцветных категориальных палитр, не для одного тона
+   на светлом треке). Полностью на CSS/HTML, без SVG/JS/conic-gradient — одинаково работает и на
    сайте, и в PDF (headless Chromium, site/pdf/render_pdf.py). */
-.pie-grid {
+.hbar-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin: 1.4em 0;
 }
-@media (max-width: 760px) { .pie-grid { grid-template-columns: 1fr; } }
-.pie-card {
+@media (max-width: 760px) { .hbar-grid { grid-template-columns: 1fr; } }
+.hbar-card {
   border: 1px solid var(--card-line);
   border-radius: 10px;
   background: var(--gray-50);
   box-shadow: var(--card-shadow);
-  padding: 10px 8px;
+  padding: 16px;
 }
-.pie-svg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.pie-svg .pc-title {
+.hbar-title {
   font-family: 'Golos Text', sans-serif;
   font-weight: 700;
-  font-size: 15px;
-  fill: var(--gray-900);
+  font-size: .88rem;
+  color: var(--gray-900);
+  margin-bottom: 12px;
 }
-.pie-svg .pc-label {
+.hbar-row + .hbar-row {
+  margin-top: 10px;
+}
+.hbar-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.hbar-name {
+  font-size: .8rem;
+  color: var(--gray-600);
+  line-height: 1.35;
+}
+.hbar-pct {
+  flex: 0 0 auto;
   font-family: 'Golos Text', sans-serif;
-  fill: var(--gray-600);
-}
-.pie-svg .pc-pct {
   font-weight: 700;
-  fill: var(--gray-900);
+  font-size: .8rem;
+  color: var(--accent-ink);
+  white-space: nowrap;
+}
+.hbar-track {
+  height: 9px;
+  border-radius: 999px;
+  background: var(--gray-100);
+  overflow: hidden;
+}
+.hbar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #D9A671;
 }
 
 /* Вложенный список на тире вместо точки — чтобы визуально отличаться от основного маркера

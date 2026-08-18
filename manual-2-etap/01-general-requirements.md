@@ -240,109 +240,94 @@
 
 #### Визуальные параметры
 
-<div class="pie-grid">
+<div class="hbar-grid">
 
-<div class="pie-card">
-<svg class="pie-svg" viewBox="0 0 480 350" role="img" aria-label="Объём и поза тела в кадре — целевое распределение: Голова 10%, Голова и плечи 20%, Голова, плечи и руки 30%, Сидя в полный рост 20%, Стоя в полный рост 20%">
-<text x="240" y="22" text-anchor="middle" class="pc-title">Объём и поза тела в кадре</text>
-<circle cx="240" cy="175" r="63.5" fill="none" stroke="rgba(11,11,11,0.14)" stroke-width="1"></circle>
-<path d="M240,175 L240.00,113.00 A62,62 0 0 1 276.44,124.84 Z" fill="#75AEF5" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L276.44,124.84 A62,62 0 0 1 298.97,194.16 Z" fill="#EA906D" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L298.97,194.16 A62,62 0 0 1 203.56,225.16 Z" fill="#54C398" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L203.56,225.16 A62,62 0 0 1 181.03,155.84 Z" fill="#D2A249" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L181.03,155.84 A62,62 0 0 1 240.00,113.00 Z" fill="#E78AAD" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<polyline points="260.09,113.18 264.72,98.92 288.72,98.92" fill="none" stroke="#75AEF5" stroke-width="1.5"></polyline>
-<circle cx="260.09" cy="113.18" r="2.2" fill="#75AEF5"></circle>
-<text class="pc-label" text-anchor="start" font-size="12"><tspan x="294.72" y="98.92">Голова</tspan><tspan x="294.72" y="113.42" class="pc-pct">~10%</tspan></text>
-<polyline points="301.82,154.91 316.08,150.28 340.08,150.28" fill="none" stroke="#EA906D" stroke-width="1.5"></polyline>
-<circle cx="301.82" cy="154.91" r="2.2" fill="#EA906D"></circle>
-<text class="pc-label" text-anchor="start" font-size="12"><tspan x="346.08" y="150.28">Голова и плечи</tspan><tspan x="346.08" y="164.78" class="pc-pct">~20%</tspan></text>
-<polyline points="260.09,236.82 264.72,251.08 288.72,251.08" fill="none" stroke="#54C398" stroke-width="1.5"></polyline>
-<circle cx="260.09" cy="236.82" r="2.2" fill="#54C398"></circle>
-<text class="pc-label" text-anchor="start" font-size="12"><tspan x="294.72" y="243.83">Голова, плечи и</tspan><tspan x="294.72" y="258.33">руки</tspan><tspan x="294.72" y="272.83" class="pc-pct">~30%</tspan></text>
-<polyline points="178.18,195.09 163.92,199.72 139.92,199.72" fill="none" stroke="#D2A249" stroke-width="1.5"></polyline>
-<circle cx="178.18" cy="195.09" r="2.2" fill="#D2A249"></circle>
-<text class="pc-label" text-anchor="end" font-size="12"><tspan x="133.92" y="192.47">Сидя в полный</tspan><tspan x="133.92" y="206.97">рост</tspan><tspan x="133.92" y="221.47" class="pc-pct">~20%</tspan></text>
-<polyline points="201.79,122.41 192.98,110.28 168.98,110.28" fill="none" stroke="#E78AAD" stroke-width="1.5"></polyline>
-<circle cx="201.79" cy="122.41" r="2.2" fill="#E78AAD"></circle>
-<text class="pc-label" text-anchor="end" font-size="12"><tspan x="162.98" y="103.03">Стоя в полный</tspan><tspan x="162.98" y="117.53">рост</tspan><tspan x="162.98" y="132.03" class="pc-pct">~20%</tspan></text>
-</svg>
+<div class="hbar-card">
+<div class="hbar-title">Объём и поза тела в кадре</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Голова</span><span class="hbar-pct">~10%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:10%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Голова и плечи</span><span class="hbar-pct">~20%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:20%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Голова, плечи и руки</span><span class="hbar-pct">~30%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:30%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Сидя в полный рост</span><span class="hbar-pct">~20%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:20%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Стоя в полный рост</span><span class="hbar-pct">~20%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:20%"></div></div>
+</div>
 </div>
 
-<div class="pie-card">
-<svg class="pie-svg" viewBox="0 0 480 350" role="img" aria-label="Преобладающий ракурс — целевое распределение: Анфас 40%, Полуоборот (3/4), поровну справа/слева 40%, Профиль, поровну справа/слева 20%">
-<text x="240" y="22" text-anchor="middle" class="pc-title">Преобладающий ракурс</text>
-<circle cx="240" cy="175" r="63.5" fill="none" stroke="rgba(11,11,11,0.14)" stroke-width="1"></circle>
-<path d="M240,175 L240.00,113.00 A62,62 0 0 1 276.44,225.16 Z" fill="#75AEF5" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L276.44,225.16 A62,62 0 0 1 181.03,155.84 Z" fill="#EA906D" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L181.03,155.84 A62,62 0 0 1 240.00,113.00 Z" fill="#54C398" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<polyline points="301.82,154.91 316.08,150.28 340.08,150.28" fill="none" stroke="#75AEF5" stroke-width="1.5"></polyline>
-<circle cx="301.82" cy="154.91" r="2.2" fill="#75AEF5"></circle>
-<text class="pc-label" text-anchor="start" font-size="12"><tspan x="346.08" y="150.28">Анфас</tspan><tspan x="346.08" y="164.78" class="pc-pct">~40%</tspan></text>
-<polyline points="201.79,227.59 192.98,239.72 168.98,239.72" fill="none" stroke="#EA906D" stroke-width="1.5"></polyline>
-<circle cx="201.79" cy="227.59" r="2.2" fill="#EA906D"></circle>
-<text class="pc-label" text-anchor="end" font-size="12"><tspan x="162.98" y="225.22">Полуоборот</tspan><tspan x="162.98" y="239.72">(3/4), поровну</tspan><tspan x="162.98" y="254.22">справа/слева</tspan><tspan x="162.98" y="268.72" class="pc-pct">~40%</tspan></text>
-<polyline points="201.79,122.41 192.98,110.28 168.98,110.28" fill="none" stroke="#54C398" stroke-width="1.5"></polyline>
-<circle cx="201.79" cy="122.41" r="2.2" fill="#54C398"></circle>
-<text class="pc-label" text-anchor="end" font-size="12"><tspan x="162.98" y="95.78">Профиль,</tspan><tspan x="162.98" y="110.28">поровну справа/</tspan><tspan x="162.98" y="124.78">слева</tspan><tspan x="162.98" y="139.28" class="pc-pct">~20%</tspan></text>
-</svg>
+<div class="hbar-card">
+<div class="hbar-title">Преобладающий ракурс</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Анфас</span><span class="hbar-pct">~40%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:40%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Полуоборот (3/4), поровну справа/слева</span><span class="hbar-pct">~40%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:40%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Профиль, поровну справа/слева</span><span class="hbar-pct">~20%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:20%"></div></div>
+</div>
 </div>
 
-<div class="pie-card">
-<svg class="pie-svg" viewBox="0 0 480 350" role="img" aria-label="Освещение — целевое распределение: Мягкое студийное 35%, Естественное (окно) 35%, Сложное (контровой, боковое, неравномерное) 30%">
-<text x="240" y="22" text-anchor="middle" class="pc-title">Освещение</text>
-<circle cx="240" cy="175" r="63.5" fill="none" stroke="rgba(11,11,11,0.14)" stroke-width="1"></circle>
-<path d="M240,175 L240.00,113.00 A62,62 0 0 1 290.16,211.44 Z" fill="#75AEF5" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L290.16,211.44 A62,62 0 0 1 181.03,194.16 Z" fill="#EA906D" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L181.03,194.16 A62,62 0 0 1 240.00,113.00 Z" fill="#54C398" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<polyline points="297.92,145.49 311.28,138.68 335.28,138.68" fill="none" stroke="#75AEF5" stroke-width="1.5"></polyline>
-<circle cx="297.92" cy="145.49" r="2.2" fill="#75AEF5"></circle>
-<text class="pc-label" text-anchor="start" font-size="12"><tspan x="341.28" y="131.43">Мягкое</tspan><tspan x="341.28" y="145.93">студийное</tspan><tspan x="341.28" y="160.43" class="pc-pct">~35%</tspan></text>
-<polyline points="229.83,239.20 227.49,254.02 203.49,254.02" fill="none" stroke="#EA906D" stroke-width="1.5"></polyline>
-<circle cx="229.83" cy="239.20" r="2.2" fill="#EA906D"></circle>
-<text class="pc-label" text-anchor="end" font-size="12"><tspan x="197.49" y="246.77">Естественное</tspan><tspan x="197.49" y="261.27">(окно)</tspan><tspan x="197.49" y="275.77" class="pc-pct">~35%</tspan></text>
-<polyline points="187.41,136.79 175.28,127.98 151.28,127.98" fill="none" stroke="#54C398" stroke-width="1.5"></polyline>
-<circle cx="187.41" cy="136.79" r="2.2" fill="#54C398"></circle>
-<text class="pc-label" text-anchor="end" font-size="12"><tspan x="145.28" y="106.23">Сложное</tspan><tspan x="145.28" y="120.73">(контровой,</tspan><tspan x="145.28" y="135.23">боковое,</tspan><tspan x="145.28" y="149.73">неравномерное)</tspan><tspan x="145.28" y="164.23" class="pc-pct">~30%</tspan></text>
-</svg>
+<div class="hbar-card">
+<div class="hbar-title">Освещение</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Мягкое студийное</span><span class="hbar-pct">~35%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:35%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Естественное (окно)</span><span class="hbar-pct">~35%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:35%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Сложное (контровой, боковое, неравномерное)</span><span class="hbar-pct">~30%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:30%"></div></div>
+</div>
 </div>
 
-<div class="pie-card">
-<svg class="pie-svg" viewBox="0 0 480 350" role="img" aria-label="Фон — целевое распределение: Нейтральный/размытый (студия) 40%, Естественный, но статичный 40%, Динамичный/уличный (не отвлекающий) 20%">
-<text x="240" y="22" text-anchor="middle" class="pc-title">Фон</text>
-<circle cx="240" cy="175" r="63.5" fill="none" stroke="rgba(11,11,11,0.14)" stroke-width="1"></circle>
-<path d="M240,175 L240.00,113.00 A62,62 0 0 1 276.44,225.16 Z" fill="#75AEF5" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L276.44,225.16 A62,62 0 0 1 181.03,155.84 Z" fill="#EA906D" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L181.03,155.84 A62,62 0 0 1 240.00,113.00 Z" fill="#54C398" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<polyline points="301.82,154.91 316.08,150.28 340.08,150.28" fill="none" stroke="#75AEF5" stroke-width="1.5"></polyline>
-<circle cx="301.82" cy="154.91" r="2.2" fill="#75AEF5"></circle>
-<text class="pc-label" text-anchor="start" font-size="12"><tspan x="346.08" y="135.78">Нейтральный/</tspan><tspan x="346.08" y="150.28">размытый</tspan><tspan x="346.08" y="164.78">(студия)</tspan><tspan x="346.08" y="179.28" class="pc-pct">~40%</tspan></text>
-<polyline points="201.79,227.59 192.98,239.72 168.98,239.72" fill="none" stroke="#EA906D" stroke-width="1.5"></polyline>
-<circle cx="201.79" cy="227.59" r="2.2" fill="#EA906D"></circle>
-<text class="pc-label" text-anchor="end" font-size="12"><tspan x="162.98" y="232.47">Естественный,</tspan><tspan x="162.98" y="246.97">но статичный</tspan><tspan x="162.98" y="261.47" class="pc-pct">~40%</tspan></text>
-<polyline points="201.79,122.41 192.98,110.28 168.98,110.28" fill="none" stroke="#54C398" stroke-width="1.5"></polyline>
-<circle cx="201.79" cy="122.41" r="2.2" fill="#54C398"></circle>
-<text class="pc-label" text-anchor="end" font-size="12"><tspan x="162.98" y="95.78">Динамичный/</tspan><tspan x="162.98" y="110.28">уличный (не</tspan><tspan x="162.98" y="124.78">отвлекающий)</tspan><tspan x="162.98" y="139.28" class="pc-pct">~20%</tspan></text>
-</svg>
+<div class="hbar-card">
+<div class="hbar-title">Фон</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Нейтральный/размытый (студия)</span><span class="hbar-pct">~40%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:40%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Естественный, но статичный</span><span class="hbar-pct">~40%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:40%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Динамичный/уличный (не отвлекающий)</span><span class="hbar-pct">~20%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:20%"></div></div>
+</div>
 </div>
 
-<div class="pie-card">
-<svg class="pie-svg" viewBox="0 0 480 350" role="img" aria-label="Эмоции — целевое распределение: Нейтральное/спокойное 50%, Положительные (радость, улыбка, интерес) 30%, Серьёзные/сосредоточенные/негативные 20%">
-<text x="240" y="22" text-anchor="middle" class="pc-title">Эмоции</text>
-<circle cx="240" cy="175" r="63.5" fill="none" stroke="rgba(11,11,11,0.14)" stroke-width="1"></circle>
-<path d="M240,175 L240.00,113.00 A62,62 0 0 1 240.00,237.00 Z" fill="#75AEF5" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L240.00,237.00 A62,62 0 0 1 181.03,155.84 Z" fill="#EA906D" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<path d="M240,175 L181.03,155.84 A62,62 0 0 1 240.00,113.00 Z" fill="#54C398" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"></path>
-<polyline points="305.00,175.00 320.00,175.00 344.00,175.00" fill="none" stroke="#75AEF5" stroke-width="1.5"></polyline>
-<circle cx="305.00" cy="175.00" r="2.2" fill="#75AEF5"></circle>
-<text class="pc-label" text-anchor="start" font-size="12"><tspan x="350.00" y="167.75">Нейтральное/</tspan><tspan x="350.00" y="182.25">спокойное</tspan><tspan x="350.00" y="196.75" class="pc-pct">~50%</tspan></text>
-<polyline points="187.41,213.21 175.28,222.02 151.28,222.02" fill="none" stroke="#EA906D" stroke-width="1.5"></polyline>
-<circle cx="187.41" cy="213.21" r="2.2" fill="#EA906D"></circle>
-<text class="pc-label" text-anchor="end" font-size="12"><tspan x="145.28" y="200.27">Положительные</tspan><tspan x="145.28" y="214.77">(радость,</tspan><tspan x="145.28" y="229.27">улыбка,</tspan><tspan x="145.28" y="243.77">интерес)</tspan><tspan x="145.28" y="258.27" class="pc-pct">~30%</tspan></text>
-<polyline points="201.79,122.41 192.98,110.28 168.98,110.28" fill="none" stroke="#54C398" stroke-width="1.5"></polyline>
-<circle cx="201.79" cy="122.41" r="2.2" fill="#54C398"></circle>
-<text class="pc-label" text-anchor="end" font-size="12"><tspan x="162.98" y="95.78">Серьёзные/</tspan><tspan x="162.98" y="110.28">сосредоточенные/</tspan><tspan x="162.98" y="124.78">негативные</tspan><tspan x="162.98" y="139.28" class="pc-pct">~20%</tspan></text>
-</svg>
+<div class="hbar-card">
+<div class="hbar-title">Эмоции</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Нейтральное/спокойное</span><span class="hbar-pct">~50%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:50%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Положительные (радость, улыбка, интерес)</span><span class="hbar-pct">~30%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:30%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Серьёзные/сосредоточенные/негативные</span><span class="hbar-pct">~20%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:20%"></div></div>
+</div>
 </div>
 
 </div>
