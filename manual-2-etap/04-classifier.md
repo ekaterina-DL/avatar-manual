@@ -110,7 +110,7 @@
 руки, хотя они видны в кадре» стала одной из самых частых ошибок. `[Инстр. Kandinsky-Аватар,
 стр.5, Upd 21.05]`
 
-**Примеры из журнала проверок:**
+**Примеры из банка:**
 
 - [**Голова и плечи** — кисти рук не видны (78.4–95.9)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/eaccT4AP480/eaccT4AP480.mp4)
 - [**Голова и плечи** — кисти рук не видны (0:01.03–0:31.01)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/KTSC0ERroEY/KTSC0ERroEY.mp4)
@@ -148,8 +148,6 @@
   участка на видео действительно нет, решение «по наитию» допустимо, но это редкий,
   нежелательный случай, а не рабочая практика по умолчанию.
   `[Встреча с новичками по 2 этапу, 29.07.2026]`
-
-**Примеры из журнала проверок:**
 
 - [**Анфас** (0:06.48–0:18.06)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/5RoBwOlETRk/5RoBwOlETRk.mp4)
 - [**Полуоборот** (4.1–44.1)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/r0_VQdrJsSM/r0_VQdrJsSM.mp4)
