@@ -87,8 +87,7 @@
 - **Ракурс меняется в пределах ролика (берём преобладающее значение, это не «Битое»):**
   [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-186339672_456239137__segment_2_175_191__seg2.mp4)
 
-Ещё 5 примеров (в т.ч. «фронтальный», «профиль», «лёгкий поворот», случай с двумя людьми в
-разных ракурсах) — [ниже](#вопрос-4-ракурс-5-примеров).
+Ещё 4 примера (без подписей, значения ракурса не определены) — [ниже](#вопрос-4-ракурс-4-примеров).
 
 ## Пример однотонного фона с виньеткой ⚠️ устаревшая иллюстрация
 
@@ -300,13 +299,12 @@
 33. [-37990895_456242594__segment_3_121_136__seg3.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-37990895_456242594__segment_3_121_136__seg3.mp4)
 34. [-41031541_456239086__segment_2_115_163__seg2.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fce8a423-3c2f-41a7-8593-73532ba90348/trimmed/-41031541_456239086__segment_2_115_163__seg2.mp4)
 
-### Вопрос 4: Ракурс (5 примеров)
+### Вопрос 4: Ракурс (4 примеров)
 
 1. [-65608907_456239303__segment_2_40_181__seg2.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-65608907_456239303__segment_2_40_181__seg2.mp4)
 2. [-95446622_456239101__segment_4_97_111__seg4.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7a9214c4-90ca-4d1c-a66a-80957e1fc431/trimmed/-95446622_456239101__segment_4_97_111__seg4.mp4)
-3. [-177876997_456239025__segment_1_25_47__seg1.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-177876997_456239025__segment_1_25_47__seg1.mp4)
-4. [-68719297_456239633__segment_2_50_62__seg2.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-68719297_456239633__segment_2_50_62__seg2.mp4)
-5. [-145781292_456239534__segment_3_99_125__seg3.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/384a8f39-036c-423b-b136-6ef8128c9b96/trimmed/-145781292_456239534__segment_3_99_125__seg3.mp4)
+3. [-68719297_456239633__segment_2_50_62__seg2.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-68719297_456239633__segment_2_50_62__seg2.mp4)
+4. [-145781292_456239534__segment_3_99_125__seg3.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/384a8f39-036c-423b-b136-6ef8128c9b96/trimmed/-145781292_456239534__segment_3_99_125__seg3.mp4)
 
 ### Вопрос 8: Речь с наложением (3 примеров)
 

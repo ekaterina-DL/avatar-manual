@@ -154,6 +154,7 @@
 - [**Анфас** (0:06.48–0:18.06)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/5RoBwOlETRk/5RoBwOlETRk.mp4)
 - [**Полуоборот** (4.1–44.1)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/r0_VQdrJsSM/r0_VQdrJsSM.mp4)
 - [**Профиль** (64.3–80.6)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/z_9xxDP2ISM/z_9xxDP2ISM.mp4)
+- [**Полуоборот**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-177876997_456239025__segment_1_25_47__seg1.mp4)
 
 `[Журнал проверок ОС]`
 
