@@ -827,9 +827,7 @@ body, .md-typeset {
   padding: 16px;
 }
 .hbar-title {
-  font-family: 'Golos Text', sans-serif;
   font-weight: 700;
-  font-size: .88rem;
   color: var(--gray-900);
   margin-bottom: 12px;
 }
@@ -844,15 +842,12 @@ body, .md-typeset {
   margin-bottom: 4px;
 }
 .hbar-name {
-  font-size: .8rem;
   color: var(--gray-600);
   line-height: 1.35;
 }
 .hbar-pct {
   flex: 0 0 auto;
-  font-family: 'Golos Text', sans-serif;
   font-weight: 700;
-  font-size: .8rem;
   color: var(--accent-ink);
   white-space: nowrap;
 }
