@@ -60,18 +60,36 @@ def test_preview_markdown_contains_eyebrow_marker_with_mapping_label():
     assert result.index("<!-- video-eyebrow: Темп речи -->") < result.index("example1.mp4")
 
 
-def test_preview_markdown_eyebrow_marker_for_rakurs_mapping():
-    from inject_example_previews import MAPPINGS
+def _rakurs_test_mapping():
+    """Синтетический mapping для регрессионных тестов ниже — раньше указывал на реальную запись
+    MAPPINGS с source_heading="Ракурс", но эта запись удалена 18.08.2026 (превью "Ракурс" стало
+    частью рукописного блока прямо в 04-classifier.md, поле больше не инжектируется отдельно).
+    Сами регрессии (эйброу-маркер, пустая строка перед закрывающим </div>, взаимодействие с
+    group_media_lists.py) по-прежнему актуальны для механизма в целом, поэтому мы держим их
+    живыми через mapping, независимый от реального MAPPINGS — используем _apply_mapping()
+    напрямую вместо on_page_markdown(), которая читает глобальный MAPPINGS."""
+    return {
+        "target_file": "manual-2-etap/04-classifier.md",
+        "anchor": "### Освещение",
+        "position": "before_line",
+        "source_file": "manual-2-etap/11-example-library.md",
+        "source_heading": "Ракурс",
+        "max_items": 2,
+        "label": "Ракурс",
+    }
 
-    mapping = next(m for m in MAPPINGS if m["source_heading"] == "Ракурс")
+
+def test_preview_markdown_eyebrow_marker_for_rakurs_mapping():
+    from inject_example_previews import _apply_mapping
+
+    mapping = _rakurs_test_mapping()
     target_md = (
         "### Преобладающий ракурс\n\n"
         "Значения: Анфас / Полуоборот (3/4) / Профиль. Решение «по наитию» допустимо.\n\n"
         "### Освещение\n\n"
         "Значения: Мягкое студийное / Естественное / Сложное.\n"
     )
-    page = FakePage(mapping["target_file"])
-    result = on_page_markdown(target_md, page, None, None)
+    result = _apply_mapping(target_md, mapping)
     assert "<!-- video-eyebrow: Ракурс -->" in result
 
 
@@ -90,7 +108,6 @@ def test_mapping_table_has_label_for_every_entry():
     expected_labels_by_source_heading = {
         "Темп речи": "Темп речи",
         "Эмоции": "Эмоции",
-        "Ракурс": "Ракурс",
         "Диалоги и закадровый голос": "Диалоги и закадровый голос",
         "1. Размечено битое видео (хотя должно было быть отправлено в «битое»)": "Битое",
         "2. Наличие артефакта (не проставлен)": "Артефакт",
@@ -114,17 +131,16 @@ def test_preview_with_no_remaining_items_has_blank_line_before_closing_div():
     пайплайне) ошибочно затягивает "</div>" внутрь подписи последнего видео-пункта — см.
     test_injected_preview_survives_group_media_lists_without_broken_html ниже, где
     воспроизводится именно это взаимодействие двух хуков."""
-    from inject_example_previews import MAPPINGS
+    from inject_example_previews import _apply_mapping
 
-    mapping = next(m for m in MAPPINGS if m["source_heading"] == "Ракурс")
+    mapping = _rakurs_test_mapping()
     target_md = (
         "### Преобладающий ракурс\n\n"
         "Значения: Анфас / Полуоборот (3/4) / Профиль. Решение «по наитию» допустимо.\n\n"
         "### Освещение\n\n"
         "Значения: Мягкое студийное / Естественное / Сложное.\n"
     )
-    page = FakePage(mapping["target_file"])
-    result = on_page_markdown(target_md, page, None, None)
+    result = _apply_mapping(target_md, mapping)
     # remaining должен быть 0 для фикстуры "Ракурс" (ровно 2 примера = max_items)
     assert "→ ещё" not in result
     assert "\n\n</div>" in result, (
@@ -162,9 +178,9 @@ def test_injected_preview_survives_group_media_lists_without_broken_html():
     вложенный HTML `<div class="vi-cap"><span markdown="1"></div></span></div>`."""
     import embed_local_media
     import group_media_lists
-    from inject_example_previews import MAPPINGS
+    from inject_example_previews import _apply_mapping
 
-    mapping = next(m for m in MAPPINGS if m["source_heading"] == "Ракурс")
+    mapping = _rakurs_test_mapping()
     target_md = (
         "## Уточнения\n\n"
         "### Преобладающий ракурс\n\n"
@@ -173,7 +189,7 @@ def test_injected_preview_survives_group_media_lists_without_broken_html():
         "Значения: Мягкое студийное / Естественное / Сложное.\n"
     )
     page = FakePage(mapping["target_file"])
-    md = on_page_markdown(target_md, page, None, None)
+    md = _apply_mapping(target_md, mapping)
     md = embed_local_media.on_page_markdown(md, page, None, None)
     result = group_media_lists.on_page_markdown(md, page, None, None)
 
