@@ -52,6 +52,12 @@ MAPPINGS = [
         "source_heading": "Ракурс",
         "max_items": 2,
         "label": "Ракурс",
+        # 04-classifier.md уже несёт собственный рукописный блок примеров ("Анфас"/"Полуоборот"/
+        # "Профиль" из журнала проверок) прямо перед этим инжектированным — с общим заголовком
+        # "**Примеры из банка:**", написанным вручную в самом markdown. Без skip_label эта функция
+        # добавила бы второй "**Примеры из банка:**" между двумя блоками (см. правку 18.08.2026:
+        # подпись оказывалась потеряна между двумя сетками, а не перед первой).
+        "skip_label": True,
     },
     {
         # Превью "Диалоги и закадровый голос" относится к полю "Тип речи".
@@ -106,9 +112,10 @@ def _build_preview_markdown(mapping):
         "",
         f'<!-- video-eyebrow: {mapping["label"]} -->',
         '<div markdown="1">',
-        "**Примеры из банка:**",
-        "",
     ]
+    if not mapping.get("skip_label"):
+        lines.append("**Примеры из банка:**")
+    lines.append("")
     lines.extend(preview_items)
     if remaining > 0:
         anchor = _slugify_heading(mapping["source_heading"], "-")
