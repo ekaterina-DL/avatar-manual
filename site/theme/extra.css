@@ -862,6 +862,14 @@ body, .md-typeset {
   border-radius: 999px;
   background: #D9A671;
 }
+.hbar-note {
+  margin-top: 12px;
+  color: var(--gray-600);
+  font-size: .85em;
+}
+.hbar-note a {
+  color: var(--md-accent-fg-color);
+}
 
 /* Вложенный список на тире вместо точки — чтобы визуально отличаться от основного маркера
    списка (используется в требованиях к лицу, 05b-what-not-to-label.md). Селектор

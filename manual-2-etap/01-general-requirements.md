@@ -355,10 +355,46 @@
 
 #### Прочий баланс
 
-- **Группы источников:** Группа 1 (Студия) ~40% · Группа 2 (Естественная среда) ~60%
-  (описание групп — [«Группы интересующих видео»](#группы-интересующих-видео) выше).
-- **Количество людей в кадре:** один человек ~60% · два и более ~40%.
-- **Речь / пение:** речь ~90% · пение ~10%.
+<div class="hbar-grid">
+
+<div class="hbar-card">
+<div class="hbar-title">Группы источников</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Группа 1 (Студия)</span><span class="hbar-pct">~40%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:40%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Группа 2 (Естественная среда)</span><span class="hbar-pct">~60%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:60%"></div></div>
+</div>
+<div class="hbar-note">Описание групп — <a href="#группы-интересующих-видео">«Группы интересующих видео»</a> выше.</div>
+</div>
+
+<div class="hbar-card">
+<div class="hbar-title">Количество людей в кадре</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Один человек в кадре</span><span class="hbar-pct">~60%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:60%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Два и более человека</span><span class="hbar-pct">~40%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:40%"></div></div>
+</div>
+</div>
+
+<div class="hbar-card">
+<div class="hbar-title">Речь / пение</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Речь</span><span class="hbar-pct">~90%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:90%"></div></div>
+</div>
+<div class="hbar-row">
+<div class="hbar-line"><span class="hbar-name">Пение</span><span class="hbar-pct">~10%</span></div>
+<div class="hbar-track"><div class="hbar-fill" style="width:10%"></div></div>
+</div>
+</div>
+
+</div>
 
 `[Инстр. Kandinsky-Аватар, стр.3-4]`
 
