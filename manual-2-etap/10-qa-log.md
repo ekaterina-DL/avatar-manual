@@ -134,7 +134,6 @@
 | Ошибка классификатора | Должно быть «голова, плечи и руки», 2 ответа на 1 вопрос, хотя в кадре 1 человек | 65.7–75.8 | [0mwz2f7OBto](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/0mwz2f7OBto/0mwz2f7OBto.mp4) |
 | Иное | Размечено битое видео: пережато (пожатие), см. на руки | 23.7–34.2 | [yvsBUkamNmk](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/yvsBUkamNmk/yvsBUkamNmk.mp4) |
 | Некорректные границы объекта | Сегмент должен продолжаться. Бэк-вокал допустим | 55.8–87.0 | [eaccT4AP480](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/eaccT4AP480/eaccT4AP480.mp4) |
-| Ошибка классификатора | Во 2 сегменте в кадре 2 человека + должен быть профиль | 64.3–80.6 | [z_9xxDP2ISM](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/z_9xxDP2ISM/z_9xxDP2ISM.mp4) |
 | Некорректные границы объекта / Ошибка классификатора | 1 и 2 сегменты лучше объединить, нет сильной разницы. Сегмент завершён значительно раньше, человек ещё говорит («действительно, а склейка для валидатора теперь как пустой звук, раз решил объединить — плавного перехода не было») ⚠️ см. [09-disputed-points.md](09-disputed-points.md#можно-ли-объединять-два-сегмента-если-между-ними-есть-склейка) | 27.2–102.4 | [bYxShJqZid4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/bYxShJqZid4/bYxShJqZid4.mp4) |
 | Ошибка классификатора | 2 ответа в 1 вопросе | 9.0–36.0 | [bYxShJqZid4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/bYxShJqZid4/bYxShJqZid4.mp4) |
 | Ошибка классификатора | Неверно выбран Преобладающий ракурс, строгого анфаса почти нет (ок) | 22.0–51.6 | [UxR34j3zbJ8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/UxR34j3zbJ8/UxR34j3zbJ8.mp4) |
@@ -412,7 +411,6 @@
 | Не размечен объект | Видео в битом. Не размечен подходящий сегмент | 75.5–87.5 | [p18dhXM4o2A](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/p18dhXM4o2A/p18dhXM4o2A.mp4) |
 | Пиксельность на лице | Качество видео не подходит, фокус не на лицах | 0.1–27.8 | [CF72TVCQWzw](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/CF72TVCQWzw/CF72TVCQWzw.mp4) |
 | Ошибка классификатора | Если поёт/говорит один человек — это монолог | 16.6–34.0 | [giy8-8o5-zA](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/giy8-8o5-zA/giy8-8o5-zA.mp4) |
-| Ошибка классификатора | Преобладающий ракурс — полуоборот | 4.1–44.1 | [r0_VQdrJsSM](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/r0_VQdrJsSM/r0_VQdrJsSM.mp4) |
 | Ошибка классификатора | Если поют/говорят несколько человек — не монолог | 0–157.7 | [Cfwj6rN9T48](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/Cfwj6rN9T48/Cfwj6rN9T48.mp4) |
 | Не размечен объект | Видео в битом. Не размечен подходящий сегмент | 1.1–55.9 | [1RcmPqZ_CQY](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/1RcmPqZ_CQY/1RcmPqZ_CQY.mp4) |
 | Некорректные границы объекта | Закончить значительно позже — вокализмы размечаем, до смены кадра идёт хорошее качество цельного фрагмента | 103.7–132.5 | [gHenRzcnBOQ](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/gHenRzcnBOQ/gHenRzcnBOQ.mp4) |
@@ -517,7 +515,6 @@
 
 | Ошибка | Комментарий | Таймкод сегмента | Видео |
 |---|---|---|---|
-| Ошибка классификатора | Ракурс — анфас | 0:06.48–0:18.06 | [5RoBwOlETRk](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/5RoBwOlETRk/5RoBwOlETRk.mp4) |
 | Некорректные границы объекта | — | 2:56.59–3:33.42 | [o6-NQdcHAPQ](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/o6-NQdcHAPQ/o6-NQdcHAPQ.mp4) |
 | Ошибка классификатора | Неверный пол | 0:00.00–0:16.92 | [ZReQnVLi7DU](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/ZReQnVLi7DU/ZReQnVLi7DU.mp4) |
 | Ошибка классификатора | Объём и поза тела человека в кадре: голова, плечи и руки | 0:00.00–1:43.20 | [X74amqfLtY4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/X74amqfLtY4/X74amqfLtY4.mp4) |

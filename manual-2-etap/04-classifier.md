@@ -149,6 +149,14 @@
   нежелательный случай, а не рабочая практика по умолчанию.
   `[Встреча с новичками по 2 этапу, 29.07.2026]`
 
+**Примеры из журнала проверок:**
+
+- [**Анфас** (0:06.48–0:18.06)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/5RoBwOlETRk/5RoBwOlETRk.mp4)
+- [**Полуоборот** (4.1–44.1)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/r0_VQdrJsSM/r0_VQdrJsSM.mp4)
+- [**Профиль** (64.3–80.6)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/z_9xxDP2ISM/z_9xxDP2ISM.mp4)
+
+`[Журнал проверок ОС]`
+
 ### Освещение
 
 <ul class="value-checklist">
