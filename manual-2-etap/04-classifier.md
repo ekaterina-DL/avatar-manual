@@ -189,6 +189,11 @@
 именно искусственного света, ставим «Мягкое студийное». `[Встреча с новичками по 2 этапу,
 29.07.2026]`
 
+**Примеры из банка:**
+
+- [**Естественное** — легко ошибочно принять за «студийное»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/27_05_2026/9k4hkY8Cy5E/9k4hkY8Cy5E.mp4)
+- [**Естественное** (0–86.3) — а не «мягкое студийное»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/0AiCXmNJGvk/0AiCXmNJGvk.mp4)
+
 ### Фон
 
 <ul class="value-checklist">
