@@ -232,17 +232,20 @@
 
 ### Артефакт (11 примеров)
 
-1. [-163655585_456239140__segment_1_10_30.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/686bf388-838b-4fd1-98c9-6f2ad595e68b/trimmed/-163655585_456239140__segment_1_10_30.mp4)
-2. [-230254611_456239026__segment_2_132_211__seg2.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-230254611_456239026__segment_2_132_211__seg2.mp4)
-3. [-185402127_456239027__segment_1_0_81.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-185402127_456239027__segment_1_0_81.mp4)
-4. [-198074903_456239039__segment_1_0_75.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-198074903_456239039__segment_1_0_75.mp4)
-5. [-68719297_456239633__segment_2_50_62__seg2.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-68719297_456239633__segment_2_50_62__seg2.mp4)
-6. [-166639003_456239199__segment_1_6_126.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-166639003_456239199__segment_1_6_126.mp4)
-7. [4128747_456239872__segment_1_9_45.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_027/4128747_456239872__segment_1_9_45.mp4) **[3 этап]**
-8. [-64931420_456239841__segment_1_24_49.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/be42f18f-8152-425d-9ada-0cdf65668287/trimmed/-64931420_456239841__segment_1_24_49.mp4)
-9. [m2-res_480p.mp4?m=DASHPlaylist.mpd&var=sgpssan&v=1&e=1774458000&s=895b34da0ec9d82e496b8753aad684fbc9c0f40f](https://packaged-media.redd.it/qay09xe4glpf1/pb/m2-res_480p.mp4?m=DASHPlaylist.mpd&var=sgpssan&v=1&e=1774458000&s=895b34da0ec9d82e496b8753aad684fbc9c0f40f)
-10. [m2-res_1920p.mp4?m=DASHPlaylist.mpd&var=sgpssan&v=1&e=1774458000&s=47a9b5ae8d7de108117063873088b80531002275](https://packaged-media.redd.it/t0qekqt24wqf1/pb/m2-res_1920p.mp4?m=DASHPlaylist.mpd&var=sgpssan&v=1&e=1774458000&s=47a9b5ae8d7de108117063873088b80531002275)
-11. [-203940747_456239916__segment_2_36_82__seg2.mp4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_029/-203940747_456239916__segment_2_36_82__seg2.mp4) **[3 этап]**
+⚠️ Как и в разделе «Битое (доп. примеры)» выше — здесь у каждого видео есть комментарий,
+поэтому оформлено сеткой карточек.
+
+- [сложное освещение](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/686bf388-838b-4fd1-98c9-6f2ad595e68b/trimmed/-163655585_456239140__segment_1_10_30.mp4)
+- [мутные глаза, мелкая пиксельность, сверху засвет, но мимика видна неплохо](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-230254611_456239026__segment_2_132_211__seg2.mp4)
+- [мелкая пиксельность, небольшая дымка на видео](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-185402127_456239027__segment_1_0_81.mp4)
+- [мерцание пиксельное](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-198074903_456239039__segment_1_0_75.mp4)
+- [лёгкая размытость, мини-пиксели](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-68719297_456239633__segment_2_50_62__seg2.mp4)
+- [артефакт](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-166639003_456239199__segment_1_6_126.mp4)
+- [пиксели (3 этап)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_027/4128747_456239872__segment_1_9_45.mp4)
+- [мерцание](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/be42f18f-8152-425d-9ada-0cdf65668287/trimmed/-64931420_456239841__segment_1_24_49.mp4)
+- [мерцание — ссылка на реддит, может не открываться](https://packaged-media.redd.it/qay09xe4glpf1/pb/m2-res_480p.mp4?m=DASHPlaylist.mpd&var=sgpssan&v=1&e=1774458000&s=895b34da0ec9d82e496b8753aad684fbc9c0f40f)
+- [мерцание — ссылка на реддит, может не открываться](https://packaged-media.redd.it/t0qekqt24wqf1/pb/m2-res_1920p.mp4?m=DASHPlaylist.mpd&var=sgpssan&v=1&e=1774458000&s=47a9b5ae8d7de108117063873088b80531002275)
+- [мерцание (3 этап)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_029/-203940747_456239916__segment_2_36_82__seg2.mp4)
 
 ### Вопрос 3: Эмоции (9 примеров)
 
