@@ -57,7 +57,10 @@
   [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-119060192_456239034__segment_1_40_53__seg3.mp4),
   [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-111933564_456239285__segment_2_47_164__seg2.mp4),
   [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-102559235_456239254__segment_1_6_17.mp4)
-- **«Другое» (не подходит под три основных значения):**
+- **Пограничные случаи, сложно отнести к двум значениям выше** (⚠️ у 2 этапа нет отдельного
+  значения «Другое»/«other» — это только 3 варианта в самом верху страницы; «другое» здесь —
+  пометка из источника, реально такое видео нужно отнести к ближайшему из 3 реальных значений,
+  вероятно «Серьёзные/сосредоточенные/негативные»):
   [ирония](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-187830095_456244648__segment_4_81_101__seg4.mp4),
   [сарказм](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-68053471_456247352__segment_4_69_111__seg4.mp4),
   [выразительное чтение с долей мечтательности](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-85266554_456240722__segment_1_0_20.mp4)
@@ -250,7 +253,10 @@
 ### Вопрос 3: Эмоции (9 примеров)
 
 ⚠️ Как и в разделах «Битое (доп. примеры)» и «Артефакт» выше — здесь у каждого видео есть комментарий,
-поэтому оформлено сеткой карточек.
+поэтому оформлено сеткой карточек. Пометка «— другое» в последних трёх пунктах — из источника
+(этот раздел, как и весь «Полная таблица примеров по вопросам», местами использует терминологию
+3 этапа — см. оговорку в начале раздела); у 2 этапа отдельного значения «Другое»/«other» нет,
+на практике эти видео нужно отнести к ближайшему из 3 реальных значений поля.
 
 - [Счастье](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-58787336_456239767__segment_3_79_90__seg3.mp4)
 - [Счастье](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-69205063_456239229__segment_1_0_16__seg1.mp4)
