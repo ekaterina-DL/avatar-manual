@@ -233,7 +233,7 @@
 **Примеры из банка:**
 
 - [**Нейтральный/размытый** — однотонный тёмный фон](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-214391033_456239025__segment_1_0_92.mp4)
-- [**Нейтральный/размытый** — однотонный светлый фон](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-215695205_456239021__segment_1_17_37.mp4)
+- [**Нейтральный/размытый** — однотонный тёмный фон](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-215695205_456239021__segment_1_17_37.mp4)
 - [**Естественный, но статичный**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-59531176_456240190__segment_1_10_210.mp4)
 - [**Естественный, но статичный**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-45583559_456240264__segment_2_176_206__seg2.mp4)
 - [**Динамичный/уличный** — деревья на фоне, земля](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/Zgmlx08HIR4/Zgmlx08HIR4.mp4)
