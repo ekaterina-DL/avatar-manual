@@ -231,6 +231,20 @@ body, .md-typeset {
   border: none;
   border-radius: 0;
 }
+/* .md-typeset img (карточка-миниатюра 220×220 с zoom по наведению) иначе перебивает часть
+   правил выше — img в сетке карточек должна вести себя как video-сосед по размеру, без
+   собственного лимита ширины и без zoom-эффекта. */
+.video-item img {
+  max-width: none;
+  max-height: 320px;
+  box-shadow: none;
+  cursor: default;
+  transition: none;
+  position: static;
+}
+.video-item img:hover {
+  transform: none;
+}
 .video-item .vi-cap {
   padding: 8px 11px;
   font-family: 'Golos Text', sans-serif;
