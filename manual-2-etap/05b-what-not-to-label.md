@@ -216,6 +216,25 @@
 
 `[Разметка ВК видео — Критерии примеры]`
 
+### Рамка — подтверждённые примеры (не баг плеера)
+
+Как отличить реальную рамку от бага плеера (появляется при «картинке в картинке») — см.
+[лайфхак](08-lifehacks.md#ложная-рамка--баг-плеера-а-не-брак-видео). Ниже — видео с реальной,
+подтверждённой рамкой, брак не оспаривается.
+
+- [**Рамка справа**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-158416167_456239208/-158416167_456239208.mp4)
+- [**Рамка снизу**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-225740964_456239040/-225740964_456239040.mp4)
+- [**Рамка снизу**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-52000967_456244545/-52000967_456244545.mp4)
+- [**Рамка снизу**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-52000967_456244534/-52000967_456244534.mp4)
+- [**Рамка справа**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-171518287_456239733/-171518287_456239733.mp4)
+- [**Рамка справа и слева**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/16_02_2026/-733335_456241328/-733335_456241328.mp4)
+- [**Рамка сверху**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-217972195_456239177/-217972195_456239177.mp4)
+- [**Рамка слева**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-210980095_456239022/-210980095_456239022.mp4)
+- [**Рамка снизу и сверху**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/5791ff38-bf32-4249-ac9b-187c83e9df53/trimmed/-101418717_456239409__segment_1_24_35__seg1.mp4)
+- [**Рамка слева**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_027/182002586_456241831__segment_1_7_71__seg1.mp4)
+
+`[Разметка ВК видео — ОС 27.05 СТ2]`
+
 Полный банк примеров по всем критериям (198+ ссылок) — см. [11-example-library.md](11-example-library.md).
 
 ## Антипримеры
