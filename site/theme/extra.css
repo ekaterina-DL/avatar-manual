@@ -145,6 +145,7 @@ body, .md-typeset {
    крупными и читаемыми, без уменьшения и без zoom по наведению. */
 .md-typeset img[src$="interface-overview.jpeg"],
 .md-typeset img[src$="klassif_odin.png"],
+.md-typeset img[src$="klassif_mnogo.png"],
 .md-typeset img[src$="trim-buttons.png"],
 .md-typeset img[src$="anthropomorph-calibration-chart.png"] {
   max-width: 100%;
@@ -156,6 +157,7 @@ body, .md-typeset {
 }
 .md-typeset img[src$="interface-overview.jpeg"]:hover,
 .md-typeset img[src$="klassif_odin.png"]:hover,
+.md-typeset img[src$="klassif_mnogo.png"]:hover,
 .md-typeset img[src$="trim-buttons.png"]:hover,
 .md-typeset img[src$="anthropomorph-calibration-chart.png"]:hover {
   transform: none;
