@@ -49,6 +49,13 @@
 
 ## Эмоции
 
+⚠️ У 2 этапа только 3 значения поля «Эмоции» — «Положительные», «Нейтральные/спокойные» и
+«Серьёзные/сосредоточенные/негативные»; отдельного значения «Другое»/«other» нет (это
+терминология 3 этапа, просочившаяся из смешанного источника — см. предупреждение в начале
+раздела «Полная таблица примеров по вопросам»). Три примера ниже под меткой «пограничные» на
+практике нужно относить к ближайшему из 3 реальных значений, вероятно
+«Серьёзные/сосредоточенные/негативные».
+
 - **Положительные (радость, счастье):**
   [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-58787336_456239767__segment_3_79_90__seg3.mp4),
   [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-69205063_456239229__segment_1_0_16__seg1.mp4),
@@ -57,10 +64,7 @@
   [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-119060192_456239034__segment_1_40_53__seg3.mp4),
   [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-111933564_456239285__segment_2_47_164__seg2.mp4),
   [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-102559235_456239254__segment_1_6_17.mp4)
-- **Пограничные случаи, сложно отнести к двум значениям выше** (⚠️ у 2 этапа нет отдельного
-  значения «Другое»/«other» — это только 3 варианта в самом верху страницы; «другое» здесь —
-  пометка из источника, реально такое видео нужно отнести к ближайшему из 3 реальных значений,
-  вероятно «Серьёзные/сосредоточенные/негативные»):
+- **Пограничные случаи:**
   [ирония](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-187830095_456244648__segment_4_81_101__seg4.mp4),
   [сарказм](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-68053471_456247352__segment_4_69_111__seg4.mp4),
   [выразительное чтение с долей мечтательности](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-85266554_456240722__segment_1_0_20.mp4)
