@@ -167,6 +167,51 @@ def test_leading_video_run_before_trailing_non_video_item_groups_only_the_run():
     assert "обычный пункт без видео." in result
 
 
+def test_grid_image_joins_video_run_as_matching_card():
+    """Реальный случай: manual-2-etap/04-classifier.md, раздел "Освещение" — 2 видео-примера
+    "Естественное" + 2 скриншота "Студийное" (источник — фото из переписки с заказчиком, не
+    видео). Скриншоты должны попасть в ТУ ЖЕ сетку .video-grid, с теми же карточками
+    .video-item, что и видео — иначе выбиваются размером/оформлением. Явный маркер "grid:" в alt
+    (см. _GRID_IMAGE_RE) отличает такую картинку от обычной иллюстрации (antiexample-8.jpg,
+    см. test_trailing_non_video_item_does_not_sink_whole_list) — без маркера картинка осталась
+    бы обычным пунктом списка вне сетки."""
+    md = (
+        '## Освещение\n\n'
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/a.mp4" type="video/mp4">Естественное</video>\n'
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/b.mp4" type="video/mp4">Естественное 2</video>\n'
+        '- ![grid: Студийное](assets/svet_studio1.png)\n'
+        '- ![grid: Студийное](assets/svet_studio2.png)\n'
+    )
+    result = on_page_markdown(md, None, None, None)
+    assert '<div class="video-block" markdown="1">' in result
+    assert result.count('<div class="video-item" markdown="1">') == 4
+    # src переписан через fix_local_asset_path (см. _path_utils) — raw HTML-теги, вставленные
+    # хуком, мимо стандартной relativизации MkDocs не проходят, поэтому "assets/..." нужно
+    # поднять на уровень выше вручную, иначе картинка не найдётся на собранной странице.
+    assert '<img alt="Студийное" src="../assets/svet_studio1.png" loading="lazy">' in result
+    assert '<img alt="Студийное" src="../assets/svet_studio2.png" loading="lazy">' in result
+    # картинки — карточки внутри ОДНОЙ сетки вместе с видео, не отдельный блок
+    assert result.count('<div class="video-block" markdown="1">') == 1
+
+
+def test_plain_image_without_grid_marker_still_excluded_from_grid():
+    """Регрессия: без префикса "grid:" картинка ведёт себя как раньше — не считается
+    медиа-пунктом и не затягивается в сетку, даже если стоит прямо после видео-прогона."""
+    md = (
+        "## Раздел\n\n"
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/a.mp4" type="video/mp4">a</video>\n'
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/b.mp4" type="video/mp4">b</video>\n'
+        "- ![просто картинка](assets/plain.png)\n"
+    )
+    result = on_page_markdown(md, None, None, None)
+    assert result.count('<div class="video-item" markdown="1">') == 2
+    assert "![просто картинка](assets/plain.png)" in result
+
+
 def test_eyebrow_marker_sets_label_and_is_stripped_from_output():
     """Регрессия (Concern 1 из отчёта Task 10): инжектированные превью из
     inject_example_previews.py вставляются посреди прозы без собственного markdown-заголовка,

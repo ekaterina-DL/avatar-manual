@@ -219,7 +219,8 @@ body, .md-typeset {
   overflow: hidden;
   border: 1px solid var(--card-line);
 }
-.video-item video {
+.video-item video,
+.video-item img {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;

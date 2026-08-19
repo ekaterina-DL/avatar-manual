@@ -1,6 +1,7 @@
 import re
 
 from _list_utils import split_list_items
+from _path_utils import fix_local_asset_path
 
 _HEADING_RE = re.compile(r'^(#{2,6})\s+(.*?)\s*$')
 _ITEM_START_RE = re.compile(r'^-\s+')
@@ -14,6 +15,14 @@ _VIDEO_TAG_RE = re.compile(
     r'<video\b[^>]*><source\s+src="([^"]+)"\s+type="video/mp4">(.*?)</video>',
     re.DOTALL,
 )
+# Явный opt-in для картиночной карточки в сетке: "- ![grid: Подпись](путь)". Без префикса
+# "grid: " картиночный пункт списка НЕ считается медиа-пунктом и в сетку не затягивается (см.
+# _parse_media_item) — например, manual-3-etap/07-example-library.md держит antiexample-8.jpg
+# как обычный пункт списка ПОСЛЕ прогона видео именно потому, что источник видео не скачан и
+# картинка не должна маскироваться под полноценный пример-карточку (см. test_trailing_non_video_
+# item_does_not_sink_whole_list). Префикс нужен ровно там, где картинка — намеренная замена
+# видео-примера (например, скриншот вместо утраченного видео-источника).
+_GRID_IMAGE_RE = re.compile(r'^!\[grid:\s*(.*?)\]\(([^)]+)\)$')
 # "Подпись перед видео" (см. _parse_video_item, паттерн 2) — легитимна ТОЛЬКО когда весь текст
 # перед первым видео в пункте это короткая жирная подпись вида "**Средний темп:**" и больше
 # ничего (ни вступления до неё, ни хвоста после закрывающих "**" в пределах лида). Полная
@@ -102,6 +111,29 @@ def _parse_video_item(item_text):
     return parsed
 
 
+def _parse_media_item(item_text):
+    """Как _parse_video_item, но дополнительно распознаёт "grid-картинки" — пункты списка вида
+    "- ![grid: Подпись](путь)" (см. _GRID_IMAGE_RE), которые должны попасть в ту же сетку
+    .video-grid, что и соседние видео-карточки (тот же размер карточки, то же оформление).
+    Без префикса "grid: " картиночный пункт медиа-пунктом не считается — обычные иллюстрации
+    (например, antiexample-8.jpg) по умолчанию в сетку не затягиваются, см. комментарий у
+    _GRID_IMAGE_RE. Возвращает список ("video"|"image", src, caption) — None, если пункт не
+    является ни видео-, ни grid-картиночным."""
+    video_cards = _parse_video_item(item_text)
+    if video_cards is not None:
+        return [("video", src, caption) for src, caption in video_cards]
+    flat = _flatten(item_text)
+    start = _ITEM_START_RE.match(flat)
+    if not start:
+        return None
+    body = flat[start.end():].strip()
+    match = _GRID_IMAGE_RE.match(body)
+    if not match:
+        return None
+    caption, src = match.group(1).strip(), match.group(2)
+    return [("image", src, caption)]
+
+
 def _render_video_block(heading, items):
     """markdown="1" должен стоять на КАЖДОМ вложенном <div>-предке подписи (video-block,
     video-grid, video-item, vi-cap), а сама подпись — на отдельной строке, а не в одной строке
@@ -110,11 +142,16 @@ def _render_video_block(heading, items):
     _parse_video_item), поэтому, в отличие от build_segment_examples.py, пустая строка перед
     списком не нужна — списков в подписи не бывает."""
     cards = []
-    for src, caption in items:
+    for kind, src, caption in items:
+        if kind == "video":
+            media_tag = f'<video controls preload="metadata" src="{src}"></video>'
+        else:
+            alt = caption.replace('"', "&quot;")
+            media_tag = f'<img alt="{alt}" src="{fix_local_asset_path(src)}" loading="lazy">'
         if caption.strip(" ."):
             card = (
                 '<div class="video-item" markdown="1">\n'
-                f'<video controls preload="metadata" src="{src}"></video>\n'
+                f'{media_tag}\n'
                 '<div class="vi-cap" markdown="1">\n'
                 f'{caption}\n'
                 "</div>\n"
@@ -123,7 +160,7 @@ def _render_video_block(heading, items):
         else:
             card = (
                 '<div class="video-item">'
-                f'<video controls preload="metadata" src="{src}"></video>'
+                f'{media_tag}'
                 "</div>"
             )
         cards.append(card)
@@ -141,9 +178,10 @@ def _render_video_block(heading, items):
 def _render_list_block(current_heading, items):
     """items — список (raw_text, parsed) для ОДНОГО непрерывного markdown-списка (без пустых
     строк внутри). Не требует, чтобы список был однородным целиком: разбивает его на подряд
-    идущие "прогоны" видео-пунктов и обычных пунктов, и группирует в .video-block только прогоны
-    из 2+ видео-пунктов подряд — остальное (обычные пункты, картинки, одиночные видео-пункты)
-    остаётся как есть, на своём месте в списке.
+    идущие "прогоны" медиа-пунктов (видео и явных grid-картинок, см. _parse_media_item) и
+    обычных пунктов, и группирует в .video-block только прогоны из 2+ медиа-пунктов подряд —
+    остальное (обычные пункты, не-grid картинки, одиночные медиа-пункты) остаётся как есть, на
+    своём месте в списке.
 
     Понадобилось из-за реального случая: manual-3-etap/07-example-library.md, раздел
     "Антипримеры" — 8 пунктов-видео подряд и ОДИН последний пункт-картинка
@@ -153,16 +191,16 @@ def _render_list_block(current_heading, items):
     стеком плееров на всю ширину, хотя сами по себе были бы валидным поводом для сетки."""
     runs = []
     for raw_text, parsed in items:
-        is_video = parsed is not None
-        if runs and runs[-1][0] == is_video:
+        is_media = parsed is not None
+        if runs and runs[-1][0] == is_media:
             runs[-1][1].append((raw_text, parsed))
         else:
-            runs.append((is_video, [(raw_text, parsed)]))
+            runs.append((is_media, [(raw_text, parsed)]))
 
     rendered = []
-    for is_video, run_items in runs:
-        if is_video and len(run_items) >= 2:
-            flat_cards = [pair for _, parsed in run_items for pair in parsed]
+    for is_media, run_items in runs:
+        if is_media and len(run_items) >= 2:
+            flat_cards = [triple for _, parsed in run_items for triple in parsed]
             rendered.append(_render_video_block(current_heading, flat_cards))
         else:
             rendered.append("\n".join(raw_text for raw_text, _ in run_items))
@@ -204,7 +242,7 @@ def on_page_markdown(markdown, page, config, files):
                 j += 1
             list_lines = lines[i:j]
             items_text = split_list_items("\n".join(list_lines))
-            items = [(text, _parse_video_item(text)) for text in items_text]
+            items = [(text, _parse_media_item(text)) for text in items_text]
             if items:
                 out_lines.append(_render_list_block(current_heading, items))
             else:
