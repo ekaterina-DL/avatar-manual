@@ -38,10 +38,10 @@
 
 - **Ракурс:** slight_turn, если не видно второго уха; профиль встречается редко — выбираем
   превалирующий по ролику ракурс, а не единичный кадр
-  ([пример](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-131143144_456240365__segment_2_30_233__seg2.mp4)).
+  ([пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-131143144_456240365__segment_2_30_233__seg2.mp4)).
 - **Использование микрофона:** петличный микрофон, закреплённый на рубашке, — частая ошибка
   (не отмечают его использование). Проверяйте внимательно даже неочевидные случаи
-  ([пример](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/avatar/0be25d06-671a-4512-b731-e5f5aaeef217/trimmed/-86457930_456239083__segment_1_72_91__seg1.mp4)).
+  ([пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0be25d06-671a-4512-b731-e5f5aaeef217/trimmed/-86457930_456239083__segment_1_72_91__seg1.mp4)).
 - **Субтитры/текст:** пропуск наложенного текста — грубая ошибка, отмечается в любом случае,
   даже если текст на экране недолго (тот же пример, что и про микрофон — там же пропущен текст).
 - **Сколько людей в кадре:** если второй человек в кадре молчит, но активно невербально
@@ -52,23 +52,23 @@
 - **Вид съёмки (ещё пример):** видео с медленной речью, любительской съёмкой (нет проф.
   студийного оформления) и профилем (почти не видно обоих глаз) — вид съёмки amateur, эмоция
   «other» (торжественность при чтении не подходит под перечисленные), плюс отмечен артефакт
-  ([пример](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/avatar/0c8de823-1003-4be0-9f16-b8ac600b0791/trimmed/-167333217_456239754__segment_1_1_173.mp4)).
+  ([пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0c8de823-1003-4be0-9f16-b8ac600b0791/trimmed/-167333217_456239754__segment_1_1_173.mp4)).
 - **Вид съёмки (ещё пример):** хороший свет и средний темп речи — ближе к `professional_interview`,
   чем к «любительской», хотя формально условия скромные
-  ([пример](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/avatar/0c8de823-1003-4be0-9f16-b8ac600b0791/trimmed/-167333217_456239831__segment_2_36_57__seg2.mp4)).
+  ([пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0c8de823-1003-4be0-9f16-b8ac600b0791/trimmed/-167333217_456239831__segment_2_36_57__seg2.mp4)).
 - **Эмоция + завершённость мысли + движение + вид съёмки** — реальный набор ответов по одному
   ролику: нейтральная эмоция (счастье не прослеживается, хотя ожидалось), незавершённая мысль,
   medium (подключены жесты руками), вид съёмки — скорее образовательное видео
-  ([пример](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-144892536_456239685__segment_1_8_35.mp4)).
+  ([пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-144892536_456239685__segment_1_8_35.mp4)).
 - **Битое — низкое качество:** сильная пиксельность + тусклое освещение, усиливающее
   пикселизацию, из-за чего не распознаются черты лица
-  ([пример](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/avatar/1c35b7ef-b71d-48fc-94a7-b11274ce1cad/trimmed/113690075_456239171__segment_1_0_129.mp4)).
+  ([пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1c35b7ef-b71d-48fc-94a7-b11274ce1cad/trimmed/113690075_456239171__segment_1_0_129.mp4)).
 - **Битое — чёрный кадр в начале:** участок чёрного цвета без персонажа в начале ролика — такие
   видео бракуются сразу, даже если далее качество нормальное
-  ([пример](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/avatar/1c35b7ef-b71d-48fc-94a7-b11274ce1cad/trimmed/219338794_456239316__segment_1_0_11.mp4)).
+  ([пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1c35b7ef-b71d-48fc-94a7-b11274ce1cad/trimmed/219338794_456239316__segment_1_0_11.mp4)).
 - **Битое — смазанность:** очень большая смазанность, черты лица теряются (в одном случае у
   человека «стёрся» глаз)
-  ([пример](https://obs.ru-moscow-1.hc.sbercloud.ru/gigaeye-kandinsky-spark/ak/avatar/1c35b7ef-b71d-48fc-94a7-b11274ce1cad/trimmed/-85053588_456239019__segment_2_79_90__seg2.mp4)).
+  ([пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1c35b7ef-b71d-48fc-94a7-b11274ce1cad/trimmed/-85053588_456239019__segment_2_79_90__seg2.mp4)).
 - **Наложение речи + количество говорящих:** быстрая речь одного человека («тараторит», но с
   паузами) + наложение фоновых голосов — в поле «количество говорящих» всё равно ставим 1
   (разговоры на фоне в этом критерии не оцениваем), а наложение фиксируем отдельным полем.
