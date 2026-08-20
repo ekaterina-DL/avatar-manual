@@ -50,11 +50,11 @@
 ## Эмоции
 
 ⚠️ У 2 этапа только 3 значения поля «Эмоции» — «Положительные», «Нейтральные/спокойные» и
-«Серьёзные/сосредоточенные/негативные»; отдельного значения «Другое»/«other» нет (это
-терминология 3 этапа, просочившаяся из смешанного источника — см. предупреждение в начале
-раздела «Полная таблица примеров по вопросам»). Три примера ниже под меткой «пограничные» на
-практике нужно относить к ближайшему из 3 реальных значений, вероятно
-«Серьёзные/сосредоточенные/негативные».
+«Серьёзные/сосредоточенные/негативные»; отдельного значения «Другое»/«other» нет. 3 примера из
+источника с пометкой «другое» (ирония, сарказм, выразительное чтение с долей мечтательности)
+перенесены в мануал 3 этапа — это термин и категория именно оттуда (вопрос 3 «Эмоциональная
+окраска голоса», значение `other`), см.
+[07-example-library.md](../manual-3-etap/07-example-library.md#эмоция-other--примеры).
 
 - **Положительные (радость, счастье):**
   [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-58787336_456239767__segment_3_79_90__seg3.mp4),
@@ -64,12 +64,8 @@
   [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-119060192_456239034__segment_1_40_53__seg3.mp4),
   [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-111933564_456239285__segment_2_47_164__seg2.mp4),
   [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-102559235_456239254__segment_1_6_17.mp4)
-- **Пограничные случаи:**
-  [ирония](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-187830095_456244648__segment_4_81_101__seg4.mp4),
-  [сарказм](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-68053471_456247352__segment_4_69_111__seg4.mp4),
-  [выразительное чтение с долей мечтательности](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-85266554_456240722__segment_1_0_20.mp4)
 
-Ещё 9 примеров по эмоциям — [ниже](#вопрос-3-эмоции-9-примеров).
+Ещё 6 примеров по эмоциям — [ниже](#вопрос-3-эмоции-6-примеров).
 
 ## Вид съёмки: любительская vs профессиональная
 
@@ -254,13 +250,13 @@
 - [мерцание — ссылка на реддит, может не открываться](https://packaged-media.redd.it/t0qekqt24wqf1/pb/m2-res_1920p.mp4?m=DASHPlaylist.mpd&var=sgpssan&v=1&e=1774458000&s=47a9b5ae8d7de108117063873088b80531002275)
 - [мерцание (3 этап)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_029/-203940747_456239916__segment_2_36_82__seg2.mp4)
 
-### Вопрос 3: Эмоции (9 примеров)
+### Вопрос 3: Эмоции (6 примеров)
 
 ⚠️ Как и в разделах «Битое (доп. примеры)» и «Артефакт» выше — здесь у каждого видео есть комментарий,
-поэтому оформлено сеткой карточек. Пометка «— другое» в последних трёх пунктах — из источника
-(этот раздел, как и весь «Полная таблица примеров по вопросам», местами использует терминологию
-3 этапа — см. оговорку в начале раздела); у 2 этапа отдельного значения «Другое»/«other» нет,
-на практике эти видео нужно отнести к ближайшему из 3 реальных значений поля.
+поэтому оформлено сеткой карточек. Изначально в источнике было 9 строк — 3 с пометкой «другое»
+перенесены в [мануал 3 этапа](../manual-3-etap/07-example-library.md#эмоция-other--примеры): это
+термин и категория именно оттуда (вопрос 3 «Эмоциональная окраска голоса», значение `other`), а у
+2 этапа отдельного значения «Другое»/«other» нет.
 
 - [Счастье](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-58787336_456239767__segment_3_79_90__seg3.mp4)
 - [Счастье](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-69205063_456239229__segment_1_0_16__seg1.mp4)
@@ -268,9 +264,6 @@
 - [Нейтральное](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-119060192_456239034__segment_1_40_53__seg3.mp4)
 - [Нейтральное](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-111933564_456239285__segment_2_47_164__seg2.mp4)
 - [Нейтральное](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-102559235_456239254__segment_1_6_17.mp4)
-- [ирония — другое](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-187830095_456244648__segment_4_81_101__seg4.mp4)
-- [сарказм — другое](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-68053471_456247352__segment_4_69_111__seg4.mp4)
-- [не подходит под перечисленные эмоции, выразительное чтение с долей мечтательности — другое](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-85266554_456240722__segment_1_0_20.mp4)
 
 ### Вопрос 17: Вид съёмки (34 примеров)
 

@@ -35,6 +35,17 @@
 
 `[Инстр. Аватар 3 этап, стр.5-6]`
 
+## Эмоция «other» — примеры
+
+Три случая, где преобладающая эмоциональная окраска голоса (вопрос 3) не подходит ни под одно
+из основных значений (`neutral`/`happy`/`sad`/`angry`/`surprised`/`thoughtful`) — ставим `other`:
+
+- [ирония](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-187830095_456244648__segment_4_81_101__seg4.mp4)
+- [сарказм](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-68053471_456247352__segment_4_69_111__seg4.mp4)
+- [выразительное чтение с долей мечтательности](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-85266554_456240722__segment_1_0_20.mp4)
+
+`[Разметка ВК видео — Таблица с примерами по вопросам]`
+
 ## Топ-5 ошибок с примерами (upd. 01.04.2026)
 
 ### 1. Размечено битое видео (хотя должно было быть отправлено в «битое»)
