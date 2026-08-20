@@ -102,10 +102,10 @@
 каждом таком поле допустим только один ответ.
 
 - https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/eZvc533RNP8/eZvc533RNP8.mp4 — 2 значения в поле «Фон» при одном человеке в кадре.
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/cEZNKE2Iej0/cEZNKE2Iej0.mp4 — 2 значения в «Объём и поза тела» при одном человеке в кадре.
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/MbzweqS5chA/MbzweqS5chA.mp4 — 2 значения в «Преобладающем ракурсе»: нужно выбрать один,
+- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/cEZNKE2Iej0/cEZNKE2Iej0.mp4 — 2 значения в «Объём и поза тела» при одном человеке в кадре.
+- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/MbzweqS5chA/MbzweqS5chA.mp4 — 2 значения в «Преобладающем ракурсе»: нужно выбрать один,
   доминирующий вариант.
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/aR-8xggopRc/aR-8xggopRc.mp4 — то же самое в «Темпе речи»: 2 ответа в одном сегменте у
+- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/aR-8xggopRc/aR-8xggopRc.mp4 — то же самое в «Темпе речи»: 2 ответа в одном сегменте у
   одного и того же человека.
 
 #### Руки в кадре: «голова и плечи» или «голова, плечи и руки»

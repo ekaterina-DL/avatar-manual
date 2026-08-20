@@ -137,7 +137,7 @@
 | Ссылка | Комментарий |
 |---|---|
 | [Sb5GOcoiO2I](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/27_05_2026/Sb5GOcoiO2I/Sb5GOcoiO2I.mp4) | Во время движения авто по кочкам теряется чёткость. Нужно было найти фрагмент без тряски. |
-| [Lr-2wA_U1ws](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/Lr-2wA_U1ws/Lr-2wA_U1ws.mp4) | Нет чёткости в обоих сегментах + резкий зум во втором сегменте. |
+| [Lr-2wA_U1ws](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/Lr-2wA_U1ws/Lr-2wA_U1ws.mp4) | Нет чёткости в обоих сегментах + резкий зум во втором сегменте. |
 
 **Вывод:** триггер этой ошибки — не только съёмка «слишком близко к камере»: тряска (в т.ч. в
 движущемся транспорте) и резкий зум дают тот же эффект расфокуса. См.
