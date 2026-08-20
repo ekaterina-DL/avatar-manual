@@ -93,6 +93,33 @@ def test_preview_markdown_eyebrow_marker_for_rakurs_mapping():
     assert "<!-- video-eyebrow: Ракурс -->" in result
 
 
+def test_mapping_with_hardcoded_items_skips_source_file():
+    """Записи MAPPINGS с ключом "items" (видео зашиты прямо в коде, не читаются со страницы —
+    см. запись "Тип речи", добавлено 20.08.2026 по просьбе пользователя убрать дублирующий
+    раздел на странице "Банк примеров") не должны обращаться к DOCS_DIR/source_file вообще —
+    иначе несуществующий source_file уронил бы сборку. max_items == len(items) гарантирует
+    remaining == 0, так что "ещё N примеров" не появляется (ссылаться там уже некуда)."""
+    from inject_example_previews import _apply_mapping
+
+    mapping = {
+        "target_file": "manual-2-etap/04-classifier.md",
+        "anchor": "### Освещение",
+        "position": "before_line",
+        "items": [
+            "- **Пример А:** [видео](example1.mp4)",
+            "- **Пример Б:** [видео](example2.mp4)",
+        ],
+        "max_items": 2,
+        "label": "Проверка items",
+    }
+    target_md = "### Освещение\n\nЗначения: ...\n"
+    result = _apply_mapping(target_md, mapping)
+    assert "example1.mp4" in result
+    assert "example2.mp4" in result
+    assert "→ ещё" not in result
+    assert "<!-- video-eyebrow: Проверка items -->" in result
+
+
 def test_mapping_table_covers_expected_targets():
     targets = {m["target_file"] for m in MAPPINGS}
     assert "manual-2-etap/04-classifier.md" in targets
@@ -105,17 +132,11 @@ def test_mapping_table_has_label_for_every_entry():
     MAPPINGS должна явно нести короткий человекочитаемый label — источник правды для
     "<!-- video-eyebrow: ... -->" маркера, который _build_preview_markdown() эмитит для
     group_media_lists.py (см. test_group_media_lists.py::test_eyebrow_marker_*)."""
-    expected_labels_by_source_heading = {
-        "Темп речи": "Темп речи",
-        "Эмоции": "Эмоции",
-        "Тип речи: диалог, монолог и закадровый голос": "Тип речи",
-        "1. Размечено битое видео (хотя должно было быть отправлено в «битое»)": "Битое",
-        "2. Наличие артефакта (не проставлен)": "Артефакт",
-    }
-    assert len(MAPPINGS) == len(expected_labels_by_source_heading)
-    for mapping in MAPPINGS:
-        assert mapping.get("label"), f"нет label у mapping с source_heading={mapping['source_heading']!r}"
-        assert mapping["label"] == expected_labels_by_source_heading[mapping["source_heading"]]
+    expected_labels = {"Темп речи", "Эмоции", "Тип речи", "Битое", "Артефакт"}
+    assert len(MAPPINGS) == len(expected_labels)
+    labels = [mapping.get("label") for mapping in MAPPINGS]
+    assert all(labels), "у каждой записи MAPPINGS должен быть непустой label"
+    assert set(labels) == expected_labels
 
 
 def test_untouched_on_unrelated_page():
@@ -161,17 +182,18 @@ def test_more_link_anchor_matches_real_mkdocs_heading_id():
     непустой, ожидаемо читаемый slug для целевых заголовков из MAPPINGS."""
     from inject_example_previews import MAPPINGS, _slugify_heading
 
+    # Записи с "items" (видео зашиты прямо в MAPPINGS) не ссылаются ни на какой раздел-источник
+    # ("ещё N примеров" для них не строится, см. комментарий в _build_preview_markdown), поэтому
+    # у них нет "source_heading" и проверять здесь нечего.
     for mapping in MAPPINGS:
+        if "source_heading" not in mapping:
+            continue
         slug = _slugify_heading(mapping["source_heading"], "-")
         assert slug, f"пустой slug для {mapping['source_heading']!r} — снова получим id=\"_N\""
         assert slug == slug.lower()
         assert " " not in slug
 
     assert _slugify_heading("Темп речи", "-") == "темп-речи"
-    assert (
-        _slugify_heading("Тип речи: диалог, монолог и закадровый голос", "-")
-        == "тип-речи-диалог-монолог-и-закадровый-голос"
-    )
 
 
 def test_injected_preview_survives_group_media_lists_without_broken_html():
