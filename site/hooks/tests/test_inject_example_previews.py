@@ -26,9 +26,9 @@ def _docs_dir(monkeypatch):
 
 def test_classifier_tempo_preview_inserted_after_anchor():
     target_md = (
-        "### Темп речи\n\n"
+        "### 9. Темп речи\n\n"
         "Значения: Медленный / Быстрый.\n\n"
-        "### Язык и акценты\n\n"
+        "### 10. Язык и акценты\n\n"
         "Значения: Русский / Английский / Другой.\n"
     )
     page = FakePage("manual-2-etap/04-classifier.md")
@@ -48,9 +48,9 @@ def test_preview_markdown_contains_eyebrow_marker_with_mapping_label():
     так что он ожидаемо виден на этом этапе; то, что он вырезается из финального HTML — отдельно
     проверяется в test_group_media_lists.py::test_eyebrow_marker_sets_label_and_is_stripped_from_output."""
     target_md = (
-        "### Темп речи\n\n"
+        "### 9. Темп речи\n\n"
         "Значения: Медленный / Быстрый.\n\n"
-        "### Язык и акценты\n\n"
+        "### 10. Язык и акценты\n\n"
         "Значения: Русский / Английский / Другой.\n"
     )
     page = FakePage("manual-2-etap/04-classifier.md")
