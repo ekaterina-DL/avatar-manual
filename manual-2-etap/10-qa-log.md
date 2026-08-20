@@ -179,7 +179,7 @@
 | Ошибка классификатора | Не отмечены руки | 1.2–22.8 | [bqBjvT2heQ0](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/bqBjvT2heQ0/bqBjvT2heQ0.mp4) |
 | Некорректные границы объекта | На 1:02 лицо исчезло, нужно разделить сегменты | 54.1–70.8 | [b-9pXhZERTQ](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/b-9pXhZERTQ/b-9pXhZERTQ.mp4) |
 | Некорректные границы объекта | Длительное молчание в конце первого сегмента (Ok) | 76.4–89.3 | [-Xf2zTD7O4Q](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/-Xf2zTD7O4Q/-Xf2zTD7O4Q.mp4) |
-| Ошибка классификатора | Не отмечены руки. Группа данных — студия (Ok) | 51.3–78.8 | [1Zf12nWGOtM](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/1Zf12nWGOtM/1Zf12nWGOtM.mp4) |
+| Ошибка классификатора | Не отмечены руки. Группа данных — студия (Ok) | 51.3–78.8 | [1Zf12nWGOtM](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/1Zf12nWGOtM/1Zf12nWGOtM.mp4) |
 | Некорректные границы объекта | Сегмент обрезан рано (Ok) | 78.3–91.8 | [Sd3vRgpDhRA](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/Sd3vRgpDhRA/Sd3vRgpDhRA.mp4) |
 | Некорректные границы объекта | Молчание более 5 секунд (Ok) | 74.0–91.3 | [osTx0NlOFkc](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/osTx0NlOFkc/osTx0NlOFkc.mp4) |
 | Ошибка классификатора | Не отмечены руки | 49.3–69.3 | [jrur7Wj3l8c](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/jrur7Wj3l8c/jrur7Wj3l8c.mp4) |

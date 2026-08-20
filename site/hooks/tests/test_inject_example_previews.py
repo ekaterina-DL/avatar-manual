@@ -132,7 +132,15 @@ def test_mapping_table_has_label_for_every_entry():
     MAPPINGS должна явно нести короткий человекочитаемый label — источник правды для
     "<!-- video-eyebrow: ... -->" маркера, который _build_preview_markdown() эмитит для
     group_media_lists.py (см. test_group_media_lists.py::test_eyebrow_marker_*)."""
-    expected_labels = {"Темп речи", "Эмоции", "Тип речи", "Язык и акценты", "Битое", "Артефакт"}
+    expected_labels = {
+        "Темп речи",
+        "Эмоции",
+        "Тип речи",
+        "Язык и акценты",
+        "Группа данных",
+        "Битое",
+        "Артефакт",
+    }
     assert len(MAPPINGS) == len(expected_labels)
     labels = [mapping.get("label") for mapping in MAPPINGS]
     assert all(labels), "у каждой записи MAPPINGS должен быть непустой label"
