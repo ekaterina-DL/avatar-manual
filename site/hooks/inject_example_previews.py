@@ -147,6 +147,37 @@ MAPPINGS = [
         "label": "Группа данных",
     },
     {
+        # Якоримся на заголовок СЛЕДУЮЩЕГО поля ("Баланс по пению/говорению") — см. комментарий
+        # у "Тип речи" выше про anchor на заголовок следующей секции при position="before_line".
+        "target_file": "manual-2-etap/04-classifier.md",
+        "anchor": "### Баланс по пению/говорению",
+        "position": "before_line",
+        # Видео зашиты прямо здесь ("items"). Оба видео на "Один человек" (cEZNKE2Iej0,
+        # MbzweqS5chA) и одно на "Два и более человека" (dU00EuczOiA) переиспользованы из
+        # 10-qa-log.md — их родные комментарии там про ДРУГИЕ поля (Объём и поза / Ракурс /
+        # Тип речи), а "один человек"/"2 человека" в них лишь попутное уточнение. Это разрешённый
+        # случай правила "одно видео — одно место" (20.08.2026): разные комментарии под разные
+        # группы, поэтому строки в 10-qa-log.md не трогали, а здесь у каждого — свой, отдельный
+        # комментарий. cEZNKE2Iej0 и MbzweqS5chA заодно чинились по пути: в 10-qa-log.md у них
+        # была опечатка в дате пути ссылки (22_05_2026 вместо верного 15_05_2026 из исходного PDF
+        # "Разметка ВК видео - ОС 22.05 СТ2.pdf") — та же природа бага, что нашлась чуть раньше
+        # у 1Zf12nWGOtM (см. запись "Группа данных" выше); тоже исправлено в 10-qa-log.md.
+        #
+        # S_ZtrMrSBQg (второе видео на "Два и более человека") был единственным, узкоспециальным
+        # комментарием в 10-qa-log.md ("В кадре два человека.") — по правилу строка для него
+        # оттуда удалена, единственное место теперь здесь.
+        "items": [
+            "- **Один человек в кадре:**\n"
+            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/cEZNKE2Iej0/cEZNKE2Iej0.mp4),\n"
+            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/MbzweqS5chA/MbzweqS5chA.mp4)",
+            "- **Два и более человека в кадре:**\n"
+            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/0f94c3c1-fc56-4da4-be41-6c39299fb51a/downloaded_raw/S_ZtrMrSBQg.mp4),\n"
+            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/dU00EuczOiA/dU00EuczOiA.mp4)",
+        ],
+        "max_items": 2,
+        "label": "Количество людей",
+    },
+    {
         "target_file": "manual-3-etap/04-video-quality.md",
         "anchor": '## Когда сразу «Битое» (не отвечая на вопросы классификатора)',
         "position": "after_line",
