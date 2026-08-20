@@ -35,17 +35,6 @@
 
 `[Инстр. Аватар 3 этап, стр.5-6]`
 
-## Эмоция «other» — примеры
-
-Три случая, где преобладающая эмоциональная окраска голоса (вопрос 3) не подходит ни под одно
-из основных значений (`neutral`/`happy`/`sad`/`angry`/`surprised`/`thoughtful`) — ставим `other`:
-
-- [ирония](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-187830095_456244648__segment_4_81_101__seg4.mp4)
-- [сарказм](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-68053471_456247352__segment_4_69_111__seg4.mp4)
-- [выразительное чтение с долей мечтательности](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-85266554_456240722__segment_1_0_20.mp4)
-
-`[Разметка ВК видео — Таблица с примерами по вопросам]`
-
 ## Топ-5 ошибок с примерами (upd. 01.04.2026)
 
 ### 1. Размечено битое видео (хотя должно было быть отправлено в «битое»)
@@ -68,6 +57,9 @@
 
 ### 3. Наличие монтажной склейки (не проставлена)
 
+Те же 3 видео — также в поле [«6. Непрерывная ли сцена»](01-classifier.md#6--непрерывная-ли-сцена-без-монтажных-склеек)
+на странице классификатора.
+
 - https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/384a8f39-036c-423b-b136-6ef8128c9b96/trimmed/-6228806_456239207__segment_3_141_203__seg3.mp4 —
   не отмечено наличие склейки, хотя их на видео 2 штуки.
 - https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-131143144_456240365__segment_2_30_233__seg2.mp4 —
@@ -76,6 +68,10 @@
   то же самое: склейка внутри, но выбрано «непрерывно».
 
 ### 4. Движение камеры (ошибка в оценке)
+
+Те же 3 видео (плюс контрастный пример «moving») — также в поле
+[«12. Смена ракурса/зум/панорамирование»](01-classifier.md#12--смена-ракурсазумпанорамирование-во-время-речи)
+на странице классификатора.
 
 - https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7561daa6-313c-43c8-beca-1ca316707f1c/trimmed/-3118237_456239173__segment_1_0_15.mp4 —
   нет плавного движения камеры, это тряска.
