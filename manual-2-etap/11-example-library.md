@@ -68,8 +68,7 @@
   [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/16_02_2026/-72226886_456253999/-72226886_456253999.mp4)
 - **Закадровый голос учтён ошибочно (должно быть «Монолог», а не «Диалог»):**
   [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-206120801_456239194/-206120801_456239194.mp4),
-  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-86899151_456254123/-86899151_456254123.mp4),
-  [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-171518287_456239691/-171518287_456239691.mp4)
+  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-86899151_456254123/-86899151_456254123.mp4)
 
 `[ОС заказчика, 23.07.2026]` — монолог подготовленный (видеовизитки; как отличить без знания
 языка — см. [07-faq.md](07-faq.md#как-отличить-монолог-подготовленный-от-спонтанной-речи-не-зная-языка));
