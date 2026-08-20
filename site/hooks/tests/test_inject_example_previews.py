@@ -108,7 +108,7 @@ def test_mapping_table_has_label_for_every_entry():
     expected_labels_by_source_heading = {
         "Темп речи": "Темп речи",
         "Эмоции": "Эмоции",
-        "Диалоги и закадровый голос": "Диалоги и закадровый голос",
+        "Тип речи: диалог, монолог и закадровый голос": "Тип речи",
         "1. Размечено битое видео (хотя должно было быть отправлено в «битое»)": "Битое",
         "2. Наличие артефакта (не проставлен)": "Артефакт",
     }
@@ -168,7 +168,10 @@ def test_more_link_anchor_matches_real_mkdocs_heading_id():
         assert " " not in slug
 
     assert _slugify_heading("Темп речи", "-") == "темп-речи"
-    assert _slugify_heading("Диалоги и закадровый голос", "-") == "диалоги-и-закадровый-голос"
+    assert (
+        _slugify_heading("Тип речи: диалог, монолог и закадровый голос", "-")
+        == "тип-речи-диалог-монолог-и-закадровый-голос"
+    )
 
 
 def test_injected_preview_survives_group_media_lists_without_broken_html():

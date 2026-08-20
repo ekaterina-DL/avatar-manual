@@ -40,14 +40,13 @@ MAPPINGS = [
         "label": "Эмоции",
     },
     {
-        # Превью "Диалоги и закадровый голос" относится к полю "Тип речи".
         "target_file": "manual-2-etap/04-classifier.md",
         "anchor": "### Тип речи",
         "position": "before_line",
         "source_file": "manual-2-etap/11-example-library.md",
-        "source_heading": "Диалоги и закадровый голос",
+        "source_heading": "Тип речи: диалог, монолог и закадровый голос",
         "max_items": 2,
-        "label": "Диалоги и закадровый голос",
+        "label": "Тип речи",
     },
     {
         "target_file": "manual-3-etap/04-video-quality.md",
