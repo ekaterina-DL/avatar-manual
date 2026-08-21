@@ -79,7 +79,7 @@
 |---|---|
 | [yvsBUkamNmk](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/yvsBUkamNmk/yvsBUkamNmk.mp4) — «Битое» | Видео пережато (сжатие). См. на руки, губы — артефакты сжатия. Такое видео не подходит. |
 | [-pqNntbAza0](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/-pqNntbAza0/-pqNntbAza0.mp4) — не размечен сегмент | Выделено недостаточное количество сегментов. Не выделен сегмент с крупным планом (с 2:17). |
-| [-fTRRZqIY2s](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/-fTRRZqIY2s/-fTRRZqIY2s.mp4) — не размечен сегмент | Выделено недостаточное количество сегментов. Нужно также отметить сегмент с 40-й секунды, где говорит только 1 человек. Точные границы и разбор вопроса оператора (закадровый смех на 46 сек не помешал) — [07-faq.md](07-faq.md#видео--fttrrzqiy2s--смех-за-кадром-не-мешает). |
+| [-fTRRZqIY2s](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/-fTRRZqIY2s/-fTRRZqIY2s.mp4) — не размечен объект | Подходящий сегмент 0:40.79–1:16.24 (35.45 сек). Короткий закадровый смех внутри подходящего отрезка речи — не повод пропускать сегмент целиком. |
 | [GM6jMaElkUg](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/GM6jMaElkUg/GM6jMaElkUg.mp4) — не размечен сегмент | Выделено недостаточное количество сегментов. Не выделен сегмент с другим ракурсом (примерно с 1:36). |
 
 ## 4. Сегмент содержит водяной знак / наложенный текст / склейку
