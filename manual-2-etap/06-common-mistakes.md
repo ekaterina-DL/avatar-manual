@@ -119,6 +119,7 @@
 | [f8RqjBhyLUY](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/f8RqjBhyLUY/f8RqjBhyLUY.mp4) | Поставлен «естественный, но статичный фон», хотя видео явно снято на улице — нужно «Динамичный/уличный». |
 | [IMAX12ePRaY](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/IMAX12ePRaY/IMAX12ePRaY.mp4) | В сегменте виден и говорит только один человек — нужно выбирать «Монолог», а не «Диалог». |
 | [-DjyPczrPA8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/-DjyPczrPA8/-DjyPczrPA8.mp4) | Если в сегменте поют/говорят несколько человек — это уже не монолог. |
+| [HxZkUe-Cp1I](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/HxZkUe-Cp1I/HxZkUe-Cp1I.mp4) | Сегмент 0:10.01–0:21.36: если на видео поют/говорят несколько человек, то это уже не монолог. |
 
 **Вывод:** значения классификатора должны быть согласованы между сегментами одного и того же
 человека и соответствовать тому, что реально видно на видео (а не «по умолчанию»/предположению).
