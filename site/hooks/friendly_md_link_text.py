@@ -9,7 +9,6 @@ TITLES = {
     "manual-2-etap/04-classifier.md": "Классификатор",
     "manual-2-etap/05-what-to-label.md": "Что размечаем",
     "manual-2-etap/06-common-mistakes.md": "Частые ошибки",
-    "manual-2-etap/07-faq.md": "FAQ",
     "manual-2-etap/08-lifehacks.md": "Лайфхаки",
     "manual-2-etap/09-disputed-points.md": "Спорные моменты",
     "manual-2-etap/10-qa-log.md": "Журнал проверок ОС",

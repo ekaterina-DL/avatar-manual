@@ -21,23 +21,9 @@ def test_links_bare_common_mistakes_mention():
     )
 
 
-def test_links_all_three_bare_faq_mentions_in_table():
-    page = FakePage("manual-2-etap/10-qa-log.md")
-    md = (
-        "| Монолог подготовленный (см. разбор в 07-faq.md — как отличить без знания языка). |\n"
-        "| Фон не динамичный/уличный (см. разбор в 07-faq.md — лёгкие раздражители на фоне). |\n"
-        "| Видео отправлено в битое (см. разбор в 07-faq.md — заказчик не согласился). |\n"
-    )
-    result = on_page_markdown(md, page, None, None)
-    assert result.count("[07-faq.md](07-faq.md)") == 3
-    assert "как отличить без знания языка" in result
-    assert "лёгкие раздражители на фоне" in result
-    assert "заказчик не согласился" in result
-
-
 def test_untouched_on_other_pages():
     page = FakePage("manual-2-etap/06-common-mistakes.md")
-    md = "см. разбор в 07-faq.md — что-то."
+    md = "официальную инструкцию как иллюстрации (Топ-5 в 06-common-mistakes.md ссылается на те же видео)."
     result = on_page_markdown(md, page, None, None)
     assert result == md
 
