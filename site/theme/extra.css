@@ -923,7 +923,7 @@ body, .md-typeset {
    применяется к обёртке, а не напрямую к table (проверено через живой DOM в браузере). */
 .md-typeset h2[id="базовые-термины-и-роли"] + .md-typeset__scrollwrap table thead th,
 .md-typeset h2[id="базовые-термины-и-роли"] + .md-typeset__scrollwrap + .md-typeset__scrollwrap table thead th {
-  background: var(--gray-900);
+  background: var(--gray-600);
   color: #fff;
 }
 
