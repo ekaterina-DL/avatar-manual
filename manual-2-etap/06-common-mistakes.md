@@ -53,6 +53,7 @@
 | [ZNXBMI0Feq8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/ZNXBMI0Feq8/ZNXBMI0Feq8.mp4) | Качество видео подходит. Не размечен подходящий под ТЗ сегмент. |
 | [plcDpLhYeYo](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/plcDpLhYeYo/plcDpLhYeYo.mp4) | Качество видео хорошее. Можно выделить несколько разных сегментов: голова; голова/плечи/руки. |
 | [lE0jO_6LRQc](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/lE0jO_6LRQc/lE0jO_6LRQc.mp4) | Хорошее качество видео. Не размечен подходящий сегмент (без закадрового голоса). |
+| [BTFz3q2Ho_g](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/BTFz3q2Ho_g/BTFz3q2Ho_g.mp4) | Видео ошибочно отправлено в «Битое». Не размечен подходящий под ТЗ сегмент: 0:28 – 0:38. |
 
 **Вывод:** прежде чем ставить «Битое», убедиться, что во всём видео действительно нет ни
 одного фрагмента ≥10 сек с говорящим/поющим человеком в нужном качестве.

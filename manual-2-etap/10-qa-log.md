@@ -154,7 +154,6 @@
 | Водяной знак/наложенный текст | — | 5.9–19.3 | [BjGkcTNslEs](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/BjGkcTNslEs/BjGkcTNslEs.mp4) |
 | Водяной знак/наложенный текст | Сегмент содержит ВЗ справа внизу — брак по инструкции | 82.5–131.2 | [31YbqD2D0Og](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/31YbqD2D0Og/31YbqD2D0Og.mp4) |
 | Некорректные границы объекта | В конце сегмента оба персонажа отворачиваются | 22.2–36.7 | [YNzaIIIqr9U](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/YNzaIIIqr9U/YNzaIIIqr9U.mp4) |
-| Не размечен объект | Видео в битом, не размечен подходящий сегмент («валидатор зацепил молчание, сегмент верен только с 28 по 38») | 23.1–54.3 | [BTFz3q2Ho_g](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/BTFz3q2Ho_g/BTFz3q2Ho_g.mp4) |
 
 `[Разметка ВК видео — ОС 21.05 СТ2]`
 
