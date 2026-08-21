@@ -927,7 +927,8 @@ body, .md-typeset {
    заголовка h2 «Базовые термины и роли» чуть выше (см. .md-typeset h2 в начале файла), только
    серая вместо персиковой — --gray-100 вместо --accent-bg, тёмный текст вместо --accent-ink. */
 .md-typeset h2[id="базовые-термины-и-роли"] + .md-typeset__scrollwrap table thead th,
-.md-typeset h2[id="базовые-термины-и-роли"] + .md-typeset__scrollwrap + .md-typeset__scrollwrap table thead th {
+.md-typeset h2[id="базовые-термины-и-роли"] + .md-typeset__scrollwrap + .md-typeset__scrollwrap table thead th,
+.md-typeset h2[id="структура-проекта"] + .tagme-intro + p + .md-typeset__scrollwrap table thead th {
   background: var(--gray-100);
   color: var(--gray-900);
 }
