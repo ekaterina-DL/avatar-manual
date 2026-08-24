@@ -25,7 +25,7 @@ class FakeConfig(dict):
         self.site_dir = FakeSiteDir(site_dir)
 
 
-PAGE = "manual-2-etap/09-disputed-points.md"
+PAGE = "manual-3-etap/02-open-questions.md"
 
 
 def test_resolved_becomes_green_badge():
@@ -105,23 +105,3 @@ def test_badge_renders_inline_inside_list_item():
     html = render_html(markdown_out)
     assert '<li>' in html
     assert '<span class="status-badge status-ok">🟢 Решено</span>' in html
-
-
-PAGE_STAGE3 = "manual-3-etap/02-open-questions.md"
-
-
-def test_badge_applies_to_stage3_open_questions():
-    page = FakePage(PAGE_STAGE3)
-    config = FakeConfig("/repo/avatar-manual-build/build")
-    src = "- Статус: **Не решено** — расшифровка не подтверждена.\n"
-    result = on_page_markdown(src, page, config, None)
-    assert '<span class="status-badge status-open">🔴 Не решено</span>' in result
-    assert "— расшифровка не подтверждена." in result
-
-
-def test_still_applies_to_stage2_disputed_points():
-    page = FakePage(PAGE)
-    config = FakeConfig("/repo/avatar-manual-build/build")
-    src = "- Статус: **Решено** — пояснение.\n"
-    result = on_page_markdown(src, page, config, None)
-    assert '<span class="status-badge status-ok">🟢 Решено</span>' in result

@@ -12,14 +12,14 @@ class FakePage:
 
 
 def test_same_folder_bare_filename_becomes_title():
-    page = FakePage("manual-2-etap/09-disputed-points.md")
+    page = FakePage("manual-2-etap/06-common-mistakes.md")
     md = "См. [04-classifier.md](04-classifier.md#памятка)."
     result = on_page_markdown(md, page, None, None)
     assert result == "См. [Классификатор](04-classifier.md#памятка)."
 
 
 def test_same_folder_repeated_anchors_all_get_page_title():
-    page = FakePage("manual-2-etap/09-disputed-points.md")
+    page = FakePage("manual-2-etap/06-common-mistakes.md")
     md = "См. [10-qa-log.md](10-qa-log.md#0607-2026) и [10-qa-log.md](10-qa-log.md#21052026)."
     result = on_page_markdown(md, page, None, None)
     assert result == "См. [Журнал проверок ОС](10-qa-log.md#0607-2026) и [Журнал проверок ОС](10-qa-log.md#21052026)."
@@ -36,9 +36,9 @@ def test_resolves_target_from_href_even_when_text_has_no_prefix():
     # Реальный случай из manual-3-etap/01-classifier.md: видимый текст без manual-2-etap/
     # префикса, целевая папка видна только из href.
     page = FakePage("manual-3-etap/01-classifier.md")
-    md = "[09-disputed-points.md](../manual-2-etap/09-disputed-points.md#поле-объём)"
+    md = "[05-what-to-label.md](../manual-2-etap/05-what-to-label.md#поле-объём)"
     result = on_page_markdown(md, page, None, None)
-    assert result == "[Спорные моменты (2 этап)](../manual-2-etap/09-disputed-points.md#поле-объём)"
+    assert result == "[Что размечаем (2 этап)](../manual-2-etap/05-what-to-label.md#поле-объём)"
 
 
 def test_bold_wrapped_link_still_matched():
