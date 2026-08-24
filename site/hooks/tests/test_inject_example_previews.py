@@ -162,7 +162,7 @@ def test_mapping_table_has_label_for_every_entry():
 
 def test_untouched_on_unrelated_page():
     md = "Обычный текст."
-    page = FakePage("manual-2-etap/08-lifehacks.md")
+    page = FakePage("manual-2-etap/06-common-mistakes.md")
     assert on_page_markdown(md, page, None, None) == md
 
 
