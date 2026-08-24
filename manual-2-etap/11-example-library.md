@@ -23,6 +23,11 @@
 **Тряска (недопустимо):**
 - https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a7976df-4bc0-4333-a65a-a414f8b00e8b/trimmed/467342400_456239097__segment_1_21_68__seg1.mp4
 - https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-165317374_456239032__segment_6_174_213__seg5.mp4
+- [Тряска на участках 3–4, 7–8, 14–16 сек](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/b60f390b-7303-41bb-9e9e-0e343784d30a/trimmed/xNQsedaNa9Y__segment_239139406_254170148.mp4)
+  — тайминги подтверждены прямым ответом заказчика на вопрос о точных секундах дефекта.
+  `[Вопросы-ответы, 20.08.2026]`
+- [Тряска на участках 3–4, 7–9 сек](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/b60f390b-7303-41bb-9e9e-0e343784d30a/trimmed/ufdhq0PS7Dw__segment_221050564_242622565.mp4)
+  `[Вопросы-ответы, 20.08.2026]`
 
 **Плавное движение (допустимо):**
 - https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-146098457_456247757__segment_2_43_72__seg2.mp4
