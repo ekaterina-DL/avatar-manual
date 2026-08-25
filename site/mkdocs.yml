@@ -54,7 +54,6 @@ nav:
       - Что не размечаем / Битое: manual-2-etap/05b-what-not-to-label.md
       - Классификатор: manual-2-etap/04-classifier.md
       - Частые ошибки: manual-2-etap/06-common-mistakes.md
-      - Журнал проверок ОС: manual-2-etap/10-qa-log.md
       - Банк примеров: manual-2-etap/11-example-library.md
   - 3 этап:
       - Обзор проекта: manual-3-etap/00-overview.md
@@ -102,6 +101,5 @@ hooks:
   - hooks/build_verdict_examples.py
   - hooks/build_dispute_flow.py
   - hooks/build_status_badges.py
-  - hooks/link_bare_qa_log_mentions.py
   - hooks/friendly_md_link_text.py
   - hooks/neutralize_excluded_links.py

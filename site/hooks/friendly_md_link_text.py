@@ -9,7 +9,6 @@ TITLES = {
     "manual-2-etap/04-classifier.md": "Классификатор",
     "manual-2-etap/05-what-to-label.md": "Что размечаем",
     "manual-2-etap/06-common-mistakes.md": "Частые ошибки",
-    "manual-2-etap/10-qa-log.md": "Журнал проверок ОС",
     "manual-2-etap/11-example-library.md": "Банк примеров",
     "manual-3-etap/00-overview.md": "Обзор проекта",
     "manual-3-etap/01-classifier.md": "Классификатор",
@@ -43,7 +42,7 @@ _LINK_RE = re.compile(
 
 
 def on_page_markdown(markdown, page, config, files):
-    """Ссылки, где видимый текст — это буквально имя .md-файла ("10-qa-log.md",
+    """Ссылки, где видимый текст — это буквально имя .md-файла ("11-example-library.md",
     "00-overview.md#..."), заменяет на понятное название раздела сайта (из TITLES), не трогая
     сам href — переход по ссылке ведёт туда же, куда и раньше. Целевой файл определяется по href
     (а не по тексту ссылки), потому что часть ссылок в мануале написана без manual-N-etap/

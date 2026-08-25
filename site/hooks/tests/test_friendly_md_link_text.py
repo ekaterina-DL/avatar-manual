@@ -20,9 +20,9 @@ def test_same_folder_bare_filename_becomes_title():
 
 def test_same_folder_repeated_anchors_all_get_page_title():
     page = FakePage("manual-2-etap/06-common-mistakes.md")
-    md = "См. [10-qa-log.md](10-qa-log.md#0607-2026) и [10-qa-log.md](10-qa-log.md#21052026)."
+    md = "См. [11-example-library.md](11-example-library.md#темп-речи) и [11-example-library.md](11-example-library.md#фон)."
     result = on_page_markdown(md, page, None, None)
-    assert result == "См. [Журнал проверок ОС](10-qa-log.md#0607-2026) и [Журнал проверок ОС](10-qa-log.md#21052026)."
+    assert result == "См. [Банк примеров](11-example-library.md#темп-речи) и [Банк примеров](11-example-library.md#фон)."
 
 
 def test_cross_folder_link_gets_stage_suffix():
