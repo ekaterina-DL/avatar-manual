@@ -34,3 +34,20 @@ def test_bare_url_inside_markdown_link_not_double_processed():
     md = "[кадр примера](assets/antiexample-8.jpg)"
     result = on_page_markdown(md, FakePage(), None, None)
     assert result == md  # .jpg не трогаем, это не видео
+
+
+def test_bracketed_webm_link_becomes_video_with_correct_mime():
+    # Реальный случай: 06-common-mistakes.md, vtT78TfDfXU — исходник с YouTube скачан в .webm,
+    # а не .mp4.
+    md = (
+        "[vtT78TfDfXU]"
+        "(https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/"
+        "avatar/15_05_2026/vtT78TfDfXU/vtT78TfDfXU.webm)"
+    )
+    result = on_page_markdown(md, FakePage(), None, None)
+    assert (
+        '<source src="https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/'
+        'ak/youtube/avatar/15_05_2026/vtT78TfDfXU/vtT78TfDfXU.webm" type="video/webm">'
+        in result
+    )
+    assert "vtT78TfDfXU</video>" in result
