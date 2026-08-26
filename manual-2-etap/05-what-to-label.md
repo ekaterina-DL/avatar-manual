@@ -100,6 +100,7 @@
 - [Мутные глаза, мелкая пиксельность, засвет сверху](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-230254611_456239026__segment_2_132_211__seg2.mp4) — если мимика всё равно видна неплохо,
   такой фрагмент разметить можно.
 - [Мелкая пиксельность, небольшая дымка на видео](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-185402127_456239027__segment_1_0_81.mp4) — допустимо.
+- [Световой блик](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/OoieiT1G5DY/OoieiT1G5DY.mp4) (сегмент 0:20.53–0:51.87, 31.34 сек) — не помеха, чтобы разместить нужный сегмент.
 
 `[Разметка ВК видео — Критерии примеры]`
 

@@ -138,13 +138,6 @@
 - [Артефакт](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-166639003_456239199__segment_1_6_126.mp4)
 - [Мерцание](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/be42f18f-8152-425d-9ada-0cdf65668287/trimmed/-64931420_456239841__segment_1_24_49.mp4)
 
-## Световой блик — не брак
-
-Световой блик — не помеха, чтобы разместить нужный сегмент: [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/OoieiT1G5DY/OoieiT1G5DY.mp4)
-(сегмент 0:20.53 – 0:51.87, 31.34 сек).
-
-См. также блики на очках — [«Что размечаем»](05-what-to-label.md#примеры-позитивные), пример 3.
-
 ## Калибровочные пограничные случаи
 
 - Заказчик проверяет длительность сегмента вплоть до миллисекунд: сегмент 3:00.059–3:10.078
