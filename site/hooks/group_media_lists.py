@@ -11,8 +11,13 @@ _ITEM_START_RE = re.compile(r'^-\s+')
 # заголовка страницы (см. Concern 1 в отчёте Task 10) — а не название поля, которому превью
 # реально посвящено. Строка вырезается из финального вывода, в HTML попасть не должна.
 _EYEBROW_MARKER_RE = re.compile(r'^<!-- video-eyebrow: (.*) -->$')
+# type="video/(?:mp4|webm)" — embed_local_media.py умеет оборачивать оба расширения (см. его
+# _MIME_BY_EXT), а этот паттерн раньше был жёстко привязан к video/mp4: .webm-пункт списка
+# незаметно не распознавался как медиа-пункт, разрывал прогон и выпадал из .video-grid как
+# голый одиночный <li><video>...</video></li> — подпись при этом не исчезала, а просто уходила
+# в fallback-содержимое <video> (невидимое в браузере), см. manual-2-etap/06-common-mistakes.md.
 _VIDEO_TAG_RE = re.compile(
-    r'<video\b[^>]*><source\s+src="([^"]+)"\s+type="video/mp4">(.*?)</video>',
+    r'<video\b[^>]*><source\s+src="([^"]+)"\s+type="video/(?:mp4|webm)">(.*?)</video>',
     re.DOTALL,
 )
 # Явный opt-in для картиночной карточки в сетке: "- ![grid: Подпись](путь)". Без префикса

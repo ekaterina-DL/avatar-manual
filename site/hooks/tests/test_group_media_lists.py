@@ -376,3 +376,26 @@ def test_leading_caption_with_two_videos_in_one_item_splits_into_two_cards():
     assert 'src="https://example.com/fast1.mp4"' in result
     assert 'src="https://example.com/fast2.mp4"' in result
     assert "Быстрая речь" in result
+
+
+def test_webm_item_stays_grouped_with_surrounding_mp4_items():
+    """Регрессия: manual-2-etap/06-common-mistakes.md, категория «Некорректные границы объекта» —
+    3 .mp4-пункта подряд и 4-й .webm-пункт (vtT78TfDfXU). _VIDEO_TAG_RE раньше был жёстко привязан
+    к type="video/mp4" и не узнавал .webm-источник (embed_local_media.py умеет оборачивать оба
+    расширения, см. его _MIME_BY_EXT) — .webm-пункт не считался медиа-пунктом, разрывал прогон и
+    выпадал из сетки одиночным <li><video>...</video></li> без видимой подписи (подпись уходила в
+    невидимое fallback-содержимое <video>). Все 4 пункта должны попасть в один .video-grid."""
+    md = (
+        "## Некорректные границы объекта\n\n"
+        "- [Первая причина](https://example.com/a.mp4)\n"
+        "- [Вторая причина](https://example.com/b.mp4)\n"
+        "- [Третья причина](https://example.com/c.mp4)\n"
+        "- [Четвёртая причина](https://example.com/d.webm)\n"
+    )
+    embedded = embed_local_media(md, None, None, None)
+    result = on_page_markdown(embedded, None, None, None)
+    assert '<div class="video-block" markdown="1">' in result
+    assert result.count('<div class="video-item" markdown="1">') == 4
+    assert 'src="https://example.com/d.webm"' in result
+    assert "Четвёртая причина" in result
+    assert "<li>" not in result
