@@ -140,8 +140,7 @@
 
 ## Идеальное видео (эталон)
 
-- [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-211372791_456239023__segment_1_11_64.mp4)
-- [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/c1ef0d33-fa8c-4eaf-b1a8-380a10cfb771/trimmed/-47199721_456239139__segment_2_38_57__seg2.mp4)
+[Пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-211372791_456239023__segment_1_11_64.mp4)
 
 ## Световой блик — не брак
 
