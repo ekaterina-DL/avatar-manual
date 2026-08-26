@@ -44,24 +44,24 @@
 
 ## Фон
 
-⚠️ 4 примера («однотонный» ×2, `natural_static` ×2) уже перенесены с комментариями в
-[04-classifier.md](04-classifier.md#6-фон), не дублируются здесь.
+⚠️ 4 примера (2 × «Нейтральный/размытый», 2 × «Естественный, но статичный») уже перенесены с
+подписями в [04-classifier.md](04-classifier.md#6-фон), не дублируются здесь.
 
-1. [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-158992716_456239018__segment_1_1_130.mp4) — динамичный
-2. [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-160924535_456239620__segment_1_10_20.mp4) — статичный
-3. [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/c26e2f37-a2f5-48a6-8f9f-c1b8dbbaa8f4/trimmed/-192873057_456239143__segment_1_41_51__seg1.mp4) — natural_static
-4. [пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fce8a423-3c2f-41a7-8593-73532ba90348/trimmed/-37409291_456243523__segment_2_64_74__seg2.mp4)
-5. [пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fce8a423-3c2f-41a7-8593-73532ba90348/trimmed/-228773024_456239106__segment_2_110_144__seg2.mp4) — natural_static
-6. [пример 6](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fce8a423-3c2f-41a7-8593-73532ba90348/trimmed/-228773024_456239106__segment_1_4_36__seg1.mp4) — natural_static
-7. [пример 7](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fce8a423-3c2f-41a7-8593-73532ba90348/trimmed/-214263036_456239127__segment_1_19_66__seg1.mp4) — natural_static
-8. [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-74898402_456239975__segment_2_36_64__seg2.mp4) — natural_static
-9. [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-183227017_456240601__segment_1_23_153.mp4) — natural_static
-10. [пример 10](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-183227017_456240595__segment_1_11_195.mp4) — natural_static
-11. [пример 11](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2f15d090-5697-494f-96ab-3d705d0a89e1/trimmed/-206760626_456240401__segment_1_14_78.mp4) — natural_static
-12. [пример 12](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-93289075_456239226__segment_2_22_36__seg2.mp4) — natural_static
-13. [пример 13](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-54010268_456242563__segment_2_87_125__seg2.mp4) — natural_static
-14. [пример 14](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-42289208_456239254__segment_1_0_15__seg1.mp4) — natural_static
-15. [пример 15](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-42289208_456239253__segment_4_58_101__seg4.mp4) — natural_static
+- [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-158992716_456239018__segment_1_1_130.mp4) — Динамичный/уличный
+- [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-160924535_456239620__segment_1_10_20.mp4) — Естественный, но статичный
+- [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/c26e2f37-a2f5-48a6-8f9f-c1b8dbbaa8f4/trimmed/-192873057_456239143__segment_1_41_51__seg1.mp4) — Естественный, но статичный
+- [пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fce8a423-3c2f-41a7-8593-73532ba90348/trimmed/-37409291_456243523__segment_2_64_74__seg2.mp4)
+- [пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fce8a423-3c2f-41a7-8593-73532ba90348/trimmed/-228773024_456239106__segment_2_110_144__seg2.mp4) — Естественный, но статичный
+- [пример 6](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fce8a423-3c2f-41a7-8593-73532ba90348/trimmed/-228773024_456239106__segment_1_4_36__seg1.mp4) — Естественный, но статичный
+- [пример 7](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fce8a423-3c2f-41a7-8593-73532ba90348/trimmed/-214263036_456239127__segment_1_19_66__seg1.mp4) — Естественный, но статичный
+- [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-74898402_456239975__segment_2_36_64__seg2.mp4) — Естественный, но статичный
+- [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-183227017_456240601__segment_1_23_153.mp4) — Естественный, но статичный
+- [пример 10](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-183227017_456240595__segment_1_11_195.mp4) — Естественный, но статичный
+- [пример 11](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2f15d090-5697-494f-96ab-3d705d0a89e1/trimmed/-206760626_456240401__segment_1_14_78.mp4) — Естественный, но статичный
+- [пример 12](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-93289075_456239226__segment_2_22_36__seg2.mp4) — Естественный, но статичный
+- [пример 13](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-54010268_456242563__segment_2_87_125__seg2.mp4) — Естественный, но статичный
+- [пример 14](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-42289208_456239254__segment_1_0_15__seg1.mp4) — Естественный, но статичный
+- [пример 15](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-42289208_456239253__segment_4_58_101__seg4.mp4) — Естественный, но статичный
 
 ## Фоновый шум
 
@@ -79,56 +79,56 @@
 
 ### Большая пиксельность (23)
 
-1. [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-152481741_456239163/-152481741_456239163.mp4)
-2. [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-225545944_456250992/-225545944_456250992.mp4)
-3. [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-161318754_456239336/-161318754_456239336.mp4)
-4. [пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-128289621_456239218/-128289621_456239218.mp4)
-5. [пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-87184916_456240872/-87184916_456240872.mp4)
-6. [пример 6](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-49388814_456326875/-49388814_456326875.mp4)
-7. [пример 7](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-172346206_456239396/-172346206_456239396.mp4)
-8. [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-152323139_456239077/-152323139_456239077.mp4)
-9. [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-142310576_456244454/-142310576_456244454.mp4)
-10. [пример 10](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-91953608_456242595/-91953608_456242595.mp4)
-11. [пример 11](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-226962350_456239026/-226962350_456239026.mp4)
-12. [пример 12](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-43001606_456243618/-43001606_456243618.mp4)
-13. [пример 13](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-69132211_456240444/-69132211_456240444.mp4)
-14. [пример 14](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-42912984_456239091/-42912984_456239091.mp4)
-15. [пример 15](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-48853894_456247605/-48853894_456247605.mp4)
-16. [пример 16](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-192447970_456239143/-192447970_456239143.mp4)
-17. [пример 17](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-32038_456239819/-32038_456239819.mp4)
-18. [пример 18](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-228976411_456239047/-228976411_456239047.mp4)
-19. [пример 19](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/29158833_456239027/29158833_456239027.mp4)
-20. [пример 20](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-213771149_456239227/-213771149_456239227.mp4)
-21. [пример 21](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-195864574_456239524/-195864574_456239524.mp4)
-22. [пример 22](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-68881927_456267630/-68881927_456267630.mp4)
-23. [пример 23](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/262707630_456244830/262707630_456244830.mp4)
+- [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-152481741_456239163/-152481741_456239163.mp4)
+- [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-225545944_456250992/-225545944_456250992.mp4)
+- [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-161318754_456239336/-161318754_456239336.mp4)
+- [пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-128289621_456239218/-128289621_456239218.mp4)
+- [пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-87184916_456240872/-87184916_456240872.mp4)
+- [пример 6](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-49388814_456326875/-49388814_456326875.mp4)
+- [пример 7](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-172346206_456239396/-172346206_456239396.mp4)
+- [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-152323139_456239077/-152323139_456239077.mp4)
+- [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-142310576_456244454/-142310576_456244454.mp4)
+- [пример 10](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-91953608_456242595/-91953608_456242595.mp4)
+- [пример 11](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-226962350_456239026/-226962350_456239026.mp4)
+- [пример 12](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-43001606_456243618/-43001606_456243618.mp4)
+- [пример 13](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-69132211_456240444/-69132211_456240444.mp4)
+- [пример 14](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-42912984_456239091/-42912984_456239091.mp4)
+- [пример 15](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-48853894_456247605/-48853894_456247605.mp4)
+- [пример 16](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-192447970_456239143/-192447970_456239143.mp4)
+- [пример 17](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-32038_456239819/-32038_456239819.mp4)
+- [пример 18](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-228976411_456239047/-228976411_456239047.mp4)
+- [пример 19](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/29158833_456239027/29158833_456239027.mp4)
+- [пример 20](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-213771149_456239227/-213771149_456239227.mp4)
+- [пример 21](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-195864574_456239524/-195864574_456239524.mp4)
+- [пример 22](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-68881927_456267630/-68881927_456267630.mp4)
+- [пример 23](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/262707630_456244830/262707630_456244830.mp4)
 
 ### Малая пиксельность (9)
 
-1. [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-5062417_456239277/-5062417_456239277.mp4)
-2. [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-164137071_456239206/-164137071_456239206.mp4)
-3. [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-98769807_456239146/-98769807_456239146.mp4)
-4. [пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-142310576_456244199/-142310576_456244199.mp4)
-5. [пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-175034282_456239026/-175034282_456239026.mp4)
-6. [пример 6](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-213074806_456239605/-213074806_456239605.mp4)
-7. [пример 7](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-158244837_456239471/-158244837_456239471.mp4)
-8. [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/47492276_456240515/47492276_456240515.mp4)
-9. [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/499967389_456239308/499967389_456239308.mp4)
+- [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-5062417_456239277/-5062417_456239277.mp4)
+- [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-164137071_456239206/-164137071_456239206.mp4)
+- [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-98769807_456239146/-98769807_456239146.mp4)
+- [пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-142310576_456244199/-142310576_456244199.mp4)
+- [пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-175034282_456239026/-175034282_456239026.mp4)
+- [пример 6](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-213074806_456239605/-213074806_456239605.mp4)
+- [пример 7](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-158244837_456239471/-158244837_456239471.mp4)
+- [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/47492276_456240515/47492276_456240515.mp4)
+- [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/499967389_456239308/499967389_456239308.mp4)
 
 ### Нет пиксельности, для сравнения (12)
 
-1. [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-191171932_456239050/-191171932_456239050.mp4)
-2. [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-211623471_456239688/-211623471_456239688.mp4)
-3. [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-158416167_456239208/-158416167_456239208.mp4)
-4. [пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-225740964_456239040/-225740964_456239040.mp4)
-5. [пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-52000967_456244545/-52000967_456244545.mp4)
-6. [пример 6](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-52000967_456244534/-52000967_456244534.mp4)
-7. [пример 7](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-171518287_456239733/-171518287_456239733.mp4)
-8. [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/16_02_2026/-733335_456241328/-733335_456241328.mp4)
-9. [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-217972195_456239177/-217972195_456239177.mp4)
-10. [пример 10](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-210980095_456239022/-210980095_456239022.mp4)
-11. [пример 11](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/5791ff38-bf32-4249-ac9b-187c83e9df53/trimmed/-101418717_456239409__segment_1_24_35__seg1.mp4)
-12. [пример 12](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_027/182002586_456241831__segment_1_7_71__seg1.mp4)
+- [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-191171932_456239050/-191171932_456239050.mp4)
+- [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-211623471_456239688/-211623471_456239688.mp4)
+- [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-158416167_456239208/-158416167_456239208.mp4)
+- [пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-225740964_456239040/-225740964_456239040.mp4)
+- [пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-52000967_456244545/-52000967_456244545.mp4)
+- [пример 6](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-52000967_456244534/-52000967_456244534.mp4)
+- [пример 7](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-171518287_456239733/-171518287_456239733.mp4)
+- [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/16_02_2026/-733335_456241328/-733335_456241328.mp4)
+- [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-217972195_456239177/-217972195_456239177.mp4)
+- [пример 10](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-210980095_456239022/-210980095_456239022.mp4)
+- [пример 11](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/5791ff38-bf32-4249-ac9b-187c83e9df53/trimmed/-101418717_456239409__segment_1_24_35__seg1.mp4)
+- [пример 12](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_027/182002586_456241831__segment_1_7_71__seg1.mp4)
 
 ## Битое — примеры дефектов
 
