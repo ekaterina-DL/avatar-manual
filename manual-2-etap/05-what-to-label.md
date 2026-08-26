@@ -91,6 +91,10 @@
 
 Антипримеры — см. [«Что не размечаем / Битое»](05b-what-not-to-label.md#антипримеры).
 
+## Эталонное видео (без замечаний)
+
+[Пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-211372791_456239023__segment_1_11_64.mp4)
+
 ## Артефакты, которые всё ещё допустимы (примеры на грани)
 
 - [Мутные глаза, мелкая пиксельность, засвет сверху](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-230254611_456239026__segment_2_132_211__seg2.mp4) — если мимика всё равно видна неплохо,
