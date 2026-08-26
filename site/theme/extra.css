@@ -87,6 +87,21 @@ body, .md-typeset {
   border: 1px solid var(--gray-300);
 }
 
+/* Видео в ячейках таблиц-примеров (manual-2-etap/06-common-mistakes.md) — без этого правила
+   видео-«шортсы» (портретная YouTube-ориентация) после загрузки метаданных растягивались на
+   свою нативную высоту (кадр в разы выше ширины), раздувая строку таблицы на весь экран, тогда
+   как соседние landscape-видео были в разы компактнее. Фиксированные width + aspect-ratio 16:9 +
+   object-fit: cover приводят все видео в таблице к одному размеру независимо от исходной
+   ориентации — так же, как .video-item в карточках-сетках выше. */
+.md-typeset table video {
+  width: 320px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #000;
+  margin: 0;
+}
+
 .compare-ok {
   background: var(--ok-bg);
   border-left: 3px solid var(--ok-color);
