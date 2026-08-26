@@ -13,22 +13,12 @@
 ## Тряска камеры vs плавное движение
 
 **Тряска (недопустимо):**
-- [Пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a7976df-4bc0-4333-a65a-a414f8b00e8b/trimmed/467342400_456239097__segment_1_21_68__seg1.mp4)
-- [Пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-165317374_456239032__segment_6_174_213__seg5.mp4)
 - [Тряска на участках 3–4, 7–8, 14–16 сек](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/b60f390b-7303-41bb-9e9e-0e343784d30a/trimmed/xNQsedaNa9Y__segment_239139406_254170148.mp4) — тайминги подтверждены прямым ответом заказчика.
 - [Тряска на участках 3–4, 7–9 сек](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/b60f390b-7303-41bb-9e9e-0e343784d30a/trimmed/ufdhq0PS7Dw__segment_221050564_242622565.mp4)
 
 **Плавное движение (допустимо):**
 - [Пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-146098457_456247757__segment_2_43_72__seg2.mp4)
 - [Пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-42289208_456239270__segment_5_96_110__seg5.mp4)
-- [плавная камера](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-147440564_456239071__segment_2_27_45__seg2.mp4)
-
-## Активность движения (человека в кадре)
-
-Отдельный критерий от движения камеры — насколько активно двигается сам человек.
-
-- [Лёгкие движения, нет резких — Low](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-68719297_456239633__segment_2_50_62__seg2.mp4)
-- [Резко-активные движения головой — Medium](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-167333217_456239923__segment_1_36_62.mp4)
 
 ## Эмоции
 
@@ -44,58 +34,7 @@
   [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-111933564_456239285__segment_2_47_164__seg2.mp4),
   [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-102559235_456239254__segment_1_6_17.mp4)
 
-## Вид съёмки
-
-Ранжировано по типу съёмки — все 34 примера из исходной таблицы.
-
-**Любительская (4):**
-- [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-123083697_456292576__segment_1_21_95.mp4)
-- [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-154481535_456240035__segment_1_0_22.mp4)
-- [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-211101049_456239344__segment_1_16_37__seg1.mp4)
-- [«разностороннее» освещение, съёмка не на проф. оборудование](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-183227017_456240601__segment_1_23_153.mp4)
-
-**Профессиональное студийное (15):**
-- [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-17512901_171225185__segment_4_178_198__seg4.mp4)
-- [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-16485199_456239054__segment_1_12_31__seg1.mp4)
-- [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-187830095_456244616__segment_5_94_106__seg5.mp4)
-- [хороший свет, однотон, качество](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-211372791_456239023__segment_1_11_64.mp4)
-- [проф. съёмка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-181548723_456239229__segment_1_5_23__seg1.mp4)
-- [пример 6](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-121580315_456239425__segment_1_6_58.mp4)
-- [пример 7](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-226897609_456239195__segment_1_7_31.mp4)
-- [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-226897609_456239196__segment_1_3_40__seg1.mp4)
-- [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-231691274_456239019__segment_1_4_193.mp4)
-- [пример 10](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-69784132_456239038__segment_1_4_32.mp4)
-- [пример 11](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2f15d090-5697-494f-96ab-3d705d0a89e1/trimmed/-203506843_456240117__segment_1_11_37.mp4)
-- [пример 12](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fb5f770b-a3be-402e-af20-a918ebbd699c/trimmed/-169244143_456240505__segment_1_14_24__seg1.mp4)
-- [пример 13](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-73459582_456239038__segment_1_206_225.mp4)
-- [пример 14](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/164276992_456239234__segment_1_33_45__seg1.mp4)
-- [проф. студийное интервью (3 этап)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_027/-121495031_456239048__segment_2_65_78__seg2.mp4)
-
-**Профессиональное интервью (12):**
-- [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-43517310_456239036__segment_1_51_62.mp4)
-- [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-920580_456240372__segment_2_77_97__seg2.mp4)
-- [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2f15d090-5697-494f-96ab-3d705d0a89e1/trimmed/-206760626_456240401__segment_1_14_78.mp4)
-- [пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fb5f770b-a3be-402e-af20-a918ebbd699c/trimmed/-44012514_456239993__segment_1_10_35.mp4)
-- [пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fb5f770b-a3be-402e-af20-a918ebbd699c/trimmed/-79147027_456240319__segment_1_0_34.mp4)
-- [пример 6](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-170249627_456239030__segment_1_45_66__seg1.mp4)
-- [пример 7](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-218650470_456239036__segment_1_67_80__seg1.mp4)
-- [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-224045410_456239102__segment_2_62_81__seg2.mp4)
-- [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-224045410_456239102__segment_3_114_136__seg3.mp4)
-- [пример 10](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-224045410_456239102__segment_5_189_230__seg5.mp4)
-- [пример 11](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-37990895_456242594__segment_3_121_136__seg3.mp4)
-- [пример 12](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fce8a423-3c2f-41a7-8593-73532ba90348/trimmed/-41031541_456239086__segment_2_115_163__seg2.mp4)
-
-**Интервью на улице (2):**
-- [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7a9214c4-90ca-4d1c-a66a-80957e1fc431/trimmed/-55110198_456239033__segment_1_11_26__seg1.mp4)
-- [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/384a8f39-036c-423b-b136-6ef8128c9b96/trimmed/-57387976_456239776__segment_2_158_173__seg2.mp4)
-
-**Лекция (1):**
-- [видим, что идёт рассказ «кому-то»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/03258c04-af9a-45a5-a804-bac962bae9bc/trimmed/-211587363_456239190__segment_1_2_22.mp4)
-
 ## Ракурс
-
-Пятый пример — то же видео, что и пример для «Активности движения» выше, но здесь показывает
-преобладающий ракурс.
 
 - [Фронтальный (большая часть видео смотрит в камеру)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-65608907_456239303__segment_2_40_181__seg2.mp4)
 - [Основной говорящий (мужчина) — профиль. Женщина — лёгкий поворот, т.к. видно 2-й глаз](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7a9214c4-90ca-4d1c-a66a-80957e1fc431/trimmed/-95446622_456239101__segment_4_97_111__seg4.mp4)
@@ -126,24 +65,8 @@
 
 ## Фоновый шум
 
-- [Есть шум «помещения» и музыка, но ставим музыкальный, т.к. её чётче слышно](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-158992716_456239025__segment_1_16_44__seg1.mp4)
-- [Шум помещения, возможно кондиционер](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_027/4128747_456239872__segment_1_9_45.mp4)
-- [Искажения микрофона из-за подобного «эха»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/87bae944-ca38-4b4c-9942-80b5690d138d/trimmed/-84487977_456243165__segment_1_0_299.mp4)
-
-## Люди в кадре
-
-- [Другие НЕ взаимодействуют с основным спикером (не смотрит на спикера, не кивает и т.д.)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-52000967_456244256__segment_1_0_109.mp4)
-- [Другие взаимодействуют (в конце видео кивает ему)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7a9214c4-90ca-4d1c-a66a-80957e1fc431/trimmed/-95446622_456239153__segment_2_61_73__seg2.mp4)
-- [Другие взаимодействуют](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7a9214c4-90ca-4d1c-a66a-80957e1fc431/trimmed/-95446622_456239101__segment_4_97_111__seg4.mp4)
-- [Другие НЕ взаимодействуют, пустой взгляд в никуда](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-147440564_456239071__segment_2_27_45__seg2.mp4)
-
-## Речь с наложением
-
-⚠️ Первое видео скачано вручную с Яндекс.Диска (оригинал требовал логина/капчи для просмотра).
-
-- [На фоне человек говорит с наложением на главного говорящего](assets/example-speech-overlay.mp4)
-- [На фоне человек говорит с наложением на главного говорящего](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1c35b7ef-b71d-48fc-94a7-b11274ce1cad/trimmed/-87150280_456239414__segment_1_28_51.mp4)
-- [На 18-й секунде наложение речи](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-52000967_456244256__segment_1_0_109.mp4)
+[Пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/87bae944-ca38-4b4c-9942-80b5690d138d/trimmed/-84487977_456243165__segment_1_0_299.mp4)
+— искажения микрофона из-за подобного «эха».
 
 ## Наложенный текст
 
