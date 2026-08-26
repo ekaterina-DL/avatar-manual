@@ -102,6 +102,39 @@ body, .md-typeset {
   margin: 0;
 }
 
+/* На полноэкранном просмотре (кнопка ⛶ в плеере) обрезка отключается — асессор должен видеть
+   видео целиком, в его настоящих пропорциях (в т.ч. портретный «шортс»), а не кадр, обрезанный
+   под компактное превью 16:9. Обрезка нужна только для единообразия миниатюр в тексте страницы.
+   !important — иначе более специфичные правила выше (.md-typeset table video и т.п.) продолжали
+   бы действовать и в полноэкранном режиме. Три ОТДЕЛЬНЫХ правила, а не через запятую в одном
+   селекторе: непонятный браузеру псевдокласс в общем списке селекторов роняет валидность ВСЕГО
+   правила целиком (даже валидные части), а не только своей ветки — проверено на живом Chromium
+   через Playwright: с объединённым селектором это правило пропадало из applied-правил вообще. */
+.md-typeset video:fullscreen {
+  width: auto !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+}
+.md-typeset video:-webkit-full-screen {
+  width: auto !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+}
+.md-typeset video:-moz-full-screen {
+  width: auto !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+}
+
 .compare-ok {
   background: var(--ok-bg);
   border-left: 3px solid var(--ok-color);
