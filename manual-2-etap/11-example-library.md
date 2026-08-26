@@ -32,11 +32,6 @@
 - [Лёгкий поворот](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/384a8f39-036c-423b-b136-6ef8128c9b96/trimmed/-145781292_456239534__segment_3_99_125__seg3.mp4)
 - [Фронтальный](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-167333217_456239923__segment_1_36_62.mp4)
 
-## Наложенный текст
-
-- [Субтитры — т.к. показали ФИО](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/4301ce48-9f23-4e2d-b3c0-fc5ab4ddfe73/trimmed/-233912718_456239026__segment_1_3_17.mp4)
-- [На 22-й секунде «субтитры»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-95383488_171970745__segment_1_14_120.mp4)
-
 ## Пиксельность
 
 Как отличить пикселизацию лица на глаз — см. [«Что не размечаем / Битое»](05b-what-not-to-label.md#-полностью-исключённые-типы-видео).

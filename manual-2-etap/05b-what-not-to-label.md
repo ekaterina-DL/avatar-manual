@@ -24,6 +24,8 @@
 комнате), а на видео при этом «идёт снег» — это уже подозрительно похоже на добавленный
 постфактум эффект, и такое стоит расценивать как монтаж.</p>
 
+<p markdown="1">Калибровочные примеры — см. [ниже](#наложенный-текст--подтверждённые-примеры).</p>
+
 </li>
 </ul>
 
@@ -279,6 +281,11 @@
 **Плавное движение (допустимо):**
 - [Пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-146098457_456247757__segment_2_43_72__seg2.mp4)
 - [Пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-42289208_456239270__segment_5_96_110__seg5.mp4)
+
+### Наложенный текст — подтверждённые примеры
+
+- [Субтитры — т.к. показали ФИО](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/4301ce48-9f23-4e2d-b3c0-fc5ab4ddfe73/trimmed/-233912718_456239026__segment_1_3_17.mp4)
+- [На 22-й секунде «субтитры»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-95383488_171970745__segment_1_14_120.mp4)
 
 Полный банк примеров по всем критериям (198+ ссылок) — см. [11-example-library.md](11-example-library.md).
 
