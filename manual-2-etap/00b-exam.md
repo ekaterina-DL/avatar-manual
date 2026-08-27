@@ -10,6 +10,10 @@
 <div class="kf-value">10<span></span></div>
 <div class="kf-label">экзаменационных заданий</div>
 </div>
+<div class="kf-stat">
+<div class="kf-value">2<span></span></div>
+<div class="kf-label">попытки</div>
+</div>
 </div>
 </div>
 

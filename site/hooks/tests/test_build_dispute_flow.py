@@ -56,7 +56,9 @@ def test_untouched_on_pdf_build():
 
 
 def test_untouched_on_unrelated_page():
-    page = FakePage("manual-3-etap/00-overview.md")
+    # НЕ manual-3-etap/00-overview.md — этот хук нарочно применяется и там тоже (см. _PAGES в
+    # build_dispute_flow.py, коммит 4367e3e: механика оспаривания одинаковая на 2 и 3 этапе).
+    page = FakePage("manual-2-etap/04-classifier.md")
     config = FakeConfig("/repo/avatar-manual-build/build")
     result = on_page_markdown(SECTION_MD, page, config, None)
     assert result == SECTION_MD
