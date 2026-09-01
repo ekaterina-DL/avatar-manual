@@ -73,11 +73,12 @@
 - [Уличный фон не отмечен.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/E1qZdo1x34E/E1qZdo1x34E.mp4)
 - [Выбрано 2 значения в поле «Фон» при одном человеке в кадре.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/eZvc533RNP8/eZvc533RNP8.mp4)
 
-**Эмоции**
+**Эмоции** — определяются по интонации и тону голоса, а не по мимике/выражению лица (см.
+[04-classifier.md](04-classifier.md#7-эмоции-и-выражение-лица)).
 
 <!-- video-eyebrow: Эмоции -->
 - [Отмечены положительные эмоции, но их в сегменте нет.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/FmKbmmwKG2Y/FmKbmmwKG2Y.mp4)
-- [Выбрана положительная эмоция — в кадре её не было.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/kMQR3oRTu28/kMQR3oRTu28.mp4)
+- [Выбрана положительная эмоция — в тоне голоса её не было.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/kMQR3oRTu28/kMQR3oRTu28.mp4)
 - [Эмоции явно не нейтральные, а поставлены «спокойные»/«нейтральные».](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/x45XHocta7o/x45XHocta7o.mp4)
 
 **Пол** — поле с объективно проверяемым ответом; заказчик реагирует на такие ошибки особенно
