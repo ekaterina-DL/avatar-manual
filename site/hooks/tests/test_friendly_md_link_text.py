@@ -85,6 +85,18 @@ def test_trailing_stage_word_mismatched_digit_is_kept():
     assert result == "(см. [Классификатор (2 этап)](../manual-2-etap/04-classifier.md) 3 этапа)"
 
 
+def test_05b_page_has_friendly_title():
+    # Регрессия: 05b-what-not-to-label.md отсутствовал в TITLES (единственная реальная страница
+    # мануала без записи) — ссылка на неё раньше показывала сырое имя файла вместо названия
+    # раздела, найдено на manual-2-etap/00-overview.md (таблица терминов, определение «Битое»).
+    page = FakePage("manual-2-etap/00-overview.md")
+    md = "[05b-what-not-to-label.md](05b-what-not-to-label.md#когда-видео-помечается-битое)."
+    result = on_page_markdown(md, page, None, None)
+    assert result == (
+        "[Что не размечаем / Битое](05b-what-not-to-label.md#когда-видео-помечается-битое)."
+    )
+
+
 def test_regular_prose_link_untouched():
     page = FakePage("index.md")
     md = "[2 этап →](manual-2-etap/00-overview.md)"
