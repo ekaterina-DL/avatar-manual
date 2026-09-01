@@ -229,8 +229,9 @@
 - [Низкое качество, полоса в районе рта](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-134722432_456240050__segment_1_0_48.mp4).
 - [3 склейки подряд](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0af64f3c-521a-498c-82c6-bad558f6bf2a/trimmed/-81140789_456240567__segment_1_17_167.mp4).
 - [Плохое качество при движении «пожатие», особенно в области рук](assets/stage3-antiexample-hands.mp4).
+- [«Гуляющие» полосы](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-209756877_456239027__segment_1_1_61.mp4).
 
-`[Разметка ВК видео — Критерии примеры]`
+`[Разметка ВК видео — Критерии примеры; Таблица с примерами по вопросам]`
 
 ### Рамка — как определить и подтверждённые примеры
 

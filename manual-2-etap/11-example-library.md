@@ -103,7 +103,6 @@
 - [Дубляж](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-50750285_456239157__segment_1_11_48.mp4)
 - [Пиксели, размытость при движении](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-167333217_456240122__segment_1_35_46.mp4)
 - [Громкий звук перекрывает речь говорящего + низкое качество](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7561daa6-313c-43c8-beca-1ca316707f1c/trimmed/-153808162_456239018__segment_1_1_13.mp4)
-- [«Гуляющие» полосы](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-209756877_456239027__segment_1_1_61.mp4)
 - [Пережатие: на скорости 0.5 в области головы видна «сыпучая» картинка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-920580_456239632__segment_1_0_15__seg1.mp4)
 - [Отсутствие фокуса, пиксельность на лице и руках](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-166037395_456243003__segment_3_75_96__seg3.mp4)
 - [Перебивающий голос, низкое качество](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/20f7cee8-f47a-4104-8faa-cef6198042d9/trimmed/-31735024_456239258__segment_4_116_131__seg4.mp4)
