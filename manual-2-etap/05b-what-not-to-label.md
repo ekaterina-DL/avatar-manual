@@ -231,6 +231,9 @@
 - [Плохое качество при движении «пожатие», особенно в области рук](assets/stage3-antiexample-hands.mp4).
 - [«Гуляющие» полосы + виньетка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-209756877_456239027__segment_1_1_61.mp4).
 - [Виньетка (затемнение по углам кадра)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_028/-222562832_456239022__segment_1_27_106.mp4).
+- [Громкий звук перекрывает речь говорящего + низкое качество](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7561daa6-313c-43c8-beca-1ca316707f1c/trimmed/-153808162_456239018__segment_1_1_13.mp4).
+- [Пережатие: на скорости 0.5 в области головы видна «сыпучая» картинка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-920580_456239632__segment_1_0_15__seg1.mp4).
+- [Кашель перебивает говорящего](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/9851e9b8-2ed0-4804-8e1c-ebfabbf72b0f/trimmed/-9571212_456239370__segment_5_136_165__seg4.mp4).
 
 `[Разметка ВК видео — Критерии примеры; Таблица с примерами по вопросам; Памятка Аватар 3 этап]`
 

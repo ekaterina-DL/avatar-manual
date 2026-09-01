@@ -102,13 +102,10 @@
 - [В начале склейка с наложением](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/118528151_171446962__segment_2_112_132__seg2.mp4)
 - [Дубляж](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-50750285_456239157__segment_1_11_48.mp4)
 - [Пиксели, размытость при движении](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-167333217_456240122__segment_1_35_46.mp4)
-- [Громкий звук перекрывает речь говорящего + низкое качество](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7561daa6-313c-43c8-beca-1ca316707f1c/trimmed/-153808162_456239018__segment_1_1_13.mp4)
-- [Пережатие: на скорости 0.5 в области головы видна «сыпучая» картинка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-920580_456239632__segment_1_0_15__seg1.mp4)
 - [Отсутствие фокуса, пиксельность на лице и руках](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-166037395_456243003__segment_3_75_96__seg3.mp4)
 - [Перебивающий голос, низкое качество](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/20f7cee8-f47a-4104-8faa-cef6198042d9/trimmed/-31735024_456239258__segment_4_116_131__seg4.mp4)
 - [Наложение полупрозрачного кадра](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/536eced6-c1ab-4ac2-8c6d-fd202ea20fa5/trimmed/-160788341_456239461__segment_6_203_214__seg6.mp4)
 - [Пережатие](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/98b07575-daf2-4c46-afd7-4f2b98b7f3a8/trimmed/-229379287_456239017__segment_1_0_54.mp4)
-- [Кашель перебивает говорящего](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/9851e9b8-2ed0-4804-8e1c-ebfabbf72b0f/trimmed/-9571212_456239370__segment_5_136_165__seg4.mp4)
 - [Мало FPS (кадров в секунду), заметен «разрыв»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/98b07575-daf2-4c46-afd7-4f2b98b7f3a8/trimmed/-167333217_456239628__segment_1_22_52__seg1.mp4)
 - [Звук ветра слишком громкий](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/75ed1897-eb70-4f5d-8222-a129f484476b/trimmed/-213127547_456291948__segment_4_75_98__seg4.mp4)
 
