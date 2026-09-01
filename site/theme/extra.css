@@ -707,8 +707,11 @@ body, .md-typeset {
 .anthro-card .anthro-media img {
   margin: 0;
 }
+/* Плеер (video/iframe) увеличен на 40% (180 -> 252px) по запросу пользователя — маленький
+   180px-плеер было тяжело кликать (особенно iframe: play-кнопка YouTube занимает малую долю
+   высоты, см. комментарий про object-fit ниже). */
 .anthro-card .anthro-media video {
-  width: 180px;
+  width: 252px;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
@@ -727,7 +730,7 @@ body, .md-typeset {
    названием/каналом — она ведёт на youtube.com, поэтому ролик открывался в новой вкладке вместо
    проигрывания на месте. Без object-fit iframe просто занимает свою рамку целиком, как обычно. */
 .anthro-card .anthro-media iframe {
-  width: 180px;
+  width: 252px;
   aspect-ratio: 16 / 9;
   display: block;
   margin: 0;
