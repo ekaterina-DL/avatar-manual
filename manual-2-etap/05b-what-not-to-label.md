@@ -224,7 +224,7 @@
 [00-overview.md](00-overview.md#как-оценивается-качество-работы).
 `[Видео с разбором ошибок — Аватар 2 этап]`
 
-## Примеры «Битое» (для калибровки, что считается явным браком)
+## Примеры «Битое»
 
 - [Низкое качество, полоса в районе рта](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-134722432_456240050__segment_1_0_48.mp4).
 - [3 склейки подряд](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0af64f3c-521a-498c-82c6-bad558f6bf2a/trimmed/-81140789_456240567__segment_1_17_167.mp4).
