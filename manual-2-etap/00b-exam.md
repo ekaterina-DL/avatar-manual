@@ -74,14 +74,15 @@
 внутри. Резкий зум — повод не брать участок (медленный, плавный зум — можно); короткая пауза
 внутри сегмента — не повод дробить его на несколько частей.
 
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/oR3b16-CtvY/oR3b16-CtvY.mp4 — сегмент начат на несколько секунд позже, чем нужно: граница
-  должна вставать точно на первом слове.
+- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/oR3b16-CtvY/oR3b16-CtvY.mp4 — сегмент начат на несколько секунд позже, чем нужно: подходящая
+  граница была уже на 0:47 (или 1:25), закончить можно было на 1:48 — граница должна вставать
+  точно на первом слове.
 - https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/RvGHVoJ8lIA/RvGHVoJ8lIA.mp4 — сегмент поставлен впритык к склейке кадра, нужно отступить от
   границы монтажа.
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/ZzTyBpl8sfw/ZzTyBpl8sfw.mp4 — в конце сегмента больше 2 секунд молчания, нужно обрезать
-  раньше, ровно на последнем слове.
-- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/-3XnjZqdOrQ/-3XnjZqdOrQ.mp4 — микрофон закрывает рот, а в конце человек уходит из кадра — на
-  этом участке нет чистых 10 секунд с видимым лицом.
+- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/ZzTyBpl8sfw/ZzTyBpl8sfw.mp4 — размеченный сегмент 3:24–3:58: в конце больше 2 секунд молчания,
+  нужно обрезать раньше, ровно на последнем слове.
+- https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/-3XnjZqdOrQ/-3XnjZqdOrQ.mp4 — микрофон закрывает рот, а в конце человек уходит из кадра —
+  подходящий сегмент 0:39–0:51.
 
 #### «Битое»: когда ставить, а когда нет
 
