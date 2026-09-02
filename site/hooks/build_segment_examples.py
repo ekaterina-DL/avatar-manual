@@ -29,7 +29,18 @@ _LIST_CONTINUATION_RE = re.compile(r'^\s+\S')
 # Живой кейс: manual-2-etap/05-what-to-label.md, «Пример 4» — исходное VK-видео заблокировано
 # самим VK для внешнего встраивания (алгоритм пометил 18+), пользователь скачала и прислала
 # тот же ролик локальным файлом взамен ссылки.
+#
+# <!-- example-wide --> — опциональный маркер-строка ПЕРЕД "**Пример N:**"/"**Антипример N:**"
+# (добавлено 02.09.2026, по аналогии с <!-- video-eyebrow: ... --> в group_media_lists.py):
+# просит карточку "example-card wide" — видео слева, подпись справа, во всю ширину сетки —
+# вместо обычной "видео сверху, подпись снизу". Нужен точечно, для карточек с длинной подписью
+# (например, нумерованный список из нескольких пунктов), где вертикальная карточка становится
+# неоправданно высокой на фоне соседних. Маркер — часть самого regex-матча (первая группа), а
+# не отдельный проход по тексту — иначе при разбиении на блоки по _BLOCK_START_RE.finditer()
+# строка маркера осталась бы «снаружи» матча и утекла бы в подпись ПРЕДЫДУЩЕЙ карточки (тот же
+# класс бага, что и с не-iframe контентом выше).
 _BLOCK_START_RE = re.compile(
+    r'(<!-- example-wide -->\n)?'
     r'\*\*((?:Анти)?[Пп]ример) (\d+):\*\*[ \t]*(<iframe.*?</iframe>|<video.*?</video>)[ \t]*\n'
 )
 _IMAGE_LINE_RE = re.compile(r'!\[[^\]]*\]\([^)]+\)\n?')
@@ -48,12 +59,13 @@ def _split_blocks(section_body):
 
 
 def _parse_block(match, block_text):
-    kind, number, iframe_html = match.groups()
+    wide_marker, kind, number, iframe_html = match.groups()
     rest = block_text[match.end() - match.start():]
     rest = _IMAGE_LINE_RE.sub("", rest, count=1)
     caption = rest.strip()
     is_bad = kind.startswith("Анти")
-    return is_bad, number, iframe_html, caption
+    is_wide = wide_marker is not None
+    return is_bad, is_wide, number, iframe_html, caption
 
 
 def _prepare_caption_block(caption):
@@ -82,12 +94,17 @@ def _prepare_caption_block(caption):
     return "\n".join(out)
 
 
-def _render_card(is_bad, number, iframe_html, caption):
+def _render_card(is_bad, is_wide, number, iframe_html, caption):
     """markdown="1" должен стоять на КАЖДОМ вложенном <div>-предке подписи (а не только на
     внутреннем контейнере), а сама подпись — на отдельной строке(-ах), с пустой строкой перед
     любым блочным содержимым (списки). Иначе MkDocs'ный md_in_html не перерабатывает markdown
     внутри блока — см. Fix 1 итогового обзора: **bold** и списки утекали в вывод буквально."""
-    card_class = "example-card bad" if is_bad else "example-card"
+    classes = ["example-card"]
+    if is_bad:
+        classes.append("bad")
+    if is_wide:
+        classes.append("wide")
+    card_class = " ".join(classes)
     caption_block = _prepare_caption_block(caption)
     return (
         f'<div class="{card_class}" markdown="1">\n'
@@ -113,12 +130,12 @@ def _transform_section(markdown, heading):
     trailing = []
     cards = []
     for match, block_text in blocks:
-        is_bad, number, iframe_html, caption = _parse_block(match, block_text)
+        is_bad, is_wide, number, iframe_html, caption = _parse_block(match, block_text)
         tag_match = _SOURCE_TAG_RE.search(caption)
         if tag_match:
             trailing.append(tag_match.group(1))
             caption = caption[: tag_match.start()].strip()
-        cards.append(_render_card(is_bad, number, iframe_html, caption))
+        cards.append(_render_card(is_bad, is_wide, number, iframe_html, caption))
 
     grid_html = '<div class="example-grid" markdown="1">\n' + "\n".join(cards) + "\n</div>\n"
     if trailing:

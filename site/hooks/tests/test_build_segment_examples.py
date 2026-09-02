@@ -249,6 +249,28 @@ def test_rendered_html_numbered_list_with_wrapped_continuation_lines_stays_one_o
     assert "<p>соединено несколько" not in html
 
 
+def test_example_wide_marker_adds_wide_class_and_is_stripped_from_output():
+    """<!-- example-wide --> перед "**Пример N:**"/"**Антипример N:**" должен добавить класс
+    "wide" к карточке (видео слева, подпись справа — см. extra.css) и сам полностью исчезнуть
+    из собранного HTML (это приватный маркер для хука, не контент)."""
+    md = f"""## Антипримеры
+
+<!-- example-wide -->
+**Антипример 1:** {IFRAME_3}
+![Антипример 1: вертикальное видео](assets/antiexample1-frame.jpeg)
+1. Не должно быть сопроводительных текстов на видео.
+2. В видео должна быть хотя бы одна непрерывная сцена.
+
+**Антипример 2:** {IFRAME_1}
+![Антипример 2: обычная карточка](assets/antiexample2-frame.jpeg)
+Обычная карточка без маркера.
+"""
+    result = on_page_markdown(md, FakePage(), SITE_CONFIG, None)
+    assert 'class="example-card bad wide" markdown="1">' in result
+    assert 'class="example-card bad" markdown="1">' in result  # вторая карточка — обычная
+    assert "example-wide" not in result
+
+
 def test_span_wrapped_source_tag_kept_outside_cards():
     """В реальном конвейере hooks/wrap_source_tags.py отрабатывает РАНЬШЕ этого хука (см.
     site/mkdocs.yml) и уже успевает обернуть `[...]` в <span class="source-tag">[...]</span>

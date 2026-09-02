@@ -297,6 +297,7 @@
 
 ## Антипримеры
 
+<!-- example-wide -->
 **Антипример 1:** https://www.youtube.com/shorts/kLTpStNQRF0
 ![Антипример 1: вертикальное видео с headphones, внизу наложен текст-субтитр](assets/antiexample1-frame.jpeg)
 1. Не должно быть сопроводительных текстов на видео (субтитров).
