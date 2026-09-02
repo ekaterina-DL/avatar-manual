@@ -122,7 +122,7 @@
 отмечены руки, хотя они видны в кадре» стала одной из самых частых ошибок. `[Инстр.
 Kandinsky-Аватар, стр.5, Upd 21.05]`
 
-**Примеры из банка:**
+**Примеры:**
 
 - [**Голова и плечи** — кисти рук не видны (78.4–95.9)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/eaccT4AP480/eaccT4AP480.mp4)
 - [**Голова и плечи** — кисти рук не видны (0:01.03–0:31.01)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/KTSC0ERroEY/KTSC0ERroEY.mp4)
@@ -130,6 +130,8 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 - [**Голова, плечи и руки** — (18.9–29.3)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/18_05_2026/OlfLhQb4av8/OlfLhQb4av8.mp4)
 - [**Сидя в полный рост** — колени уже видны (до 0:53)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/alDyTf-EX1Y/alDyTf-EX1Y.mp4)
 - [**Стоя в полный рост** — колени уже видны](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/3fhv7tzaLHw/3fhv7tzaLHw.mp4)
+
+→ больше примеров — в [банке примеров](11-example-library.md)
 
 `[Журнал проверок ОС]`
 
@@ -173,7 +175,7 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 головой или ракурс делится 50/50, нужно отметить **любой, но только один** ракурс — ошибку за
 такой выбор не ставят. `[Ответы на вопросы по Аватару, 02.09.2026]`
 
-**Примеры из банка:**
+**Примеры:**
 
 - [**Анфас** (0:06.48–0:18.06)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/5RoBwOlETRk/5RoBwOlETRk.mp4)
 - [**Полуоборот (3/4)** (4.1–44.1)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/r0_VQdrJsSM/r0_VQdrJsSM.mp4)
@@ -181,6 +183,8 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 - [**Полуоборот (3/4)**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-177876997_456239025__segment_1_25_47__seg1.mp4)
 - [**Ракурс меняется в пределах ролика** — берём преобладающее значение, это не «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-201254813_456239373__segment_1_2_45.mp4)
 - [**Ракурс меняется в пределах ролика** — берём преобладающее значение, это не «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-186339672_456239137__segment_2_175_191__seg2.mp4)
+
+→ больше примеров — в [банке примеров](11-example-library.md#ракурс)
 
 `[Журнал проверок ОС]`
 
@@ -211,12 +215,14 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 Если человек сидит в парке, а в классификаторе отмечено «Мягкое студийное» — это ошибка (и
 наоборот). `[Ответы на вопросы по Аватару, 02.09.2026]`
 
-**Примеры из банка:**
+**Примеры:**
 
 - [**Естественное** — легко ошибочно принять за «студийное»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/27_05_2026/9k4hkY8Cy5E/9k4hkY8Cy5E.mp4)
 - [**Естественное** (0–86.3) — а не «мягкое студийное»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/0AiCXmNJGvk/0AiCXmNJGvk.mp4)
 - ![grid: Студийное](assets/svet_studio1.png)
 - ![grid: Студийное](assets/svet_studio2.png)
+
+→ больше примеров — в [банке примеров](11-example-library.md)
 
 ### 6. Фон
 
@@ -255,7 +261,7 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 формулировка правила —
 [«Что не размечаем / Битое»](05b-what-not-to-label.md#-полностью-исключённые-типы-видео).
 
-**Примеры из банка:**
+**Примеры:**
 
 - [**Нейтральный/размытый** — однотонный тёмный фон](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-214391033_456239025__segment_1_0_92.mp4)
 - [**Нейтральный/размытый** — однотонный тёмный фон](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-215695205_456239021__segment_1_17_37.mp4)
@@ -263,6 +269,8 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 - [**Естественный, но статичный**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-45583559_456240264__segment_2_176_206__seg2.mp4)
 - [**Динамичный/уличный** — деревья на фоне, земля](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/Zgmlx08HIR4/Zgmlx08HIR4.mp4)
 - [**Динамичный/уличный** — люди позади двигаются](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/sCkhgfDQUzI/sCkhgfDQUzI.mp4)
+
+→ больше примеров — в [банке примеров](11-example-library.md)
 
 ### 7. Эмоции и выражение лица
 
@@ -353,9 +361,6 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 <li>Медленный</li>
 <li>Быстрый</li>
 </ul>
-
-⚠️ Цель по команде в целом — равномерное распределение от медленного и чёткого до быстрого.
-`[Инстр. Kandinsky-Аватар, стр.4]`
 
 ⚠️ **Практический критерий:** посмотрите сегмент на ускоренной перемотке (×2). Если даже на
 такой скорости речь ощущается быстрой — ставьте **«Быстрый»**; во всех остальных случаях —

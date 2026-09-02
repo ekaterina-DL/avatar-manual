@@ -98,7 +98,9 @@ def test_mapping_with_hardcoded_items_skips_source_file():
     см. запись "Тип речи", добавлено 20.08.2026 по просьбе пользователя убрать дублирующий
     раздел на странице "Банк примеров") не должны обращаться к DOCS_DIR/source_file вообще —
     иначе несуществующий source_file уронил бы сборку. max_items == len(items) гарантирует
-    remaining == 0, так что "ещё N примеров" не появляется (ссылаться там уже некуда)."""
+    remaining == 0, так что счётной ссылки "ещё N примеров" не появляется — вместо неё, раз у
+    такого mapping нет своего раздела на странице "Банк примеров" (02.09.2026), ставится общая
+    ссылка-приглашение на страницу целиком (по каталогу target_file)."""
     from inject_example_previews import _apply_mapping
 
     mapping = {
@@ -117,6 +119,7 @@ def test_mapping_with_hardcoded_items_skips_source_file():
     assert "example1.mp4" in result
     assert "example2.mp4" in result
     assert "→ ещё" not in result
+    assert "→ больше примеров — в [банке примеров](11-example-library.md)" in result
     assert "<!-- video-eyebrow: Проверка items -->" in result
 
 
@@ -190,6 +193,41 @@ def test_preview_with_no_remaining_items_has_blank_line_before_closing_div():
         "закрывающий </div> должен идти после пустой строки, а не сразу после "
         "последнего video-item"
     )
+
+
+def test_label_reads_examples_not_bank_examples():
+    """02.09.2026: заголовок над превью укорочен с "Примеры из банка:" до "Примеры:" —
+    формулировка "из банка" звучала как отдельное действие ("сходи в банк"), а не просто
+    подпись над списком видео."""
+    target_md = (
+        "### 9. Темп речи\n\n"
+        "Значения: Медленный / Быстрый.\n\n"
+        "### 10. Язык и акценты\n\n"
+        "Значения: Русский / Английский / Другой.\n"
+    )
+    page = FakePage("manual-2-etap/04-classifier.md")
+    result = on_page_markdown(target_md, page, None, None)
+    assert "**Примеры:**" in result
+    assert "Примеры из банка" not in result
+
+
+def test_no_remaining_items_still_links_to_library_page():
+    """02.09.2026: даже когда в разделе-источнике не осталось «ещё N» примеров сверх показанных
+    (remaining == 0), под превью всё равно должна быть ссылка-приглашение на страницу «Банк
+    примеров» — просто общая, без обещания конкретного числа. Раньше в этом случае ссылки не
+    было вообще."""
+    from inject_example_previews import _apply_mapping
+
+    mapping = _rakurs_test_mapping()
+    target_md = (
+        "### Преобладающий ракурс\n\n"
+        "Значения: Анфас / Полуоборот (3/4) / Профиль. Решение «по наитию» допустимо.\n\n"
+        "### Освещение\n\n"
+        "Значения: Мягкое студийное / Естественное / Сложное.\n"
+    )
+    result = _apply_mapping(target_md, mapping)
+    assert "→ ещё" not in result
+    assert "→ больше примеров — в [банке примеров](11-example-library.md#ракурс)" in result
 
 
 def test_more_link_anchor_matches_real_mkdocs_heading_id():
