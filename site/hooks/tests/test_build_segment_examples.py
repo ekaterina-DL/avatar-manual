@@ -4,6 +4,9 @@ from _render_helpers import render_html
 IFRAME_1 = '<iframe class="embedded-video" src="https://vk.com/video_ext.php?oid=1&id=1&hd=2" loading="lazy" allowfullscreen></iframe>'
 IFRAME_2 = '<iframe class="embedded-video" src="https://vk.com/video_ext.php?oid=2&id=2&hd=2" loading="lazy" allowfullscreen></iframe>'
 IFRAME_3 = '<iframe class="embedded-video" src="https://vk.com/video_ext.php?oid=3&id=3&hd=2" loading="lazy" allowfullscreen></iframe>'
+# Вид тега, который embed_local_media.py ставит на месте локальной .mp4/.webm ссылки — карточка
+# должна опознавать и его, не только <iframe> (см. запись 02.09.2026 в _BLOCK_START_RE).
+VIDEO_1 = '<video controls preload="metadata" style="max-width:100%"><source src="assets/pamela.mp4" type="video/mp4"></video>'
 
 SEGMENTS_MD = f"""## Примеры (позитивные)
 
@@ -88,6 +91,29 @@ def test_source_tag_kept_outside_cards():
     result = on_page_markdown(SEGMENTS_MD, FakePage(), SITE_CONFIG, None)
     assert "[Инстр. Kandinsky-Аватар, стр.5-7]" in result
     assert "[Инстр. Kandinsky-Аватар, стр.7-10]" in result
+
+
+def test_card_recognizes_local_video_tag_not_only_iframe():
+    """embed_local_media.py оборачивает локальные .mp4/.webm в <video>, а не <iframe> — карточка
+    должна опознавать и такой пример как полноценный "Пример N", а не проглатывать его в подпись
+    предыдущей карточки (тот самый баг с не-iframe контентом внутри этих двух разделов)."""
+    md = f"""## Примеры (позитивные)
+
+**Пример 1:** {IFRAME_1}
+![Пример 1: женщина на нейтральном тёмном фоне, говорит](assets/example1-frame.jpeg)
+Отрывок с речью.
+
+**Пример 2:** {VIDEO_1}
+![Пример 2: локальное видео](assets/pamela-frame.jpeg)
+Локальный файл вместо заблокированной VK-ссылки.
+"""
+    result = on_page_markdown(md, FakePage(), SITE_CONFIG, None)
+    assert result.count('<div class="example-card" markdown="1">') == 2
+    assert VIDEO_1 in result
+    assert "Отрывок с речью." in result
+    assert "Локальный файл вместо заблокированной VK-ссылки." in result
+    # подпись первой карточки не должна была "проглотить" вторую
+    assert "Отрывок с речью.\nЛокальный файл" not in result
 
 
 def test_untouched_on_other_pages():
