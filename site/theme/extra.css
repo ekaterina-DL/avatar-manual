@@ -430,12 +430,16 @@ body, .md-typeset {
   border: 1px solid var(--card-line);
   border-radius: 10px;
   background: var(--gray-50);
-  box-shadow: var(--card-shadow);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
+/* Без box-shadow — плоское оформление в духе .video-item («Наложенный текст…» и т.п.): когда в
+   сетке рядом стоят карточки с разными встроенными плеерами (YouTube со своим брендированным
+   превью, VK со своим), собственная тень у каждой карточки добавляла лишний разнобой поверх и
+   так разного контента иконок. overflow:hidden — угол видео теперь скруглён самой карточкой,
+   как в .video-item, без отдельного border-radius на .embedded-video/video. */
 .example-card .embedded-video {
-  border-radius: 10px 10px 0 0;
   margin: 0;
 }
 /* Локальное .mp4/.webm внутри карточки примера (embed_local_media.py вставляет голый <video>,
@@ -447,7 +451,6 @@ body, .md-typeset {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
-  border-radius: 10px 10px 0 0;
   margin: 0;
 }
 .example-card .ec-body {
