@@ -109,7 +109,7 @@
 - [Сегмент начат поздно, закончен рано — начинать нужно с начала речи.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/Tn6Vw9gArvU/Tn6Vw9gArvU.mp4)
 - [Достаточно завершить на 37 сек — дальше длительные всхлипы, лицо закрыто руками.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/vtT78TfDfXU/vtT78TfDfXU.webm)
 - [Сегмент начат на несколько секунд позже, чем нужно: подходящая граница была уже на 0:47 (или 1:25), закончить можно было на 1:48.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/oR3b16-CtvY/oR3b16-CtvY.mp4)
-- [Сегмент поставлен впритык к склейке кадра — нужно отступить от границы монтажа.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/RvGHVoJ8lIA/RvGHVoJ8lIA.mp4)
+- [Сегмент поставлен впритык к склейке кадра (примерно на 13 секунде) — нужно отступить от границы монтажа.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/RvGHVoJ8lIA/RvGHVoJ8lIA.mp4)
 - [Размеченный сегмент 3:24–3:58: в конце больше 2 секунд молчания, нужно обрезать раньше, ровно на последнем слове.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/ZzTyBpl8sfw/ZzTyBpl8sfw.mp4)
 - [Микрофон закрывает рот, а в конце человек уходит из кадра — подходящий сегмент 0:39–0:51.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/-3XnjZqdOrQ/-3XnjZqdOrQ.mp4)
 
