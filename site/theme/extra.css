@@ -438,6 +438,18 @@ body, .md-typeset {
   border-radius: 10px 10px 0 0;
   margin: 0;
 }
+/* Локальное .mp4/.webm внутри карточки примера (embed_local_media.py вставляет голый <video>,
+   без класса embedded-video) — без этого правила его размер определялся собственным разрешением
+   исходника и «прыгал» на фоне соседних карточек с iframe (те все фиксированы под 16:9 через
+   .embedded-video). object-fit: cover — как у .video-item video, чтобы не искажать пропорции. */
+.example-card video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px 10px 0 0;
+  margin: 0;
+}
 .example-card .ec-body {
   padding: 10px 11px 12px;
   display: flex;
