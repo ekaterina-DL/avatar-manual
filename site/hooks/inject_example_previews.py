@@ -33,8 +33,22 @@ MAPPINGS = [
         "target_file": "manual-2-etap/04-classifier.md",
         "anchor": "### 10. Язык и акценты",
         "position": "before_line",
-        "source_file": "manual-2-etap/11-example-library.md",
-        "source_heading": "Темп речи",
+        # Видео зашиты прямо здесь ("items"), а не читаются из 11-example-library.md — раньше
+        # был отдельный раздел "Темп речи" на странице "Банк примеров", но 03.09.2026 пользователь
+        # попросила его убрать: он дословно дублировал то, что и так показывается превью на
+        # странице классификатора (тот же приём, что уже применён к "Тип речи" ниже — см.
+        # комментарий там). max_items должен равняться len(items), иначе сработает ветка
+        # "remaining > 0", которая для такого mapping не имеет смысла.
+        "items": [
+            "- **Быстрая речь:**\n"
+            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a7976df-4bc0-4333-a65a-a414f8b00e8b/trimmed/-130015614_456239698__segment_1_6_21__seg1.mp4),\n"
+            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-211038887_456239053__segment_1_17_90__seg1.mp4)",
+            "- **Средний темп:**\n"
+            "  [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-134722432_456239898__segment_1_0_45.mp4)",
+            "- **Медленный темп:**\n"
+            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-224301734_456239054__segment_1_64_76__seg1.mp4),\n"
+            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/URfoFWogoWc/URfoFWogoWc.mp4)",
+        ],
         "max_items": 3,
         "label": "Темп речи",
     },

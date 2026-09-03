@@ -24,15 +24,37 @@ def _docs_dir(monkeypatch):
     monkeypatch.setattr(mod, "DOCS_DIR", FIXTURES)
 
 
+def _tempo_test_mapping():
+    """Синтетический mapping для регрессионных тестов ниже — раньше указывал на реальную запись
+    MAPPINGS с source_heading="Темп речи", но эта запись 03.09.2026 переведена на хардкод
+    "items" (пользователь попросила убрать дублирующий раздел "Темп речи" на странице "Банк
+    примеров" — те же видео уже показывались превью на странице классификатора; тот же мотив,
+    что и у "Тип речи" раньше). Сам механизм "source_heading + усечение по max_items + ‘→ ещё
+    N’" по-прежнему используется другими реальными записями (например, "Эмоции"), поэтому
+    держим регрессии живыми через mapping, независимый от реального MAPPINGS — тот же приём,
+    что и у _rakurs_test_mapping() ниже."""
+    return {
+        "target_file": "manual-2-etap/04-classifier.md",
+        "anchor": "### 10. Язык и акценты",
+        "position": "before_line",
+        "source_file": "manual-2-etap/11-example-library.md",
+        "source_heading": "Темп речи",
+        "max_items": 3,
+        "label": "Темп речи",
+    }
+
+
 def test_classifier_tempo_preview_inserted_after_anchor():
+    from inject_example_previews import _apply_mapping
+
+    mapping = _tempo_test_mapping()
     target_md = (
         "### 9. Темп речи\n\n"
         "Значения: Медленный / Быстрый.\n\n"
         "### 10. Язык и акценты\n\n"
         "Значения: Русский / Английский / Другой.\n"
     )
-    page = FakePage("manual-2-etap/04-classifier.md")
-    result = on_page_markdown(target_md, page, None, None)
+    result = _apply_mapping(target_md, mapping)
     assert "example1.mp4" in result
     assert "→ ещё" in result
     assert result.index("Темп речи") < result.index("example1.mp4")
@@ -47,14 +69,16 @@ def test_preview_markdown_contains_eyebrow_marker_with_mapping_label():
     страницы. Маркер здесь — обычный текст в сыром markdown (ещё ДО прогона group_media_lists.py),
     так что он ожидаемо виден на этом этапе; то, что он вырезается из финального HTML — отдельно
     проверяется в test_group_media_lists.py::test_eyebrow_marker_sets_label_and_is_stripped_from_output."""
+    from inject_example_previews import _apply_mapping
+
+    mapping = _tempo_test_mapping()
     target_md = (
         "### 9. Темп речи\n\n"
         "Значения: Медленный / Быстрый.\n\n"
         "### 10. Язык и акценты\n\n"
         "Значения: Русский / Английский / Другой.\n"
     )
-    page = FakePage("manual-2-etap/04-classifier.md")
-    result = on_page_markdown(target_md, page, None, None)
+    result = _apply_mapping(target_md, mapping)
     assert "<!-- video-eyebrow: Темп речи -->" in result
     # маркер должен идти непосредственно перед списком примеров, не где попало
     assert result.index("<!-- video-eyebrow: Темп речи -->") < result.index("example1.mp4")

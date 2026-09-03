@@ -4,12 +4,6 @@
 именно калибровочные наборы: «вот так выглядит X», без разбора ошибок (разбор ошибок — на
 странице [«Частые ошибки»](06-common-mistakes.md)).
 
-## Темп речи
-
-- **Быстрая речь:** [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a7976df-4bc0-4333-a65a-a414f8b00e8b/trimmed/-130015614_456239698__segment_1_6_21__seg1.mp4), [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-211038887_456239053__segment_1_17_90__seg1.mp4)
-- **Средний темп:** [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-134722432_456239898__segment_1_0_45.mp4)
-- **Медленный темп:** [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-224301734_456239054__segment_1_64_76__seg1.mp4), [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/URfoFWogoWc/URfoFWogoWc.mp4)
-
 ## Эмоции
 
 ⚠️ У 2 этапа только 3 значения поля «Эмоции» — «Положительные», «Нейтральные/спокойные» и
