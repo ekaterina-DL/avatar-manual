@@ -190,7 +190,7 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 - [**Ракурс меняется в пределах ролика** — берём преобладающее значение, это не «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-201254813_456239373__segment_1_2_45.mp4)
 - [**Ракурс меняется в пределах ролика** — берём преобладающее значение, это не «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-186339672_456239137__segment_2_175_191__seg2.mp4)
 
-→ больше примеров — в [банке примеров](11-example-library.md#ракурс)
+→ больше примеров — в [банке примеров](11-example-library.md)
 
 `[Журнал проверок ОС]`
 

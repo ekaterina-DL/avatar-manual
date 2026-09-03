@@ -300,16 +300,34 @@ MAPPINGS = [
     },
     {
         # Поле 4 "Насколько хорошо видно лицо говорящего" — якорь на заголовок поля 5.
-        # Видео перенесено из 03-common-mistakes.md ("Калиброванные примеры") — там был
+        # Первое видео перенесено из 03-common-mistakes.md ("Калиброванные примеры") — там был
         # единственный, узкоспециальный комментарий про ракурс, строка удалена оттуда.
+        #
+        # Остальные 4 видео (03.09.2026) — перенесены с manual-2-etap/11-example-library.md,
+        # раздел "Ракурс": у 2 этапа терминология этого поля другая ("Анфас"/"Полуоборот
+        # (3/4)"/"Профиль", см. 04-classifier.md#4-преобладающий-ракурс, у которого уже есть
+        # свои собственные видео-примеры), а подписи "Фронтальный"/"Лёгкий поворот" в
+        # перенесённом разделе — это буквально терминология именно этого, 3-этапного поля
+        # (full_frontal/slight_turn, см. чекбоксы ниже). Та же ошибка и тот же приём переноса,
+        # что уже был у "Активность движения" выше 25.08.2026. Добавлены в этот же mapping,
+        # а не отдельной записью MAPPINGS — иначе на странице дублировался бы заголовок
+        # "Примеры:" для одного и того же поля.
         "target_file": "manual-3-etap/01-classifier.md",
         "anchor": "### 5. Использует ли персонаж микрофон или телефон во время речи",
         "position": "before_line",
         "items": [
             "- **slight_turn (не видно второго уха; профиль на практике встречается редко):**\n"
             "  [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-131143144_456240365__segment_2_30_233__seg2.mp4)",
+            "- **full_frontal (большая часть видео смотрит в камеру):**\n"
+            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-65608907_456239303__segment_2_40_181__seg2.mp4),\n"
+            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-167333217_456239923__segment_1_36_62.mp4)",
+            "- **slight_turn (лёгкий поворот):**\n"
+            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-68719297_456239633__segment_2_50_62__seg2.mp4),\n"
+            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/384a8f39-036c-423b-b136-6ef8128c9b96/trimmed/-145781292_456239534__segment_3_99_125__seg3.mp4)",
+            "- **profile / slight_turn (двое в кадре — мужчина в профиль, женщина с лёгким поворотом, виден 2-й глаз):**\n"
+            "  [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7a9214c4-90ca-4d1c-a66a-80957e1fc431/trimmed/-95446622_456239101__segment_4_97_111__seg4.mp4)",
         ],
-        "max_items": 1,
+        "max_items": 4,
         "label": "Насколько хорошо видно лицо говорящего",
     },
     {

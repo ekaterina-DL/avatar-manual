@@ -4,14 +4,6 @@
 именно калибровочные наборы: «вот так выглядит X», без разбора ошибок (разбор ошибок — на
 странице [«Частые ошибки»](06-common-mistakes.md)).
 
-## Ракурс
-
-- [Фронтальный (большая часть видео смотрит в камеру)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-65608907_456239303__segment_2_40_181__seg2.mp4)
-- [Основной говорящий (мужчина) — профиль. Женщина — лёгкий поворот, т.к. видно 2-й глаз](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7a9214c4-90ca-4d1c-a66a-80957e1fc431/trimmed/-95446622_456239101__segment_4_97_111__seg4.mp4)
-- [Лёгкий поворот](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-68719297_456239633__segment_2_50_62__seg2.mp4)
-- [Лёгкий поворот](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/384a8f39-036c-423b-b136-6ef8128c9b96/trimmed/-145781292_456239534__segment_3_99_125__seg3.mp4)
-- [Фронтальный](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-167333217_456239923__segment_1_36_62.mp4)
-
 ## Пиксельность
 
 Как отличить пикселизацию лица на глаз — см. [«Что не размечаем / Битое»](05b-what-not-to-label.md#-полностью-исключённые-типы-видео).
