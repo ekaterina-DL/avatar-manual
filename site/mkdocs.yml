@@ -13,6 +13,7 @@ exclude_docs: |
   site/requirements.txt
   site/mkdocs.yml
   site/mkdocs-pdf.yml
+  site/mkdocs-public.yml
   site/theme/overrides/
   site/hooks/
   site/pdf/render_pdf.py
@@ -103,3 +104,6 @@ hooks:
   - hooks/build_status_badges.py
   - hooks/friendly_md_link_text.py
   - hooks/neutralize_excluded_links.py
+  # Последним: работает по уже финальному markdown (текст ссылок friendly_md_link_text.py
+  # мог переписать). No-op везде, кроме публичной сборки site/mkdocs-public.yml.
+  - hooks/public_drop_stage3.py

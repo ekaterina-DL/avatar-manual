@@ -1,0 +1,49 @@
+# Публичная сборка сайта для GitHub Pages: наружу выкладывается только мануал 2 этапа.
+#
+# Мануал 3 этапа (manual-3-etap/) ещё в работе и публично не показывается: он исключён из
+# сборки (exclude_docs ниже), убран из меню (nav ниже), а перекрёстные ссылки на него со
+# страниц 2 этапа гасит хук hooks/public_drop_stage3.py. Локальная сборка (site/mkdocs.yml)
+# и PDF (site/mkdocs-pdf.yml) по-прежнему показывают весь сайт, включая 3 этап.
+#
+# Как вернуть 3 этап в публикацию — см.
+# docs/superpowers/specs/2026-09-03-public-build-stage2-only-design.md,
+# раздел «Как вернуть 3 этап в публикацию» (по сути откат одного коммита).
+
+INHERIT: mkdocs.yml
+site_dir: ../../avatar-manual-build/build-public
+
+# ВНИМАНИЕ: при INHERIT дочерний exclude_docs НЕ дополняет родительский, а заменяет его
+# целиком (проверено на mkdocs 1.6.1). Поэтому список ниже = полный список из site/mkdocs.yml
+# + строка `manual-3-etap/`. Если правишь exclude_docs в mkdocs.yml — синхронизируй здесь.
+# (Файл временный: удаляется, когда 3 этап выходит в публикацию — см. spec от 2026-09-03.)
+exclude_docs: |
+  _raw-sources/
+  README.md
+  voprosy-zakazchiku.md
+  manual-2-etap/_sources-log.md
+  manual-3-etap/
+  site/PLAN.md
+  site/requirements.txt
+  site/mkdocs.yml
+  site/mkdocs-pdf.yml
+  site/mkdocs-public.yml
+  site/theme/overrides/
+  site/hooks/
+  site/pdf/render_pdf.py
+  site/prototype-reference/
+  docs/
+  .git/
+  .github/
+
+# nav при INHERIT заменяется целиком — повторяем блок 2 этапа без раздела «3 этап».
+nav:
+  - Главная: index.md
+  - 2 этап (заявки 26-28):
+      - Обзор проекта: manual-2-etap/00-overview.md
+      - Общие требования к видео и аудио: manual-2-etap/01-general-requirements.md
+      - Сегменты: manual-2-etap/02-segments.md
+      - Что размечаем: manual-2-etap/05-what-to-label.md
+      - Что не размечаем / Битое: manual-2-etap/05b-what-not-to-label.md
+      - Классификатор: manual-2-etap/04-classifier.md
+      - Частые ошибки: manual-2-etap/06-common-mistakes.md
+      - Банк примеров: manual-2-etap/11-example-library.md

@@ -28,16 +28,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r site/requirements.txt
 
+      # Публичный профиль: наружу идёт только 2 этап. 3 этап ещё в работе — см.
+      # docs/superpowers/specs/2026-09-03-public-build-stage2-only-design.md
       - name: Build site
-        run: python -m mkdocs build -f site/mkdocs.yml --strict
+        run: python -m mkdocs build -f site/mkdocs-public.yml --strict
 
       - name: Add robots.txt (no-index)
         run: |
-          printf 'User-agent: *\nDisallow: /\n' > ../avatar-manual-build/build/robots.txt
+          printf 'User-agent: *\nDisallow: /\n' > ../avatar-manual-build/build-public/robots.txt
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ../avatar-manual-build/build
+          path: ../avatar-manual-build/build-public
 
   deploy:
     needs: build
