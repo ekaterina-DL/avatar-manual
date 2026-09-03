@@ -62,9 +62,22 @@ MAPPINGS = [
         "target_file": "manual-2-etap/04-classifier.md",
         "anchor": "### 8. Тип речи",
         "position": "before_line",
-        "source_file": "manual-2-etap/11-example-library.md",
-        "source_heading": "Эмоции",
-        "max_items": 3,
+        # Видео зашиты прямо здесь ("items"), а не читаются из 11-example-library.md — раньше
+        # был отдельный раздел "Эмоции" на странице "Банк примеров", но 03.09.2026 пользователь
+        # попросила его убрать: он дословно дублировал то, что и так показывается превью на
+        # странице классификатора (тот же приём, что уже применён к "Темп речи" выше и "Тип
+        # речи" ниже — см. комментарии там). max_items должен равняться len(items).
+        "items": [
+            "- **Положительные (радость, счастье):**\n"
+            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f4a641f-d256-41d3-b00a-8b246d8fec99/trimmed/-58787336_456239767__segment_3_79_90__seg3.mp4),\n"
+            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-69205063_456239229__segment_1_0_16__seg1.mp4),\n"
+            "  [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-157173570_456239093__segment_1_67_79__seg3.mp4)",
+            "- **Нейтральные/спокойные:**\n"
+            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-119060192_456239034__segment_1_40_53__seg3.mp4),\n"
+            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-111933564_456239285__segment_2_47_164__seg2.mp4),\n"
+            "  [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1f58db0b-da16-4b3c-80fe-1d647ee5c666/trimmed/-102559235_456239254__segment_1_6_17.mp4)",
+        ],
+        "max_items": 2,
         "label": "Эмоции",
     },
     {
