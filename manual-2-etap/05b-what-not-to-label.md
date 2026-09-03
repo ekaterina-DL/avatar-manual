@@ -265,7 +265,6 @@
 
 <!-- video-eyebrow: Примеры «Битое» -->
 
-- [Низкое качество, полоса в районе рта](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-134722432_456240050__segment_1_0_48.mp4).
 - [3 склейки подряд](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0af64f3c-521a-498c-82c6-bad558f6bf2a/trimmed/-81140789_456240567__segment_1_17_167.mp4).
 - [Плохое качество при движении «пожатие», особенно в области рук](assets/stage3-antiexample-hands.mp4).
 - [«Гуляющие» полосы + виньетка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-209756877_456239027__segment_1_1_61.mp4).
@@ -275,6 +274,8 @@
 - [Кашель перебивает говорящего](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/9851e9b8-2ed0-4804-8e1c-ebfabbf72b0f/trimmed/-9571212_456239370__segment_5_136_165__seg4.mp4).
 
 `[Разметка ВК видео — Критерии примеры; Таблица с примерами по вопросам; Памятка Аватар 3 этап]`
+
+→ больше примеров см. [Банк примеров](11-example-library.md#битое--примеры-дефектов).
 
 ### Рамка — как определить и подтверждённые примеры
 
@@ -332,7 +333,7 @@
 - [Субтитры — т.к. показали ФИО](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/4301ce48-9f23-4e2d-b3c0-fc5ab4ddfe73/trimmed/-233912718_456239026__segment_1_3_17.mp4)
 - [На 22-й секунде «субтитры»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-95383488_171970745__segment_1_14_120.mp4)
 
-Полный банк примеров по всем критериям (198+ ссылок) — см. [11-example-library.md](11-example-library.md).
+→ больше примеров см. [Банк примеров](11-example-library.md).
 
 ## Антипримеры
 

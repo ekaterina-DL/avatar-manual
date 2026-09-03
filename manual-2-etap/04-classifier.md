@@ -131,8 +131,6 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 - [**Сидя в полный рост** — колени уже видны (до 0:53)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/alDyTf-EX1Y/alDyTf-EX1Y.mp4)
 - [**Стоя в полный рост** — колени уже видны](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/3fhv7tzaLHw/3fhv7tzaLHw.mp4)
 
-→ больше примеров — в [банке примеров](11-example-library.md)
-
 `[Журнал проверок ОС]`
 
 ### 4. Преобладающий ракурс
@@ -190,8 +188,6 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 - [**Ракурс меняется в пределах ролика** — берём преобладающее значение, это не «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-201254813_456239373__segment_1_2_45.mp4)
 - [**Ракурс меняется в пределах ролика** — берём преобладающее значение, это не «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/34369717-c2c7-4230-a8e7-c3a679803c7d/trimmed/-186339672_456239137__segment_2_175_191__seg2.mp4)
 
-→ больше примеров — в [банке примеров](11-example-library.md)
-
 `[Журнал проверок ОС]`
 
 ### 5. Освещение
@@ -227,8 +223,6 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 - [**Естественное** (0–86.3) — а не «мягкое студийное»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/0AiCXmNJGvk/0AiCXmNJGvk.mp4)
 - ![grid: Студийное](assets/svet_studio1.png)
 - ![grid: Студийное](assets/svet_studio2.png)
-
-→ больше примеров — в [банке примеров](11-example-library.md)
 
 ### 6. Фон
 
@@ -282,8 +276,6 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 - [**Естественный, но статичный**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-45583559_456240264__segment_2_176_206__seg2.mp4)
 - [**Динамичный/уличный** — деревья на фоне, земля](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/Zgmlx08HIR4/Zgmlx08HIR4.mp4)
 - [**Динамичный/уличный** — люди позади двигаются](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/sCkhgfDQUzI/sCkhgfDQUzI.mp4)
-
-→ больше примеров — в [банке примеров](11-example-library.md)
 
 ### 7. Эмоции и выражение лица
 
