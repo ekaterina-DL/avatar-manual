@@ -25,6 +25,10 @@
 <span class="kf-tag">ИИ-сгенерированные изображения</span>
 <span class="kf-tag">нейро-аватары</span>
 <span class="kf-tag">виньетку</span>
+<span class="kf-tag">субтитры</span>
+<span class="kf-tag">тряску камеры</span>
+<span class="kf-tag">большую пиксельность</span>
+<span class="kf-tag">пережатие</span>
 </div>
 </div>
 </div>
