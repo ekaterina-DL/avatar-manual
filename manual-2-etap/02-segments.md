@@ -29,7 +29,8 @@
 <span class="kf-tag">тряску камеры</span>
 <span class="kf-tag">большую пиксельность</span>
 <span class="kf-tag">пережатие</span>
-<span class="kf-tag">молчание &gt;4 сек</span>
+<span class="kf-tag">закадровый голос</span>
+<span class="kf-tag">молчание &gt;4 сек и на границах</span>
 </div>
 </div>
 </div>
