@@ -21,6 +21,10 @@
 <span class="kf-tag">рамки</span>
 <span class="kf-tag">водяные знаки</span>
 <span class="kf-tag">наложенный текст</span>
+<span class="kf-tag">дубляж</span>
+<span class="kf-tag">ИИ-сгенерированные изображения</span>
+<span class="kf-tag">нейро-аватары</span>
+<span class="kf-tag">виньетку</span>
 </div>
 </div>
 </div>
