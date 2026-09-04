@@ -71,8 +71,4 @@
 
 ## Артефакт
 
-- [Сложное освещение](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/686bf388-838b-4fd1-98c9-6f2ad595e68b/trimmed/-163655585_456239140__segment_1_10_30.mp4)
 - [Мерцание пиксельное](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-198074903_456239039__segment_1_0_75.mp4)
-- [Лёгкая размытость, мини-пиксели](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/-68719297_456239633__segment_2_50_62__seg2.mp4)
-- [Артефакт](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-166639003_456239199__segment_1_6_126.mp4)
-- [Мерцание](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/be42f18f-8152-425d-9ada-0cdf65668287/trimmed/-64931420_456239841__segment_1_24_49.mp4)
