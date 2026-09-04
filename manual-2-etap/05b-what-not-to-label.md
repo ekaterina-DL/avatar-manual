@@ -58,8 +58,8 @@
 <li markdown="1">
 
 **Тряска камеры или её сильное «гуляние»** — сегмент не подходит. Резкое движение камеры — это
-тряска, плавное/аккуратное — норма (оценка на глаз по этой эвристике). Калибровочные примеры —
-см. [ниже](#тряска-камеры-vs-плавное-движение). `[Памятка «Аватар 2 этап», стр.3; Вопросы-ответы, 20.08.2026]`
+тряска, плавное/аккуратное — норма (оценка на глаз по этой эвристике).
+`[Памятка «Аватар 2 этап», стр.3; Вопросы-ответы, 20.08.2026]`
 
 <p markdown="1">⚠️ «Гуляние» камеры само по себе — не проблема, если оно **не мешает восприятию происходящего
 на видео**. Сегмент не подходит только если выполняется хотя бы одно из двух условий: (1)
@@ -325,16 +325,6 @@
 - [**Рамка слева**](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_027/182002586_456241831__segment_1_7_71__seg1.mp4)
 
 `[Разметка ВК видео — ОС 27.05 СТ2]`
-
-### Тряска камеры vs плавное движение
-
-**Тряска (недопустимо):**
-- [Тряска на участках 3–4, 7–8, 14–16 сек](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/b60f390b-7303-41bb-9e9e-0e343784d30a/trimmed/xNQsedaNa9Y__segment_239139406_254170148.mp4) — тайминги подтверждены прямым ответом заказчика.
-- [Тряска на участках 3–4, 7–9 сек](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/b60f390b-7303-41bb-9e9e-0e343784d30a/trimmed/ufdhq0PS7Dw__segment_221050564_242622565.mp4)
-
-**Плавное движение (допустимо):**
-- [Пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-146098457_456247757__segment_2_43_72__seg2.mp4)
-- [Пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/09ac75d7-9bcf-4333-83e3-c984c0f4fedd/trimmed/-42289208_456239270__segment_5_96_110__seg5.mp4)
 
 ### Наложенный текст — подтверждённые примеры
 
