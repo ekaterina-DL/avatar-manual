@@ -213,6 +213,14 @@ body, .md-typeset {
   border-radius: 4px;
   box-shadow: none;
 }
+/* Подпись-список под этим скриншотом (6 пунктов) — по умолчанию тема ставит между пунктами
+   списка margin-bottom: .5em (.md-typeset ol li), из-за чего короткие однострочные пункты
+   смотрятся излишне разрозненно. Уменьшено только для этого списка (класс на обёртке), а не
+   глобально для всех списков сайта. */
+.interface-caption li {
+  margin-bottom: .15em;
+}
+
 .md-typeset img[src$="interface-overview.png"]:hover {
   position: fixed;
   top: 50%;
