@@ -21,7 +21,8 @@ _DIAGRAM = (
     '<div class="apeal-flow">\n'
     '<div class="apeal-step">\n'
     '<span class="apeal-num">1</span><span class="apeal-title">Асессор</span>\n'
-    "<p>не согласен с ОС → пишет в тред Mattermost со ссылкой на видео и аргументом</p>\n"
+    "<p>не согласен с ОС → пишет в тред Mattermost/таблицу с ОС по проекту со ссылкой на видео и\n"
+    "аргументом</p>\n"
     "</div>\n"
     '<div class="apeal-arrow">→</div>\n'
     '<div class="apeal-step">\n'
