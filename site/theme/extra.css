@@ -221,6 +221,42 @@ body, .md-typeset {
   margin-bottom: .15em;
 }
 
+/* Номера пунктов — кружки, как выноски-цифры на самом скриншоте (1-6), чтобы подпись под
+   картинкой визуально перекликалась с цифрами на ней. Обычный ::marker у <ol> нельзя надёжно
+   стилизовать как круглую плашку с фоном во всех браузерах, поэтому вместо него — счётчик CSS
+   на псевдоэлементе ::before, list-style снят, отступ слева освобождён под сам кружок. */
+.interface-caption ol {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  counter-reset: iface-step;
+}
+.interface-caption li {
+  counter-increment: iface-step;
+  position: relative;
+  margin-left: 0;
+  padding-left: 2em;
+}
+.interface-caption li::before {
+  content: counter(iface-step);
+  position: absolute;
+  top: .1em;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  border: 1.5px solid var(--gray-600);
+  background: var(--gray-50);
+  color: var(--gray-600);
+  font-family: 'Golos Text', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: .8em;
+}
+
 .md-typeset img[src$="interface-overview.png"]:hover {
   position: fixed;
   top: 50%;
