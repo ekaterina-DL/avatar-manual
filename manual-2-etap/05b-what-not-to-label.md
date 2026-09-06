@@ -7,6 +7,13 @@
 ## 🚫 Полностью исключённые типы видео
 
 - Видео с **дубляжом** (речь поверх оригинальной дорожки).
+
+**Калибровочный пример:**
+
+<!-- video-eyebrow: Дубляж -->
+
+- [Дубляж](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-50750285_456239157__segment_1_11_48.mp4).
+
 - Видео с **сопроводительным текстом/субтитрами, рамками**.
 - Видео с **изображениями, сгенерированными ИИ**.
 - Видео с **нейро-аватарами** (в начале может быть сказано, что это чей-то аватар).
@@ -71,6 +78,7 @@
 
 <!-- video-eyebrow: Пиксельность -->
 
+- [Нет пиксельности, для сравнения](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/88d5bdc8-2041-4f7f-a9ff-e4a69ff9cc15/trimmed/twOr2O4Sz2k__segment_0_11459087.mp4).
 - [Некритичная пиксельность (сегмент 0–11 сек, дальше склейка)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/d0b8ecc6-656b-45ca-8d56-443d2bccf531/trimmed/k3M-nKGiyjk__segment_0_1489773.mp4).
 - [Некритичная пиксельность (из-за освещения)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/4542bcd4-2e85-4d93-b5e5-2fe85f114c36/trimmed/nHJXlPjMigk__segment_2_48_100__seg2.mp4).
 - [Пиксельность — пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/a9191609-67b3-4928-a2f9-e7addbc4ef78/trimmed/7y8rmxSPcLo__segment_1028854_74901067.mp4).
@@ -78,7 +86,6 @@
 - [Пиксельность — пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/dbadf075-4485-41bb-8c95-98518f5ee4e9/trimmed/zTO68RryG4M__segment_19714205_32724937.mp4).
 - [Пиксельность — пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/dbadf075-4485-41bb-8c95-98518f5ee4e9/trimmed/XHaqK4rvHwM__segment_0487004_2954991.mp4).
 - [Пиксельность — пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/21b1377b-b3d0-496b-a4a9-6e5c85ec6cfd/trimmed/-74776957_456241310__segment_1_225_348.mp4).
-- [Нет пиксельности, для сравнения](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/88d5bdc8-2041-4f7f-a9ff-e4a69ff9cc15/trimmed/twOr2O4Sz2k__segment_0_11459087.mp4).
 
 `[Комментарии к мануалу от заказчика, 06.09.2026]`
 
