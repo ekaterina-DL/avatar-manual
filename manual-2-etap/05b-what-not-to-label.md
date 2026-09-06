@@ -393,7 +393,6 @@
 - [Субтитры — т.к. показали ФИО](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/4301ce48-9f23-4e2d-b3c0-fc5ab4ddfe73/trimmed/-233912718_456239026__segment_1_3_17.mp4)
 - [На 19-й секунде «субтитры»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-95383488_171970745__segment_1_14_120.mp4)
 - [Наложенный текст + несколько склеек подряд — размечать очень внимательно](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-123741670_456239056__segment_1_0_88.mp4)
-- [Водяной знак (вотермарка) — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/c2ef48f4-95c8-4a89-b86f-97f93e02e41d/trimmed/9mKrMBVlpEM__segment_0632017_127541.mp4)
 
 `[Комментарии к мануалу от заказчика, 06.09.2026]`
 
