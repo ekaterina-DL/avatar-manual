@@ -48,7 +48,7 @@
 
 ### Нет пиксельности, для сравнения (1)
 
-- [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-191171932_456239050/-191171932_456239050.mp4)
+- [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/88d5bdc8-2041-4f7f-a9ff-e4a69ff9cc15/trimmed/twOr2O4Sz2k__segment_0_11459087.mp4)
 
 ## Битое — примеры дефектов
 
