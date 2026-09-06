@@ -12,7 +12,7 @@
 
 <!-- video-eyebrow: Дубляж -->
 
-- [Дубляж](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-50750285_456239157__segment_1_11_48.mp4).
+- [](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-50750285_456239157__segment_1_11_48.mp4)
 
 - Видео с **сопроводительным текстом/субтитрами, рамками**.
 - Видео с **изображениями, сгенерированными ИИ**.
