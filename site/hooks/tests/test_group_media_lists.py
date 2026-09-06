@@ -88,15 +88,21 @@ def test_handles_wrapped_caption_and_trailing_text_after_video_tag():
     assert "если мимика всё равно видна неплохо, такой фрагмент разметить можно." in result
 
 
-def test_single_video_item_not_grouped():
+def test_single_video_item_gets_visible_caption_card():
+    """Одиночное видео (прогон из 1) тоже оборачивается в .video-block/.video-item — иначе
+    подпись уходит в невидимый fallback <video> и остаётся голый маркер списка "•" (реальный
+    случай: manual-2-etap/11-example-library.md, раздел "Артефакт" после чистки до 1 видео,
+    06.09.2026)."""
     md = (
         "## Раздел\n\n"
         '- <video controls preload="metadata" style="max-width:100%">'
         '<source src="https://example.com/a.mp4" type="video/mp4">Одиночный пример</video>.\n'
     )
     result = on_page_markdown(md, None, None, None)
-    assert "video-block" not in result
-    assert "<video" in result
+    assert '<div class="video-block" markdown="1">' in result
+    assert '<div class="video-item" markdown="1">' in result
+    assert "Одиночный пример" in result
+    assert "<li>" not in result
 
 
 def test_non_video_list_untouched():
@@ -152,9 +158,9 @@ def test_trailing_non_video_item_does_not_sink_whole_list():
 
 
 def test_leading_video_run_before_trailing_non_video_item_groups_only_the_run():
-    """То же самое, но с одиночным (не сгруппированным) видео-пунктом в прогоне — прогон из
-    1 видео короче порога группировки (нужно 2+), поэтому должен остаться как обычный пункт,
-    а не потеряться."""
+    """То же самое, но с одиночным видео-пунктом в прогоне — прогон из 1 видео тоже оборачивается
+    в .video-block (см. test_single_video_item_gets_visible_caption_card), а следующий за ним
+    обычный пункт без видео остаётся как есть, отдельным пунктом списка после блока."""
     md = (
         "## Раздел\n\n"
         '- <video controls preload="metadata" style="max-width:100%">'
@@ -162,9 +168,10 @@ def test_leading_video_run_before_trailing_non_video_item_groups_only_the_run():
         "- обычный пункт без видео.\n"
     )
     result = on_page_markdown(md, None, None, None)
-    assert "video-block" not in result
-    assert '<source src="https://example.com/a.mp4" type="video/mp4">' in result
-    assert "обычный пункт без видео." in result
+    assert '<div class="video-block" markdown="1">' in result
+    assert '<source src="https://example.com/a.mp4" type="video/mp4">' not in result
+    assert 'src="https://example.com/a.mp4"' in result
+    assert "- обычный пункт без видео." in result
 
 
 def test_grid_image_joins_video_run_as_matching_card():
@@ -244,9 +251,10 @@ def _eyebrow_text(html):
 
 
 def test_eyebrow_marker_does_not_leak_when_run_too_short_to_group():
-    """Если после маркера прогон видео короче порога группировки (< 2), video-block не
-    создаётся вовсе — но маркер-строка всё равно не должна просочиться в вывод как видимый
-    текст."""
+    """Даже для одиночного видео (video-block всё равно создаётся, см.
+    test_single_video_item_gets_visible_caption_card) сама маркер-строка "<!-- video-eyebrow: -->"
+    не должна просочиться в вывод как видимый текст/комментарий — она превращается в
+    <span class="eyebrow">, а не остаётся буквальной строкой."""
     md = (
         "## Раздел\n\n"
         "<!-- video-eyebrow: Одиночный -->\n"
