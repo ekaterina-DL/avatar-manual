@@ -267,7 +267,7 @@
 
 <!-- video-eyebrow: Солнцезащитные очки -->
 
-- [✅ Очки — сегмент годен](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/79734b90-edf7-4fd9-8993-63fefbdebf47/trimmed/-15747675_456239023__segment_1_12_52.mp4).
+- [❌ Очки — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/79734b90-edf7-4fd9-8993-63fefbdebf47/trimmed/-15747675_456239023__segment_1_12_52.mp4).
 - [❌ Очки с бликами — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/891aaa7b-a9fb-4abe-846a-fb6517d1d86f/trimmed/-207557049_456239088__segment_1_0_72.mp4).
 
 `[Комментарии к мануалу от заказчика, 06.09.2026]`
