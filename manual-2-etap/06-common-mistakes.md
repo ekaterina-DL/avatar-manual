@@ -65,7 +65,7 @@
 
 <!-- video-eyebrow: Ракурс, язык, темп речи -->
 - [Выбрано 2 значения в «Преобладающем ракурсе» — нужно выбрать один, доминирующий вариант.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/MbzweqS5chA/MbzweqS5chA.mp4)
-- [Неверно выбран язык сегмента.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/8F8h03d5JjA/8F8h03d5JjA.mp4)
+- [Неверно выбран язык сегмента — нужно было выбрать «Другой язык».](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/8F8h03d5JjA/8F8h03d5JjA.mp4)
 - [2 значения в «Темпе речи» в одном сегменте у одного и того же человека.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/aR-8xggopRc/aR-8xggopRc.mp4)
 
 ## 2. Некорректные границы объекта
