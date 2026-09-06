@@ -96,6 +96,14 @@
   звучит мужской голос) — размечать такое видео нельзя, это «Битое».
   `[Разметка ВК видео — ОС экзамен 2 этап 05.08; Инстр. Kandinsky-Аватар, стр.2, 7-10]`
 
+**Калибровочный пример:**
+
+<!-- video-eyebrow: Синхронизация -->
+
+- [❌ Рассинхрон аудио и видео — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/c9088ead-8c8b-4126-8d8e-da9965d1b0a8/trimmed/-35155941_456239363__segment_1_0_50.mp4).
+
+`[Комментарии к мануалу от заказчика, 06.09.2026]`
+
 Полный список исключений и группы допустимых источников — см. [01-general-requirements.md](01-general-requirements.md).
 Разбор реальных случаев брака по качеству — см. [06-common-mistakes.md](06-common-mistakes.md).
 
@@ -113,6 +121,14 @@
   `[Разметка ВК видео — ОС Экзамен 18.05 / 28.05 СТ2; Памятка «Аватар 2 этап», стр.4]`
 
 `[Инстр. Kandinsky-Аватар, стр.2, 7-10]`
+
+**Калибровочный пример:**
+
+<!-- video-eyebrow: Склейки и артефакты -->
+
+- [Скачок камеры на 1:19–1:20 — приравнивается к склейке, «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-207900393_456240381__segment_3_148_244__seg3.mp4).
+
+`[Комментарии к мануалу от заказчика, 06.09.2026]`
 
 ## 🔇 Молчание и закадровый голос
 
@@ -180,6 +196,15 @@
 сегмента — такой сегмент не подходит целиком, а не только в проблемной части.
 `[Разметка ВК видео — ОС 28.05 СТ2]`</p>
 
+<p markdown="1">Калибровочные примеры:</p>
+
+<!-- video-eyebrow: Перекрытие рта -->
+
+- [✅ Сложное освещение, перекрытие рта некритичное — сегмент годен](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/88d5bdc8-2041-4f7f-a9ff-e4a69ff9cc15/trimmed/rPvoShZoDSo__segment_230816898_275374186.mp4).
+- [❌ Рот перекрыт — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fb5f770b-a3be-402e-af20-a918ebbd699c/trimmed/775579684_456246701__segment_1_23_42__seg1.mp4).
+
+`[Комментарии к мануалу от заказчика, 06.09.2026]`
+
 </li>
 <li markdown="1">
 
@@ -211,6 +236,15 @@
 <p markdown="1">Даже если **очки прозрачные и глаза видны** — в них ***не должно быть*** отражений (бликов,
 отражённого света и т.п.), закрывающих обзор на глаза.
 `[Ответы на вопросы по Аватару, 02.09.2026]`</p>
+
+<p markdown="1">Калибровочные примеры:</p>
+
+<!-- video-eyebrow: Солнцезащитные очки -->
+
+- [✅ Очки — сегмент годен](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/79734b90-edf7-4fd9-8993-63fefbdebf47/trimmed/-15747675_456239023__segment_1_12_52.mp4).
+- [❌ Очки с бликами — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/891aaa7b-a9fb-4abe-846a-fb6517d1d86f/trimmed/-207557049_456239088__segment_1_0_72.mp4).
+
+`[Комментарии к мануалу от заказчика, 06.09.2026]`
 
 </li>
 <li markdown="1">
@@ -332,6 +366,10 @@
 
 - [Субтитры — т.к. показали ФИО](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/4301ce48-9f23-4e2d-b3c0-fc5ab4ddfe73/trimmed/-233912718_456239026__segment_1_3_17.mp4)
 - [На 19-й секунде «субтитры»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-95383488_171970745__segment_1_14_120.mp4)
+- [Наложенный текст + несколько склеек подряд — размечать очень внимательно](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-123741670_456239056__segment_1_0_88.mp4)
+- [Водяной знак (вотермарка) — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/c2ef48f4-95c8-4a89-b86f-97f93e02e41d/trimmed/9mKrMBVlpEM__segment_0632017_127541.mp4)
+
+`[Комментарии к мануалу от заказчика, 06.09.2026]`
 
 → больше примеров см. [Банк примеров](11-example-library.md).
 
