@@ -254,15 +254,28 @@ MAPPINGS = [
         # - PljgCCMJY40 (дословно цитировал критерий "с говорением: чистое, без превалирующих...
         #   музыки", а на фрагменте звучало громкое муз. сопровождение) — иллюстрирует, что
         #   доминирующая музыка означает "Пение", а не "Речь".
+        #
+        # 06.09.2026 (комментарии заказчика к мануалу): (1) у примера 2 (gdoKm-hSp5U) уточнено,
+        # что пение начинается только с 1:40 — до этого в ролике речь, без уточнения подпись
+        # вводила в заблуждение; (2) пример 3 (PljgCCMJY40) заменён — заказчик указал, что в этом
+        # ролике пения нет вообще, на замену прислан ролик от заказчика (тот же исходник e9fb9859,
+        # что уже используется для поля "Язык и акценты", другой сегмент). Три "Пение"-пункта
+        # разбиты на отдельные пункты списка (было — 1 пункт с 3 видео через запятую), иначе
+        # уточнение для примера 2 некуда вставить: _parse_video_item сохраняет подпись только
+        # ПОСЛЕ последнего видео в пункте, текст между видео внутри одного пункта отбрасывается
+        # как разделитель перечисления (тот же приём, что уже применён у поля 12 "Смена
+        # ракурса/движение камеры" 3 этапа).
         "items": [
             "- **Речь:**\n"
             "  [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/0f94c3c1-fc56-4da4-be41-6c39299fb51a/downloaded_raw/aEUPBI6wMrA.mp4)",
             "- **Пение:**\n"
-            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/b59716e5-79dd-48ff-9971-27f31e4a63ea/downloaded_raw/OjbDE5P1yM4.mp4),\n"
-            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/gdoKm-hSp5U/gdoKm-hSp5U.mp4),\n"
-            "  [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/PljgCCMJY40/PljgCCMJY40.mp4)",
+            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/b59716e5-79dd-48ff-9971-27f31e4a63ea/downloaded_raw/OjbDE5P1yM4.mp4)",
+            "- **Пение (поёт начиная с 1:40, до этого говорит):**\n"
+            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/09_06_2026/gdoKm-hSp5U/gdoKm-hSp5U.mp4)",
+            "- **Пение:**\n"
+            "  [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/e9fb9859-062c-4e76-b3a7-9eeaf8ed092c/trimmed/-76745347_456240219__segment_2_80_92.mp4)",
         ],
-        "max_items": 2,
+        "max_items": 4,
         "label": "Баланс по пению/говорению",
     },
     {
