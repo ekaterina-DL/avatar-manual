@@ -135,12 +135,14 @@ MAPPINGS = [
         # классификатора — это ровно тот случай, когда дублирование допустимо, если в каждом
         # месте — свой, непохожий комментарий (здесь ниже — только про язык, в журнале — все 3).
         #
-        # Правильное значение для всех трёх подтверждено пользователем 20.08.2026: A5imdLsdnpU —
-        # "английский"; NLPG_ic_sVg и Sf-tjXevlyQ — "другой" (в источнике исходно было только
-        # "не английский" без уточнения, пользователь дополнила правильным значением).
+        # Правильное значение для NLPG_ic_sVg и Sf-tjXevlyQ подтверждено пользователем
+        # 20.08.2026 — "другой" (в источнике исходно было только "не английский" без уточнения,
+        # пользователь дополнила правильным значением). Пример "Английский" (A5imdLsdnpU) был
+        # изначально помечен пользователем как английский, но заказчик 06.09.2026 указал, что в
+        # этом ролике на самом деле звучит не английский язык — заменён на ролик от заказчика.
         "items": [
             "- **Английский:**\n"
-            "  [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/0f94c3c1-fc56-4da4-be41-6c39299fb51a/downloaded_raw/A5imdLsdnpU.mp4)",
+            "  [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/e9fb9859-062c-4e76-b3a7-9eeaf8ed092c/trimmed/-94892022_171336072__segment_1_31_42__seg1.mp4)",
             "- **Язык определён неверно (надо указывать не Английский, а Другой):**\n"
             "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/0f94c3c1-fc56-4da4-be41-6c39299fb51a/downloaded_raw/NLPG_ic_sVg.mp4),\n"
             "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/Sf-tjXevlyQ/Sf-tjXevlyQ.mp4)",
