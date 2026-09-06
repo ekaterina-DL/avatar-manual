@@ -84,6 +84,13 @@
 
 - **Виньетка** (затемнение по краям кадра) — это наложенный эффект, и если во всём видео нет
   сегмента без виньетки — это брак. `[Разметка ВК видео — ОС 07.08.2026]`
+
+**Калибровочный пример:**
+
+<!-- video-eyebrow: Виньетка -->
+
+- [Виньетка (затемнение по углам кадра)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_028/-222562832_456239022__segment_1_27_106.mp4).
+
 - **Фрагменты короче 10 секунд или длиннее 300 секунд** (без разбивки на несколько) — не
   подходят; полное определение длительности сегмента и как её считать — см.
   [02-segments.md](02-segments.md#определение-и-границы). `[Инстр. Kandinsky-Аватар, стр.2, 7-10]`
@@ -391,7 +398,6 @@
 - [3 склейки подряд](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0af64f3c-521a-498c-82c6-bad558f6bf2a/trimmed/-81140789_456240567__segment_1_17_167.mp4).
 - [Плохое качество при движении «пожатие», особенно в области рук](assets/stage3-antiexample-hands.mp4).
 - [«Гуляющие» полосы + виньетка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-209756877_456239027__segment_1_1_61.mp4).
-- [Виньетка (затемнение по углам кадра)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_028/-222562832_456239022__segment_1_27_106.mp4).
 - [Громкий звук перекрывает речь говорящего + низкое качество](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7561daa6-313c-43c8-beca-1ca316707f1c/trimmed/-153808162_456239018__segment_1_1_13.mp4).
 - [Пережатие: на скорости 0.5 в области головы видна «сыпучая» картинка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-920580_456239632__segment_1_0_15__seg1.mp4).
 - [Пережатие (ещё один пример)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/ea6874ce-6eaa-453d-aa2d-488c228d5fdf/trimmed/-226415646_456241869__segment_2_181_193__seg2.mp4).
