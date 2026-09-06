@@ -62,6 +62,16 @@
   `[Комментарии для мануала ко 2 этапу Аватара, 04.09.2026; Ответы на вопросы по Аватару,
   02.09.2026]`
 
+**Калибровочные примеры тряски:**
+
+<!-- video-eyebrow: Тряска камеры -->
+
+- [✅ Умеренная тряска — сегмент годен](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/b60f390b-7303-41bb-9e9e-0e343784d30a/trimmed/xNQsedaNa9Y__segment_239139406_254170148.mp4).
+- [✅ Умеренная тряска — сегмент годен](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/b60f390b-7303-41bb-9e9e-0e343784d30a/trimmed/ufdhq0PS7Dw__segment_221050564_242622565.mp4).
+- [❌ Избыточная тряска — такой сегмент брать не нужно](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/4542bcd4-2e85-4d93-b5e5-2fe85f114c36/trimmed/AFEU3aCuYJ4__segment_1_0_98__seg1.mp4).
+
+`[Комментарии для мануала ко 2 этапу Аватара, 04.09.2026]`
+
 - **Слишком близкое расположение человека к камере** может само по себе давать расфокус
   («мыльность») черт лица и мимики, даже если официальное разрешение видео в порядке — такой
   сегмент не подходит (отдельная категория ошибки «Нечёткость мимики/черт лица», см.
