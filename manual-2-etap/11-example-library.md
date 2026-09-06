@@ -50,6 +50,17 @@
 
 - [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/88d5bdc8-2041-4f7f-a9ff-e4a69ff9cc15/trimmed/twOr2O4Sz2k__segment_0_11459087.mp4)
 
+### Дополнительные примеры
+
+- [Некритичная пиксельность (сегмент 0–11 сек, дальше склейка)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/d0b8ecc6-656b-45ca-8d56-443d2bccf531/trimmed/k3M-nKGiyjk__segment_0_1489773.mp4)
+- [Некритичная пиксельность (из-за освещения)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/4542bcd4-2e85-4d93-b5e5-2fe85f114c36/trimmed/nHJXlPjMigk__segment_2_48_100__seg2.mp4)
+- [Пиксельность — пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/a9191609-67b3-4928-a2f9-e7addbc4ef78/trimmed/7y8rmxSPcLo__segment_1028854_74901067.mp4)
+- [Пиксельность — пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-160924535_456240191__segment_1_41_97__seg1.mp4)
+- [Пиксельность — пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/dbadf075-4485-41bb-8c95-98518f5ee4e9/trimmed/zTO68RryG4M__segment_19714205_32724937.mp4)
+- [Пиксельность — пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/dbadf075-4485-41bb-8c95-98518f5ee4e9/trimmed/XHaqK4rvHwM__segment_0487004_2954991.mp4)
+
+`[Комментарии к мануалу от заказчика, 06.09.2026]`
+
 ## Битое — примеры дефектов
 
 - [Плохое качество с пиксельностью](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-211623471_456239688/-211623471_456239688.mp4)
@@ -67,6 +78,11 @@
 - [Наложение полупрозрачного кадра](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/536eced6-c1ab-4ac2-8c6d-fd202ea20fa5/trimmed/-160788341_456239461__segment_6_203_214__seg6.mp4)
 - [Мало FPS (кадров в секунду), заметен «разрыв»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/76a544e9-296a-4620-8ef9-cbd367cfe11a/trimmed/-14567_456241755__segment_1_8_33.mp4)
 - [Звук ветра слишком громкий](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/75ed1897-eb70-4f5d-8222-a129f484476b/trimmed/-213127547_456291948__segment_4_75_98__seg4.mp4)
+- [Отличное качество, но не видно лица — сегмента для разметки нет](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/d0b8ecc6-656b-45ca-8d56-443d2bccf531/trimmed/f7F-ZkD3qV0__segment_148877955_160529273.mp4)
+- [Плохое качество и звук](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/76a544e9-296a-4620-8ef9-cbd367cfe11a/trimmed/-79268570_456242383__segment_1_2_15.mp4)
+- [Смена кадра в конце](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_019/-25605330_456240316__segment_1_48_61.mp4)
+
+`[Комментарии к мануалу от заказчика, 06.09.2026]`
 
 ## Артефакт
 
