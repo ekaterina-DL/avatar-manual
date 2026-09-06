@@ -170,6 +170,16 @@
   что движется) появляются **чёрные горизонтальные полосы** — это брак, такое видео
   отправляется в «Битое». `[Ответы на вопросы по Аватару, 02.09.2026; Разметка ВК
   видео — ОС 01.09.2026]`
+
+**Калибровочные примеры:**
+
+<!-- video-eyebrow: Пережатие -->
+
+- [Пережатие: на скорости 0.5 в области головы видна «сыпучая» картинка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-920580_456239632__segment_1_0_15__seg1.mp4).
+- [Пережатие (ещё один пример)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/ea6874ce-6eaa-453d-aa2d-488c228d5fdf/trimmed/-226415646_456241869__segment_2_181_193__seg2.mp4).
+
+`[Комментарии для мануала ко 2 этапу Аватара, 04.09.2026]`
+
 - **Наложенный/сведённый фон (хромакей)** — сам по себе **не запрещён**: любой искусственно
   наложенный фон разрешён правилами разметки. Проблема не в факте наложения фона, а в том,
   переходят ли артефакты сведения **на самого человека**: если на лице/руках/теле явных
@@ -399,9 +409,6 @@
 - [Плохое качество при движении «пожатие», особенно в области рук](assets/stage3-antiexample-hands.mp4).
 - [«Гуляющие» полосы + виньетка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-209756877_456239027__segment_1_1_61.mp4).
 - [Громкий звук перекрывает речь говорящего + низкое качество](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7561daa6-313c-43c8-beca-1ca316707f1c/trimmed/-153808162_456239018__segment_1_1_13.mp4).
-- [Пережатие: на скорости 0.5 в области головы видна «сыпучая» картинка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-920580_456239632__segment_1_0_15__seg1.mp4).
-- [Пережатие (ещё один пример)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/ea6874ce-6eaa-453d-aa2d-488c228d5fdf/trimmed/-226415646_456241869__segment_2_181_193__seg2.mp4).
-  `[Комментарии для мануала ко 2 этапу Аватара, 04.09.2026]`
 - [Кашель перебивает говорящего](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/9851e9b8-2ed0-4804-8e1c-ebfabbf72b0f/trimmed/-9571212_456239370__segment_5_136_165__seg4.mp4).
 
 `[Разметка ВК видео — Критерии примеры; Таблица с примерами по вопросам; Памятка Аватар 3 этап]`
