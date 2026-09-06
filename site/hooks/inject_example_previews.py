@@ -100,7 +100,8 @@ MAPPINGS = [
         #   0:45.5–0:59.4, после исключения закадрового голоса из более раннего сегмента того же
         #   ролика) и `[Видео с разбором ошибок — Аватар 2 этап]` (спортивное интервью, видео
         #   -129135849_456240701, куратор на записи прямо называет это "монолог неподготовленный").
-        # - Диалог: `[Разметка ВК видео — диалоги и закадровый голос]`.
+        # - Диалог: `[Разметка ВК видео — диалоги и закадровый голос]`. Пример 1 заменён
+        #   06.09.2026 по прямой ссылке заказчика (видео 88d5bdc8, комментарии к мануалу).
         "items": [
             "- **Монолог (подготовленный):**\n"
             "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/0f94c3c1-fc56-4da4-be41-6c39299fb51a/downloaded_raw/aEUPBI6wMrA.mp4),\n"
@@ -109,7 +110,7 @@ MAPPINGS = [
             "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/224c5e31-c351-45dc-a99e-bd38a9660201/downloaded_raw/_EmqHIjlEto.mp4),\n"
             "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-129135849_456240701/-129135849_456240701.mp4)",
             "- **Диалог (ответы на вопросы):**\n"
-            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/13_02_2026/-219726985_456239131/-219726985_456239131.mp4),\n"
+            "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/88d5bdc8-2041-4f7f-a9ff-e4a69ff9cc15/trimmed/9vRwUmzph0U__segment_286682913_310738718.mp4),\n"
             "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/16_02_2026/-72226886_456253999/-72226886_456253999.mp4)",
         ],
         "max_items": 3,
