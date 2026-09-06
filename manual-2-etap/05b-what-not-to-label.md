@@ -77,6 +77,8 @@
 - [Пиксельность — пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-160924535_456240191__segment_1_41_97__seg1.mp4).
 - [Пиксельность — пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/dbadf075-4485-41bb-8c95-98518f5ee4e9/trimmed/zTO68RryG4M__segment_19714205_32724937.mp4).
 - [Пиксельность — пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/dbadf075-4485-41bb-8c95-98518f5ee4e9/trimmed/XHaqK4rvHwM__segment_0487004_2954991.mp4).
+- [Пиксельность — пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/21b1377b-b3d0-496b-a4a9-6e5c85ec6cfd/trimmed/-74776957_456241310__segment_1_225_348.mp4).
+- [Нет пиксельности, для сравнения](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/88d5bdc8-2041-4f7f-a9ff-e4a69ff9cc15/trimmed/twOr2O4Sz2k__segment_0_11459087.mp4).
 
 `[Комментарии к мануалу от заказчика, 06.09.2026]`
 

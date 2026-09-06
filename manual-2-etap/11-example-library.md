@@ -46,14 +46,9 @@
 - [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/47492276_456240515/47492276_456240515.mp4)
 - [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/499967389_456239308/499967389_456239308.mp4)
 
-### Нет пиксельности, для сравнения (1)
-
-- [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/88d5bdc8-2041-4f7f-a9ff-e4a69ff9cc15/trimmed/twOr2O4Sz2k__segment_0_11459087.mp4)
-
 ## Битое — примеры дефектов
 
 - [Плохое качество с пиксельностью](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-211623471_456239688/-211623471_456239688.mp4)
-- [Пиксельность](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/21b1377b-b3d0-496b-a4a9-6e5c85ec6cfd/trimmed/-74776957_456241310__segment_1_225_348.mp4)
 - [Склейка с отсутствием человека](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/536eced6-c1ab-4ac2-8c6d-fd202ea20fa5/trimmed/-4565_456239459__segment_1_14_85__seg1.mp4)
 - [В начале чёрный фон с отсутствием человека + размазано лицо](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1c35b7ef-b71d-48fc-94a7-b11274ce1cad/trimmed/219338794_456239316__segment_1_0_11.mp4)
 - [Размазано лицо, почти не видно глаз](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/1c35b7ef-b71d-48fc-94a7-b11274ce1cad/trimmed/-85053588_456239019__segment_2_79_90__seg2.mp4)
