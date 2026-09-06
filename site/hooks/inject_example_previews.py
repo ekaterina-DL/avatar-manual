@@ -34,14 +34,14 @@ MAPPINGS = [
         "items": [
             "- **Быстрая речь:**\n"
             "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a7976df-4bc0-4333-a65a-a414f8b00e8b/trimmed/-130015614_456239698__segment_1_6_21__seg1.mp4),\n"
-            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-211038887_456239053__segment_1_17_90__seg1.mp4)",
-            "- **Средний темп:**\n"
-            "  [пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-134722432_456239898__segment_1_0_45.mp4)",
+            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-211038887_456239053__segment_1_17_90__seg1.mp4),\n"
+            "  [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/a9987571-3005-4a09-be93-b68a9a4b996a/trimmed/-230646855_456239597__segment_2_89_102__seg2.mp4)",
             "- **Медленный темп:**\n"
             "  [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0a74208b-b92f-4236-855b-661eb57c1ddc/trimmed/-224301734_456239054__segment_1_64_76__seg1.mp4),\n"
-            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/URfoFWogoWc/URfoFWogoWc.mp4)",
+            "  [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/URfoFWogoWc/URfoFWogoWc.mp4),\n"
+            "  [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/891aaa7b-a9fb-4abe-846a-fb6517d1d86f/trimmed/-57387976_456239831__segment_1_11_75.mp4)",
         ],
-        "max_items": 3,
+        "max_items": 2,
         "label": "Темп речи",
     },
     {
