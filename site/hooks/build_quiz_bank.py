@@ -16,6 +16,7 @@ import re
 from pathlib import Path
 
 from _build_profile import is_pdf_build
+from _section_utils import extract_section
 
 TARGET_PAGE = "manual-2-etap/07-testirovanie.md"
 
@@ -163,13 +164,124 @@ def extract_forbidden_tags(sources):
     ]
 
 
+_FIELD_HEADING_RE = re.compile(r'^### \d+\.\s+(.*?)\s*$', re.M)
+_CHECKLIST_RE = re.compile(
+    r'<ul class="value-checklist">(.*?)</ul>', re.S
+)
+_LI_RE = re.compile(r'<li>(.*?)</li>', re.S)
+_EXAMPLE_LINE_RE = re.compile(
+    r'^\s*[-*]\s+\[\*\*(?P<value>[^*]+?)\*\*(?P<rest>[^\]]*)\]\((?P<url>[^)]+)\)', re.M
+)
+_TIMECODE_RE = re.compile(
+    r'\(?(?P<a>\d+):(?P<b>\d+(?:\.\d+)?)|\(?(?P<sec>\d+(?:\.\d+)?)\s*[–-]'
+)
+
+
+def _norm_value(text):
+    return re.sub(r'\s+', ' ', text).strip().lower()
+
+
+def _parse_timecode(rest):
+    """Начало примера в секундах из хвоста подписи. Понимает '(78.4–95.9)' и '(0:06.48–…)'.
+    None, если тайм-кода нет."""
+    m = re.search(r'\((?:до\s*)?(\d+):(\d+(?:\.\d+)?)', rest)
+    if m:
+        return int(m.group(1)) * 60 + float(m.group(2))
+    m = re.search(r'\((?:до\s*)?(\d+(?:\.\d+)?)\s*[–-]', rest)
+    if m:
+        return float(m.group(1))
+    m = re.search(r'\((?:до\s*)?(\d+(?:\.\d+)?)\)', rest)
+    if m:
+        return float(m.group(1))
+    return None
+
+
+def _video_kind(url):
+    if "vkvideo.ru" in url or "vk.com/video" in url:
+        return "vk"
+    if "youtube.com" in url or "youtu.be" in url:
+        return "youtube"
+    return "mp4"
+
+
+def _split_classifier_fields(text):
+    """[(field_name, section_body)] по секциям '### N. <Поле>' внутри '## Поля классификатора'."""
+    body = extract_section(text, "Поля классификатора")
+    if body is None:
+        body = text
+    matches = list(_FIELD_HEADING_RE.finditer(body))
+    out = []
+    for i, mt in enumerate(matches):
+        start = mt.end()
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(body)
+        out.append((mt.group(1).strip(), body[start:end]))
+    return out
+
+
+def _field_anchor(index_word, field_name):
+    # slug как у pymdownx.slugs.slugify(case=lower): нижний регистр, пробелы -> '-',
+    # пунктуация выкидывается, кириллица сохраняется. Заголовок вида "3. Объём и поза…".
+    raw = f"{index_word} {field_name}".lower()
+    raw = raw.replace("(", "").replace(")", "").replace(",", "").replace(".", "")
+    raw = re.sub(r'\s+', '-', raw.strip())
+    return raw
+
+
+def extract_classifier_video(sources):
+    text = sources.get("manual-2-etap/04-classifier.md", "")
+    if not text:
+        return []
+    out = []
+    # индекс поля берём из самого заголовка "### N."
+    heading_iter = list(re.finditer(r'^### (\d+)\.\s+(.*?)\s*$', text, re.M))
+    idx_by_name = {m.group(2).strip(): m.group(1) for m in heading_iter}
+    for field_name, section in _split_classifier_fields(text):
+        cl = _CHECKLIST_RE.search(section)
+        if not cl:
+            continue
+        values = [re.sub(r'<[^>]+>', '', v).strip() for v in _LI_RE.findall(cl.group(1))]
+        values = [v for v in values if v]
+        if len(values) < 3:
+            continue
+        by_norm = {_norm_value(v): v for v in values}
+        for ex in _EXAMPLE_LINE_RE.finditer(section):
+            value_raw = ex.group("value").strip()
+            canon = by_norm.get(_norm_value(value_raw))
+            if canon is None:
+                continue  # подпись не совпала со значением поля — не берём
+            url = ex.group("url").strip()
+            rest = ex.group("rest") or ""
+            start = _parse_timecode(rest)
+            wrong = [v for v in values if v != canon]
+            random_wrong = wrong[:3] if len(wrong) >= 3 else wrong
+            idx_word = idx_by_name.get(field_name, "")
+            q = {
+                "id": _make_id("A", field_name, url),
+                "category": "A",
+                "topic": field_name,
+                "question": f"Определите по видео: {field_name.lower()}.",
+                "videoUrl": url,
+                "videoKind": _video_kind(url),
+                "options": [canon, *random_wrong],
+                "answer": 0,
+                "review": {
+                    "title": "Классификатор",
+                    "url": f"04-classifier.md#{_field_anchor(idx_word + '.', field_name)}",
+                },
+            }
+            if start is not None:
+                q["videoStart"] = round(start, 2)
+            out.append(q)
+    return out
+
+
 def build_bank(sources, manual_yaml_text):
     """sources: {relpath: markdown_text}. Возвращает {"generatedAt": iso, "questions": [...]}.
     Экстракторы источников A–F подключаются в Задачах 3–8."""
     questions = []
     questions += extract_numbers(sources)
     questions += extract_forbidden_tags(sources)
-    # --- Задача 4: questions += extract_classifier_video(...)
+    questions += extract_classifier_video(sources)
     # --- Задача 5: questions += extract_broken(...)
     # --- Задача 6: questions += extract_examples(...)
     # --- Задача 7: questions += load_manual_questions(manual_yaml_text)

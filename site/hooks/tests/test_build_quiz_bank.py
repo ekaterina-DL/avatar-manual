@@ -3,6 +3,7 @@ import re
 
 from build_quiz_bank import on_page_markdown, build_bank, TARGET_PAGE, SOURCE_FILES
 from build_quiz_bank import extract_numbers, extract_forbidden_tags
+from build_quiz_bank import extract_classifier_video
 
 SEGMENTS_KEYFACTS = """# Сегменты
 
@@ -137,3 +138,71 @@ def test_build_bank_shape():
     bank = build_bank(sources={}, manual_yaml_text="")
     assert bank["questions"] == []
     assert isinstance(bank["generatedAt"], str)
+
+
+CLASSIFIER_A = """# Заполнение классификатора
+
+## Поля классификатора
+
+### 3. Объём и поза тела человека в кадре
+
+<ul class="value-checklist">
+<li>Голова</li>
+<li>Голова и плечи</li>
+<li>Голова, плечи и руки</li>
+<li>Сидя в полный рост</li>
+<li>Стоя в полный рост</li>
+</ul>
+
+**Примеры:**
+
+- [**Голова и плечи** — кисти рук не видны (78.4–95.9)](https://ex.test/a.mp4)
+- [**Голова, плечи и руки** — (18.9–29.3)](https://ex.test/b.mp4)
+
+### 4. Преобладающий ракурс
+
+<ul class="value-checklist">
+<li>Анфас</li>
+<li>Полуоборот (3/4)</li>
+<li>Профиль</li>
+</ul>
+
+**Примеры:**
+
+- [**Анфас** (0:06.48–0:18.06)](https://ex.test/c.mp4)
+- [**Ракурс меняется в пределах ролика** — берём преобладающее](https://ex.test/d.mp4)
+"""
+
+
+def test_extract_classifier_video_basic():
+    qs = extract_classifier_video({"manual-2-etap/04-classifier.md": CLASSIFIER_A})
+    poses = [q for q in qs if q["topic"] == "Объём и поза тела человека в кадре"]
+    assert len(poses) == 2
+    q = poses[0]
+    assert q["category"] == "A"
+    assert q["videoUrl"] == "https://ex.test/a.mp4"
+    assert q["videoKind"] == "mp4"
+    assert q["videoStart"] == 78.4
+    assert q["options"][0] == "Голова и плечи"
+    assert set(q["options"]) <= {
+        "Голова", "Голова и плечи", "Голова, плечи и руки",
+        "Сидя в полный рост", "Стоя в полный рост",
+    }
+    assert len(q["options"]) >= 3
+    assert q["answer"] == 0
+    assert q["review"]["url"] == "04-classifier.md#3-объём-и-поза-тела-человека-в-кадре"
+
+
+def test_extract_classifier_video_skips_non_matching_caption():
+    qs = extract_classifier_video({"manual-2-etap/04-classifier.md": CLASSIFIER_A})
+    rakurs = [q for q in qs if q["topic"] == "Преобладающий ракурс"]
+    assert len(rakurs) == 1  # "Ракурс меняется…" не совпал со значением чек-листа -> пропущен
+    assert rakurs[0]["options"][0] == "Анфас"
+    assert rakurs[0]["videoStart"] == 6.48
+
+
+def test_extract_classifier_video_timecode_mm_ss():
+    qs = extract_classifier_video({"manual-2-etap/04-classifier.md": CLASSIFIER_A})
+    anfas = [q for q in qs if q["topic"] == "Преобладающий ракурс"][0]
+    # 0:06.48 -> 6.48 сек
+    assert abs(anfas["videoStart"] - 6.48) < 0.001
