@@ -58,6 +58,7 @@
   }
 
   function assembleSet(allQuestions, excludeIds) {
+    excludeIds = excludeIds || [];
     var exclude = {};
     excludeIds.forEach(function (id) { exclude[id] = true; });
 
@@ -85,8 +86,10 @@
       var fresh = shuffle(pool.filter(function (q) { return !exclude[q.id] && canAdd(q); }));
       var stale = shuffle(pool.filter(function (q) { return exclude[q.id] && canAdd(q); }));
       var ordered = fresh.concat(stale);
-      var take = Math.min(row.target, ordered.length);
-      for (var i = 0; i < take; i++) add(ordered[i]);
+      var added = 0;
+      for (var i = 0; i < ordered.length && added < row.target; i++) {
+        if (canAdd(ordered[i])) { add(ordered[i]); added++; }
+      }
     });
 
     // 2-й проход: добор до TOTAL из всего пула (свежие раньше исключённых)
@@ -153,6 +156,7 @@
     }
     iSurname.addEventListener("input", sync);
     iName.addEventListener("input", sync);
+    sync();
 
     form.appendChild(iSurname);
     form.appendChild(iName);
