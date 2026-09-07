@@ -13,11 +13,11 @@
   var TOPIC_CAP = 6;
 
   var PLAN = [
-    { cat: "A", target: 5, min: 3 },
-    { cat: "B", target: 3, min: 2 },
-    { cat: "C", target: 2, min: 1 },
-    { cat: "DE", target: 2, min: 1 },
-    { cat: "F", target: 3, min: 2 }
+    { cat: "A", target: 5 },
+    { cat: "B", target: 3 },
+    { cat: "C", target: 2 },
+    { cat: "DE", target: 2 },
+    { cat: "F", target: 3 }
   ];
 
   var bank = readBank();
@@ -117,7 +117,6 @@
     Object.keys(attrs).forEach(function (k) {
       if (k === "class") node.className = attrs[k];
       else if (k === "text") node.textContent = attrs[k];
-      else if (k === "html") node.innerHTML = attrs[k];
       else node.setAttribute(k, attrs[k]);
     });
     (children || []).forEach(function (c) {
@@ -145,8 +144,8 @@
     }));
 
     var form = el("form", { class: "quiz-fio" });
-    var iSurname = el("input", { type: "text", name: "surname", placeholder: "Фамилия", autocomplete: "family-name" });
-    var iName = el("input", { type: "text", name: "name", placeholder: "Имя", autocomplete: "given-name" });
+    var iSurname = el("input", { type: "text", name: "surname", placeholder: "Фамилия", "aria-label": "Фамилия", autocomplete: "family-name" });
+    var iName = el("input", { type: "text", name: "name", placeholder: "Имя", "aria-label": "Имя", autocomplete: "given-name" });
     var btn = el("button", { type: "submit", class: "quiz-btn", disabled: "disabled", text: "Начать тест" });
 
     function sync() {
@@ -202,7 +201,7 @@
     var box = el("div", { class: "quiz-media" });
     if (q.videoKind === "mp4") {
       var v = el("video", {
-        src: q.videoUrl + (q.videoStart ? "#t=" + q.videoStart : ""),
+        src: q.videoUrl + (q.videoStart != null ? "#t=" + q.videoStart : ""),
         controls: "controls",
         muted: "muted",
         loop: "loop",
@@ -292,7 +291,7 @@
       return { text: text, correct: i === q.answer };
     }));
 
-    var card = el("div", { class: "quiz-card quiz-qcard" });
+    var card = el("div", { class: "quiz-card" });
 
     var head = el("div", { class: "quiz-qhead" });
     head.appendChild(el("div", { class: "quiz-progress", text: "Вопрос " + (state.idx + 1) + " / " + TOTAL }));
@@ -454,7 +453,7 @@
     if (wrong.length) {
       card.appendChild(el("h3", { text: "Разбор неверных ответов" }));
       var ul = el("ul", { class: "quiz-wrong-list" });
-      wrong.forEach(function (a, i) {
+      wrong.forEach(function (a) {
         var li = el("li");
         li.appendChild(el("div", { class: "quiz-wrong-q", text: a.question }));
         li.appendChild(el("div", {
@@ -517,22 +516,32 @@
       return;
     }
 
-    // Apps Script отвечает через 302-редирект на script.googleusercontent.com; тело ответа
-    // читать не пытаемся. Любой разрешившийся промис (в т.ч. opaqueredirect) считаем
-    // успехом; только сетевая ошибка (промис отклонён) — повод показать фолбэк. Правильность
-    // приёма проверяется отдельно curl-ом из docs/quiz-apps-script.md.
+    // Apps Script отвечает HTTP 200 и на успех, и на ошибку (bad token, внутреннее
+    // исключение) — поэтому «промис разрешился» ещё не значит «сохранилось». Читаем тело
+    // ответа и смотрим на "ok":true / "ok":false / "error". Если тело недоступно
+    // (CORS/редирект) — показываем осторожную формулировку «подтверждение не получено».
     fetch(CFG.endpoint, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(buildPayload(sc, wrong)),
       keepalive: true
-    }).then(function () {
-      statusEl.className = "quiz-send-status ok";
-      statusEl.textContent = "Результат отправлен.";
-    }).catch(function () {
-      statusEl.className = "quiz-send-status warn";
-      statusEl.textContent = "Не удалось отправить результат автоматически. Сделайте скриншот этого экрана и пришлите куратору.";
-    });
+    }).then(function (r) { return r.text().catch(function () { return ""; }); })
+      .then(function (t) {
+        if (t.indexOf('"ok":true') !== -1) {
+          statusEl.className = "quiz-send-status ok";
+          statusEl.textContent = "Результат отправлен.";
+        } else if (t.indexOf('"ok":false') !== -1 || t.indexOf('"error"') !== -1) {
+          statusEl.className = "quiz-send-status warn";
+          statusEl.textContent = "Результат не сохранён (ошибка приёмника). Сделайте скриншот этого экрана и пришлите куратору.";
+        } else {
+          statusEl.className = "quiz-send-status warn";
+          statusEl.textContent = "Результат отправлен, но подтверждение не получено. На всякий случай сделайте скриншот этого экрана.";
+        }
+      })
+      .catch(function () {
+        statusEl.className = "quiz-send-status warn";
+        statusEl.textContent = "Не удалось отправить результат автоматически. Сделайте скриншот этого экрана и пришлите куратору.";
+      });
   }
 
   // экспорт для отладки из консоли
