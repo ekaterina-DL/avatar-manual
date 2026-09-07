@@ -109,6 +109,7 @@ hooks:
   - hooks/build_verdict_examples.py
   - hooks/build_dispute_flow.py
   - hooks/build_status_badges.py
+  - hooks/build_quiz_bank.py
   - hooks/friendly_md_link_text.py
   - hooks/neutralize_excluded_links.py
   # Последним: работает по уже финальному markdown (текст ссылок friendly_md_link_text.py
