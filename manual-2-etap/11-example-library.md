@@ -61,6 +61,8 @@
 - [Отличное качество, но не видно лица — сегмента для разметки нет](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/d0b8ecc6-656b-45ca-8d56-443d2bccf531/trimmed/f7F-ZkD3qV0__segment_148877955_160529273.mp4)
 - [Плохое качество и звук](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/76a544e9-296a-4620-8ef9-cbd367cfe11a/trimmed/-79268570_456242383__segment_1_2_15.mp4)
 - [Смена кадра в конце](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_019/-25605330_456240316__segment_1_48_61.mp4)
+- [Громкий звук перекрывает речь говорящего + низкое качество](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7561daa6-313c-43c8-beca-1ca316707f1c/trimmed/-153808162_456239018__segment_1_1_13.mp4)
+- [Кашель перебивает говорящего](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/9851e9b8-2ed0-4804-8e1c-ebfabbf72b0f/trimmed/-9571212_456239370__segment_5_136_165__seg4.mp4)
 
 `[Комментарии к мануалу от заказчика, 06.09.2026]`
 

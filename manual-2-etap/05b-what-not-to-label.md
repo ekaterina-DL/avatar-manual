@@ -104,6 +104,7 @@
 **Калибровочный пример:**
 
 - [Виньетка (затемнение по углам кадра)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_028/-222562832_456239022__segment_1_27_106.mp4).
+- [«Гуляющие» полосы + виньетка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-209756877_456239027__segment_1_1_61.mp4).
 
 Базовые требования к разрешению, FPS и формату — см.
 [Общие требования к видео и аудио](01-general-requirements.md#качество-и-формат-видео).
@@ -192,6 +193,7 @@
 
 - [Пережатие: на скорости 0.5 в области головы видна «сыпучая» картинка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-920580_456239632__segment_1_0_15__seg1.mp4).
 - [Пережатие (ещё один пример)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/ea6874ce-6eaa-453d-aa2d-488c228d5fdf/trimmed/-226415646_456241869__segment_2_181_193__seg2.mp4).
+- [Плохое качество при движении «пожатие», особенно в области рук](assets/stage3-antiexample-hands.mp4).
 
 `[Комментарии для мануала ко 2 этапу Аватара, 04.09.2026]`
 
@@ -227,6 +229,7 @@
 
 - [В начале склейка с наложением](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/118528151_171446962__segment_2_112_132__seg2.mp4).
 - [Скачок камеры на 1:19–1:20 — приравнивается к склейке, «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-207900393_456240381__segment_3_148_244__seg3.mp4).
+- [3 склейки подряд](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0af64f3c-521a-498c-82c6-bad558f6bf2a/trimmed/-81140789_456240567__segment_1_17_167.mp4).
 
 `[Комментарии к мануалу от заказчика, 06.09.2026]`
 
@@ -466,16 +469,6 @@
 рекомендация, а не отдельный критерий разметки — про то, как в целом оценивается качество
 работы, см. [00-overview.md](00-overview.md#как-оценивается-качество-работы).
 `[Видео с разбором ошибок — Аватар 2 этап]`
-
-<!-- video-eyebrow: Примеры «Битое» -->
-
-- [3 склейки подряд](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0af64f3c-521a-498c-82c6-bad558f6bf2a/trimmed/-81140789_456240567__segment_1_17_167.mp4).
-- [Плохое качество при движении «пожатие», особенно в области рук](assets/stage3-antiexample-hands.mp4).
-- [«Гуляющие» полосы + виньетка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-209756877_456239027__segment_1_1_61.mp4).
-- [Громкий звук перекрывает речь говорящего + низкое качество](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7561daa6-313c-43c8-beca-1ca316707f1c/trimmed/-153808162_456239018__segment_1_1_13.mp4).
-- [Кашель перебивает говорящего](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/9851e9b8-2ed0-4804-8e1c-ebfabbf72b0f/trimmed/-9571212_456239370__segment_5_136_165__seg4.mp4).
-
-`[Разметка ВК видео — Критерии примеры; Таблица с примерами по вопросам; Памятка Аватар 3 этап]`
 
 → больше примеров см. [Банк примеров](11-example-library.md#битое--примеры-дефектов).
 
