@@ -275,6 +275,118 @@ def extract_classifier_video(sources):
     return out
 
 
+# Маркеры отрицания/смягчения в подписи примера: если подпись их содержит, пример —
+# контрпример («так делать НЕ надо считать браком»), в вопрос он не идёт.
+# Значок «✅» в подписи мануала помечает «этот пример — годный, не брак» (напр.
+# «✅ Умеренная тряска — сегмент годен» в разделе «Тряска камеры»); подписи с «❌»
+# при этом остаются — это как раз примеры дефекта.
+_NEGATION_MARKERS = ("нет ", "некритичн", "для сравнения", "допустим", "не всегда",
+                     "баг плеер", "✅")
+_LINK_ITEM_RE = re.compile(r'^\s*[-*]\s+\[(?P<cap>[^\]]+)\]\((?P<url>[^)]+)\)', re.M)
+_EXCLUDED_SUBHEAD_RE = re.compile(
+    r'^###\s+(?P<name>.+?)\s+\{:\s*\.field-label-heading\s*\}\s*$', re.M
+)
+
+# Запасной пул категорий-дистракторов для вопроса «что не так с этим видео»: если у
+# подраздела нашлось меньше трёх соседних заголовков (вырожденный раздел), варианты
+# добираются отсюда, чтобы у вопроса всегда было >= 3 варианта. Верный ответ при этом
+# всегда берётся из заголовка самого мануала — здесь только неверные.
+_EXCLUDED_TYPE_DISTRACTORS = (
+    "Склейки", "Рамка", "Пиксельность", "Тряска камеры", "Пережатие",
+    "Виньетка", "Монтажное наложение", "Дубляж", "Синхронизация", "Смена кадра/сцены",
+)
+
+
+def _clean_caption(cap):
+    cap = re.sub(r'\*\*(.+?)\*\*', r'\1', cap)  # снять bold
+    return cap.strip().rstrip(".").strip()
+
+
+def _has_negation(cap):
+    low = cap.lower()
+    return any(mk in low for mk in _NEGATION_MARKERS)
+
+
+def _extract_broken_from_library(text):
+    body = extract_section(text, "Битое — примеры дефектов")
+    if body is None:
+        return []
+    items = [(_clean_caption(m.group("cap")), m.group("url").strip())
+             for m in _LINK_ITEM_RE.finditer(body)]
+    items = [(c, u) for c, u in items if c and not _has_negation(c)]
+    if len(items) < 3:
+        return []
+    all_caps = [c for c, _ in items]
+    out = []
+    for cap, url in items:
+        wrong = [c for c in all_caps if c != cap][:3]
+        if len(wrong) < 2:
+            continue
+        out.append({
+            "id": _make_id("B", "битое дефект", url),
+            "category": "B",
+            "topic": "Что не размечаем / Битое",
+            "question": "Какой дефект в этом видео (почему оно уходит в «Битое»)?",
+            "videoUrl": url,
+            "videoKind": _video_kind(url),
+            "options": [cap, *wrong],
+            "answer": 0,
+            "review": {"title": "Банк примеров",
+                       "url": "11-example-library.md#битое--примеры-дефектов"},
+        })
+    return out
+
+
+def _extract_broken_from_excluded(text):
+    body = extract_section(text, "🚫 Полностью исключённые типы видео")
+    if body is None:
+        return []
+    heads = list(_EXCLUDED_SUBHEAD_RE.finditer(body))
+    if len(heads) < 2:
+        return []
+    names = [h.group("name").strip() for h in heads]
+    out = []
+    for i, h in enumerate(heads):
+        name = names[i]
+        seg_start = h.end()
+        seg_end = heads[i + 1].start() if i + 1 < len(heads) else len(body)
+        segment = body[seg_start:seg_end]
+        others = [n for n in names if n != name][:3]
+        if len(others) < 3:  # вырожденный раздел — добираем неверные из запасного пула
+            for d in _EXCLUDED_TYPE_DISTRACTORS:
+                if d != name and d not in others:
+                    others.append(d)
+                if len(others) >= 3:
+                    break
+        if len(others) < 2:
+            continue
+        for m in _LINK_ITEM_RE.finditer(segment):
+            cap = _clean_caption(m.group("cap"))
+            url = m.group("url").strip()
+            if not cap or _has_negation(cap):
+                continue
+            out.append({
+                "id": _make_id("B", name, url),
+                "category": "B",
+                "topic": "Что не размечаем / Битое",
+                "question": "Что не так с этим видео — почему его нельзя размечать?",
+                "videoUrl": url,
+                "videoKind": _video_kind(url),
+                "options": [name, *others],
+                "answer": 0,
+                "review": {"title": "Что не размечаем / Битое",
+                           "url": "05b-what-not-to-label.md#-полностью-исключённые-типы-видео"},
+            })
+    return out
+
+
+def extract_broken(sources):
+    out = []
+    out += _extract_broken_from_library(sources.get("manual-2-etap/11-example-library.md", ""))
+    out += _extract_broken_from_excluded(sources.get("manual-2-etap/05b-what-not-to-label.md", ""))
+    return out
+
+
 def build_bank(sources, manual_yaml_text):
     """sources: {relpath: markdown_text}. Возвращает {"generatedAt": iso, "questions": [...]}.
     Экстракторы источников A–F подключаются в Задачах 3–8."""
@@ -282,7 +394,7 @@ def build_bank(sources, manual_yaml_text):
     questions += extract_numbers(sources)
     questions += extract_forbidden_tags(sources)
     questions += extract_classifier_video(sources)
-    # --- Задача 5: questions += extract_broken(...)
+    questions += extract_broken(sources)
     # --- Задача 6: questions += extract_examples(...)
     # --- Задача 7: questions += load_manual_questions(manual_yaml_text)
     _dedup_by_id(questions)

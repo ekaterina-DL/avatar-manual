@@ -206,3 +206,83 @@ def test_extract_classifier_video_timecode_mm_ss():
     anfas = [q for q in qs if q["topic"] == "Преобладающий ракурс"][0]
     # 0:06.48 -> 6.48 сек
     assert abs(anfas["videoStart"] - 6.48) < 0.001
+
+
+from build_quiz_bank import extract_broken
+
+LIB_BROKEN = """# Банк примеров
+
+## Битое — примеры дефектов
+
+- [Смена кадра в конце](https://ex.test/s1.mp4)
+- [Кашель перебивает говорящего](https://ex.test/s2.mp4)
+- [Звук ветра слишком громкий](https://ex.test/s3.mp4)
+- [Наложение полупрозрачного кадра](https://ex.test/s4.mp4)
+
+`[Комментарии к мануалу от заказчика, 06.09.2026]`
+
+## Артефакт
+
+- [Мерцание пиксельное](https://ex.test/art.mp4)
+"""
+
+NOT_LABEL_B = """# Что не размечаем / Битое
+
+## 🚫 Полностью исключённые типы видео
+
+<div class="field-label-row" markdown="1">
+
+### Склейки {: .field-label-heading }
+
+Склейка внутри сегмента — брак.
+
+</div>
+
+**Калибровочные примеры:**
+
+- [В начале склейка с наложением](https://ex.test/skl1.mp4).
+- [3 склейки подряд](https://ex.test/skl2.mp4).
+
+<div class="field-label-row" markdown="1">
+
+### Пиксельность {: .field-label-heading }
+
+Черты лица смазаны.
+
+</div>
+
+**Калибровочные примеры пиксельности:**
+
+- [Нет пиксельности, для сравнения](https://ex.test/px0.mp4).
+- [Некритичная пиксельность (из-за освещения)](https://ex.test/px1.mp4).
+- [Пиксельность — пример 2](https://ex.test/px2.mp4).
+"""
+
+
+def test_extract_broken_from_example_library():
+    qs = extract_broken({"manual-2-etap/11-example-library.md": LIB_BROKEN})
+    lib = [q for q in qs if q["review"]["url"].startswith("11-example-library.md")]
+    assert len(lib) == 4
+    q = lib[0]
+    assert q["category"] == "B"
+    assert q["videoUrl"] == "https://ex.test/s1.mp4"
+    assert q["options"][0] == "Смена кадра в конце"
+    assert len(q["options"]) >= 3
+    assert all(opt in {"Смена кадра в конце", "Кашель перебивает говорящего",
+                       "Звук ветра слишком громкий", "Наложение полупрозрачного кадра"}
+               for opt in q["options"])
+
+
+def test_extract_broken_from_excluded_types_filters_negations():
+    qs = extract_broken({"manual-2-etap/05b-what-not-to-label.md": NOT_LABEL_B})
+    b05 = [q for q in qs if q["review"]["url"].startswith("05b-")]
+    urls = {q["videoUrl"] for q in b05}
+    assert "https://ex.test/skl1.mp4" in urls
+    assert "https://ex.test/skl2.mp4" in urls
+    assert "https://ex.test/px2.mp4" in urls
+    assert "https://ex.test/px0.mp4" not in urls  # "Нет пиксельности, для сравнения"
+    assert "https://ex.test/px1.mp4" not in urls  # "Некритичная пиксельность"
+    q = [q for q in b05 if q["videoUrl"] == "https://ex.test/skl1.mp4"][0]
+    assert q["options"][0] == "Склейки"
+    assert "Пиксельность" in q["options"]
+    assert len(q["options"]) >= 3
