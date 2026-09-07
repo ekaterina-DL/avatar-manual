@@ -41,6 +41,7 @@
 - [Наложенный текст + несколько склеек подряд — размечать очень внимательно](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-123741670_456239056__segment_1_0_88.mp4)
 - [На протяжении всего видео справа внизу есть водяной знак](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/31YbqD2D0Og/31YbqD2D0Og.mp4)
 - [Тёмный водяной знак справа внизу заметен только с 0:28 — присутствует на протяжении всего видео](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/TiEu8a-diLU/TiEu8a-diLU.mp4)
+- [Пример вотермарки — отправляем в «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_145/-185158466_456240651__segment_3_103_117__seg3.mp4)
 
 `[Комментарии к мануалу от заказчика, 06.09.2026; Частые ошибки — видеоразбор реальных ошибок]`
 
