@@ -446,3 +446,82 @@ def test_load_manual_questions_rejects_two_options():
 def test_load_manual_questions_empty():
     assert load_manual_questions("") == []
     assert load_manual_questions("[]") == []
+
+
+import pathlib
+import pytest
+
+REPO_ROOT = pathlib.Path(__file__).resolve().parents[3]
+
+
+def _real_sources():
+    from build_quiz_bank import SOURCE_FILES
+    return {r: (REPO_ROOT / r).read_text(encoding="utf-8") for r in SOURCE_FILES}
+
+
+def _real_manual_yaml():
+    p = REPO_ROOT / "manual-2-etap" / "_quiz-manual.yml"
+    return p.read_text(encoding="utf-8") if p.exists() else ""
+
+
+def test_real_bank_is_reasonably_large():
+    bank = build_bank(_real_sources(), _real_manual_yaml())
+    qs = bank["questions"]
+    assert len(qs) >= 45, f"в банке всего {len(qs)} вопросов"
+    by_cat = {}
+    for q in qs:
+        by_cat.setdefault(q["category"], 0)
+        by_cat[q["category"]] += 1
+    # каждой категории хватает на её минимум в наборе
+    assert by_cat.get("A", 0) >= 3
+    assert by_cat.get("B", 0) >= 2
+    assert by_cat.get("C", 0) >= 1
+    assert by_cat.get("DE", 0) >= 1
+    assert by_cat.get("F", 0) >= 2
+
+
+def test_real_bank_no_duplicate_ids():
+    bank = build_bank(_real_sources(), _real_manual_yaml())
+    ids = [q["id"] for q in bank["questions"]]
+    assert len(ids) == len(set(ids))
+
+
+def test_real_bank_every_question_wellformed():
+    bank = build_bank(_real_sources(), _real_manual_yaml())
+    for q in bank["questions"]:
+        assert q["options"], q
+        assert len(q["options"]) >= 3, q
+        assert q["answer"] == 0
+        assert q["question"].strip()
+        assert q["topic"].strip()
+        assert q["review"]["url"]
+        if "videoUrl" in q:
+            assert q["videoKind"] in {"mp4", "vk", "youtube"}
+
+
+def test_real_bank_review_anchors_exist():
+    # Сверяем якорь review.url со слагами заголовков целевого файла. slugify — тот же,
+    # что в site/mkdocs.yml (pymdownx.slugs.slugify(case=lower)). Дедуп-суффиксы (_1, _2)
+    # не воспроизводим: в этих файлах повторов заголовков нет, а ручная эмуляция дедупа
+    # хрупка — при реальном совпадении разбираем точечно.
+    from pymdownx.slugs import slugify
+    slug = slugify(case="lower")
+    heading_re = re.compile(r'^#{1,6}\s+(.*?)\s*(?:\{:[^}]*\})?\s*$', re.M)
+
+    bank = build_bank(_real_sources(), _real_manual_yaml())
+    cache = {}
+    for q in bank["questions"]:
+        ref = q["review"]["url"]
+        assert "#" in ref, ref
+        fname, anchor = ref.split("#", 1)
+        path = REPO_ROOT / "manual-2-etap" / fname
+        assert path.exists(), f"{ref}: файла нет"
+        if fname not in cache:
+            text = path.read_text(encoding="utf-8")
+            cache[fname] = {
+                slug(re.sub(r'<[^>]+>', '', m.group(1)), "-")
+                for m in heading_re.finditer(text)
+            }
+        assert anchor in cache[fname], (
+            f"{ref}: якоря '{anchor}' нет среди {sorted(cache[fname])[:20]}"
+        )
