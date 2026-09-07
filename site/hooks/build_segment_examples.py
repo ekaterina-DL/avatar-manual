@@ -47,6 +47,29 @@ _IMAGE_LINE_RE = re.compile(r'!\[[^\]]*\]\([^)]+\)\n?')
 _SOURCE_TAG_RE = re.compile(
     r'\n((?:`\[[^`\n]*\]`)|(?:<span class="source-tag">\[[^\n]*?\]</span>))\s*$'
 )
+# Финальная строка-стрелка "→ больше примеров см. [Банк примеров](...)." — та же idea, что и
+# _SOURCE_TAG_RE (единый футер под ВСЕЙ сеткой карточек, а не подпись последней из них), но для
+# видимой перекрёстной ссылки, а не скрытой цитаты-источника. Нашлось 07.09.2026 на
+# manual-2-etap/05b-what-not-to-label.md: такую строку в конце «Антипримеров» _parse_block
+# проглатывал в подпись последней карточки целиком (единственный трейлер, который снимался
+# раньше, — цитата по _SOURCE_TAG_RE).
+_ARROW_LINK_RE = re.compile(r'\n(→ .+)\s*$')
+
+
+def _extract_trailing(caption):
+    """Снимает с конца подписи, по одной штуке за проход, любые строки-футеры, относящиеся ко
+    всей сетке карточек целиком (скрытая цитата-источник и/или видимая стрелочная ссылка), и
+    возвращает (укороченная подпись, список футеров в исходном порядке сверху вниз). Нужен
+    именно цикл — обе строки могут стоять подряд (сначала цитата, потом стрелка), а на каждом
+    шаге в самом конце подписи может быть только ОДНА из них."""
+    trailing = []
+    while True:
+        match = _SOURCE_TAG_RE.search(caption) or _ARROW_LINK_RE.search(caption)
+        if not match:
+            break
+        trailing.insert(0, match.group(1))
+        caption = caption[: match.start()].strip()
+    return caption, trailing
 
 
 def _split_blocks(section_body):
@@ -131,15 +154,13 @@ def _transform_section(markdown, heading):
     cards = []
     for match, block_text in blocks:
         is_bad, is_wide, number, iframe_html, caption = _parse_block(match, block_text)
-        tag_match = _SOURCE_TAG_RE.search(caption)
-        if tag_match:
-            trailing.append(tag_match.group(1))
-            caption = caption[: tag_match.start()].strip()
+        caption, block_trailing = _extract_trailing(caption)
+        trailing.extend(block_trailing)
         cards.append(_render_card(is_bad, is_wide, number, iframe_html, caption))
 
     grid_html = '<div class="example-grid" markdown="1">\n' + "\n".join(cards) + "\n</div>\n"
     if trailing:
-        grid_html += "\n" + "\n".join(trailing) + "\n"
+        grid_html += "\n" + "\n\n".join(trailing) + "\n"
 
     heading_line = f"## {heading}"
     old_section = f"{heading_line}\n{body}"

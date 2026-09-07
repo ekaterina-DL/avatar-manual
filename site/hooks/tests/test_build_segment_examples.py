@@ -194,6 +194,41 @@ def test_rendered_html_example1_bold_caption_becomes_strong():
     assert "<strong>Подходящий сегмент: 0:02 – 02:57.</strong>" in html
 
 
+ANTIEXAMPLE_WITH_TRAILING_ARROW_LINK_MD = f"""## Антипримеры
+
+**Антипример 1:** {IFRAME_3}
+![Антипример 1: вертикальное видео](assets/antiexample1-frame.jpeg)
+Расслоение цветов на самом лице человека.
+
+`[Инстр. Kandinsky-Аватар, стр.7-10]`
+
+→ больше примеров см. [Банк примеров](11-example-library.md#битое--примеры-дефектов).
+"""
+
+
+def test_trailing_arrow_link_after_citation_kept_outside_grid_as_separate_paragraph():
+    """Регрессия, найденная 07.09.2026 на живой manual-2-etap/05b-what-not-to-label.md: строка
+    "→ больше примеров см. ..." в самом конце «Антипримеров» (после скрытой цитаты-источника)
+    раньше проглатывалась _parse_block в подпись последней карточки целиком — единственным
+    футером, который снимался с конца подписи, была сама цитата (_SOURCE_TAG_RE), а всё, что
+    шло ПОСЛЕ неё, оставалось внутри карточки. Обе строки-футера должны оказаться СНАРУЖИ
+    .example-grid, каждая отдельным абзацем (с пустой строкой между ними, как в исходнике)."""
+    result = on_page_markdown(
+        ANTIEXAMPLE_WITH_TRAILING_ARROW_LINK_MD, FakePage(), SITE_CONFIG, None
+    )
+    assert "Расслоение цветов на самом лице человека." in result
+    # ссылка не осталась внутри последней карточки
+    grid_end = result.index("</div>\n</div>\n</div>")
+    arrow_pos = result.index("→ больше примеров см.")
+    assert arrow_pos > grid_end
+    # цитата и стрелка идут отдельными абзацами (пустая строка между ними), а не одной строкой
+    assert (
+        "`[Инстр. Kandinsky-Аватар, стр.7-10]`\n"
+        "\n"
+        "→ больше примеров см. [Банк примеров](11-example-library.md#битое--примеры-дефектов)."
+    ) in result
+
+
 def test_noop_on_pdf_build():
     """Fix 3 итогового обзора (человек решил): на PDF-профиле хук — полный no-op. В печати
     карточка со встроенным плеером бесполезна (iframe нельзя кликнуть, постер не показывается) —
