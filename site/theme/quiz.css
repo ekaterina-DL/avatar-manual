@@ -26,3 +26,34 @@
 }
 .quiz-prestart > :first-child { margin-top: 0; }
 .quiz-prestart > :last-child { margin-bottom: 0; }
+
+.quiz-card {
+  border: 1px solid var(--md-default-fg-color--lightest, #e0e0e0);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  background: var(--md-default-bg-color, #fff);
+  max-width: 720px;
+}
+.quiz-start h2 { margin-top: 0; }
+.quiz-fio { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
+.quiz-fio input {
+  flex: 1 1 200px;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--md-default-fg-color--light, #bdbdbd);
+  border-radius: 6px;
+}
+.quiz-btn {
+  padding: 0.55rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--md-accent-fg-color, #ff6f00);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.quiz-btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+.quiz-progress { font-size: 0.85rem; color: var(--md-default-fg-color--light, #757575); }
+.quiz-question { font-size: 1.05rem; font-weight: 600; margin: 0.6rem 0 1rem; }
+.quiz-warn { color: #c62828; font-weight: 600; }
