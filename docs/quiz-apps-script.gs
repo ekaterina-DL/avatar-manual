@@ -8,6 +8,10 @@
 var TOKEN = 'avatar-stage2-quiz';
 var SHEET_NAME = 'Результаты';
 
+function doGet() {
+  return _json({ ok: true, hint: 'Приёмник работает. Данные принимаются только POST-запросом.' });
+}
+
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
@@ -27,6 +31,7 @@ function doPost(e) {
       return w.n + '. ' + w.question +
         '\n   выбрано: ' + chosen +
         '\n   верно: ' + w.correct +
+        '\n   тема: ' + w.topic +
         '\n   раздел: ' + w.reviewUrl;
     }).join('\n\n');
 

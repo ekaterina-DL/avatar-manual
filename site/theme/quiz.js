@@ -173,6 +173,7 @@
 
   function startQuiz(surname, name) {
     var set = assembleSet(bank.questions, readExcludeIds());
+    _sent = false; // сброс защиты от повторной отправки — это новая попытка
     state = {
       surname: surname,
       name: name,
