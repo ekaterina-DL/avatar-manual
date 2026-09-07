@@ -11,9 +11,6 @@
 .md-nav__link[href$="/manual-2-etap/07-testirovanie/"] {
   color: var(--md-accent-fg-color, #ff6f00);
 }
-.md-nav__link[href$="/manual-2-etap/07-testirovanie/"]::before {
-  content: "🧪 ";
-}
 
 #quiz-root { margin-top: 1.2rem; }
 
