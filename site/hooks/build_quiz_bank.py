@@ -387,6 +387,61 @@ def extract_broken(sources):
     return out
 
 
+# Источник C: блоки «**Пример N:** …» из позитивного раздела и «**Антипример N:** …»
+# из раздела антипримеров. URL — либо голой ссылкой, либо как [текст](url). Строка-кадр
+# «![подпись](…jpeg)» под блоком в регэксп не попадает: у неё нет ведущих «**».
+_EXAMPLE_BLOCK_RE = re.compile(
+    r'\*\*(?P<kind>Анти)?[Пп]ример (?P<n>\d+):\*\*[ \t]*'
+    r'(?:\[(?P<txt>[^\]]*)\]\((?P<lurl>[^)]+)\)|(?P<burl>\S+))',
+    re.M,
+)
+_C_OPTIONS = ["Подходит для разметки", "В «Битое»", "Нужно поделить на 2 сегмента"]
+
+
+def _extract_examples_from(body, is_anti, review):
+    if body is None:
+        return []
+    out = []
+    for m in _EXAMPLE_BLOCK_RE.finditer(body):
+        url = (m.group("lurl") or m.group("burl") or "").strip()
+        if not url or url.startswith("!"):
+            continue
+        correct = "В «Битое»" if is_anti else "Подходит для разметки"
+        wrong = [o for o in _C_OPTIONS if o != correct]
+        out.append({
+            "id": _make_id("C", "подходящий сегмент", url),
+            "category": "C",
+            "topic": "Что размечаем",
+            "question": "Это видео — подходящий сегмент или его нужно отправить в «Битое»?",
+            "videoUrl": url,
+            "videoKind": _video_kind(url),
+            "options": [correct, *wrong],
+            "answer": 0,
+            "review": review,
+        })
+    return out
+
+
+def extract_examples(sources):
+    out = []
+    pos = sources.get("manual-2-etap/05-what-to-label.md", "")
+    if pos:
+        out += _extract_examples_from(
+            extract_section(pos, "Примеры (позитивные)"),
+            is_anti=False,
+            review={"title": "Что размечаем", "url": "05-what-to-label.md#примеры-позитивные"},
+        )
+    anti = sources.get("manual-2-etap/05b-what-not-to-label.md", "")
+    if anti:
+        out += _extract_examples_from(
+            extract_section(anti, "Антипримеры"),
+            is_anti=True,
+            review={"title": "Что не размечаем / Битое",
+                    "url": "05b-what-not-to-label.md#антипримеры"},
+        )
+    return out
+
+
 def build_bank(sources, manual_yaml_text):
     """sources: {relpath: markdown_text}. Возвращает {"generatedAt": iso, "questions": [...]}.
     Экстракторы источников A–F подключаются в Задачах 3–8."""
@@ -395,7 +450,7 @@ def build_bank(sources, manual_yaml_text):
     questions += extract_forbidden_tags(sources)
     questions += extract_classifier_video(sources)
     questions += extract_broken(sources)
-    # --- Задача 6: questions += extract_examples(...)
+    questions += extract_examples(sources)
     # --- Задача 7: questions += load_manual_questions(manual_yaml_text)
     _dedup_by_id(questions)
     return {

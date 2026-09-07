@@ -286,3 +286,81 @@ def test_extract_broken_from_excluded_types_filters_negations():
     assert q["options"][0] == "Склейки"
     assert "Пиксельность" in q["options"]
     assert len(q["options"]) >= 3
+
+
+from build_quiz_bank import extract_examples
+
+WHAT_TO_LABEL_C = """# Что размечаем
+
+## Примеры (позитивные)
+
+**Пример 1:** https://vkvideo.ru/video712360465_456239217
+![Пример 1: женщина на нейтральном тёмном фоне](assets/example1-frame.jpeg)
+Отрывок с речью на нейтральном фоне — лицо чётко видно. **Подходящий сегмент: 0:02 – 02:57.**
+
+**Пример 4:** [Пример 4](assets/Pamela%20Anderson.mp4)
+![Пример 4: женщина крупным планом](assets/example4-frame.jpeg)
+Яркий фон не мешает — человек чётко виден.
+
+`[Инстр. Kandinsky-Аватар, стр.5-7]`
+
+## Эталонное видео (без замечаний)
+
+[Пример](https://ex.test/etalon.mp4)
+"""
+
+NOT_LABEL_ANTI = """# Что не размечаем / Битое
+
+## Антипримеры
+
+**Антипример 1:** https://www.youtube.com/shorts/kLTpStNQRF0
+![Антипример 1: вертикальное видео, внизу наложен текст-субтитр](assets/antiexample1-frame.jpeg)
+Не должно быть наложенного текста.
+
+**Антипример 3:** [Антипример 3](assets/Memorable%20Monologue.mp4)
+![Антипример 3: ведущая ток-шоу, в углу логотип-водяной знак](assets/antiexample3-frame.jpeg)
+Водяной знак в кадре.
+
+`[Инстр. Kandinsky-Аватар, стр.7-10]`
+"""
+
+
+def test_extract_examples_positive():
+    qs = extract_examples({"manual-2-etap/05-what-to-label.md": WHAT_TO_LABEL_C})
+    pos = [q for q in qs if q["review"]["url"] == "05-what-to-label.md#примеры-позитивные"]
+    assert len(pos) == 2
+    q = pos[0]
+    assert q["category"] == "C"
+    assert q["videoUrl"] == "https://vkvideo.ru/video712360465_456239217"
+    assert q["videoKind"] == "vk"
+    assert q["options"][0] == "Подходит для разметки"
+    assert q["answer"] == 0
+    assert len(q["options"]) == 3
+
+
+def test_extract_examples_local_mp4_kind():
+    qs = extract_examples({"manual-2-etap/05-what-to-label.md": WHAT_TO_LABEL_C})
+    p4 = [q for q in qs if q["videoUrl"].endswith(".mp4")][0]
+    assert p4["videoKind"] == "mp4"
+
+
+def test_extract_examples_antipatterns_are_broken():
+    qs = extract_examples({"manual-2-etap/05b-what-not-to-label.md": NOT_LABEL_ANTI})
+    anti = [q for q in qs if q["review"]["url"] == "05b-what-not-to-label.md#антипримеры"]
+    assert len(anti) == 2
+    q = anti[0]
+    assert q["category"] == "C"
+    assert q["options"][0] == "В «Битое»"
+    assert q["answer"] == 0
+    assert q["videoKind"] in {"youtube", "mp4"}
+    assert set(q["options"]) == {"Подходит для разметки", "В «Битое»", "Нужно поделить на 2 сегмента"}
+
+
+def test_extract_examples_combined():
+    qs = extract_examples({
+        "manual-2-etap/05-what-to-label.md": WHAT_TO_LABEL_C,
+        "manual-2-etap/05b-what-not-to-label.md": NOT_LABEL_ANTI,
+    })
+    assert len(qs) == 4
+    corrects = sorted(q["options"][0] for q in qs)
+    assert corrects == ["В «Битое»", "В «Битое»", "Подходит для разметки", "Подходит для разметки"]
