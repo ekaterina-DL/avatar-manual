@@ -63,11 +63,112 @@ def _read_manual_yaml(config):
     return p.read_text(encoding="utf-8") if p.exists() else ""
 
 
+_KF_TAG_RE = re.compile(r'<span class="kf-tag">(.*?)</span>')
+
+
+def _canon(text):
+    return text.replace("&gt;", ">").replace("&lt;", "<").strip()
+
+
+# Рецепты источника D. Каждый: страница, регэксп-подтверждение (ожидаемое число должно
+# присутствовать в тексте страницы), текст вопроса, верный вариант, набор неверных, якорь.
+_NUMBER_RECIPES = [
+    {
+        "page": "manual-2-etap/02-segments.md",
+        "confirm": r"10\s*[–-]\s*300",
+        "question": "Какова допустимая длительность одного сегмента?",
+        "correct": "от 10 до 300 секунд",
+        "wrong": ["от 5 до 60 секунд", "от 10 до 120 секунд", "от 30 до 600 секунд"],
+        "anchor": "определение-и-границы",
+        "title": "Сегменты",
+    },
+    {
+        "page": "manual-2-etap/02-segments.md",
+        "confirm": r"максимум\s+10\s+сегментов|10\s*<span>сегментов",
+        "question": "Сколько сегментов максимум можно выделить на одном видео?",
+        "correct": "10",
+        "wrong": ["5", "8", "без ограничения"],
+        "anchor": "определение-и-границы",
+        "title": "Сегменты",
+    },
+    {
+        "page": "manual-2-etap/04-classifier.md",
+        "confirm": r"\*\*13 полей\*\*|состоит из \*\*13",
+        "question": "Из скольких полей состоит классификатор на 2 этапе?",
+        "correct": "13",
+        "wrong": ["10", "12", "15"],
+        "anchor": "поля-классификатора",
+        "title": "Классификатор",
+    },
+    {
+        # Число 10:15 живёт на 05b-what-not-to-label.md (раздел «Другие исключения»),
+        # а не на 02-segments.md — 02-segments.md его не содержит.
+        "page": "manual-2-etap/05b-what-not-to-label.md",
+        "confirm": r"10:15",
+        "question": "Какова максимальная длина исходного видео, которое ещё берём в работу?",
+        "correct": "10:15",
+        "wrong": ["10:00", "9:30", "15:00"],
+        "anchor": "другие-исключения",
+        "title": "Что не размечаем",
+    },
+]
+
+# «Допустимые» вещи — пул неверных вариантов для вопроса про запрещённое в сегменте.
+_ALLOWED_DISTRACTORS = [
+    "пиксельность на фоне",
+    "лёгкий фоновый шум",
+    "блики на очках",
+    "медленный плавный зум",
+    "чёрно-белое изображение",
+]
+
+
+def extract_numbers(sources):
+    out = []
+    for r in _NUMBER_RECIPES:
+        text = sources.get(r["page"], "")
+        if not text or not re.search(r["confirm"], text):
+            continue
+        out.append(
+            {
+                "id": _make_id("DE", r["question"], r["page"] + r["correct"]),
+                "category": "DE",
+                "topic": r["title"],
+                "question": r["question"],
+                "options": [r["correct"], *r["wrong"]],
+                "answer": 0,
+                "review": {"title": r["title"], "url": f'{r["page"].split("/")[-1]}#{r["anchor"]}'},
+            }
+        )
+    return out
+
+
+def extract_forbidden_tags(sources):
+    text = sources.get("manual-2-etap/02-segments.md", "")
+    tags = [_canon(t) for t in _KF_TAG_RE.findall(text)]
+    if len(tags) < 3:
+        return []
+    correct = tags[0]  # любой тег из списка; порядок вариантов всё равно перемешает JS
+    wrong = _ALLOWED_DISTRACTORS[:3]
+    return [
+        {
+            "id": _make_id("DE", "запрещено в сегменте", "forbidden-tags"),
+            "category": "DE",
+            "topic": "Сегменты",
+            "question": "Что из перечисленного НЕ должно попасть внутрь сегмента?",
+            "options": [correct, *wrong],
+            "answer": 0,
+            "review": {"title": "Сегменты", "url": "02-segments.md#определение-и-границы"},
+        }
+    ]
+
+
 def build_bank(sources, manual_yaml_text):
     """sources: {relpath: markdown_text}. Возвращает {"generatedAt": iso, "questions": [...]}.
     Экстракторы источников A–F подключаются в Задачах 3–8."""
     questions = []
-    # --- Задача 3: questions += extract_numbers(...) ; extract_forbidden_tags(...)
+    questions += extract_numbers(sources)
+    questions += extract_forbidden_tags(sources)
     # --- Задача 4: questions += extract_classifier_video(...)
     # --- Задача 5: questions += extract_broken(...)
     # --- Задача 6: questions += extract_examples(...)

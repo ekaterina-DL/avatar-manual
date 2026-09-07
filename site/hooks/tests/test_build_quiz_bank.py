@@ -2,6 +2,71 @@ import json
 import re
 
 from build_quiz_bank import on_page_markdown, build_bank, TARGET_PAGE, SOURCE_FILES
+from build_quiz_bank import extract_numbers, extract_forbidden_tags
+
+SEGMENTS_KEYFACTS = """# Сегменты
+
+<div class="keyfacts">
+<div class="kf-stat">
+<div class="kf-value">10–300<span>сек</span></div>
+<div class="kf-label">длительность одного сегмента</div>
+</div>
+<div class="kf-stat">
+<div class="kf-value">10<span>сегментов</span></div>
+<div class="kf-label">максимум на одном видео</div>
+</div>
+<div class="kf-forbid">
+<div class="kf-tags">
+<span class="kf-tag">смену кадра</span>
+<span class="kf-tag">склейки</span>
+<span class="kf-tag">закадровый голос</span>
+<span class="kf-tag">молчание &gt;4 сек и на границах</span>
+</div>
+</div>
+</div>
+"""
+
+CLASSIFIER_FIELDS = """# Заполнение классификатора
+
+Классификатор в интерфейсе разметки состоит из **13 полей**. Ниже — каждое поле по порядку.
+"""
+
+
+def test_extract_numbers_segment_duration():
+    qs = extract_numbers({"manual-2-etap/02-segments.md": SEGMENTS_KEYFACTS})
+    dur = [q for q in qs if "длительност" in q["question"].lower()]
+    assert dur, qs
+    q = dur[0]
+    assert q["category"] == "DE"
+    assert q["options"][q["answer"]] == q["options"][0]
+    assert "300" in q["options"][0]
+    assert len(q["options"]) >= 3
+    assert q["review"]["url"].startswith("02-segments.md#")
+
+
+def test_extract_numbers_recipe_drops_when_number_absent():
+    # В тексте нет "13 полей" -> рецепт про число полей не выдаёт вопрос
+    qs = extract_numbers({"manual-2-etap/04-classifier.md": "# Классификатор\n\nбез числа полей\n"})
+    assert not [q for q in qs if "полей" in q["question"].lower()]
+
+
+def test_extract_numbers_classifier_field_count_present():
+    qs = extract_numbers({"manual-2-etap/04-classifier.md": CLASSIFIER_FIELDS})
+    fld = [q for q in qs if "полей" in q["question"].lower()]
+    assert fld and fld[0]["options"][0] == "13"
+
+
+def test_extract_forbidden_tags():
+    qs = extract_forbidden_tags({"manual-2-etap/02-segments.md": SEGMENTS_KEYFACTS})
+    assert qs
+    q = qs[0]
+    assert q["category"] == "DE"
+    assert len(q["options"]) >= 3
+    # верный вариант — один из запрещённых тегов
+    assert q["options"][0] in {"смену кадра", "склейки", "закадровый голос",
+                               "молчание >4 сек и на границах"} or "молчание" in q["options"][0]
+    # неверные варианты — «допустимые» вещи, не из списка тегов
+    assert "пиксельность на фоне" in q["options"] or "лёгкий фоновый шум" in q["options"]
 
 
 class FakeFile:
