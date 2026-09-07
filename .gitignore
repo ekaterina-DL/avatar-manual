@@ -19,3 +19,4 @@ __pycache__/
 # Служебные файлы Claude Code (прогресс-леджер subagent-driven-development,
 # мокапы визуального помощника brainstorming) — не публикуются в репозитории
 /.superpowers/
+/site/*.log
