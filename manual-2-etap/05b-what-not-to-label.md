@@ -8,42 +8,20 @@
 
 <div class="field-label-row" markdown="1">
 
-### Дубляж {: .field-label-heading }
+### Склейки {: .field-label-heading }
 
-Видео с дубляжом (речь поверх оригинальной дорожки).
-
-</div>
-
-**Калибровочный пример:**
-
-- [](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-50750285_456239157__segment_1_11_48.mp4)
-
-<div class="field-label-row" markdown="1">
-
-### Монтажное наложение {: .field-label-heading }
-
-Видео с сопроводительным текстом/субтитрами/титром-плашкой (имя, фамилия, должность) поверх
-видео, типичное для теленовостей/интервью, затемнение экрана как переход, водяной знак, коллаж,
-чьё-то лицо в кружочке и т.п.
-`[Встреча с новичками по 2 этапу, 29.07.2026]`
+Склейка (монтажный переход между кадрами/дублями) внутри сегмента — брак: сегмент должен быть
+одной непрерывной сценой без резких монтажных переходов.
 
 </div>
-
-💡**Как отличить реальный физический эффект от монтажной вставки**: например, снег, идущий на
-улице — это часть реальной сцены, не монтаж; но если человек находится в помещении (в комнате),
-а на видео при этом «идёт снег» — это уже подозрительно похоже на добавленный постфактум
-эффект, и такое стоит расценивать как монтаж.
 
 **Калибровочные примеры:**
 
-- [Субтитры — т.к. показали ФИО](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/4301ce48-9f23-4e2d-b3c0-fc5ab4ddfe73/trimmed/-233912718_456239026__segment_1_3_17.mp4)
-- [На 19-й секунде «субтитры»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-95383488_171970745__segment_1_14_120.mp4)
-- [Наложенный текст + несколько склеек подряд — размечать очень внимательно](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-123741670_456239056__segment_1_0_88.mp4)
-- [На протяжении всего видео справа внизу есть водяной знак](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/31YbqD2D0Og/31YbqD2D0Og.mp4)
-- [Тёмный водяной знак справа внизу заметен только с 0:28 — присутствует на протяжении всего видео](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/TiEu8a-diLU/TiEu8a-diLU.mp4)
-- [Пример вотермарки — отправляем в «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_145/-185158466_456240651__segment_3_103_117__seg3.mp4)
+- [В начале склейка с наложением](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/118528151_171446962__segment_2_112_132__seg2.mp4).
+- [Скачок камеры на 1:19–1:20 — приравнивается к склейке, «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-207900393_456240381__segment_3_148_244__seg3.mp4).
+- [3 склейки подряд](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0af64f3c-521a-498c-82c6-bad558f6bf2a/trimmed/-81140789_456240567__segment_1_17_167.mp4).
 
-`[Комментарии к мануалу от заказчика, 06.09.2026; Частые ошибки — видеоразбор реальных ошибок]`
+`[Комментарии к мануалу от заказчика, 06.09.2026]`
 
 <div class="field-label-row" markdown="1">
 
@@ -91,23 +69,6 @@
 - [Рамка слева](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_027/182002586_456241831__segment_1_7_71__seg1.mp4)
 
 `[Разметка ВК видео — ОС 27.05 СТ2]`
-
-<div class="field-label-row" markdown="1">
-
-### Виньетка {: .field-label-heading }
-
-Виньетка (затемнение по краям кадра) — это наложенный эффект, и если во всём видео нет
-сегмента без виньетки — это брак. `[Разметка ВК видео — ОС 07.08.2026]`
-
-</div>
-
-**Калибровочный пример:**
-
-- [Виньетка (затемнение по углам кадра)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_028/-222562832_456239022__segment_1_27_106.mp4).
-- [«Гуляющие» полосы + виньетка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-209756877_456239027__segment_1_1_61.mp4).
-
-Базовые требования к разрешению, FPS и формату — см.
-[Общие требования к видео и аудио](01-general-requirements.md#качество-и-формат-видео).
 
 <div class="field-label-row" markdown="1">
 
@@ -199,6 +160,62 @@
 
 <div class="field-label-row" markdown="1">
 
+### Виньетка {: .field-label-heading }
+
+Виньетка (затемнение по краям кадра) — это наложенный эффект, и если во всём видео нет
+сегмента без виньетки — это брак. `[Разметка ВК видео — ОС 07.08.2026]`
+
+</div>
+
+**Калибровочный пример:**
+
+- [Виньетка (затемнение по углам кадра)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_028/-222562832_456239022__segment_1_27_106.mp4).
+- [«Гуляющие» полосы + виньетка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-209756877_456239027__segment_1_1_61.mp4).
+
+Базовые требования к разрешению, FPS и формату — см.
+[Общие требования к видео и аудио](01-general-requirements.md#качество-и-формат-видео).
+
+<div class="field-label-row" markdown="1">
+
+### Монтажное наложение {: .field-label-heading }
+
+Видео с сопроводительным текстом/субтитрами/титром-плашкой (имя, фамилия, должность) поверх
+видео, типичное для теленовостей/интервью, затемнение экрана как переход, водяной знак, коллаж,
+чьё-то лицо в кружочке и т.п.
+`[Встреча с новичками по 2 этапу, 29.07.2026]`
+
+</div>
+
+💡**Как отличить реальный физический эффект от монтажной вставки**: например, снег, идущий на
+улице — это часть реальной сцены, не монтаж; но если человек находится в помещении (в комнате),
+а на видео при этом «идёт снег» — это уже подозрительно похоже на добавленный постфактум
+эффект, и такое стоит расценивать как монтаж.
+
+**Калибровочные примеры:**
+
+- [Субтитры — т.к. показали ФИО](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/4301ce48-9f23-4e2d-b3c0-fc5ab4ddfe73/trimmed/-233912718_456239026__segment_1_3_17.mp4)
+- [На 19-й секунде «субтитры»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/7bda4c3a-d21e-4320-98d3-d634e8413d54/trimmed/-95383488_171970745__segment_1_14_120.mp4)
+- [Наложенный текст + несколько склеек подряд — размечать очень внимательно](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-123741670_456239056__segment_1_0_88.mp4)
+- [На протяжении всего видео справа внизу есть водяной знак](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/31YbqD2D0Og/31YbqD2D0Og.mp4)
+- [Тёмный водяной знак справа внизу заметен только с 0:28 — присутствует на протяжении всего видео](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/TiEu8a-diLU/TiEu8a-diLU.mp4)
+- [Пример вотермарки — отправляем в «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_145/-185158466_456240651__segment_3_103_117__seg3.mp4)
+
+`[Комментарии к мануалу от заказчика, 06.09.2026; Частые ошибки — видеоразбор реальных ошибок]`
+
+<div class="field-label-row" markdown="1">
+
+### Дубляж {: .field-label-heading }
+
+Видео с дубляжом (речь поверх оригинальной дорожки).
+
+</div>
+
+**Калибровочный пример:**
+
+- [](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/3ac0d9c6-6b88-4a08-92bc-9be5e9cd1879/trimmed/-50750285_456239157__segment_1_11_48.mp4)
+
+<div class="field-label-row" markdown="1">
+
 ### Синхронизация {: .field-label-heading }
 
 Общее требование к синхронности аудио и видео — см.
@@ -213,23 +230,6 @@
 **Калибровочный пример:**
 
 - [❌ Рассинхрон аудио и видео — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/c9088ead-8c8b-4126-8d8e-da9965d1b0a8/trimmed/-35155941_456239363__segment_1_0_50.mp4).
-
-`[Комментарии к мануалу от заказчика, 06.09.2026]`
-
-<div class="field-label-row" markdown="1">
-
-### Склейки {: .field-label-heading }
-
-Склейка (монтажный переход между кадрами/дублями) внутри сегмента — брак: сегмент должен быть
-одной непрерывной сценой без резких монтажных переходов.
-
-</div>
-
-**Калибровочные примеры:**
-
-- [В начале склейка с наложением](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/37dde8dc-cb05-4319-8707-c11034e47e7c/trimmed/118528151_171446962__segment_2_112_132__seg2.mp4).
-- [Скачок камеры на 1:19–1:20 — приравнивается к склейке, «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fc9fad82-7a13-4aec-b36d-bf2998dceaae/trimmed/-207900393_456240381__segment_3_148_244__seg3.mp4).
-- [3 склейки подряд](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/0af64f3c-521a-498c-82c6-bad558f6bf2a/trimmed/-81140789_456240567__segment_1_17_167.mp4).
 
 `[Комментарии к мануалу от заказчика, 06.09.2026]`
 
