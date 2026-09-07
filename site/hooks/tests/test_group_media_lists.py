@@ -244,6 +244,24 @@ def test_eyebrow_marker_sets_label_and_is_stripped_from_output():
     assert "video-eyebrow" not in result
 
 
+def test_heading_with_attr_list_suffix_strips_class_from_current_heading():
+    """Регрессия (найдено 06.09.2026 на 05b-what-not-to-label.md при добавлении
+    .field-label-heading — заголовок-подраздел, который физически остаётся ### для оглавления
+    справа, но визуально стилизован под маленький бейдж через attr_list-класс
+    "### Дубляж {: .field-label-heading }"). Раньше _HEADING_RE забирал весь остаток строки
+    как есть, и "{: .field-label-heading }" утекал в current_heading, а с ним и в эйброу
+    .video-block ниже. Фикс: хвост "{: ... }" отрезается отдельно."""
+    md = (
+        "### Дубляж {: .field-label-heading }\n\n"
+        "some prose.\n\n"
+        '- <video controls preload="metadata" style="max-width:100%">'
+        '<source src="https://example.com/a.mp4" type="video/mp4"></video>\n'
+    )
+    result = on_page_markdown(md, None, None, None)
+    assert '<span class="eyebrow">Дубляж</span>' in result
+    assert "field-label-heading" not in _eyebrow_text(result)
+
+
 def _eyebrow_text(html):
     start = html.index('<span class="eyebrow">') + len('<span class="eyebrow">')
     end = html.index("</span>", start)

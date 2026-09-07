@@ -3,7 +3,11 @@ import re
 from _list_utils import split_list_items
 from _path_utils import fix_local_asset_path
 
-_HEADING_RE = re.compile(r'^(#{2,6})\s+(.*?)\s*$')
+# Опциональный хвост "{: .class }" (attr_list-разметка mkdocs, см. markdown_extensions в
+# mkdocs.yml) отрезается из заголовка отдельно — иначе он попадает в group(2) буквально
+# ("Дубляж {: .field-label-heading }") и течёт дальше в current_heading, а с ним и в эйброу
+# .video-block ниже (найдено на 05b-what-not-to-label.md при добавлении .field-label-heading).
+_HEADING_RE = re.compile(r'^(#{2,6})\s+(.*?)\s*(?:\{:[^}]*\})?\s*$')
 _ITEM_START_RE = re.compile(r'^-\s+')
 # Приватный сигнал от inject_example_previews.py: инжектированные превью полей классификатора
 # вставляются посреди прозы целевой страницы без собственного markdown-заголовка, поэтому без
