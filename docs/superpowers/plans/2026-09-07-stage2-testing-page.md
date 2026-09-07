@@ -38,7 +38,7 @@
 | `site/theme/quiz-config.js` | создать | `window.QUIZ_CONFIG = { endpoint, token, passPercent }`. |
 | `site/theme/quiz.js` | создать | Логика: гейт по ФИО → сборка набора 15 → вопрос+таймер → разбор → результат → отправка. Активируется только при `#quiz-root`. |
 | `site/theme/quiz.css` | создать | Стили всех экранов квиза + акцентный пункт меню. |
-| `site/quiz/apps-script.gs` | создать | Код Google Apps Script (`doPost`). |
+| `docs/quiz-apps-script.gs` | создать | Код Google Apps Script (`doPost`). |
 | `docs/quiz-apps-script.md` | создать | Пошаговая инструкция публикации скрипта + smoke-тест. |
 | `site/mkdocs.yml` | правка | top-level раздел меню; `quiz.css` в `extra_css`; `quiz-config.js`+`quiz.js` в `extra_javascript`; `build_quiz_bank.py` в `hooks:`; `_quiz-manual.yml` в `exclude_docs`. |
 | `site/mkdocs-public.yml` | правка | тот же `nav` (с разделом) и `exclude_docs` (с `_quiz-manual.yml`). |
@@ -2744,7 +2744,7 @@ git push
 
 **Files:**
 - Modify: `site/theme/quiz.js`
-- Create: `site/quiz/apps-script.gs`
+- Create: `docs/quiz-apps-script.gs`
 - Create: `docs/quiz-apps-script.md`
 
 **Interfaces:**
@@ -2822,7 +2822,7 @@ git push
 .quiz-send-status.warn { color: #c62828; font-weight: 600; }
 ```
 
-- [ ] **Step 2: Создать `site/quiz/apps-script.gs`**
+- [ ] **Step 2: Создать `docs/quiz-apps-script.gs`**
 
 ```javascript
 /**
@@ -2896,7 +2896,7 @@ Google-таблице, и дописывает строку на лист «Ре
    «Аватар — тестирование 2 этап».
 2. В таблице: меню **Расширения → Apps Script**. Откроется редактор скрипта.
 3. Удалите содержимое файла `Код.gs` и вставьте туда полностью код из
-   `site/quiz/apps-script.gs` (в этом репозитории).
+   `docs/quiz-apps-script.gs` (в этом репозитории).
 4. При необходимости поменяйте константу `TOKEN` — это должна быть **та же строка**, что в
    `site/theme/quiz-config.js` (поле `token`). По умолчанию обе равны `avatar-stage2-quiz`.
 5. Сохраните (значок дискеты).
@@ -2940,13 +2940,13 @@ PYTHONUTF8=1 PYTHONIOENCODING=utf-8 python -m mkdocs build --strict -f mkdocs-pu
 - пройти тест до конца → в блоке статуса «Отправка результата не настроена. Сделайте скриншот…»;
 - на экране всё видно (проценты, вердикт, темы, разбор) — экран самодостаточен без сервера;
 - в консоли `JSON.stringify(__quiz)` не нужен, но `_sent` защищает от повторной отправки: повторный `renderResults()` вручную не шлёт второй раз (проверять не обязательно).
-- проверить, что `docs/` и `site/quiz/` не попали в сборку: `ls ../../avatar-manual-build/build/quiz 2>/dev/null` — пусто; `docs/` в `exclude_docs` уже есть.
+- проверить, что `docs/` не попал в сборку (`docs/` уже в `exclude_docs` обоих конфигов) — и `apps-script.gs`, и инструкция лежат в `docs/`, значит в `build/` их нет.
 
 - [ ] **Step 5: Commit**
 
 ```bash
 cd "d:/ПРОЕКТЫ с Ai/Data-Light. Обучение 2 этап"
-git add site/theme/quiz.js site/theme/quiz.css site/quiz/apps-script.gs docs/quiz-apps-script.md
+git add site/theme/quiz.js site/theme/quiz.css docs/quiz-apps-script.gs docs/quiz-apps-script.md
 git commit -m "Тестирование 2 этапа: отправка итогов в Google-таблицу (fetch POST + фолбэк), скрипт Apps Script doPost и инструкция по публикации"
 git push
 ```
