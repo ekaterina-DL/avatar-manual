@@ -106,7 +106,7 @@
 
 <!-- video-eyebrow:  -->
 
-- [Пример артефакта на грани допустимости](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_003/-118907081_456239842__segment_1_73_85.mp4).
+- [Очень пограничное качество](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_003/-118907081_456239842__segment_1_73_85.mp4).
   <!-- TODO: уточнить у заказчика тип артефакта и годный сегмент для этого видео (заменили ролик 06.09.2026, старые формулировки "световой блик" и тайминг 0:20.53–0:51.87 относились к прежнему ролику) -->
 
 `[Разметка ВК видео — Критерии примеры]`
