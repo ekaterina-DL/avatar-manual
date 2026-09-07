@@ -376,8 +376,112 @@
     }
   }
 
-  function renderResults() {} // Задача 11
-  function submitResults() {}  // Задача 12
+  function computeScore(answers) {
+    var correct = answers.filter(function (a) { return a.ok; }).length;
+    var percent = Math.round((correct / TOTAL) * 100);
+    var verdict = percent >= (CFG.passPercent || 80) ? "Сдано" : "Не сдано";
+    return { correct: correct, percent: percent, verdict: verdict };
+  }
+
+  function reviewLink(url) {
+    // "04-classifier.md#anchor" -> "../04-classifier/#anchor"
+    var parts = String(url).split("#");
+    var file = parts[0].replace(/\.md$/, "");
+    var anchor = parts[1] ? "#" + parts[1] : "";
+    return "../" + file + "/" + anchor;
+  }
+
+  function topicBreakdown(answers) {
+    var byTopic = {};
+    answers.forEach(function (a) {
+      if (a.ok) return;
+      if (!byTopic[a.topic]) {
+        byTopic[a.topic] = { topic: a.topic, misses: 0, reviewUrl: a.review.url, reviewTitle: a.review.title };
+      }
+      byTopic[a.topic].misses += 1;
+    });
+    return Object.keys(byTopic).map(function (k) { return byTopic[k]; })
+      .sort(function (x, y) { return y.misses - x.misses; });
+  }
+
+  function persistLastIds() {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify(state.set.map(function (q) { return q.id; })));
+    } catch (e) { /* приватный режим — не критично */ }
+  }
+
+  function renderResults() {
+    persistLastIds();
+    var sc = computeScore(state.answers);
+    var wrong = state.answers.filter(function (a) { return !a.ok; });
+    var breakdown = topicBreakdown(state.answers);
+
+    root.innerHTML = "";
+    var card = el("div", { class: "quiz-card quiz-results" });
+
+    card.appendChild(el("h2", { text: "Результат" }));
+    var verdictCls = sc.verdict === "Сдано" ? "pass" : "fail";
+    card.appendChild(el("div", { class: "quiz-verdict " + verdictCls, text: sc.verdict }));
+    card.appendChild(el("p", {
+      class: "quiz-score",
+      text: sc.percent + "% — верных ответов " + sc.correct + " из " + TOTAL
+    }));
+    card.appendChild(el("p", { class: "quiz-fio-line", text: state.surname + " " + state.name }));
+
+    if (breakdown.length) {
+      card.appendChild(el("h3", { text: "Что повторить" }));
+      var table = el("table", { class: "quiz-breakdown" });
+      var thead = el("tr", {}, [
+        el("th", { text: "Тема" }), el("th", { text: "Ошибок" }), el("th", { text: "Раздел" })
+      ]);
+      table.appendChild(el("thead", {}, [thead]));
+      var tbody = el("tbody");
+      breakdown.forEach(function (row) {
+        var link = el("a", { href: reviewLink(row.reviewUrl), text: row.reviewTitle });
+        tbody.appendChild(el("tr", {}, [
+          el("td", { text: row.topic }),
+          el("td", { text: String(row.misses) }),
+          el("td", {}, [link])
+        ]));
+      });
+      table.appendChild(tbody);
+      card.appendChild(table);
+    } else {
+      card.appendChild(el("p", { class: "quiz-feedback good", text: "Ошибок нет — повторять нечего." }));
+    }
+
+    if (wrong.length) {
+      card.appendChild(el("h3", { text: "Разбор неверных ответов" }));
+      var ul = el("ul", { class: "quiz-wrong-list" });
+      wrong.forEach(function (a, i) {
+        var li = el("li");
+        li.appendChild(el("div", { class: "quiz-wrong-q", text: a.question }));
+        li.appendChild(el("div", {
+          class: "quiz-wrong-a",
+          text: "Ваш ответ: " + (a.chosen === null ? "— (не успели)" : a.chosen)
+        }));
+        li.appendChild(el("div", { class: "quiz-wrong-c", text: "Верно: " + a.correct }));
+        ul.appendChild(li);
+      });
+      card.appendChild(ul);
+    }
+
+    var status = el("div", { class: "quiz-send-status", text: "Отправка результата…" });
+    card.appendChild(status);
+
+    var again = el("button", { type: "button", class: "quiz-btn", text: "Пройти заново" });
+    again.addEventListener("click", function () { startQuiz(state.surname, state.name); });
+    card.appendChild(again);
+
+    root.appendChild(card);
+
+    submitResults(sc, wrong, status);
+  }
+
+  function submitResults(sc, wrong, statusEl) {
+    // Полная реализация — Задача 12. Пока просто сообщаем, что отправка не настроена.
+    statusEl.textContent = "Отправка результата будет настроена (Задача 12).";
+  }
 
   // экспорт для отладки из консоли
   window.__quiz = { assembleSet: assembleSet, readBank: readBank, get state() { return state; } };

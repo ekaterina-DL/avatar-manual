@@ -88,3 +88,23 @@
 .quiz-feedback.good { color: #2e7d32; }
 .quiz-feedback.bad { color: #c62828; }
 .quiz-next { margin-top: 0.9rem; }
+
+.quiz-verdict {
+  display: inline-block; padding: 0.25rem 0.9rem; border-radius: 999px;
+  font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem;
+}
+.quiz-verdict.pass { background: #e8f5e9; color: #2e7d32; }
+.quiz-verdict.fail { background: #ffebee; color: #c62828; }
+.quiz-score { font-size: 1.15rem; font-weight: 600; margin: 0.3rem 0; }
+.quiz-fio-line { color: var(--md-default-fg-color--light, #757575); margin-top: 0; }
+.quiz-breakdown { border-collapse: collapse; width: 100%; margin: 0.4rem 0 1rem; }
+.quiz-breakdown th, .quiz-breakdown td {
+  border: 1px solid var(--md-default-fg-color--lightest, #e0e0e0);
+  padding: 0.4rem 0.6rem; text-align: left; font-size: 0.9rem;
+}
+.quiz-wrong-list { padding-left: 1.1rem; }
+.quiz-wrong-list li { margin-bottom: 0.7rem; }
+.quiz-wrong-q { font-weight: 600; }
+.quiz-wrong-a { color: #c62828; }
+.quiz-wrong-c { color: #2e7d32; }
+.quiz-send-status { margin: 0.8rem 0; font-size: 0.85rem; color: var(--md-default-fg-color--light, #757575); }
