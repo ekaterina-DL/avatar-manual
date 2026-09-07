@@ -58,6 +58,7 @@ def test_extract_numbers_classifier_field_count_present():
 
 
 def test_extract_forbidden_tags():
+    from build_quiz_bank import _ALLOWED_DISTRACTORS
     qs = extract_forbidden_tags({"manual-2-etap/02-segments.md": SEGMENTS_KEYFACTS})
     assert qs
     q = qs[0]
@@ -66,8 +67,10 @@ def test_extract_forbidden_tags():
     # верный вариант — один из запрещённых тегов
     assert q["options"][0] in {"смену кадра", "склейки", "закадровый голос",
                                "молчание >4 сек и на границах"} or "молчание" in q["options"][0]
-    # неверные варианты — «допустимые» вещи, не из списка тегов
-    assert "пиксельность на фоне" in q["options"] or "лёгкий фоновый шум" in q["options"]
+    # неверные варианты — ровно 3 «допустимые» вещи из общего пула (порядок тасуется seed'ом)
+    distractors = q["options"][1:]
+    assert len(distractors) == 3
+    assert all(d in _ALLOWED_DISTRACTORS for d in distractors)
 
 
 class FakeFile:
@@ -245,6 +248,18 @@ NOT_LABEL_B = """# Что не размечаем / Битое
 
 <div class="field-label-row" markdown="1">
 
+### Виньетка {: .field-label-heading }
+
+Затемнение по краям кадра.
+
+</div>
+
+**Калибровочный пример:**
+
+- [Виньетка по углам кадра](https://ex.test/vin1.mp4).
+
+<div class="field-label-row" markdown="1">
+
 ### Пиксельность {: .field-label-heading }
 
 Черты лица смазаны.
@@ -258,6 +273,81 @@ NOT_LABEL_B = """# Что не размечаем / Битое
 - [Пиксельность — пример 2](https://ex.test/px2.mp4).
 """
 
+EXCLUDED_WITH_OTHER_HEADING = """# Что не размечаем / Битое
+
+## 🚫 Полностью исключённые типы видео
+
+<div class="field-label-row" markdown="1">
+
+### Склейки {: .field-label-heading }
+
+Склейка — брак.
+
+</div>
+
+- [В начале склейка](https://ex.test/skl1.mp4).
+
+<div class="field-label-row" markdown="1">
+
+### Виньетка {: .field-label-heading }
+
+Затемнение по краям.
+
+</div>
+
+- [Виньетка по углам](https://ex.test/vin1.mp4).
+
+<div class="field-label-row" markdown="1">
+
+### Пиксельность {: .field-label-heading }
+
+Смазаны черты лица.
+
+</div>
+
+- [Пиксельность — пример](https://ex.test/px9.mp4).
+
+### Другие исключения
+
+- [см. Общие требования](https://ex.test/other.mp4)
+"""
+
+EXCLUDED_WITH_DOC_LINK = """# Что не размечаем / Битое
+
+## 🚫 Полностью исключённые типы видео
+
+<div class="field-label-row" markdown="1">
+
+### Склейки {: .field-label-heading }
+
+Склейка — брак.
+
+</div>
+
+- [В начале склейка](https://ex.test/skl1.mp4).
+- [см. Общие требования](01-general-requirements.md).
+
+<div class="field-label-row" markdown="1">
+
+### Виньетка {: .field-label-heading }
+
+Затемнение.
+
+</div>
+
+- [Виньетка](https://ex.test/vin1.mp4).
+
+<div class="field-label-row" markdown="1">
+
+### Пиксельность {: .field-label-heading }
+
+Смазано.
+
+</div>
+
+- [Пиксельность](https://ex.test/px1.mp4).
+"""
+
 
 def test_extract_broken_from_example_library():
     qs = extract_broken({"manual-2-etap/11-example-library.md": LIB_BROKEN})
@@ -266,11 +356,16 @@ def test_extract_broken_from_example_library():
     q = lib[0]
     assert q["category"] == "B"
     assert q["videoUrl"] == "https://ex.test/s1.mp4"
-    assert q["options"][0] == "Смена кадра в конце"
-    assert len(q["options"]) >= 3
-    assert all(opt in {"Смена кадра в конце", "Кашель перебивает говорящего",
-                       "Звук ветра слишком громкий", "Наложение полупрозрачного кадра"}
-               for opt in q["options"])
+    # переформулировано: «размечать или в „Битое“?», верный ответ всегда «В «Битое»»
+    assert q["options"][0] == "В «Битое»"
+    assert q["answer"] == 0
+    assert set(q["options"]) == {"В «Битое»", "Подходит для разметки", "Нужно поделить на 2 сегмента"}
+    # одна карточка на ссылку
+    assert len({x["videoUrl"] for x in lib}) == 4
+    assert {x["videoUrl"] for x in lib} == {
+        "https://ex.test/s1.mp4", "https://ex.test/s2.mp4",
+        "https://ex.test/s3.mp4", "https://ex.test/s4.mp4",
+    }
 
 
 def test_extract_broken_from_excluded_types_filters_negations():
@@ -284,8 +379,26 @@ def test_extract_broken_from_excluded_types_filters_negations():
     assert "https://ex.test/px1.mp4" not in urls  # "Некритичная пиксельность"
     q = [q for q in b05 if q["videoUrl"] == "https://ex.test/skl1.mp4"][0]
     assert q["options"][0] == "Склейки"
-    assert "Пиксельность" in q["options"]
+    assert q["topic"] == "Склейки"                       # topic = имя подраздела
+    assert q["review"]["url"] == "05b-what-not-to-label.md#склейки"
     assert len(q["options"]) >= 3
+    assert set(q["options"]) - {"Склейки"} <= {"Виньетка", "Пиксельность"}
+
+
+def test_extract_broken_excluded_ignores_other_headings():
+    # Последний field-label подраздел не должен затягивать «### Другие исключения»
+    qs = extract_broken({"manual-2-etap/05b-what-not-to-label.md": EXCLUDED_WITH_OTHER_HEADING})
+    urls = {q["videoUrl"] for q in qs}
+    assert "https://ex.test/px9.mp4" in urls        # последний field-label подраздел работает
+    assert "https://ex.test/other.mp4" not in urls  # пункт из «Другие исключения» не попал
+
+
+def test_media_url_filter():
+    # Пункт-ссылка на страницу мануала (не видео) не должен становиться вопросом
+    qs = extract_broken({"manual-2-etap/05b-what-not-to-label.md": EXCLUDED_WITH_DOC_LINK})
+    urls = {q["videoUrl"] for q in qs}
+    assert "https://ex.test/skl1.mp4" in urls
+    assert not any(u.endswith("01-general-requirements.md") for u in urls)
 
 
 from build_quiz_bank import extract_examples
@@ -366,6 +479,35 @@ def test_extract_examples_combined():
     assert corrects == ["В «Битое»", "В «Битое»", "Подходит для разметки", "Подходит для разметки"]
 
 
+MULTI_SEG_C = """# Что размечаем
+
+## Примеры (позитивные)
+
+**Пример 1:** https://ex.test/one.mp4
+![Пример 1: женщина на нейтральном фоне](assets/f1.jpeg)
+Речь на нейтральном фоне — лицо чётко видно. **Подходящий сегмент: 0:02 – 02:57.**
+
+**Пример 2:** https://ex.test/two.mp4
+![Пример 2: девушка поёт у пианино](assets/f2.jpeg)
+Отрывок с пением дома — лицо чётко видно.
+**Подходящие сегменты:**
+- сегмент с плечами: 0:08 – 0:37
+- сегмент с появлением рук: 0:37 – 02:40
+"""
+
+
+def test_extract_examples_multi_segment_is_split():
+    qs = extract_examples({"manual-2-etap/05-what-to-label.md": MULTI_SEG_C})
+    pos = [q for q in qs if q["review"]["url"] == "05-what-to-label.md#примеры-позитивные"]
+    assert len(pos) == 2
+    one = [q for q in pos if q["videoUrl"] == "https://ex.test/one.mp4"][0]
+    two = [q for q in pos if q["videoUrl"] == "https://ex.test/two.mp4"][0]
+    assert one["options"][0] == "Подходит для разметки"  # один сегмент
+    assert two["options"][0] == "Нужно поделить на 2 сегмента"  # «Подходящие сегменты:» + 2 пункта
+    assert two["answer"] == 0
+    assert set(two["options"]) == {"Подходит для разметки", "В «Битое»", "Нужно поделить на 2 сегмента"}
+
+
 from build_quiz_bank import load_manual_questions
 
 MANUAL_YAML_OK = '''
@@ -441,6 +583,22 @@ def test_load_manual_questions_rejects_two_options():
         assert False, "ожидался ValueError"
     except ValueError as e:
         assert "варианта" in str(e) or "options" in str(e)
+
+
+def test_load_manual_questions_rejects_duplicate_options():
+    y = '''
+- id: x
+  topic: T
+  question: Q?
+  options: [верно, дубль, дубль]
+  answer: 0
+  review: {title: T, url: 02-segments.md#определение-и-границы}
+'''
+    try:
+        load_manual_questions(y)
+        assert False, "ожидался ValueError"
+    except ValueError as e:
+        assert "повтор" in str(e).lower()
 
 
 def test_load_manual_questions_empty():
@@ -557,3 +715,36 @@ def test_real_bank_local_video_urls_are_page_relative():
         if u.startswith(("http://", "https://", "//")):
             continue
         assert u.startswith("../assets/"), f"{q['id']}: локальный videoUrl не относителен странице теста: {u}"
+
+
+from build_quiz_bank import _slug, _make_id, _assert_unique_ids
+
+
+def test_slug_transliterates():
+    # чисто-кириллические темы больше не схлопываются в "q" и не совпадают между собой
+    assert _slug("Освещение") != _slug("Фон")
+    assert _slug("Освещение") != "q"
+    assert _slug("Фон") != "q"
+    assert _slug("Освещение") == "osveschenie"
+    assert re.fullmatch(r"[a-z0-9-]+", _slug("Смена кадра/сцены"))
+
+
+def test_make_id_distinct_for_topics():
+    assert _make_id("A", "Освещение", "u") != _make_id("A", "Фон", "u")
+
+
+def test_assert_unique_ids_raises_on_collision():
+    dup = [
+        {"id": "X-1", "topic": "A"},
+        {"id": "X-1", "topic": "B"},
+    ]
+    try:
+        _assert_unique_ids(dup)
+        assert False, "ожидался ValueError"
+    except ValueError as e:
+        assert "X-1" in str(e)
+
+
+def test_real_bank_assert_unique_ids_passes():
+    # build_bank сам вызывает _assert_unique_ids; здесь фиксируем, что на живом мануале он не падает
+    build_bank(_real_sources(), _real_manual_yaml())

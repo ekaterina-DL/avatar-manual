@@ -12,15 +12,23 @@ manual-2-etap/_quiz-manual.yml, и вставляет собранный бан�
 import datetime
 import hashlib
 import json
+import random
 import re
 from pathlib import Path
 
 import yaml
 
+from pymdownx.slugs import slugify as _slugify_factory
+
 from _build_profile import is_pdf_build
 from _section_utils import extract_section
 
 TARGET_PAGE = "manual-2-etap/07-testirovanie.md"
+
+# Настоящий slug-генератор mkdocs (pymdownx.slugs.slugify(case=lower)) — тот же, что в
+# site/mkdocs.yml. Используем его везде, где нужно собрать якорь заголовка (#...), чтобы
+# ссылка review.url гарантированно вела в нужную секцию, а не «примерно туда».
+_heading_slug = _slugify_factory(case="lower")
 
 # Явный список источников — так 00-overview.md гарантированно вне игры, и добавление
 # новой страницы мануала не протекает в тест автоматически (это осознанное решение).
@@ -39,10 +47,27 @@ _MARKER = "<!-- QUIZ-BANK -->"
 _PDF_NOTE = "> Тестирование доступно только на сайте.\n"
 
 
+# Транслитерация кириллицы для id вопросов. Без неё _slug() любого чисто-кириллического
+# topic'а схлопывался в "q", и id разных тем сталкивались бы (напр. A-q-<hash> для
+# «Освещение» и «Фон» при одном и том же url), а проигравший вопрос молча выкидывался
+# дедупом. Транслит + хэш содержимого делают id по-настоящему уникальным.
+_RU2LAT = {
+    "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "e", "ё": "e",
+    "ж": "zh", "з": "z", "и": "i", "й": "y", "к": "k", "л": "l", "м": "m",
+    "н": "n", "о": "o", "п": "p", "р": "r", "с": "s", "т": "t", "у": "u",
+    "ф": "f", "х": "h", "ц": "ts", "ч": "ch", "ш": "sh", "щ": "sch",
+    "ъ": "", "ы": "y", "ь": "", "э": "e", "ю": "yu", "я": "ya",
+}
+
+
+def _translit(text):
+    return "".join(_RU2LAT.get(ch, ch) for ch in text)
+
+
 def _slug(text):
-    """ASCII-безопасный короткий слаг для id (кириллица → транслит не нужен, достаточно
-    хэша рядом; здесь просто чистим до [a-z0-9-])."""
-    text = text.lower()
+    """ASCII-безопасный короткий слаг для id: сначала нижний регистр, потом транслит
+    кириллицы в латиницу, потом чистка до [a-z0-9-]."""
+    text = _translit(text.lower())
     text = re.sub(r"[^a-z0-9]+", "-", text)
     return text.strip("-") or "q"
 
@@ -152,7 +177,11 @@ def extract_forbidden_tags(sources):
     if len(tags) < 3:
         return []
     correct = tags[0]  # любой тег из списка; порядок вариантов всё равно перемешает JS
-    wrong = _ALLOWED_DISTRACTORS[:3]
+    # Дистракторы тасуем с фиксированным seed'ом: детерминированно на сборку, но не
+    # «первые три из списка» — иначе набор неверных был бы всегда один и тот же.
+    pool = list(_ALLOWED_DISTRACTORS)
+    random.Random("forbidden-tags").shuffle(pool)
+    wrong = pool[:3]
     return [
         {
             "id": _make_id("DE", "запрещено в сегменте", "forbidden-tags"),
@@ -174,9 +203,22 @@ _LI_RE = re.compile(r'<li>(.*?)</li>', re.S)
 _EXAMPLE_LINE_RE = re.compile(
     r'^\s*[-*]\s+\[\*\*(?P<value>[^*]+?)\*\*(?P<rest>[^\]]*)\]\((?P<url>[^)]+)\)', re.M
 )
-_TIMECODE_RE = re.compile(
-    r'\(?(?P<a>\d+):(?P<b>\d+(?:\.\d+)?)|\(?(?P<sec>\d+(?:\.\d+)?)\s*[–-]'
-)
+
+_MEDIA_HINTS = ("vkvideo.ru", "vk.com/video", "youtube.com", "youtu.be")
+
+
+def _looks_like_media(url):
+    """True, если ссылка похожа на видео-источник, а не на внутреннюю страницу мануала.
+    Защищает от того, чтобы пункт вида «- [см. Общие требования](01-general-requirements.md)»
+    превратился в вопрос про «битое» видео."""
+    if not url:
+        return False
+    u = url.strip().lower()
+    if u.startswith(("http://", "https://")):
+        return True
+    if u.endswith((".mp4", ".webm", ".mov")):
+        return True
+    return any(h in u for h in _MEDIA_HINTS)
 
 
 def _norm_value(text):
@@ -221,12 +263,9 @@ def _split_classifier_fields(text):
 
 
 def _field_anchor(index_word, field_name):
-    # slug как у pymdownx.slugs.slugify(case=lower): нижний регистр, пробелы -> '-',
-    # пунктуация выкидывается, кириллица сохраняется. Заголовок вида "3. Объём и поза…".
-    raw = f"{index_word} {field_name}".lower()
-    raw = raw.replace("(", "").replace(")", "").replace(",", "").replace(".", "")
-    raw = re.sub(r'\s+', '-', raw.strip())
-    return raw
+    # Якорь заголовка вида "### 3. Объём и поза…" — считаем настоящим slug'ом mkdocs,
+    # а не ручной эмуляцией (её легко рассинхронить с pymdownx).
+    return _heading_slug(f"{index_word} {field_name}", "-")
 
 
 def extract_classifier_video(sources):
@@ -252,10 +291,15 @@ def extract_classifier_video(sources):
             if canon is None:
                 continue  # подпись не совпала со значением поля — не берём
             url = ex.group("url").strip()
+            if not _looks_like_media(url):
+                continue
             rest = ex.group("rest") or ""
             start = _parse_timecode(rest)
             wrong = [v for v in values if v != canon]
-            random_wrong = wrong[:3] if len(wrong) >= 3 else wrong
+            # Тасуем дистракторы с per-question seed'ом (url): детерминированно на сборку,
+            # но набор неверных вариантов разный от вопроса к вопросу, а не «первые три».
+            random.Random(url).shuffle(wrong)
+            distractors = wrong[:3]
             idx_word = idx_by_name.get(field_name, "")
             q = {
                 "id": _make_id("A", field_name, url),
@@ -264,7 +308,7 @@ def extract_classifier_video(sources):
                 "question": f"Определите по видео: {field_name.lower()}.",
                 "videoUrl": url,
                 "videoKind": _video_kind(url),
-                "options": [canon, *random_wrong],
+                "options": [canon, *distractors],
                 "answer": 0,
                 "review": {
                     "title": "Классификатор",
@@ -289,16 +333,6 @@ _EXCLUDED_SUBHEAD_RE = re.compile(
     r'^###\s+(?P<name>.+?)\s+\{:\s*\.field-label-heading\s*\}\s*$', re.M
 )
 
-# Запасной пул категорий-дистракторов для вопроса «что не так с этим видео»: если у
-# подраздела нашлось меньше трёх соседних заголовков (вырожденный раздел), варианты
-# добираются отсюда, чтобы у вопроса всегда было >= 3 варианта. Верный ответ при этом
-# всегда берётся из заголовка самого мануала — здесь только неверные.
-_EXCLUDED_TYPE_DISTRACTORS = (
-    "Склейки", "Рамка", "Пиксельность", "Тряска камеры", "Пережатие",
-    "Виньетка", "Монтажное наложение", "Дубляж", "Синхронизация", "Смена кадра/сцены",
-)
-
-
 def _clean_caption(cap):
     cap = re.sub(r'\*\*(.+?)\*\*', r'\1', cap)  # снять bold
     return cap.strip().rstrip(".").strip()
@@ -309,29 +343,37 @@ def _has_negation(cap):
     return any(mk in low for mk in _NEGATION_MARKERS)
 
 
+# Источник B-1: раздел «Битое — примеры дефектов» в 11-example-library.md.
+# Раньше вопрос был «Какой дефект в этом видео?» с соседними подписями-дистракторами —
+# он неотвечаем, когда подписи-синонимы («Размазаны глаза» / «Плохое качество с
+# пиксельностью» / «Размазано лицо» — про одно и то же). Переформулировано в
+# «размечать или в „Битое“?»: все видео в этом разделе действительно битые.
+_BROKEN_LIB_OPTIONS = ["В «Битое»", "Подходит для разметки", "Нужно поделить на 2 сегмента"]
+
+
 def _extract_broken_from_library(text):
     body = extract_section(text, "Битое — примеры дефектов")
     if body is None:
         return []
-    items = [(_clean_caption(m.group("cap")), m.group("url").strip())
-             for m in _LINK_ITEM_RE.finditer(body)]
-    items = [(c, u) for c, u in items if c and not _has_negation(c)]
-    if len(items) < 3:
-        return []
-    all_caps = [c for c, _ in items]
     out = []
-    for cap, url in items:
-        wrong = [c for c in all_caps if c != cap][:3]
-        if len(wrong) < 2:
+    seen = set()
+    for m in _LINK_ITEM_RE.finditer(body):
+        cap = _clean_caption(m.group("cap"))
+        url = m.group("url").strip()
+        if not _looks_like_media(url) or url in seen:
             continue
+        low = cap.lower()
+        if "для сравнения" in low or "некритич" in low:
+            continue  # лёгкая защита: таких пунктов в разделе сейчас нет
+        seen.add(url)
         out.append({
             "id": _make_id("B", "битое дефект", url),
             "category": "B",
             "topic": "Что не размечаем / Битое",
-            "question": "Какой дефект в этом видео (почему оно уходит в «Битое»)?",
+            "question": "Это видео можно размечать или его нужно отправить в «Битое»?",
             "videoUrl": url,
             "videoKind": _video_kind(url),
-            "options": [cap, *wrong],
+            "options": list(_BROKEN_LIB_OPTIONS),
             "answer": 0,
             "review": {"title": "Банк примеров",
                        "url": "11-example-library.md#битое--примеры-дефектов"},
@@ -351,33 +393,40 @@ def _extract_broken_from_excluded(text):
     for i, h in enumerate(heads):
         name = names[i]
         seg_start = h.end()
-        seg_end = heads[i + 1].start() if i + 1 < len(heads) else len(body)
+        # Граница подраздела — до ближайшего следующего «### » ЛЮБОГО вида (в т.ч.
+        # не-field-label «### Другие исключения»), иначе последний подраздел затягивал
+        # бы в себя чужой заголовок и его пункты.
+        nxt = body.find("\n### ", seg_start)
+        seg_end = nxt if nxt != -1 else len(body)
         segment = body[seg_start:seg_end]
-        others = [n for n in names if n != name][:3]
-        if len(others) < 3:  # вырожденный раздел — добираем неверные из запасного пула
-            for d in _EXCLUDED_TYPE_DISTRACTORS:
-                if d != name and d not in others:
-                    others.append(d)
-                if len(others) >= 3:
-                    break
-        if len(others) < 2:
+
+        others = [n for n in names if n != name]
+        if len(others) < 2:  # <2 соседних заголовков — не набрать >=3 варианта, пропускаем
             continue
+
         for m in _LINK_ITEM_RE.finditer(segment):
             cap = _clean_caption(m.group("cap"))
             url = m.group("url").strip()
+            if not _looks_like_media(url):
+                continue
             if not cap or _has_negation(cap):
                 continue
+            # Дистракторы тасуем с per-question seed'ом (url): без этого каждый подраздел
+            # после первых трёх получал бы один и тот же набор вариантов.
+            pool = list(others)
+            random.Random(url).shuffle(pool)
+            distractors = pool[:3]
             out.append({
                 "id": _make_id("B", name, url),
                 "category": "B",
-                "topic": "Что не размечаем / Битое",
+                "topic": name,
                 "question": "Что не так с этим видео — почему его нельзя размечать?",
                 "videoUrl": url,
                 "videoKind": _video_kind(url),
-                "options": [name, *others],
+                "options": [name, *distractors],
                 "answer": 0,
-                "review": {"title": "Что не размечаем / Битое",
-                           "url": "05b-what-not-to-label.md#-полностью-исключённые-типы-видео"},
+                "review": {"title": name,
+                           "url": f"05b-what-not-to-label.md#{_heading_slug(name, '-')}"},
             })
     return out
 
@@ -397,18 +446,39 @@ _EXAMPLE_BLOCK_RE = re.compile(
     r'(?:\[(?P<txt>[^\]]*)\]\((?P<lurl>[^)]+)\)|(?P<burl>\S+))',
     re.M,
 )
-_C_OPTIONS = ["Подходит для разметки", "В «Битое»", "Нужно поделить на 2 сегмента"]
+_C_FIT = "Подходит для разметки"
+_C_BROKEN = "В «Битое»"
+_C_SPLIT = "Нужно поделить на 2 сегмента"
+_C_OPTIONS = [_C_FIT, _C_BROKEN, _C_SPLIT]
+
+# Признак того, что «Пример» в мануале — многосегментный: правильный ответ по мануалу
+# «поделить», а не «подходит одним куском». Напр. 05-what-to-label.md, Пример 2
+# («**Подходящие сегменты:**» + два пункта) и Пример 4 («несколько подходящих сегментов»).
+_MULTI_SEGMENT_RE = re.compile(
+    r'подходящие\s+сегменты:|несколько\s+подходящих\s+сегмент|два\s+сегмент|2\s+сегмент',
+    re.I,
+)
 
 
 def _extract_examples_from(body, is_anti, review):
     if body is None:
         return []
+    matches = list(_EXAMPLE_BLOCK_RE.finditer(body))
     out = []
-    for m in _EXAMPLE_BLOCK_RE.finditer(body):
+    for i, m in enumerate(matches):
         url = (m.group("lurl") or m.group("burl") or "").strip()
-        if not url or url.startswith("!"):
+        if not url or url.startswith("!") or not _looks_like_media(url):
             continue
-        correct = "В «Битое»" if is_anti else "Подходит для разметки"
+        # Тело блока — от конца этого совпадения до начала следующего блока (или конца
+        # секции): по нему решаем, «подходит» это или «нужно поделить».
+        block_end = matches[i + 1].start() if i + 1 < len(matches) else len(body)
+        block_body = body[m.end():block_end]
+        if is_anti:
+            correct = _C_BROKEN
+        elif _MULTI_SEGMENT_RE.search(block_body):
+            correct = _C_SPLIT
+        else:
+            correct = _C_FIT
         wrong = [o for o in _C_OPTIONS if o != correct]
         out.append({
             "id": _make_id("C", "подходящий сегмент", url),
@@ -461,6 +531,8 @@ def load_manual_questions(yaml_text):
         opts = list(item["options"])
         if len(opts) < 3:
             raise ValueError(f"{where}: нужно минимум 3 варианта, дано {len(opts)}")
+        if len(set(map(str, opts))) != len(opts):
+            raise ValueError(f"{where}: варианты ответа повторяются дословно")
         ans = int(item["answer"])
         if not (0 <= ans < len(opts)):
             raise ValueError(f"{where}: answer={ans} вне диапазона вариантов")
@@ -515,7 +587,8 @@ def build_bank(sources, manual_yaml_text):
     questions += extract_broken(sources)
     questions += extract_examples(sources)
     questions += load_manual_questions(manual_yaml_text)
-    _dedup_by_id(questions)
+    _assert_unique_ids(questions)
+    _dedup_by_id(questions)  # защитный no-op: после _assert_unique_ids дублей уже нет
     _fix_local_video_urls(questions)
     return {
         "generatedAt": datetime.datetime.now(datetime.timezone.utc)
@@ -523,6 +596,20 @@ def build_bank(sources, manual_yaml_text):
         .isoformat(),
         "questions": questions,
     }
+
+
+def _assert_unique_ids(questions):
+    """Падаем со списком id, если два вопроса делят один id. После транслита _slug() и
+    хэша по содержимому/URL реальный дубль id — это уже настоящая ошибка (в т.ч.
+    задублированный вручную id в _quiz-manual.yml), а не безобидное совпадение слага."""
+    seen = {}
+    for q in questions:
+        if q["id"] in seen:
+            raise ValueError(
+                f"дублирующийся id вопроса: {q['id']!r} "
+                f"(темы: {seen[q['id']]!r} и {q['topic']!r})"
+            )
+        seen[q["id"]] = q["topic"]
 
 
 def _dedup_by_id(questions):
