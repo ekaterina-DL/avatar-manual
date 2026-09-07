@@ -8,6 +8,7 @@ exclude_docs: |
   README.md
   voprosy-zakazchiku.md
   manual-2-etap/_sources-log.md
+  manual-2-etap/_quiz-manual.yml
   manual-3-etap/_sources-log.md
   site/PLAN.md
   site/requirements.txt

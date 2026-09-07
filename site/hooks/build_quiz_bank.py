@@ -15,6 +15,8 @@ import json
 import re
 from pathlib import Path
 
+import yaml
+
 from _build_profile import is_pdf_build
 from _section_utils import extract_section
 
@@ -442,6 +444,49 @@ def extract_examples(sources):
     return out
 
 
+def load_manual_questions(yaml_text):
+    if not yaml_text or not yaml_text.strip():
+        return []
+    data = yaml.safe_load(yaml_text)
+    if data is None:
+        return []
+    if not isinstance(data, list):
+        raise ValueError("_quiz-manual.yml: на верхнем уровне ожидается список вопросов")
+    out = []
+    for i, item in enumerate(data):
+        where = f"_quiz-manual.yml, вопрос #{i + 1}"
+        for key in ("id", "topic", "question", "options", "answer", "review"):
+            if key not in item:
+                raise ValueError(f"{where}: нет обязательного поля '{key}'")
+        opts = list(item["options"])
+        if len(opts) < 3:
+            raise ValueError(f"{where}: нужно минимум 3 варианта, дано {len(opts)}")
+        ans = int(item["answer"])
+        if not (0 <= ans < len(opts)):
+            raise ValueError(f"{where}: answer={ans} вне диапазона вариантов")
+        correct = opts[ans]
+        reordered = [correct] + [o for j, o in enumerate(opts) if j != ans]
+        review = item["review"]
+        if "url" not in review or "title" not in review:
+            raise ValueError(f"{where}: review должен содержать title и url")
+        q = {
+            "id": str(item["id"]),
+            "category": "F",
+            "topic": str(item["topic"]),
+            "question": str(item["question"]),
+            "options": reordered,
+            "answer": 0,
+            "review": {"title": str(review["title"]), "url": str(review["url"])},
+        }
+        if item.get("video"):
+            q["videoUrl"] = str(item["video"])
+            q["videoKind"] = _video_kind(q["videoUrl"])
+        if item.get("video_start") is not None:
+            q["videoStart"] = round(float(item["video_start"]), 2)
+        out.append(q)
+    return out
+
+
 def build_bank(sources, manual_yaml_text):
     """sources: {relpath: markdown_text}. Возвращает {"generatedAt": iso, "questions": [...]}.
     Экстракторы источников A–F подключаются в Задачах 3–8."""
@@ -451,7 +496,7 @@ def build_bank(sources, manual_yaml_text):
     questions += extract_classifier_video(sources)
     questions += extract_broken(sources)
     questions += extract_examples(sources)
-    # --- Задача 7: questions += load_manual_questions(manual_yaml_text)
+    questions += load_manual_questions(manual_yaml_text)
     _dedup_by_id(questions)
     return {
         "generatedAt": datetime.datetime.now(datetime.timezone.utc)

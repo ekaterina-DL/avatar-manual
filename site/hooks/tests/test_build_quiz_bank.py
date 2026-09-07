@@ -364,3 +364,85 @@ def test_extract_examples_combined():
     assert len(qs) == 4
     corrects = sorted(q["options"][0] for q in qs)
     assert corrects == ["В «Битое»", "В «Битое»", "Подходит для разметки", "Подходит для разметки"]
+
+
+from build_quiz_bank import load_manual_questions
+
+MANUAL_YAML_OK = '''
+- id: seg-boundary-speech
+  topic: Границы сегмента
+  question: С чего должен начинаться и чем заканчиваться сегмент?
+  options:
+    - Ровно с начала речи человека и до момента, когда он перестаёт говорить
+    - С любого удобного места длиной 10 секунд
+    - За 3–4 кадра до первого слова
+  answer: 0
+  review:
+    title: Сегменты
+    url: 02-segments.md#определение-и-границы
+
+- id: split-short-pause
+  topic: Деление сегмента
+  question: Нужно ли делить видео на сегменты из-за короткой паузы в речи?
+  video: https://ex.test/pause.mp4
+  video_start: 4
+  options:
+    - "Нет — короткая пауза не повод дробить сегмент"
+    - "Да — каждая пауза = новый сегмент"
+    - "Да, если пауза дольше 1 секунды"
+  answer: 0
+  review:
+    title: Сегменты
+    url: 02-segments.md#когда-объединятьделить-сегмент
+'''
+
+
+def test_load_manual_questions_ok():
+    qs = load_manual_questions(MANUAL_YAML_OK)
+    assert len(qs) == 2
+    q = qs[0]
+    assert q["id"] == "seg-boundary-speech"
+    assert q["category"] == "F"
+    assert q["answer"] == 0
+    assert q["options"][0].startswith("Ровно с начала речи")
+    assert q["review"]["url"] == "02-segments.md#определение-и-границы"
+    q2 = qs[1]
+    assert q2["videoUrl"] == "https://ex.test/pause.mp4"
+    assert q2["videoKind"] == "mp4"
+    assert q2["videoStart"] == 4
+
+
+def test_load_manual_questions_answer_not_zero_gets_reordered():
+    y = '''
+- id: x
+  topic: T
+  question: Q?
+  options: [неверно1, верно, неверно2]
+  answer: 1
+  review: {title: Сегменты, url: 02-segments.md#определение-и-границы}
+'''
+    q = load_manual_questions(y)[0]
+    assert q["options"][0] == "верно"
+    assert q["answer"] == 0
+    assert set(q["options"]) == {"верно", "неверно1", "неверно2"}
+
+
+def test_load_manual_questions_rejects_two_options():
+    y = '''
+- id: x
+  topic: T
+  question: Q?
+  options: [a, b]
+  answer: 0
+  review: {title: T, url: 02-segments.md#определение-и-границы}
+'''
+    try:
+        load_manual_questions(y)
+        assert False, "ожидался ValueError"
+    except ValueError as e:
+        assert "варианта" in str(e) or "options" in str(e)
+
+
+def test_load_manual_questions_empty():
+    assert load_manual_questions("") == []
+    assert load_manual_questions("[]") == []
