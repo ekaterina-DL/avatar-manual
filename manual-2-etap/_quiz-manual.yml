@@ -122,6 +122,7 @@
   review:
     title: Классификатор
     url: 04-classifier.md#8-тип-речи
+
 - id: clf-language-dominant
   topic: Язык и акценты
   question: В сегменте человек говорит на 95% по-английски и роняет одно слово по-русски. Какой язык отмечать?
@@ -168,7 +169,7 @@
   answer: 0
   review:
     title: Что не размечаем / Битое
-    url: 05b-what-not-to-label.md#-полностью-исключённые-типы-видео
+    url: 05b-what-not-to-label.md#зум
 
 - id: silence-in-segment
   topic: Что не размечаем / Битое
