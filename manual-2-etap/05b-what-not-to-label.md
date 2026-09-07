@@ -281,8 +281,6 @@
 
 ## 🎚️ Исключения, зависящие от степени и контекста
 
-<span class="status-badge status-partial">🎚️ Зависит от степени и контекста</span>
-
 <div class="field-label-row" markdown="1">
 
 ### Зум {: .field-label-heading }
