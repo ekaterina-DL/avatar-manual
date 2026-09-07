@@ -1,0 +1,28 @@
+/* ==== Тестирование по 2 этапу ==== */
+
+/* Акцент на пункте меню «Тестирование по 2 этапу» — и во вкладках сверху, и в левом
+   оглавлении. Тема Material не даёт штатного способа выделить один пункт, поэтому таргет —
+   по href последнего сегмента URL. Совпадает и для .md-tabs__link (вкладки), и для
+   .md-nav__link (сайдбар). */
+.md-tabs__link[href$="/manual-2-etap/07-testirovanie/"],
+.md-nav__link[href$="/manual-2-etap/07-testirovanie/"] {
+  font-weight: 700;
+}
+.md-nav__link[href$="/manual-2-etap/07-testirovanie/"] {
+  color: var(--md-accent-fg-color, #ff6f00);
+}
+.md-nav__link[href$="/manual-2-etap/07-testirovanie/"]::before {
+  content: "🧪 ";
+}
+
+#quiz-root { margin-top: 1.2rem; }
+
+.quiz-prestart {
+  border-left: 4px solid var(--md-accent-fg-color, #ff6f00);
+  background: var(--md-code-bg-color, #f5f5f5);
+  padding: 0.7rem 1rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1rem 0;
+}
+.quiz-prestart > :first-child { margin-top: 0; }
+.quiz-prestart > :last-child { margin-bottom: 0; }

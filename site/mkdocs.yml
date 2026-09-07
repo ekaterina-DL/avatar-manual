@@ -40,9 +40,13 @@ theme:
 
 extra_css:
   - site/theme/extra.css
+  - site/theme/quiz.css
 
 extra_javascript:
   - site/theme/compare-tables.js
+  # quiz-config.js — строго раньше quiz.js (quiz.js читает window.QUIZ_CONFIG).
+  - site/theme/quiz-config.js
+  - site/theme/quiz.js
 
 # Новая страница мануала должна быть добавлена сюда вручную — иначе будет собрана, но останется недоступной через меню/поиск
 nav:
@@ -65,6 +69,9 @@ nav:
       - Открытые вопросы: manual-3-etap/02-open-questions.md
       - Частые ошибки: manual-3-etap/03-common-mistakes.md
       - Разбор кейсов (FAQ): manual-3-etap/05-faq.md
+  # Отдельный акцентный раздел — самопроверка. Держим top-level (не внутри «2 этап»),
+  # чтобы во вкладках Material это была своя вкладка. Дублируется в mkdocs-public.yml.
+  - 🧪 Тестирование по 2 этапу: manual-2-etap/07-testirovanie.md
 
 markdown_extensions:
   - tables
