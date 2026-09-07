@@ -108,3 +108,5 @@
 .quiz-wrong-a { color: #c62828; }
 .quiz-wrong-c { color: #2e7d32; }
 .quiz-send-status { margin: 0.8rem 0; font-size: 0.85rem; color: var(--md-default-fg-color--light, #757575); }
+.quiz-send-status.ok { color: #2e7d32; }
+.quiz-send-status.warn { color: #c62828; font-weight: 600; }

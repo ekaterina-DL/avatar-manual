@@ -478,9 +478,60 @@
     submitResults(sc, wrong, status);
   }
 
+  function buildPayload(sc, wrong) {
+    return {
+      token: CFG.token || "",
+      startedAt: new Date(state.startedAt).toISOString(),
+      finishedAt: new Date().toISOString(),
+      durationSec: Math.round((Date.now() - state.startedAt) / 1000),
+      surname: state.surname,
+      name: state.name,
+      percent: sc.percent,
+      correct: sc.correct,
+      total: TOTAL,
+      verdict: sc.verdict,
+      wrongAnswers: wrong.map(function (a, i) {
+        return {
+          n: i + 1,
+          question: a.question,
+          chosen: a.chosen,
+          correct: a.correct,
+          topic: a.topic,
+          reviewUrl: a.review.url
+        };
+      }),
+      questionIds: state.set.map(function (q) { return q.id; }),
+      userAgent: navigator.userAgent
+    };
+  }
+
+  var _sent = false;
   function submitResults(sc, wrong, statusEl) {
-    // Полная реализация — Задача 12. Пока просто сообщаем, что отправка не настроена.
-    statusEl.textContent = "Отправка результата будет настроена (Задача 12).";
+    if (_sent) return;
+    _sent = true;
+
+    if (!CFG.endpoint) {
+      statusEl.className = "quiz-send-status warn";
+      statusEl.textContent = "Отправка результата не настроена. Сделайте скриншот этого экрана и пришлите куратору.";
+      return;
+    }
+
+    // Apps Script отвечает через 302-редирект на script.googleusercontent.com; тело ответа
+    // читать не пытаемся. Любой разрешившийся промис (в т.ч. opaqueredirect) считаем
+    // успехом; только сетевая ошибка (промис отклонён) — повод показать фолбэк. Правильность
+    // приёма проверяется отдельно curl-ом из docs/quiz-apps-script.md.
+    fetch(CFG.endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(buildPayload(sc, wrong)),
+      keepalive: true
+    }).then(function () {
+      statusEl.className = "quiz-send-status ok";
+      statusEl.textContent = "Результат отправлен.";
+    }).catch(function () {
+      statusEl.className = "quiz-send-status warn";
+      statusEl.textContent = "Не удалось отправить результат автоматически. Сделайте скриншот этого экрана и пришлите куратору.";
+    });
   }
 
   // экспорт для отладки из консоли
