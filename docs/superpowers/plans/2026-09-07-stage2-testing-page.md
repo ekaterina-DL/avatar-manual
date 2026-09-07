@@ -22,6 +22,8 @@
 - Ничего не «додумываем»: вопрос берётся из мануала, только если правильный ответ там задан явно (жирным значением, заголовком-категорией, числом в `keyfacts`). Иначе источник пропускается.
 - Команды сборки — с UTF-8 окружением: `cd site && PYTHONUTF8=1 PYTHONIOENCODING=utf-8 python -m mkdocs build --strict [-f <config>]`.
 - Тесты хуков: `cd site/hooks && python -m pytest tests/ -q`. Базовое число до начала работ — **140 passed**.
+- Расширение `admonition` в проекте **не подключено** — синтаксис `!!! warning` не использовать, вводные плашки делать через `<div class="…" markdown="1">` + CSS (как `.keyfacts`, `.tagme-intro` в мануале).
+- Сообщения коммитов заканчивать строкой `Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>` (как в коммитах спеки/плана этой фичи).
 
 ---
 
@@ -97,11 +99,14 @@
 ```markdown
 # Тестирование по 2 этапу
 
-!!! warning "Перед началом"
-    Перед прохождением этого тестирования **обязательно** ознакомьтесь со всем мануалом по
-    2 этапу — все разделы слева, кроме [«Обзор проекта»](00-overview.md). Вопросы собираются
-    из актуального содержания мануала и охватывают сегменты, классификатор, критерии «Что
-    размечаем / не размечаем» и частые ошибки.
+<div class="quiz-prestart" markdown="1">
+
+⚠️ **Перед началом.** Перед прохождением этого тестирования **обязательно** ознакомьтесь со
+всем мануалом по 2 этапу — все разделы слева, кроме [«Обзор проекта»](00-overview.md).
+Вопросы собираются из актуального содержания мануала и охватывают сегменты, классификатор,
+критерии «Что размечаем / не размечаем» и частые ошибки.
+
+</div>
 
 **Как устроен тест**
 
@@ -113,7 +118,7 @@
 - В конце — процент, число верных ответов, вердикт и список разделов мануала, которые стоит
   повторить.
 
-<div id="quiz-root" markdown="0"><!-- Содержимое рисует site/theme/quiz.js --></div>
+<div id="quiz-root"><!-- Содержимое рисует site/theme/quiz.js --></div>
 
 <noscript>
 Для прохождения тестирования включите JavaScript в браузере.
@@ -121,6 +126,10 @@
 
 <!-- QUIZ-BANK -->
 ```
+
+> Пустая строка до и после `<div id="quiz-root">` обязательна — иначе `md_in_html` затянет
+> следующий абзац внутрь `<div>`. `markdown`-атрибут на этом `<div>` не нужен (внутри только
+> DOM от JS).
 
 - [ ] **Step 2: Создать `site/theme/quiz-config.js`**
 
@@ -161,6 +170,16 @@ window.QUIZ_CONFIG = {
 }
 
 #quiz-root { margin-top: 1.2rem; }
+
+.quiz-prestart {
+  border-left: 4px solid var(--md-accent-fg-color, #ff6f00);
+  background: var(--md-code-bg-color, #f5f5f5);
+  padding: 0.7rem 1rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1rem 0;
+}
+.quiz-prestart > :first-child { margin-top: 0; }
+.quiz-prestart > :last-child { margin-bottom: 0; }
 ```
 
 - [ ] **Step 4: Зарегистрировать ассеты в `site/mkdocs.yml`**
@@ -1211,14 +1230,17 @@ git push
 
 ---
 
-### Task 6: Экстрактор источника C (позитив/антипримеры)
+### Task 6: Экстрактор источника C (позитив + антипримеры)
 
 **Files:**
 - Modify: `site/hooks/build_quiz_bank.py`
 - Modify: `site/hooks/tests/test_build_quiz_bank.py`
 
 **Interfaces:**
-- Produces: `extract_examples(sources: dict) -> list[dict]` — вопросы категории `C` из `manual-2-etap/05-what-to-label.md`, раздел `## Примеры (позитивные)`. Блоки `**Пример N:** <url или [текст](url)>` (+ строка картинки-кадра + подпись). Вопрос: «Это видео — подходящий сегмент или «Битое»?»; варианты `["Подходит для разметки", "В «Битое»", "Нужно поделить на 2 сегмента"]`; для `**Пример**` верный — «Подходит для разметки». (Антипримеры на этой странице отсутствуют — их блок переехал в 05b; поэтому источник C даёт только позитив, верный ответ всегда «Подходит». Это осознанно: вопрос проверяет узнавание годного видео.)
+- Produces: `extract_examples(sources: dict) -> list[dict]` — вопросы категории `C` из **двух** мест:
+  - `manual-2-etap/05-what-to-label.md`, раздел `## Примеры (позитивные)` — блоки `**Пример N:** <url или [текст](url)>` → верный ответ «Подходит для разметки»;
+  - `manual-2-etap/05b-what-not-to-label.md`, раздел `## Антипримеры` — блоки `**Антипример N:** <url или [текст](url)>` → верный ответ «В «Битое»».
+  Варианты у всех: `["Подходит для разметки", "В «Битое»", "Нужно поделить на 2 сегмента"]` (в банке верный всегда `options[0]`, `answer: 0`; порядок перемешает JS). Так источник C сбалансирован по верным ответам, а не всегда «Подходит».
 - Consumes: `_make_id`, `_video_kind`, `extract_section`.
 
 - [ ] **Step 1: Добавить падающие тесты**
@@ -1245,25 +1267,61 @@ WHAT_TO_LABEL_C = """# Что размечаем
 [Пример](https://ex.test/etalon.mp4)
 """
 
+NOT_LABEL_ANTI = """# Что не размечаем / Битое
+
+## Антипримеры
+
+**Антипример 1:** https://www.youtube.com/shorts/kLTpStNQRF0
+![Антипример 1: вертикальное видео, внизу наложен текст-субтитр](assets/antiexample1-frame.jpeg)
+Не должно быть наложенного текста.
+
+**Антипример 3:** [Антипример 3](assets/Memorable%20Monologue.mp4)
+![Антипример 3: ведущая ток-шоу, в углу логотип-водяной знак](assets/antiexample3-frame.jpeg)
+Водяной знак в кадре.
+
+`[Инстр. Kandinsky-Аватар, стр.7-10]`
+"""
+
 
 def test_extract_examples_positive():
     qs = extract_examples({"manual-2-etap/05-what-to-label.md": WHAT_TO_LABEL_C})
-    assert len(qs) == 2
-    q = qs[0]
+    pos = [q for q in qs if q["review"]["url"] == "05-what-to-label.md#примеры-позитивные"]
+    assert len(pos) == 2
+    q = pos[0]
     assert q["category"] == "C"
     assert q["videoUrl"] == "https://vkvideo.ru/video712360465_456239217"
     assert q["videoKind"] == "vk"
-    assert q["options"][q["answer"]] == "Подходит для разметки"
     assert q["options"][0] == "Подходит для разметки"
+    assert q["answer"] == 0
     assert len(q["options"]) == 3
-    assert q["review"]["url"] == "05-what-to-label.md#примеры-позитивные"
 
 
 def test_extract_examples_local_mp4_kind():
     qs = extract_examples({"manual-2-etap/05-what-to-label.md": WHAT_TO_LABEL_C})
-    p4 = qs[1]
+    p4 = [q for q in qs if q["videoUrl"].endswith(".mp4")][0]
     assert p4["videoKind"] == "mp4"
-    assert p4["videoUrl"].endswith(".mp4")
+
+
+def test_extract_examples_antipatterns_are_broken():
+    qs = extract_examples({"manual-2-etap/05b-what-not-to-label.md": NOT_LABEL_ANTI})
+    anti = [q for q in qs if q["review"]["url"] == "05b-what-not-to-label.md#антипримеры"]
+    assert len(anti) == 2
+    q = anti[0]
+    assert q["category"] == "C"
+    assert q["options"][0] == "В «Битое»"
+    assert q["answer"] == 0
+    assert q["videoKind"] in {"youtube", "mp4"}
+    assert set(q["options"]) == {"Подходит для разметки", "В «Битое»", "Нужно поделить на 2 сегмента"}
+
+
+def test_extract_examples_combined():
+    qs = extract_examples({
+        "manual-2-etap/05-what-to-label.md": WHAT_TO_LABEL_C,
+        "manual-2-etap/05b-what-not-to-label.md": NOT_LABEL_ANTI,
+    })
+    assert len(qs) == 4
+    corrects = sorted(q["options"][0] for q in qs)
+    assert corrects == ["В «Битое»", "В «Битое»", "Подходит для разметки", "Подходит для разметки"]
 ```
 
 - [ ] **Step 2: Прогнать — убедиться, что падает**
@@ -1275,18 +1333,14 @@ Expected: FAIL — `ImportError: cannot import name 'extract_examples'`.
 
 ```python
 _EXAMPLE_BLOCK_RE = re.compile(
-    r'\*\*Пример (?P<n>\d+):\*\*[ \t]*'
+    r'\*\*(?P<kind>Анти)?[Пп]ример (?P<n>\d+):\*\*[ \t]*'
     r'(?:\[(?P<txt>[^\]]*)\]\((?P<lurl>[^)]+)\)|(?P<burl>\S+))',
     re.M,
 )
 _C_OPTIONS = ["Подходит для разметки", "В «Битое»", "Нужно поделить на 2 сегмента"]
 
 
-def extract_examples(sources):
-    text = sources.get("manual-2-etap/05-what-to-label.md", "")
-    if not text:
-        return []
-    body = extract_section(text, "Примеры (позитивные)")
+def _extract_examples_from(body, is_anti, review):
     if body is None:
         return []
     out = []
@@ -1294,6 +1348,8 @@ def extract_examples(sources):
         url = (m.group("lurl") or m.group("burl") or "").strip()
         if not url or url.startswith("!"):
             continue
+        correct = "В «Битое»" if is_anti else "Подходит для разметки"
+        wrong = [o for o in _C_OPTIONS if o != correct]
         out.append({
             "id": _make_id("C", "подходящий сегмент", url),
             "category": "C",
@@ -1301,11 +1357,30 @@ def extract_examples(sources):
             "question": "Это видео — подходящий сегмент или его нужно отправить в «Битое»?",
             "videoUrl": url,
             "videoKind": _video_kind(url),
-            "options": list(_C_OPTIONS),
+            "options": [correct, *wrong],
             "answer": 0,
-            "review": {"title": "Что размечаем",
-                       "url": "05-what-to-label.md#примеры-позитивные"},
+            "review": review,
         })
+    return out
+
+
+def extract_examples(sources):
+    out = []
+    pos = sources.get("manual-2-etap/05-what-to-label.md", "")
+    if pos:
+        out += _extract_examples_from(
+            extract_section(pos, "Примеры (позитивные)"),
+            is_anti=False,
+            review={"title": "Что размечаем", "url": "05-what-to-label.md#примеры-позитивные"},
+        )
+    anti = sources.get("manual-2-etap/05b-what-not-to-label.md", "")
+    if anti:
+        out += _extract_examples_from(
+            extract_section(anti, "Антипримеры"),
+            is_anti=True,
+            review={"title": "Что не размечаем / Битое",
+                    "url": "05b-what-not-to-label.md#антипримеры"},
+        )
     return out
 ```
 
@@ -1319,7 +1394,7 @@ def extract_examples(sources):
 Run: `cd site/hooks && python -m pytest tests/test_build_quiz_bank.py -q`
 Expected: PASS.
 
-- [ ] **Step 5: Проверить на живом мануале**
+- [ ] **Step 5: Проверить на живом мануале + сверить якоря**
 
 ```bash
 cd site/hooks && python -c "
@@ -1327,18 +1402,24 @@ from pathlib import Path
 import build_quiz_bank as m
 root = Path('../../')
 src = {r: (root/r).read_text(encoding='utf-8') for r in m.SOURCE_FILES}
-for q in m.extract_examples(src):
-    print(q['videoKind'], q['videoUrl'])
+qs = m.extract_examples(src)
+print(len(qs), 'вопросов C')
+for q in qs:
+    print(q['options'][0], '|', q['videoKind'], '|', q['videoUrl'].rsplit('/',1)[-1], '|', q['review']['url'])
 "
+cd ../.. && grep -o 'id="[^"]*"' ../avatar-manual-build/build/manual-2-etap/05-what-to-label/index.html | grep -i пример
+grep -o 'id="[^"]*"' ../avatar-manual-build/build/manual-2-etap/05b-what-not-to-label/index.html | grep -i антипример
 ```
-Expected: 4–5 вопросов, `videoKind` из `{vk, mp4}`, все `videoUrl` — реальные ссылки из «Примеры (позитивные)».
+Expected: ≥6 вопросов C, среди верных ответов есть и «Подходит для разметки», и «В «Битое»»; `videoKind` из `{vk, youtube, mp4}`; якоря `review.url` совпадают с `id=` в собранных страницах (`#примеры-позитивные`, `#антипримеры`).
 
 - [ ] **Step 6: Commit**
 
 ```bash
 cd "d:/ПРОЕКТЫ с Ai/Data-Light. Обучение 2 этап"
 git add site/hooks/build_quiz_bank.py site/hooks/tests/test_build_quiz_bank.py
-git commit -m "build_quiz_bank.py: экстрактор источника C — позитивные примеры «подходит/битое/поделить»"
+git commit -m "build_quiz_bank.py: экстрактор источника C — позитивные примеры (подходит) + антипримеры из 05b (в «Битое»)
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>"
 git push
 ```
 
@@ -1845,9 +1926,13 @@ def test_real_bank_every_question_wellformed():
 
 
 def test_real_bank_review_anchors_exist():
+    # Сверяем якорь review.url со слагами заголовков целевого файла. slugify — тот же,
+    # что в site/mkdocs.yml (pymdownx.slugs.slugify(case=lower)). Дедуп-суффиксы (_1, _2)
+    # не воспроизводим: в этих файлах повторов заголовков нет, а ручная эмуляция дедупа
+    # хрупка — при реальном совпадении разбираем точечно.
     from pymdownx.slugs import slugify
     slug = slugify(case="lower")
-    heading_re = re.compile(r'^(#{1,6})\s+(.*?)\s*(?:\{:[^}]*\})?\s*$', re.M)
+    heading_re = re.compile(r'^#{1,6}\s+(.*?)\s*(?:\{:[^}]*\})?\s*$', re.M)
 
     bank = build_bank(_real_sources(), _real_manual_yaml())
     cache = {}
@@ -1859,15 +1944,13 @@ def test_real_bank_review_anchors_exist():
         assert path.exists(), f"{ref}: файла нет"
         if fname not in cache:
             text = path.read_text(encoding="utf-8")
-            slugs = set()
-            used = {}
-            for m in heading_re.finditer(text):
-                base = slug(re.sub(r'<[^>]+>', '', m.group(2)), "-")
-                n = used.get(base, 0)
-                used[base] = n + 1
-                slugs.add(base if n == 0 else f"{base}_{n}")
-            cache[fname] = slugs
-        assert anchor in cache[fname], f"{ref}: якоря '{anchor}' нет среди {sorted(cache[fname])[:20]}"
+            cache[fname] = {
+                slug(re.sub(r'<[^>]+>', '', m.group(1)), "-")
+                for m in heading_re.finditer(text)
+            }
+        assert anchor in cache[fname], (
+            f"{ref}: якоря '{anchor}' нет среди {sorted(cache[fname])[:20]}"
+        )
 ```
 
 - [ ] **Step 2: Прогнать — часть тестов, скорее всего, падает по якорям**
@@ -2714,13 +2797,16 @@ git push
       return;
     }
 
+    // Apps Script отвечает через 302-редирект на script.googleusercontent.com; тело ответа
+    // читать не пытаемся. Любой разрешившийся промис (в т.ч. opaqueredirect) считаем
+    // успехом; только сетевая ошибка (промис отклонён) — повод показать фолбэк. Правильность
+    // приёма проверяется отдельно curl-ом из docs/quiz-apps-script.md.
     fetch(CFG.endpoint, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(buildPayload(sc, wrong)),
       keepalive: true
-    }).then(function (r) {
-      if (!r.ok) throw new Error("HTTP " + r.status);
+    }).then(function () {
       statusEl.className = "quiz-send-status ok";
       statusEl.textContent = "Результат отправлен.";
     }).catch(function () {
