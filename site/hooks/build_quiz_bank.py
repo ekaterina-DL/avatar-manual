@@ -487,6 +487,24 @@ def load_manual_questions(yaml_text):
     return out
 
 
+def _fix_local_video_url(url):
+    """Локальные видео в мануале ссылаются как `assets/...` — относительно папки страницы-
+    источника (`manual-2-etap/`). Страница теста собирается на уровень глубже
+    (`manual-2-etap/07-testirovanie/index.html`, use_directory_urls), поэтому из неё тот же
+    файл — это `../assets/...`. Абсолютные (http/https/протокол-относительные `//`) и уже
+    корневые (`/`) URL не трогаем. MkDocs не переписывает ссылки внутри <script>-банка и в
+    DOM, который строит quiz.js, — поэтому правим здесь, на сборке банка."""
+    if url.startswith(("http://", "https://", "//", "/", "../")):
+        return url
+    return "../" + url
+
+
+def _fix_local_video_urls(questions):
+    for q in questions:
+        if q.get("videoUrl"):
+            q["videoUrl"] = _fix_local_video_url(q["videoUrl"])
+
+
 def build_bank(sources, manual_yaml_text):
     """sources: {relpath: markdown_text}. Возвращает {"generatedAt": iso, "questions": [...]}.
     Экстракторы источников A–F подключаются в Задачах 3–8."""
@@ -498,6 +516,7 @@ def build_bank(sources, manual_yaml_text):
     questions += extract_examples(sources)
     questions += load_manual_questions(manual_yaml_text)
     _dedup_by_id(questions)
+    _fix_local_video_urls(questions)
     return {
         "generatedAt": datetime.datetime.now(datetime.timezone.utc)
         .replace(microsecond=0)

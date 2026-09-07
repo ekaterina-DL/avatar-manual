@@ -525,3 +525,35 @@ def test_real_bank_review_anchors_exist():
         assert anchor in cache[fname], (
             f"{ref}: якоря '{anchor}' нет среди {sorted(cache[fname])[:20]}"
         )
+
+
+from build_quiz_bank import _fix_local_video_url
+
+
+def test_fix_local_video_url_prefixes_relative_assets():
+    # `assets/x.mp4` в исходнике — относительно manual-2-etap/; со страницы теста
+    # (manual-2-etap/07-testirovanie/) тот же файл — это ../assets/x.mp4
+    assert _fix_local_video_url("assets/x.mp4") == "../assets/x.mp4"
+    assert _fix_local_video_url("assets/Some%20Name.mp4") == "../assets/Some%20Name.mp4"
+
+
+def test_fix_local_video_url_leaves_absolute_untouched():
+    for u in (
+        "https://vkvideo.ru/video1_2",
+        "http://example.test/a.mp4",
+        "//cdn.test/a.mp4",
+        "/manual-2-etap/assets/a.mp4",
+        "../assets/already.mp4",
+    ):
+        assert _fix_local_video_url(u) == u
+
+
+def test_real_bank_local_video_urls_are_page_relative():
+    bank = build_bank(_real_sources(), _real_manual_yaml())
+    for q in bank["questions"]:
+        u = q.get("videoUrl")
+        if not u:
+            continue
+        if u.startswith(("http://", "https://", "//")):
+            continue
+        assert u.startswith("../assets/"), f"{q['id']}: локальный videoUrl не относителен странице теста: {u}"
