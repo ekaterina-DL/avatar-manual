@@ -8,7 +8,7 @@
 
 Как отличить пикселизацию лица на глаз — см. [«Что не размечаем / Битое»](05b-what-not-to-label.md#-полностью-исключённые-дефекты).
 
-### Большая пиксельность (19)
+### Большая пиксельность (22)
 
 - [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-152481741_456239163/-152481741_456239163.mp4)
 - [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-225545944_456250992/-225545944_456250992.mp4)
@@ -29,18 +29,16 @@
 - [пример 17](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/29158833_456239027/29158833_456239027.mp4)
 - [пример 18](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-213771149_456239227/-213771149_456239227.mp4)
 - [пример 19](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-195864574_456239524/-195864574_456239524.mp4)
+- [пример 20](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-5062417_456239277/-5062417_456239277.mp4)
+- [пример 21](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-164137071_456239206/-164137071_456239206.mp4)
+- [пример 22](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-175034282_456239026/-175034282_456239026.mp4)
 
-### Малая пиксельность (9)
+### Малая пиксельность (4)
 
-- [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-5062417_456239277/-5062417_456239277.mp4)
-- [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-164137071_456239206/-164137071_456239206.mp4)
-- [пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-98769807_456239146/-98769807_456239146.mp4)
-- [пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-142310576_456244199/-142310576_456244199.mp4)
-- [пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/-175034282_456239026/-175034282_456239026.mp4)
-- [пример 6](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-213074806_456239605/-213074806_456239605.mp4)
-- [пример 7](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-158244837_456239471/-158244837_456239471.mp4)
-- [пример 8](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/47492276_456240515/47492276_456240515.mp4)
-- [пример 9](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/499967389_456239308/499967389_456239308.mp4)
+- [пример 1](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-98769807_456239146/-98769807_456239146.mp4)
+- [пример 2](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/-158244837_456239471/-158244837_456239471.mp4)
+- [пример 3 (пиксельность видна до 0:36, дальше план крупнее — сравнивать не с чем)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/05_02_2026/47492276_456240515/47492276_456240515.mp4)
+- [пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/03_02_2026/499967389_456239308/499967389_456239308.mp4)
 
 ## Битое — примеры дефектов
 
