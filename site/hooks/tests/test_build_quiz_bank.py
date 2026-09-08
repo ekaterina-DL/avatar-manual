@@ -191,10 +191,10 @@ def test_extract_classifier_video_basic():
     assert q["videoKind"] == "mp4"
     assert q["videoStart"] == 78.4
     assert q["videoEnd"] == 95.9
-    # тайм-код сегмента виден прямо в тексте вопроса
+    # вопрос говорит про сегмент (не «видео») и указывает его тайм-код
     assert q["question"] == (
-        "Определите по видео: объём и поза тела человека в кадре. "
-        "Оцениваемый сегмент: 1:18–1:36."
+        "Определите значение поля «Объём и поза тела человека в кадре» "
+        "для сегмента 1:18–1:36."
     )
     assert q["options"][0] == "Голова и плечи"
     assert set(q["options"]) <= {
@@ -217,7 +217,7 @@ def test_extract_classifier_video_timecode_mm_ss():
     anfas = _by_url(qs, "https://ex.test/c.mp4")  # 0:06.48–0:18.06
     assert abs(anfas["videoStart"] - 6.48) < 0.001
     assert abs(anfas["videoEnd"] - 18.06) < 0.001
-    assert "Оцениваемый сегмент: 0:06–0:18." in anfas["question"]
+    assert anfas["question"] == "Определите значение поля «Преобладающий ракурс» для сегмента 0:06–0:18."
 
 
 def test_extract_classifier_video_skips_untimed_full_source():
@@ -230,7 +230,7 @@ def test_extract_classifier_video_trimmed_is_whole_clip():
     # Обрезанный ролик (/trimmed/…__segment_…) — это и есть один сегмент целиком
     qs = extract_classifier_video({"manual-2-etap/04-classifier.md": CLASSIFIER_A})
     q = _by_url(qs, "https://ex.test/ak/avatar/zzz/trimmed/-1_2__segment_1_0_50.mp4")
-    assert q["question"].endswith("Оцениваемый сегмент — весь ролик.")
+    assert q["question"] == "Определите значение поля «Преобладающий ракурс» для этого сегмента (ролик целиком)."
     assert "videoStart" not in q
     assert "videoEnd" not in q
 
