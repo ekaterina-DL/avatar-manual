@@ -435,7 +435,7 @@ def _extract_broken_from_library(text):
 
 
 def _extract_broken_from_excluded(text):
-    body = extract_section(text, "🚫 Полностью исключённые типы видео")
+    body = extract_section(text, "🚫 Полностью исключённые дефекты")
     if body is None:
         return []
     heads = list(_EXCLUDED_SUBHEAD_RE.finditer(body))
