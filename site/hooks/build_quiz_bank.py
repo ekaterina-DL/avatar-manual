@@ -225,19 +225,48 @@ def _norm_value(text):
     return re.sub(r'\s+', ' ', text).strip().lower()
 
 
-def _parse_timecode(rest):
-    """Начало примера в секундах из хвоста подписи. Понимает '(78.4–95.9)' и '(0:06.48–…)'.
-    None, если тайм-кода нет."""
-    m = re.search(r'\((?:до\s*)?(\d+):(\d+(?:\.\d+)?)', rest)
+_TC_NUM = r'\d+(?::\d+(?:\.\d+)?|\.\d+)?'  # 78 | 78.4 | 0:31 | 0:31.01
+
+
+def _tc_to_sec(token):
+    """'0:31.01' -> 31.01 ; '78.4' -> 78.4"""
+    token = token.strip()
+    if ":" in token:
+        mm, ss = token.split(":", 1)
+        return int(mm) * 60 + float(ss)
+    return float(token)
+
+
+def _parse_timerange(rest):
+    """(start, end) сегмента в секундах из хвоста подписи. end может быть None (в подписи
+    только начало); обе — None, если тайм-кода в подписи нет вовсе. Понимает
+    '(78.4–95.9)', '(0:06.48–0:18.06)', '(0–86.3)', '(до 0:53)', '(78.4)'."""
+    m = re.search(r'\(\s*(' + _TC_NUM + r')\s*[–-]\s*(' + _TC_NUM + r')\s*\)', rest)
     if m:
-        return int(m.group(1)) * 60 + float(m.group(2))
-    m = re.search(r'\((?:до\s*)?(\d+(?:\.\d+)?)\s*[–-]', rest)
+        return _tc_to_sec(m.group(1)), _tc_to_sec(m.group(2))
+    m = re.search(r'\(\s*до\s*(' + _TC_NUM + r')\s*\)', rest)
     if m:
-        return float(m.group(1))
-    m = re.search(r'\((?:до\s*)?(\d+(?:\.\d+)?)\)', rest)
+        return 0.0, _tc_to_sec(m.group(1))
+    m = re.search(r'\(\s*(' + _TC_NUM + r')\s*\)', rest)
     if m:
-        return float(m.group(1))
-    return None
+        return _tc_to_sec(m.group(1)), None
+    return None, None
+
+
+def _fmt_tc(sec):
+    total = int(round(sec))
+    return f"{total // 60}:{total % 60:02d}"
+
+
+def _segment_note(start, end, trimmed):
+    """Фраза для текста вопроса — какой сегмент видео оценивать."""
+    if trimmed:
+        return "Оцениваемый сегмент — весь ролик."
+    if start is not None and end is not None:
+        return f"Оцениваемый сегмент: {_fmt_tc(start)}–{_fmt_tc(end)}."
+    if start is not None:
+        return f"Оцениваемый сегмент — с {_fmt_tc(start)} до конца ролика."
+    return ""
 
 
 def _video_kind(url):
@@ -294,7 +323,13 @@ def extract_classifier_video(sources):
             if not _looks_like_media(url):
                 continue
             rest = ex.group("rest") or ""
-            start = _parse_timecode(rest)
+            url_l = url.lower()
+            trimmed = "/trimmed/" in url_l or "__segment_" in url_l
+            start, end = _parse_timerange(rest)
+            if not trimmed and start is None and end is None:
+                # Полное видео-источник без тайм-кода в подписи: непонятно, какой сегмент
+                # оценивать, — честный вопрос не задать, пропускаем.
+                continue
             wrong = [v for v in values if v != canon]
             # Тасуем дистракторы с per-question seed'ом (url): детерминированно на сборку,
             # но набор неверных вариантов разный от вопроса к вопросу, а не «первые три».
@@ -305,7 +340,10 @@ def extract_classifier_video(sources):
                 "id": _make_id("A", field_name, url),
                 "category": "A",
                 "topic": field_name,
-                "question": f"Определите по видео: {field_name.lower()}.",
+                "question": (
+                    f"Определите по видео: {field_name.lower()}. "
+                    f"{_segment_note(start, end, trimmed)}"
+                ).strip(),
                 "videoUrl": url,
                 "videoKind": _video_kind(url),
                 "options": [canon, *distractors],
@@ -315,8 +353,10 @@ def extract_classifier_video(sources):
                     "url": f"04-classifier.md#{_field_anchor(idx_word + '.', field_name)}",
                 },
             }
-            if start is not None:
+            if not trimmed and start:
                 q["videoStart"] = round(start, 2)
+            if not trimmed and start is not None and end is not None:
+                q["videoEnd"] = round(end, 2)
             out.append(q)
     return out
 

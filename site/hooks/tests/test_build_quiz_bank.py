@@ -161,6 +161,7 @@ CLASSIFIER_A = """# Заполнение классификатора
 
 - [**Голова и плечи** — кисти рук не видны (78.4–95.9)](https://ex.test/a.mp4)
 - [**Голова, плечи и руки** — (18.9–29.3)](https://ex.test/b.mp4)
+- [**Стоя в полный рост** — колени уже видны](https://ex.test/notc.mp4)
 
 ### 4. Преобладающий ракурс
 
@@ -173,19 +174,28 @@ CLASSIFIER_A = """# Заполнение классификатора
 **Примеры:**
 
 - [**Анфас** (0:06.48–0:18.06)](https://ex.test/c.mp4)
+- [**Профиль**](https://ex.test/ak/avatar/zzz/trimmed/-1_2__segment_1_0_50.mp4)
 - [**Ракурс меняется в пределах ролика** — берём преобладающее](https://ex.test/d.mp4)
 """
 
 
+def _by_url(qs, url):
+    return next(q for q in qs if q["videoUrl"] == url)
+
+
 def test_extract_classifier_video_basic():
     qs = extract_classifier_video({"manual-2-etap/04-classifier.md": CLASSIFIER_A})
-    poses = [q for q in qs if q["topic"] == "Объём и поза тела человека в кадре"]
-    assert len(poses) == 2
-    q = poses[0]
+    q = _by_url(qs, "https://ex.test/a.mp4")
     assert q["category"] == "A"
-    assert q["videoUrl"] == "https://ex.test/a.mp4"
+    assert q["topic"] == "Объём и поза тела человека в кадре"
     assert q["videoKind"] == "mp4"
     assert q["videoStart"] == 78.4
+    assert q["videoEnd"] == 95.9
+    # тайм-код сегмента виден прямо в тексте вопроса
+    assert q["question"] == (
+        "Определите по видео: объём и поза тела человека в кадре. "
+        "Оцениваемый сегмент: 1:18–1:36."
+    )
     assert q["options"][0] == "Голова и плечи"
     assert set(q["options"]) <= {
         "Голова", "Голова и плечи", "Голова, плечи и руки",
@@ -198,17 +208,31 @@ def test_extract_classifier_video_basic():
 
 def test_extract_classifier_video_skips_non_matching_caption():
     qs = extract_classifier_video({"manual-2-etap/04-classifier.md": CLASSIFIER_A})
-    rakurs = [q for q in qs if q["topic"] == "Преобладающий ракурс"]
-    assert len(rakurs) == 1  # "Ракурс меняется…" не совпал со значением чек-листа -> пропущен
-    assert rakurs[0]["options"][0] == "Анфас"
-    assert rakurs[0]["videoStart"] == 6.48
+    # "Ракурс меняется…" не совпал со значением чек-листа -> вопроса нет
+    assert not [q for q in qs if q["videoUrl"] == "https://ex.test/d.mp4"]
 
 
 def test_extract_classifier_video_timecode_mm_ss():
     qs = extract_classifier_video({"manual-2-etap/04-classifier.md": CLASSIFIER_A})
-    anfas = [q for q in qs if q["topic"] == "Преобладающий ракурс"][0]
-    # 0:06.48 -> 6.48 сек
+    anfas = _by_url(qs, "https://ex.test/c.mp4")  # 0:06.48–0:18.06
     assert abs(anfas["videoStart"] - 6.48) < 0.001
+    assert abs(anfas["videoEnd"] - 18.06) < 0.001
+    assert "Оцениваемый сегмент: 0:06–0:18." in anfas["question"]
+
+
+def test_extract_classifier_video_skips_untimed_full_source():
+    # Полный видео-источник без тайм-кода в подписи — непонятно, какой момент оценивать
+    qs = extract_classifier_video({"manual-2-etap/04-classifier.md": CLASSIFIER_A})
+    assert not [q for q in qs if q["videoUrl"] == "https://ex.test/notc.mp4"]
+
+
+def test_extract_classifier_video_trimmed_is_whole_clip():
+    # Обрезанный ролик (/trimmed/…__segment_…) — это и есть один сегмент целиком
+    qs = extract_classifier_video({"manual-2-etap/04-classifier.md": CLASSIFIER_A})
+    q = _by_url(qs, "https://ex.test/ak/avatar/zzz/trimmed/-1_2__segment_1_0_50.mp4")
+    assert q["question"].endswith("Оцениваемый сегмент — весь ролик.")
+    assert "videoStart" not in q
+    assert "videoEnd" not in q
 
 
 from build_quiz_bank import extract_broken

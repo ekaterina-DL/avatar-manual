@@ -210,8 +210,15 @@
     }
     var box = el("div", { class: "quiz-media" });
     if (q.videoKind === "mp4") {
+      // Медиа-фрагмент #t=начало[,конец] — плеер стартует и (в Chrome вместе с loop)
+      // крутится в пределах оцениваемого сегмента.
+      var frag = "";
+      if (q.videoStart != null || q.videoEnd != null) {
+        frag = "#t=" + (q.videoStart != null ? q.videoStart : 0) +
+               (q.videoEnd != null ? "," + q.videoEnd : "");
+      }
       var v = el("video", {
-        src: q.videoUrl + (q.videoStart != null ? "#t=" + q.videoStart : ""),
+        src: q.videoUrl + frag,
         controls: "controls",
         muted: "muted",
         loop: "loop",
