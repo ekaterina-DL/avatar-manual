@@ -448,7 +448,7 @@ def test_extract_examples_positive():
     assert q["videoKind"] == "vk"
     assert q["options"][0] == "Подходит для разметки"
     assert q["answer"] == 0
-    assert len(q["options"]) == 3
+    assert q["options"] == ["Подходит для разметки", "В «Битое»"]  # бинарный вопрос, 2 варианта
 
 
 def test_extract_examples_local_mp4_kind():
@@ -466,7 +466,7 @@ def test_extract_examples_antipatterns_are_broken():
     assert q["options"][0] == "В «Битое»"
     assert q["answer"] == 0
     assert q["videoKind"] in {"youtube", "mp4"}
-    assert set(q["options"]) == {"Подходит для разметки", "В «Битое»", "Нужно поделить на 2 сегмента"}
+    assert q["options"] == ["В «Битое»", "Подходит для разметки"]  # бинарный вопрос, 2 варианта
 
 
 def test_extract_examples_combined():
@@ -496,16 +496,15 @@ MULTI_SEG_C = """# Что размечаем
 """
 
 
-def test_extract_examples_multi_segment_is_split():
+def test_extract_examples_multi_segment_still_fits():
+    # Многосегментное позитивное видео («Подходящие сегменты:» + список) — всё равно
+    # «Подходит для разметки»: комментарий мануала про сегмент, а не про видео целиком.
     qs = extract_examples({"manual-2-etap/05-what-to-label.md": MULTI_SEG_C})
     pos = [q for q in qs if q["review"]["url"] == "05-what-to-label.md#примеры-позитивные"]
     assert len(pos) == 2
-    one = [q for q in pos if q["videoUrl"] == "https://ex.test/one.mp4"][0]
-    two = [q for q in pos if q["videoUrl"] == "https://ex.test/two.mp4"][0]
-    assert one["options"][0] == "Подходит для разметки"  # один сегмент
-    assert two["options"][0] == "Нужно поделить на 2 сегмента"  # «Подходящие сегменты:» + 2 пункта
-    assert two["answer"] == 0
-    assert set(two["options"]) == {"Подходит для разметки", "В «Битое»", "Нужно поделить на 2 сегмента"}
+    for q in pos:
+        assert q["options"] == ["Подходит для разметки", "В «Битое»"]
+        assert q["answer"] == 0
 
 
 from build_quiz_bank import load_manual_questions
@@ -648,7 +647,8 @@ def test_real_bank_every_question_wellformed():
     bank = build_bank(_real_sources(), _real_manual_yaml())
     for q in bank["questions"]:
         assert q["options"], q
-        assert len(q["options"]) >= 3, q
+        # C — бинарный вопрос «подходит / в „Битое“», ровно 2 варианта; остальные ≥ 3.
+        assert len(q["options"]) >= (2 if q["category"] == "C" else 3), q
         assert q["answer"] == 0
         assert q["question"].strip()
         assert q["topic"].strip()

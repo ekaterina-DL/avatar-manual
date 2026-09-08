@@ -448,37 +448,22 @@ _EXAMPLE_BLOCK_RE = re.compile(
 )
 _C_FIT = "Подходит для разметки"
 _C_BROKEN = "В «Битое»"
-_C_SPLIT = "Нужно поделить на 2 сегмента"
-_C_OPTIONS = [_C_FIT, _C_BROKEN, _C_SPLIT]
+_C_OPTIONS = [_C_FIT, _C_BROKEN]
 
-# Признак того, что «Пример» в мануале — многосегментный: правильный ответ по мануалу
-# «поделить», а не «подходит одним куском». Напр. 05-what-to-label.md, Пример 2
-# («**Подходящие сегменты:**» + два пункта) и Пример 4 («несколько подходящих сегментов»).
-_MULTI_SEGMENT_RE = re.compile(
-    r'подходящие\s+сегменты:|несколько\s+подходящих\s+сегмент|два\s+сегмент|2\s+сегмент',
-    re.I,
-)
+# Вариант «Нужно поделить на N сегментов» здесь не используем: вопрос бинарный
+# («подходит или в „Битое“?»), а комментарий мануала к «Примеру» относится к сегменту
+# внутри видео, а не к видео целиком — многосегментное позитивное видео всё равно «подходит».
 
 
 def _extract_examples_from(body, is_anti, review):
     if body is None:
         return []
-    matches = list(_EXAMPLE_BLOCK_RE.finditer(body))
     out = []
-    for i, m in enumerate(matches):
+    for m in _EXAMPLE_BLOCK_RE.finditer(body):
         url = (m.group("lurl") or m.group("burl") or "").strip()
         if not url or url.startswith("!") or not _looks_like_media(url):
             continue
-        # Тело блока — от конца этого совпадения до начала следующего блока (или конца
-        # секции): по нему решаем, «подходит» это или «нужно поделить».
-        block_end = matches[i + 1].start() if i + 1 < len(matches) else len(body)
-        block_body = body[m.end():block_end]
-        if is_anti:
-            correct = _C_BROKEN
-        elif _MULTI_SEGMENT_RE.search(block_body):
-            correct = _C_SPLIT
-        else:
-            correct = _C_FIT
+        correct = _C_BROKEN if is_anti else _C_FIT
         wrong = [o for o in _C_OPTIONS if o != correct]
         out.append({
             "id": _make_id("C", "подходящий сегмент", url),
