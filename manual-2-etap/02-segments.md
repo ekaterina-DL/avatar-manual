@@ -24,6 +24,7 @@
 <span class="kf-tag">дубляж</span>
 <span class="kf-tag">ИИ-сгенерированные изображения</span>
 <span class="kf-tag">нейро-аватары</span>
+<span class="kf-tag">замедленное/ускоренное видео</span>
 <span class="kf-tag">виньетку</span>
 <span class="kf-tag">субтитры</span>
 <span class="kf-tag">тряску камеры</span>
