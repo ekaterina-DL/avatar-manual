@@ -22,7 +22,7 @@ function doPost(e) {
     var sh = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
     if (sh.getLastRow() === 0) {
       sh.appendRow([
-        'Дата и время', 'Фамилия', 'Имя', 'Процент', 'Верных из ' + (data.total || 15),
+        'Дата и время', 'Фамилия', 'Имя', 'Процент', 'Верных из ' + (data.total || 20),
         'Вердикт', 'Неверные ответы', 'Длительность, сек', 'ID вопросов'
       ]);
     }

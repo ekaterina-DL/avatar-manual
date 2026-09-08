@@ -34,7 +34,7 @@ Google-таблице, и дописывает строку на лист «Ре
 ```bash
 curl -L -X POST 'https://script.google.com/macros/s/XXXXXXXX/exec' \
   -H 'Content-Type: text/plain;charset=utf-8' \
-  --data '{"token":"avatar-stage2-quiz","surname":"Тест","name":"Проверка","percent":80,"correct":12,"total":15,"verdict":"Сдано","durationSec":300,"wrongAnswers":[{"n":1,"question":"Пример вопроса","chosen":"А","correct":"Б","topic":"Сегменты","reviewUrl":"02-segments.md#определение-и-границы"}],"questionIds":["x","y"]}'
+  --data '{"token":"avatar-stage2-quiz","surname":"Тест","name":"Проверка","percent":80,"correct":16,"total":20,"verdict":"Сдано","durationSec":300,"wrongAnswers":[{"n":1,"question":"Пример вопроса","chosen":"А","correct":"Б","topic":"Сегменты","reviewUrl":"02-segments.md#определение-и-границы"}],"questionIds":["x","y"]}'
 ```
 
 Ожидается ответ `{"ok":true}` и новая строка на листе «Результаты».

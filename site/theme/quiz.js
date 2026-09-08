@@ -9,15 +9,15 @@
   var CFG = window.QUIZ_CONFIG || { endpoint: "", token: "", passPercent: 80 };
   var LS_KEY = "avatar-quiz:last-ids";
   var QUESTION_SECONDS = 60;
-  var TOTAL = 15;
+  var TOTAL = 20;
   var TOPIC_CAP = 6;
 
   var PLAN = [
-    { cat: "A", target: 5 },
-    { cat: "B", target: 3 },
-    { cat: "C", target: 2 },
+    { cat: "A", target: 6 },
+    { cat: "B", target: 4 },
+    { cat: "C", target: 3 },
     { cat: "DE", target: 2 },
-    { cat: "F", target: 3 }
+    { cat: "F", target: 5 }
   ];
 
   var bank = readBank();
@@ -140,7 +140,7 @@
 
     wrap.appendChild(el("h2", { text: "Начать тестирование" }));
     wrap.appendChild(el("p", {
-      text: "Введите фамилию и имя — результат будет сохранён. 15 вопросов, по 60 секунд на каждый."
+      text: "Введите фамилию и имя — результат будет сохранён. 20 вопросов, по 60 секунд на каждый."
     }));
 
     var form = el("form", { class: "quiz-fio" });
