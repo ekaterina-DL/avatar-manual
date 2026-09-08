@@ -799,17 +799,11 @@ body, .md-typeset {
   color: var(--gray-600);
   line-height: 1.4;
 }
-/* Разделитель-полоска нужен только МЕЖДУ блоками карточки (например, между kf-stats и
-   kf-forbid) — не над первым/единственным блоком. Раньше это было жёстко зашито в .kf-forbid
-   (всегда с border-top), но .kf-allow (см. ниже) на странице «Что размечаем» используется как
-   единственное содержимое карточки, без чисел kf-stats сверху — там верхняя полоска не нужна.
-   Общий селектор «прямой потомок сразу после другого потомка» покрывает оба случая одинаково. */
-.keyfacts > * + * {
+.keyfacts .kf-forbid {
   border-top: 1px solid var(--card-line);
   padding-top: 18px;
 }
-.keyfacts .kf-forbid-label,
-.keyfacts .kf-allow-label {
+.keyfacts .kf-forbid-label {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -835,13 +829,6 @@ body, .md-typeset {
   border: 1px solid rgba(178, 59, 50, .32);
   border-radius: 7px;
   padding: 5px 11px;
-}
-/* Зелёный вариант тэга — «допустимо, не брак» (страница «Что размечаем»), зеркально к красному
-   .kf-tag выше. Та же .32-непрозрачная версия --ok-color для рамки, тем же паттерном. */
-.keyfacts .kf-tag.kf-tag-ok {
-  color: var(--ok-color);
-  background: var(--ok-bg);
-  border-color: rgba(46, 125, 79, .32);
 }
 @media (max-width: 480px) {
   .keyfacts .kf-stats { flex-direction: column; gap: 16px; }
