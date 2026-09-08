@@ -18,7 +18,8 @@
 
   var CFG = window.QUIZ_CONFIG || { endpoint: "", token: "", passPercent: 90 };
   var LS_KEY = "avatar-quiz:last-ids";
-  var QUESTION_SECONDS = 60;
+  var QUESTION_SECONDS = 60;        // текстовый вопрос
+  var VIDEO_QUESTION_SECONDS = 90;  // вопрос с видео — успеть посмотреть сегмент
   var TOTAL = 20;
   var TOPIC_CAP = 6;
 
@@ -150,7 +151,7 @@
 
     wrap.appendChild(el("h2", { text: "Начать тестирование" }));
     wrap.appendChild(el("p", {
-      text: "Введите фамилию и имя — результат будет сохранён. 20 вопросов, по 60 секунд на каждый."
+      text: "Введите фамилию и имя — результат будет сохранён. 20 вопросов, по 60 секунд на вопрос (90 — если в вопросе видео)."
     }));
 
     var form = el("form", { class: "quiz-fio" });
@@ -271,7 +272,7 @@
     };
   }
 
-  function timerRing() {
+  function timerRing(startSeconds) {
     var NS = "http://www.w3.org/2000/svg";
     var svg = document.createElementNS(NS, "svg");
     svg.setAttribute("viewBox", "0 0 40 40");
@@ -288,7 +289,7 @@
     var label = document.createElementNS(NS, "text");
     label.setAttribute("x", "20"); label.setAttribute("y", "24");
     label.setAttribute("text-anchor", "middle"); label.setAttribute("class", "quiz-ring-text");
-    label.textContent = "60";
+    label.textContent = String(startSeconds != null ? startSeconds : QUESTION_SECONDS);
     svg.appendChild(bg); svg.appendChild(fg); svg.appendChild(label);
     return {
       node: svg,
@@ -310,16 +311,18 @@
 
     var card = el("div", { class: "quiz-card" });
 
+    var seconds = q.videoUrl ? VIDEO_QUESTION_SECONDS : QUESTION_SECONDS;
+
     var head = el("div", { class: "quiz-qhead" });
     head.appendChild(el("div", { class: "quiz-progress", text: "Вопрос " + (state.idx + 1) + " / " + TOTAL }));
-    var ring = timerRing();
+    var ring = timerRing(seconds);
     head.appendChild(ring.node);
     card.appendChild(head);
 
     card.appendChild(el("p", { class: "quiz-question", text: q.question }));
 
     var locked = false;
-    var timer = Timer(QUESTION_SECONDS, function (secLeft, frac) {
+    var timer = Timer(seconds, function (secLeft, frac) {
       ring.update(secLeft, frac);
     }, function () {
       if (!locked) lockAnswer(null);

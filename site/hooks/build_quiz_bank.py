@@ -272,10 +272,27 @@ def _fmt_tc(sec):
     return f"{total // 60}:{total % 60:02d}"
 
 
-def _segment_phrase(start, end, trimmed):
+# Длина обрезанного ролика — из его же имени: «…__segment_<n>_<начало>_<конец>[…].mp4»
+# (секунды в исходном видео). Нужна, чтобы в «ролик целиком» показать длительность —
+# исполнитель сразу видит, что ролик длинный и его надо перематывать.
+_SEGMENT_URL_RE = re.compile(r'__segment_\d+_(\d+)_(\d+)')
+
+
+def _trimmed_clip_seconds(url):
+    m = _SEGMENT_URL_RE.search(url or "")
+    if not m:
+        return None
+    a, b = int(m.group(1)), int(m.group(2))
+    return b - a if b > a else None
+
+
+def _segment_phrase(start, end, trimmed, url=""):
     """Именная группа для текста вопроса — какой сегмент оценивать (вставляется в
     «…для <phrase>.»). Заказчик просил говорить именно про сегмент, а не про «видео»."""
     if trimmed:
+        dur = _trimmed_clip_seconds(url)
+        if dur is not None:
+            return f"этого сегмента (ролик целиком, {_fmt_tc(dur)})"
         return "этого сегмента (ролик целиком)"
     if start is not None and end is not None:
         return f"сегмента {_fmt_tc(start)}–{_fmt_tc(end)}"
@@ -357,7 +374,7 @@ def extract_classifier_video(sources):
                 "topic": field_name,
                 "question": (
                     f"Определите значение поля «{field_name}» для "
-                    f"{_segment_phrase(start, end, trimmed)}."
+                    f"{_segment_phrase(start, end, trimmed, url)}."
                 ),
                 "videoUrl": url,
                 "videoKind": _video_kind(url),

@@ -230,7 +230,8 @@ def test_extract_classifier_video_trimmed_is_whole_clip():
     # Обрезанный ролик (/trimmed/…__segment_…) — это и есть один сегмент целиком
     qs = extract_classifier_video({"manual-2-etap/04-classifier.md": CLASSIFIER_A})
     q = _by_url(qs, "https://ex.test/ak/avatar/zzz/trimmed/-1_2__segment_1_0_50.mp4")
-    assert q["question"] == "Определите значение поля «Преобладающий ракурс» для этого сегмента (ролик целиком)."
+    # длина ролика (0..50 сек в имени файла) показана — исполнитель видит, что надо перематывать
+    assert q["question"] == "Определите значение поля «Преобладающий ракурс» для этого сегмента (ролик целиком, 0:50)."
     assert "videoStart" not in q
     assert "videoEnd" not in q
 
