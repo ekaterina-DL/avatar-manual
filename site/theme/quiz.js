@@ -16,7 +16,7 @@
   var root = document.getElementById("quiz-root");
   if (!root) return;
 
-  var CFG = window.QUIZ_CONFIG || { endpoint: "", token: "", passPercent: 80 };
+  var CFG = window.QUIZ_CONFIG || { endpoint: "", token: "", passPercent: 90 };
   var LS_KEY = "avatar-quiz:last-ids";
   var QUESTION_SECONDS = 60;
   var TOTAL = 20;
@@ -389,7 +389,7 @@
   function computeScore(answers) {
     var correct = answers.filter(function (a) { return a.ok; }).length;
     var percent = Math.round((correct / TOTAL) * 100);
-    var verdict = percent >= (CFG.passPercent || 80) ? "Сдано" : "Не сдано";
+    var verdict = percent >= (CFG.passPercent || 90) ? "Сдано" : "Не сдано";
     return { correct: correct, percent: percent, verdict: verdict };
   }
 
