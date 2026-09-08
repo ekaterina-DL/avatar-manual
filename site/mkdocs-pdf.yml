@@ -19,3 +19,4 @@ plugins:
       path_to_pdf: ""
       exclude:
         - index.md
+        - manual-2-etap/07-testirovanie.md

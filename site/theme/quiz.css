@@ -1,0 +1,109 @@
+/* ==== Тестирование по 2 этапу ==== */
+
+/* Акцент на пункте меню «Тестирование по 2 этапу» — и во вкладках сверху, и в левом
+   оглавлении. Тема Material не даёт штатного способа выделить один пункт, поэтому таргет —
+   по href последнего сегмента URL. Совпадает и для .md-tabs__link (вкладки), и для
+   .md-nav__link (сайдбар). */
+.md-tabs__link[href$="/manual-2-etap/07-testirovanie/"],
+.md-nav__link[href$="/manual-2-etap/07-testirovanie/"] {
+  font-weight: 700;
+}
+.md-nav__link[href$="/manual-2-etap/07-testirovanie/"] {
+  color: var(--md-accent-fg-color, #ff6f00);
+}
+
+#quiz-root { margin-top: 1.2rem; }
+
+.quiz-prestart {
+  border-left: 4px solid var(--md-accent-fg-color, #ff6f00);
+  background: var(--md-code-bg-color, #f5f5f5);
+  padding: 0.7rem 1rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1rem 0;
+}
+.quiz-prestart > :first-child { margin-top: 0; }
+.quiz-prestart > :last-child { margin-bottom: 0; }
+
+.quiz-card {
+  border: 1px solid var(--md-default-fg-color--lightest, #e0e0e0);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  background: var(--md-default-bg-color, #fff);
+  max-width: 720px;
+}
+.quiz-start h2 { margin-top: 0; }
+.quiz-fio { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
+.quiz-fio input {
+  flex: 1 1 200px;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--md-default-fg-color--light, #bdbdbd);
+  border-radius: 6px;
+}
+.quiz-btn {
+  padding: 0.55rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--md-accent-fg-color, #ff6f00);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.quiz-btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+.quiz-progress { font-size: 0.85rem; color: var(--md-default-fg-color--light, #757575); }
+.quiz-question { font-size: 1.05rem; font-weight: 600; margin: 0.6rem 0 1rem; }
+.quiz-warn { color: #c62828; font-weight: 600; }
+
+.quiz-qhead { display: flex; align-items: center; justify-content: space-between; }
+.quiz-ring { width: 44px; height: 44px; }
+.quiz-ring-bg { fill: none; stroke: var(--md-default-fg-color--lightest, #e0e0e0); stroke-width: 4; }
+.quiz-ring-fg {
+  fill: none; stroke: var(--md-accent-fg-color, #ff6f00); stroke-width: 4;
+  transform: rotate(-90deg); transform-origin: 50% 50%;
+  transition: stroke-dashoffset 0.2s linear;
+}
+.quiz-ring.warn .quiz-ring-fg { stroke: #d32f2f; }
+.quiz-ring-text { font-size: 12px; fill: var(--md-default-fg-color, #212121); }
+.quiz-ring.warn .quiz-ring-text { fill: #d32f2f; font-weight: 700; }
+
+.quiz-media { margin: 0.4rem 0 0.9rem; }
+.quiz-media video, .quiz-embed {
+  width: 100%; max-height: 60vh; aspect-ratio: 16 / 9; background: #000; border: 0; border-radius: 8px;
+}
+.quiz-options { display: grid; gap: 0.5rem; }
+.quiz-option {
+  text-align: left; padding: 0.6rem 0.8rem; font-size: 0.95rem;
+  border: 1px solid var(--md-default-fg-color--light, #bdbdbd);
+  border-radius: 8px; background: var(--md-default-bg-color, #fff); cursor: pointer;
+}
+.quiz-option:hover:not([disabled]) { border-color: var(--md-accent-fg-color, #ff6f00); }
+.quiz-option[disabled] { cursor: default; }
+.quiz-option.is-correct { border-color: #2e7d32; background: #e8f5e9; }
+.quiz-option.is-wrong { border-color: #c62828; background: #ffebee; }
+.quiz-feedback { margin-top: 0.8rem; font-weight: 600; }
+.quiz-feedback.good { color: #2e7d32; }
+.quiz-feedback.bad { color: #c62828; }
+.quiz-next { margin-top: 0.9rem; }
+
+.quiz-verdict {
+  display: inline-block; padding: 0.25rem 0.9rem; border-radius: 999px;
+  font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem;
+}
+.quiz-verdict.pass { background: #e8f5e9; color: #2e7d32; }
+.quiz-verdict.fail { background: #ffebee; color: #c62828; }
+.quiz-score { font-size: 1.15rem; font-weight: 600; margin: 0.3rem 0; }
+.quiz-fio-line { color: var(--md-default-fg-color--light, #757575); margin-top: 0; }
+.quiz-breakdown { border-collapse: collapse; width: 100%; margin: 0.4rem 0 1rem; }
+.quiz-breakdown th, .quiz-breakdown td {
+  border: 1px solid var(--md-default-fg-color--lightest, #e0e0e0);
+  padding: 0.4rem 0.6rem; text-align: left; font-size: 0.9rem;
+}
+.quiz-wrong-list { padding-left: 1.1rem; }
+.quiz-wrong-list li { margin-bottom: 0.7rem; }
+.quiz-wrong-q { font-weight: 600; }
+.quiz-wrong-a { color: #c62828; }
+.quiz-wrong-c { color: #2e7d32; }
+.quiz-send-status { margin: 0.8rem 0; font-size: 0.85rem; color: var(--md-default-fg-color--light, #757575); }
+.quiz-send-status.ok { color: #2e7d32; }
+.quiz-send-status.warn { color: #c62828; font-weight: 600; }
