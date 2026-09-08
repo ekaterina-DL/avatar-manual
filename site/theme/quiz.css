@@ -1,10 +1,18 @@
 /* ==== Тестирование по 2 этапу ==== */
 
-/* Акцент на пункте «🧪 Тестирование» в левом оглавлении 2 этапа. Тема Material не даёт
-   штатного способа выделить один пункт, поэтому таргет — по href последнего сегмента URL. */
-.md-nav__link[href$="/manual-2-etap/07-testirovanie/"] {
+/* Пункт «Тестирование» в левом оглавлении 2 этапа выделяем цветной плашкой вокруг слова.
+   Фон вешаем на внутренний .md-ellipsis, чтобы плашка облегала текст, а не растягивалась
+   на всю строку. Ловим двумя путями: по href ссылки на других страницах (без вспышки при
+   загрузке) и по классу .quiz-nav-link, который вешает quiz.js (нужен на самой странице
+   теста — там href активного пункта = "./"). */
+.md-nav__link[href$="/07-testirovanie/"] .md-ellipsis,
+.md-nav__link.quiz-nav-link .md-ellipsis {
+  display: inline-block;
+  background: var(--md-accent-fg-color, #ff6f00);
+  color: #fff;
   font-weight: 700;
-  color: var(--md-accent-fg-color, #ff6f00);
+  padding: 0.05rem 0.45rem;
+  border-radius: 4px;
 }
 
 #quiz-root { margin-top: 1.2rem; }

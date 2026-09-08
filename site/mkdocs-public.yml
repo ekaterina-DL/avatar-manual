@@ -49,4 +49,4 @@ nav:
       - Частые ошибки: manual-2-etap/06-common-mistakes.md
       - Банк примеров: manual-2-etap/11-example-library.md
       # Синхронно с mkdocs.yml. nav при INHERIT заменяется целиком, поэтому пункт нужен и здесь.
-      - 🧪 Тестирование: manual-2-etap/07-testirovanie.md
+      - Тестирование: manual-2-etap/07-testirovanie.md

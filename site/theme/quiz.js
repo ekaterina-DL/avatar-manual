@@ -3,6 +3,16 @@
 (function () {
   "use strict";
 
+  // Плашка на пункте «Тестирование» в левом меню (оформление — в quiz.css). Ставим её на
+  // всех страницах: на самой странице теста активный пункт имеет href="./", по атрибуту
+  // href такой не поймать, поэтому сверяемся с уже разрешённым абсолютным URL ссылки.
+  var navLinks = document.querySelectorAll(".md-nav__link");
+  for (var n = 0; n < navLinks.length; n++) {
+    if (/\/manual-2-etap\/07-testirovanie\/$/.test(navLinks[n].href || "")) {
+      navLinks[n].classList.add("quiz-nav-link");
+    }
+  }
+
   var root = document.getElementById("quiz-root");
   if (!root) return;
 
