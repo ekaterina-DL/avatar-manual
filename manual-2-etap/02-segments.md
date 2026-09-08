@@ -27,7 +27,7 @@
 <span class="kf-tag">замедленное/ускоренное видео</span>
 <span class="kf-tag">виньетку</span>
 <span class="kf-tag">субтитры</span>
-<span class="kf-tag">тряску камеры</span>
+<span class="kf-tag">сильную тряску камеры</span>
 <span class="kf-tag">большую пиксельность</span>
 <span class="kf-tag">пережатие</span>
 <span class="kf-tag">закадровый голос</span>
