@@ -142,14 +142,14 @@ _NUMBER_RECIPES = [
         "title": "Классификатор",
     },
     {
-        # Число 10:15 живёт на 05b-what-not-to-label.md (раздел «Другие исключения»),
+        # Число 10:15 живёт на 05b-what-not-to-label.md (раздел «Другое»),
         # а не на 02-segments.md — 02-segments.md его не содержит.
         "page": "manual-2-etap/05b-what-not-to-label.md",
         "confirm": r"10:15",
         "question": "Какова максимальная длина исходного видео, которое ещё берём в работу?",
         "correct": "10:15",
         "wrong": ["10:00", "9:30", "15:00"],
-        "anchor": "другие-исключения",
+        "anchor": "другое",
         "title": "Что не размечаем",
     },
 ]
@@ -447,8 +447,8 @@ def _extract_broken_from_excluded(text):
         name = names[i]
         seg_start = h.end()
         # Граница подраздела — до ближайшего следующего «### » ЛЮБОГО вида (в т.ч.
-        # не-field-label «### Другие исключения»), иначе последний подраздел затягивал
-        # бы в себя чужой заголовок и его пункты.
+        # не-field-label «### Другое»), иначе последний подраздел затягивал бы в себя
+        # чужой заголовок и его пункты.
         nxt = body.find("\n### ", seg_start)
         seg_end = nxt if nxt != -1 else len(body)
         segment = body[seg_start:seg_end]

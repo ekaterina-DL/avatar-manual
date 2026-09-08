@@ -331,7 +331,7 @@ EXCLUDED_WITH_OTHER_HEADING = """# Что не размечаем / Битое
 
 - [Пиксельность — пример](https://ex.test/px9.mp4).
 
-### Другие исключения
+### Другое
 
 - [см. Общие требования](https://ex.test/other.mp4)
 """
@@ -410,11 +410,11 @@ def test_extract_broken_from_excluded_types_filters_negations():
 
 
 def test_extract_broken_excluded_ignores_other_headings():
-    # Последний field-label подраздел не должен затягивать «### Другие исключения»
+    # Последний field-label подраздел не должен затягивать «### Другое»
     qs = extract_broken({"manual-2-etap/05b-what-not-to-label.md": EXCLUDED_WITH_OTHER_HEADING})
     urls = {q["videoUrl"] for q in qs}
     assert "https://ex.test/px9.mp4" in urls        # последний field-label подраздел работает
-    assert "https://ex.test/other.mp4" not in urls  # пункт из «Другие исключения» не попал
+    assert "https://ex.test/other.mp4" not in urls  # пункт из «Другое» не попал
 
 
 def test_media_url_filter():
