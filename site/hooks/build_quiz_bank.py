@@ -454,7 +454,7 @@ def _extract_broken_from_library(text):
 
 
 def _extract_broken_from_excluded(text):
-    body = extract_section(text, "🚫 Полностью исключённые дефекты")
+    body = extract_section(text, "🚫 Дефекты, которых не должно быть в сегменте")
     if body is None:
         return []
     heads = list(_EXCLUDED_SUBHEAD_RE.finditer(body))
