@@ -157,7 +157,7 @@
 - [Пережатие: на скорости 0.5 в области головы видна «сыпучая» картинка](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/2d96202b-2347-4e9a-813c-d7ce2e6ccd70/trimmed/-920580_456239632__segment_1_0_15__seg1.mp4).
 - [Пережатие (ещё один пример)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/ea6874ce-6eaa-453d-aa2d-488c228d5fdf/trimmed/-226415646_456241869__segment_2_181_193__seg2.mp4).
 - [Плохое качество при движении «пережатие», особенно в области рук](assets/stage3-antiexample-hands.mp4).
-- [Пережатие — неочевидный пример: полосы на руках и зубах видны только при увеличении](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/32bcf91c-b492-4582-8ac3-b2633ee4a543/downloaded_raw/NfjOvtyNR78.mp4).
+- [Пережатие — неочевидный пример: полосы на руках и зубах видны при увеличении](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/32bcf91c-b492-4582-8ac3-b2633ee4a543/downloaded_raw/NfjOvtyNR78.mp4).
 
 `[Комментарии для мануала ко 2 этапу Аватара, 04.09.2026; Комментарии к мануалу от заказчика,
 08.09.2026 и 10.09.2026]`
