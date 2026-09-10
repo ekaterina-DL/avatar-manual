@@ -272,6 +272,32 @@ body, .md-typeset {
   box-shadow: var(--card-shadow-hover);
 }
 
+/* Стоп-кадр неочевидного пережатия (05b-what-not-to-label.md) — сам смысл примера в том,
+   чтобы разглядеть слабые полосы на зубах/руках, поэтому: (1) в покое картинка во всю ширину
+   текста (= ширина сетки из двух видео над ней), а не миниатюрой 220px; (2) по наведению —
+   сильный zoom ×3, но через position: fixed с ограничением по vw/vh, иначе на реальном окне
+   transform: scale(3) для широкой картинки вылезает за экран и обрезается (тот же баг, что был
+   у interface-overview.png, см. выше). */
+.md-typeset img[src$="perezhatie-nfjovty-frame.jpeg"] {
+  max-width: 100%;
+  max-height: none;
+  border-radius: 8px;
+}
+.md-typeset img[src$="perezhatie-nfjovty-frame.jpeg"]:hover {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* ~3× ширины текстовой колонки (≈800px) — на больших экранах это и есть ×3, на узких
+     ограничение по 94vw не даёт вылезти за окно. */
+  width: min(94vw, 2400px);
+  height: auto;
+  max-height: 92vh;
+  transform: translate(-50%, -50%);
+  transition: none;
+  z-index: 1000;
+  box-shadow: var(--card-shadow-hover);
+}
+
 /* Списки значений полей классификатора — квадратик перед каждым вариантом, как чекбоксы
    в интерфейсе разметки (декоративные, не интерактивные). */
 .value-checklist {
