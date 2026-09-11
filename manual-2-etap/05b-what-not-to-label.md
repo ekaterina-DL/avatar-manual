@@ -257,6 +257,7 @@
 
 - [Склейка с отсутствием человека](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/536eced6-c1ab-4ac2-8c6d-fd202ea20fa5/trimmed/-4565_456239459__segment_1_14_85__seg1.mp4).
 - [В конце смена кадра на кадр без человека](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/384a8f39-036c-423b-b136-6ef8128c9b96/trimmed/-145781292_456239534__segment_3_99_125__seg3.mp4).
+- [Смена кадра в конце (ещё один пример)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_019/-25605330_456240316__segment_1_48_61.mp4).
 
 `[Комментарии к мануалу от заказчика, 06.09.2026]`
 
