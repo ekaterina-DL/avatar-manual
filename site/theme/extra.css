@@ -1084,6 +1084,40 @@ body, .md-typeset {
   vertical-align: -3px;
 }
 
+/* Компактная дробь для формулы расчёта качества (00-overview.md, "Как считается процент") —
+   числитель над чертой, знаменатель под ней, как в учебнике, вместо той же формулы текстом
+   в скобках через слэш. */
+.quality-formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 1.2em 0;
+  padding: 16px 20px;
+  background: var(--gray-100);
+  border-radius: 8px;
+  text-align: center;
+}
+.quality-formula .qf-label {
+  font-weight: 600;
+  color: var(--gray-600);
+}
+.quality-formula .qf-frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+.quality-formula .qf-num {
+  padding: 0 4px 4px;
+  border-bottom: 1.5px solid var(--gray-600);
+}
+.quality-formula .qf-den {
+  padding: 4px 4px 0;
+}
+
 /* Выделенная шапка таблиц «Термин/Определение» и «Роль/Что делает» (00-overview.md,
    «Базовые термины и роли») — чтобы строка с названиями столбцов сразу считывалась глазом,
    а не сливалась с обычными строками (по умолчанию тема даёт шапке лишь едва заметный серый
