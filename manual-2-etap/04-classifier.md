@@ -150,7 +150,6 @@ Kandinsky-Аватар, стр.5, Upd 21.05]`
 - ![grid: Голова и плечи](assets/golova-i-plechi-1.jpeg)
 - ![grid: Голова и плечи](assets/golova-i-plechi-2.jpeg)
 - ![grid: Голова](assets/golova-1.jpeg)
-- ![grid: Голова](assets/golova-2.jpeg)
 
 `[Ответы на вопросы 2 этап, 21.09.2026]`
 
