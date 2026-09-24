@@ -1084,6 +1084,28 @@ body, .md-typeset {
   vertical-align: -3px;
 }
 
+/* Красная заметка — строгий запрет/жёсткое требование без исключений (например, "только с ПК
+   или ноутбука" в 00-overview.md), а не просто "важно" (для этого .notice-warning выше). Тот же
+   паттерн вёрстки, но красная пара --no-color/--no-bg — уже использующаяся по сайту как
+   "недопустимо" (compare-no, decision-outcome .bad и т.п.). */
+.notice-danger {
+  background: var(--no-bg);
+  border-left: 3px solid var(--no-color);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 1.2em 0;
+}
+.notice-danger p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--no-color);
+}
+.notice-danger-icon {
+  font-size: 1.25rem;
+  margin-right: 7px;
+  vertical-align: -3px;
+}
+
 /* Выделенная шапка таблиц «Термин/Определение» и «Роль/Что делает» (00-overview.md,
    «Базовые термины и роли») — чтобы строка с названиями столбцов сразу считывалась глазом,
    а не сливалась с обычными строками (по умолчанию тема даёт шапке лишь едва заметный серый

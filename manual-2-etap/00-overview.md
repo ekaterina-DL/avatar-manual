@@ -41,8 +41,8 @@
 </div>
 </div>
 
-<div class="notice-warning" markdown="1">
-<span class="notice-warning-icon">⚠️</span>**Работать можно только с компьютера или ноутбука.** Разметка с телефона или планшета
+<div class="notice-danger" markdown="1">
+<span class="notice-danger-icon">🚫</span>**Работать можно только с компьютера или ноутбука.** Разметка с телефона или планшета
 запрещена — это строгое требование, без исключений.
 </div>
 
