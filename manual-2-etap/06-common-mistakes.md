@@ -27,6 +27,7 @@
 - [Не отмечены руки, хотя кисти видны в кадре.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/IBOvZiZGiLs/IBOvZiZGiLs.mp4)
 - [Обратная ошибка: кисти рук не появляются ни разу — руки отмечены зря, нужно «Голова и плечи».](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/27_05_2026/nIAKieiyOiU/nIAKieiyOiU.mp4)
 - [Выбрано 2 значения в «Объём и поза тела» при одном человеке в кадре.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/cEZNKE2Iej0/cEZNKE2Iej0.mp4)
+- [Ещё пример той же ошибки: 2 значения в «Объём и поза тела» при одном человеке в кадре.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/0mwz2f7OBto/0mwz2f7OBto.mp4)
 - [Поставлено «голова и плечи», хотя в кадре появляется рука — нужно «голова, плечи и руки».](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/27_05_2026/gR54YHpUgBA/gR54YHpUgBA.mp4)
 - [Кисти рук видны в кадре, но не отмечены.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/W-YXdArqqc8/W-YXdArqqc8.mp4)
 - [Ещё один пропуск: руки видны, а в классификаторе это не отражено.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/18_05_2026/CTTnDNAE-Hs/CTTnDNAE-Hs.mp4)
@@ -101,6 +102,7 @@
 - [Выбрано 2 значения в «Преобладающем ракурсе» — нужно выбрать один, доминирующий вариант.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/MbzweqS5chA/MbzweqS5chA.mp4)
 - [Неверно выбран язык сегмента — нужно было выбрать «Другой язык».](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/8F8h03d5JjA/8F8h03d5JjA.mp4)
 - [2 значения в «Темпе речи» в одном сегменте у одного и того же человека.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/aR-8xggopRc/aR-8xggopRc.mp4)
+- [В сегментах выбран разный возраст, а человек один и тот же — должно быть проставлено одинаковое значение.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/4MqvjGl7hsg/4MqvjGl7hsg.mp4)
 
 ## 2. Некорректные границы объекта
 
@@ -134,6 +136,7 @@
 - [Сегмент выделен и одновременно стоит галочка «Битое» — так нельзя, это взаимоисключающие ответы.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/tXi-fVey5BY/tXi-fVey5BY.mp4)
 - [Рассинхронизация звука и движения губ (липсинк) — законный повод для «Битого».](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/mlZdpX2-xTc/mlZdpX2-xTc.mp4)
 - [Видео помечено «Битым» без реальных дефектов, хотя качество позволяет разметить сегмент.](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/22_05_2026/ZfWOn8RU9qg/ZfWOn8RU9qg.mp4)
+- [Хорошее качество видео — не размечен подходящий под ТЗ сегмент (без закадрового голоса).](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/lE0jO_6LRQc/lE0jO_6LRQc.mp4)
 
 ## 4. Смена кадра/склейка (включая водяной знак и наложенный текст)
 
@@ -171,6 +174,8 @@
 неподходящий фоновый звук, сегмент и «Битое» отмечены одновременно (см.
 [«Как правильно отправить в „Битое“ технически»](05b-what-not-to-label.md)).
 
-**Пример:** выделено 4 однотипных сегмента вместо допустимых 1-2.
+**Пример:** выделено 4 однотипных сегмента вместо допустимого одного (при полностью идентичных
+условиях — см. [«Однотипные и разные фрагменты»](02-segments.md#однотипные-и-разные-фрагменты),
+с 25.09.2026).
 
 [Видео-пример](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/YSTAtJFljnU/YSTAtJFljnU.mp4)
