@@ -408,7 +408,7 @@
 <!-- video-eyebrow: Перекрытие рта -->
 
 - [✅ Сложное освещение, перекрытие рта некритичное — сегмент годен](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/88d5bdc8-2041-4f7f-a9ff-e4a69ff9cc15/trimmed/rPvoShZoDSo__segment_230816898_275374186.mp4).
-- [❌ Рот перекрыт — «Битое»](assets/775579684_456246701__segment_1_23_42__seg1.mp4).
+- [❌ Рот перекрыт — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/fb5f770b-a3be-402e-af20-a918ebbd699c/trimmed/775579684_456246701__segment_1_23_42__seg1.mp4).
 
 `[Комментарии к мануалу от заказчика, 06.09.2026]`
 
