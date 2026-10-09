@@ -378,6 +378,19 @@ body, .md-typeset {
 .video-item img:hover {
   transform: none;
 }
+/* 09.10.2026: poza-menyaetsya-primer.png — портретный коллаж (530×610) в альбомной 16:9
+   карточке; object-fit:cover в статике обрезает верх/низ обоих фото. По просьбе
+   пользователя при наведении курсора картинка временно показывается целиком, без обрезки.
+   Точечный селектор по имени файла — остальные .video-item не затронуты. */
+.video-item img[src*="poza-menyaetsya-primer"] {
+  cursor: zoom-in;
+  transition: aspect-ratio .2s ease, max-height .2s ease;
+}
+.video-item img[src*="poza-menyaetsya-primer"]:hover {
+  aspect-ratio: auto;
+  object-fit: contain;
+  max-height: 610px;
+}
 .video-item .vi-cap {
   padding: 8px 11px;
   font-family: 'Golos Text', sans-serif;
