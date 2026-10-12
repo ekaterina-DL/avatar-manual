@@ -512,8 +512,6 @@
 - [❌ Глаза/зрачки перекрыты посторонним предметом — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/710efe82-8f6e-40ca-b0fa-1913cb592bd3/downloaded_raw/RHxn1GFTIeo.mp4).
 - [❌ Глубокая тень от козырька скрывает глаз — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/51f72751-186f-403e-b186-3394ba9a1e29/downloaded_raw/KX2_pW85zPM.mp4).
 - ![grid: ✅ Глаза опущены (смотрит в телефон) — это не брак, естественная поза](assets/glaza-opushchennye-primer.jpeg)
-- ![grid: ❌ Ещё один пример тёмных очков, скрывающих глаза — «Битое»](assets/ochki-temnye-primer-2.jpeg)
-- ![grid: ✅ Ещё один пример прозрачных очков с видимыми глазами — подходит](assets/ochki-prozrachnye-primer-2.jpeg)
 
 `[Комментарии к мануалу от заказчика, 06.09.2026; Разметка ВК видео — ОС 2 этап, вердикт заказчика,
 21.09.2026; Инструкция заказчика, 25.09.2026 и 12.10.2026; Ответы на вопросы 2 этап, 09.10.2026]`
