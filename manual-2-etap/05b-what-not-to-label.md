@@ -128,8 +128,9 @@
 - [Пиксельность — пример 3](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/dbadf075-4485-41bb-8c95-98518f5ee4e9/trimmed/zTO68RryG4M__segment_19714205_32724937.mp4).
 - [Пиксельность — пример 4](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/dbadf075-4485-41bb-8c95-98518f5ee4e9/trimmed/XHaqK4rvHwM__segment_0487004_2954991.mp4).
 - [Пиксельность — пример 5](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/21b1377b-b3d0-496b-a4a9-6e5c85ec6cfd/trimmed/-74776957_456241310__segment_1_225_348.mp4).
+- [Видео пережато — заметно по рукам и губам](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/yvsBUkamNmk/yvsBUkamNmk.mp4).
 
-`[Комментарии к мануалу от заказчика, 06.09.2026]`
+`[Комментарии к мануалу от заказчика, 06.09.2026; Топ-5 ошибок — Инструкция заказчика, 12.10.2026]`
 
 <div class="field-label-row" markdown="1">
 
@@ -482,6 +483,12 @@
 перекрытием — такой кадр допустим, глаза остаются в зоне видимости и распознаются моделью.
 `[Ответы на вопросы 2 этап, 09.10.2026]`
 
+**Ещё одно исключение — естественно опущенные/прищуренные глаза.** Это не брак и не повод
+отправлять в «Битое»: запрета на разметку такого видео нет, поскольку для обучения модели нужны
+разные ракурсы, в том числе с опущенным взглядом. Отличие от правила выше — здесь глаза не
+перекрыты посторонней причиной, они просто прикрыты естественным образом.
+`[Инструкция заказчика, 12.10.2026]`
+
 **Калибровочные примеры:**
 
 <!-- video-eyebrow: Перекрытие глаз -->
@@ -496,7 +503,7 @@
 - [❌ Глубокая тень от козырька скрывает глаз — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/51f72751-186f-403e-b186-3394ba9a1e29/downloaded_raw/KX2_pW85zPM.mp4).
 
 `[Комментарии к мануалу от заказчика, 06.09.2026; Разметка ВК видео — ОС 2 этап, вердикт заказчика,
-21.09.2026; Инструкция заказчика, 25.09.2026; Ответы на вопросы 2 этап, 09.10.2026]`
+21.09.2026; Инструкция заказчика, 25.09.2026 и 12.10.2026; Ответы на вопросы 2 этап, 09.10.2026]`
 
 <div class="field-label-row" markdown="1">
 
