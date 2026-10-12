@@ -78,8 +78,9 @@
 - [Рамка слева](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-210980095_456239022/-210980095_456239022.mp4)
 - [Рамка снизу и сверху](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/5791ff38-bf32-4249-ac9b-187c83e9df53/trimmed/-101418717_456239409__segment_1_24_35__seg1.mp4)
 - [Рамка слева](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_027/182002586_456241831__segment_1_7_71__seg1.mp4)
+- ![grid: Рамка сверху и снизу (чёрные полосы по кадру) — пример из инструкции заказчика](assets/ramka-primer-letterbox.jpeg)
 
-`[Разметка ВК видео — ОС 27.05 СТ2]`
+`[Разметка ВК видео — ОС 27.05 СТ2; Инструкция заказчика, 12.10.2026]`
 
 <div class="field-label-row" markdown="1">
 
@@ -226,8 +227,10 @@
 - [На протяжении всего видео справа внизу есть водяной знак](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/31YbqD2D0Og/31YbqD2D0Og.mp4)
 - [Тёмный водяной знак справа внизу заметен только с 0:28 — присутствует на протяжении всего видео](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/youtube/avatar/15_05_2026/TiEu8a-diLU/TiEu8a-diLU.mp4)
 - [Пример вотермарки — отправляем в «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/stage3_results/2b_lakhtionov_pool_145/-185158466_456240651__segment_3_103_117__seg3.mp4)
+- ![grid: Наложенная текстовая плашка с именем и подписью — пример из инструкции заказчика](assets/nalozhennyj-tekst-primer.jpeg)
 
-`[Комментарии к мануалу от заказчика, 06.09.2026; Частые ошибки — видеоразбор реальных ошибок]`
+`[Комментарии к мануалу от заказчика, 06.09.2026; Частые ошибки — видеоразбор реальных ошибок;
+Инструкция заказчика, 12.10.2026]`
 
 <div class="field-label-row" markdown="1">
 
@@ -314,6 +317,13 @@
   размечать как обычно. Если такие артефакты на человеке есть (например, мелькающие цветные
   пятна прямо на лице) — это брак, аналогично прочим визуальным артефактам.
   `[Разметка ВК видео — ОС 01.06 СТ2; Ответы на вопросы по Аватару, 02.09.2026]`
+
+**Примеры ИИ-генерации (реальный человек наложен на сгенерированные фон/сцену):**
+
+- ![grid: Пример 1 — ИИ-сцена на фоне](assets/ii-generaciya-primer-1.jpeg)
+- ![grid: Пример 2 — ИИ-сцена на фоне](assets/ii-generaciya-primer-2.jpeg)
+
+`[Инструкция заказчика, 12.10.2026]`
 
 Полный список исключений и группы допустимых источников — см. [01-general-requirements.md](01-general-requirements.md).
 Разбор реальных случаев брака по качеству — см. [06-common-mistakes.md](06-common-mistakes.md).
@@ -501,6 +511,9 @@
 - ![grid: ✅ Прозрачные очки, глаза видны — сегмент подходит](assets/ochki-prozrachnye-primer.jpeg)
 - [❌ Глаза/зрачки перекрыты посторонним предметом — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/710efe82-8f6e-40ca-b0fa-1913cb592bd3/downloaded_raw/RHxn1GFTIeo.mp4).
 - [❌ Глубокая тень от козырька скрывает глаз — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/51f72751-186f-403e-b186-3394ba9a1e29/downloaded_raw/KX2_pW85zPM.mp4).
+- ![grid: ✅ Глаза опущены (смотрит в телефон) — это не брак, естественная поза](assets/glaza-opushchennye-primer.jpeg)
+- ![grid: ❌ Ещё один пример тёмных очков, скрывающих глаза — «Битое»](assets/ochki-temnye-primer-2.jpeg)
+- ![grid: ✅ Ещё один пример прозрачных очков с видимыми глазами — подходит](assets/ochki-prozrachnye-primer-2.jpeg)
 
 `[Комментарии к мануалу от заказчика, 06.09.2026; Разметка ВК видео — ОС 2 этап, вердикт заказчика,
 21.09.2026; Инструкция заказчика, 25.09.2026 и 12.10.2026; Ответы на вопросы 2 этап, 09.10.2026]`
