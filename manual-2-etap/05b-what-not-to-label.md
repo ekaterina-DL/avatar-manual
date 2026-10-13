@@ -529,8 +529,6 @@
 - [❌ Очки с затемнением — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/79734b90-edf7-4fd9-8993-63fefbdebf47/trimmed/-15747675_456239023__segment_1_12_52.mp4).
 - [❌ Очки с бликами — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/891aaa7b-a9fb-4abe-846a-fb6517d1d86f/trimmed/-207557049_456239088__segment_1_0_72.mp4).
 - [❌ Блики закрывают глаз (правый глаз почти не виден) — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/2e27a696-5f02-4d90-9db5-893ba5a32136/downloaded_raw/jVcK4ur4Qxw.mp4).
-- ![grid: ❌ Тёмные очки скрывают глаза — «Битое»](assets/ochki-temnye-primer.jpeg)
-- ![grid: ✅ Прозрачные очки, глаза видны — сегмент подходит](assets/ochki-prozrachnye-primer.jpeg)
 - [❌ Глаза/зрачки перекрыты посторонним предметом — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/710efe82-8f6e-40ca-b0fa-1913cb592bd3/downloaded_raw/RHxn1GFTIeo.mp4).
 - [❌ Глубокая тень от козырька скрывает глаз — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/51f72751-186f-403e-b186-3394ba9a1e29/downloaded_raw/KX2_pW85zPM.mp4).
 - ![grid: ✅ Глаза опущены (смотрит в телефон) — это не брак, естественная поза](assets/glaza-opushchennye-primer.jpeg)
