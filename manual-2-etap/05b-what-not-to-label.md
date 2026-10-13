@@ -453,6 +453,22 @@
 `[Видео с разбором ошибок — Аватар 2 этап; Инстр. Kandinsky-Аватар, стр.2; Инструкция заказчика,
 25.09.2026]`
 
+💡 **Частая сложность у асессоров — отличить «перекрыт рот» от «перекрыт только подбородок».**
+Смотрите не на сам факт, что микрофон в кадре рядом с лицом, а на то, остаются ли **губы
+полностью свободны и видна ли артикуляция** — если да, микрофон под подбородком не мешает, даже
+если держит его так почти весь сегмент.
+`[ОС Аватар 2 этап — люди в очках и с микрофоном в кадре, 13.10.2026]`
+
+**Калибровочные примеры (микрофон):**
+
+<!-- video-eyebrow: Перекрытие лица — микрофон -->
+
+- [❌ Рот часто перекрыт микрофоном (24–34 сек) — такой сегмент не выделяем](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/710efe82-8f6e-40ca-b0fa-1913cb592bd3/downloaded_raw/veHNdtnClwA.mp4).
+- [✅ Перекрыт только подбородок, рот свободен, артикуляция чёткая (8–26 сек) — сегмент подходит](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/710efe82-8f6e-40ca-b0fa-1913cb592bd3/downloaded_raw/5HLT552g3g0.mp4).
+- [✅ Длинный сегмент (8 сек — 1:12), подбородок перекрыт микрофоном, но артикуляция хорошо видна — подходит](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7162ceab-d65a-4b05-b5fa-d218981cc76e/downloaded_raw/18j_cs8HCwk.mp4).
+
+`[ОС Аватар 2 этап — люди в очках и с микрофоном в кадре, 13.10.2026]`
+
 <div class="field-label-row" markdown="1">
 
 ### Перекрытие глаз {: .field-label-heading }
@@ -499,6 +515,12 @@
 перекрыты посторонней причиной, они просто прикрыты естественным образом.
 `[Инструкция заказчика, 12.10.2026]`
 
+💡 **Частая сложность у асессоров — отличить допустимый блик от бракующего.** Смотрите на
+**размер и частоту** отражения, а не на сам факт его наличия: небольшой блик, который не
+закрывает зрачок — это нормально и не мешает разметке. Крупные, яркие отражения, которые часто
+перекрывают глаза — брак (при отсутствии другого подходящего участка — «Битое»).
+`[ОС Аватар 2 этап — люди в очках и с микрофоном в кадре, 13.10.2026]`
+
 **Калибровочные примеры:**
 
 <!-- video-eyebrow: Перекрытие глаз -->
@@ -512,9 +534,13 @@
 - [❌ Глаза/зрачки перекрыты посторонним предметом — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/710efe82-8f6e-40ca-b0fa-1913cb592bd3/downloaded_raw/RHxn1GFTIeo.mp4).
 - [❌ Глубокая тень от козырька скрывает глаз — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/51f72751-186f-403e-b186-3394ba9a1e29/downloaded_raw/KX2_pW85zPM.mp4).
 - ![grid: ✅ Глаза опущены (смотрит в телефон) — это не брак, естественная поза](assets/glaza-opushchennye-primer.jpeg)
+- [✅ Блики небольшие, зрачки не закрывают (0–29 сек) — сегмент подходит](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7162ceab-d65a-4b05-b5fa-d218981cc76e/downloaded_raw/RD2nuxmOIjI.mp4).
+- [❌ Очень яркие крупные отражения на линзах, часто перекрывают глаза — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7162ceab-d65a-4b05-b5fa-d218981cc76e/downloaded_raw/oNT_Ky5iMB4.mp4).
+- [✅ Глаза хорошо видны, бликов нет (0–23 сек) — сегмент подходит](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7162ceab-d65a-4b05-b5fa-d218981cc76e/downloaded_raw/Yr3iraZ9k_8.mp4).
 
 `[Комментарии к мануалу от заказчика, 06.09.2026; Разметка ВК видео — ОС 2 этап, вердикт заказчика,
-21.09.2026; Инструкция заказчика, 25.09.2026 и 12.10.2026; Ответы на вопросы 2 этап, 09.10.2026]`
+21.09.2026; Инструкция заказчика, 25.09.2026 и 12.10.2026; Ответы на вопросы 2 этап, 09.10.2026;
+ОС Аватар 2 этап — люди в очках и с микрофоном в кадре, 13.10.2026]`
 
 <div class="field-label-row" markdown="1">
 
