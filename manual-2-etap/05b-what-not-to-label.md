@@ -535,7 +535,7 @@
 - [❌ Глубокая тень от козырька скрывает глаз — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/51f72751-186f-403e-b186-3394ba9a1e29/downloaded_raw/KX2_pW85zPM.mp4).
 - ![grid: ✅ Глаза опущены (смотрит в телефон) — это не брак, естественная поза](assets/glaza-opushchennye-primer.jpeg)
 - [✅ Блики небольшие, зрачки не закрывают (0–29 сек) — сегмент подходит](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7162ceab-d65a-4b05-b5fa-d218981cc76e/downloaded_raw/RD2nuxmOIjI.mp4).
-- [❌ Очень яркие крупные отражения на линзах, часто перекрывают глаза — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7162ceab-d65a-4b05-b5fa-d218981cc76e/downloaded_raw/oNT_Ky5iMB4.mp4).
+- [❌ Видео целиком «Битое»: очень яркие крупные отражения на линзах, часто перекрывают глаза, подходящего участка нет](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7162ceab-d65a-4b05-b5fa-d218981cc76e/downloaded_raw/oNT_Ky5iMB4.mp4).
 - [✅ Глаза хорошо видны, бликов нет (0–23 сек) — сегмент подходит](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7162ceab-d65a-4b05-b5fa-d218981cc76e/downloaded_raw/Yr3iraZ9k_8.mp4).
 
 `[Комментарии к мануалу от заказчика, 06.09.2026; Разметка ВК видео — ОС 2 этап, вердикт заказчика,
