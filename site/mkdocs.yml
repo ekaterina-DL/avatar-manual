@@ -5,6 +5,7 @@ site_url: https://ekaterina-dl.github.io/avatar-manual/
 
 exclude_docs: |
   _raw-sources/
+  АНАЛИЗ Ошибок/
   README.md
   voprosy-zakazchiku.md
   manual-2-etap/_sources-log.md

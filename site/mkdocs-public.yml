@@ -18,6 +18,7 @@ site_dir: ../../avatar-manual-build/build-public
 # (Файл временный: удаляется, когда 3 этап выходит в публикацию — см. spec от 2026-09-03.)
 exclude_docs: |
   _raw-sources/
+  АНАЛИЗ Ошибок/
   README.md
   voprosy-zakazchiku.md
   manual-2-etap/_sources-log.md
