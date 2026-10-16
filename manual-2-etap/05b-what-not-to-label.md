@@ -475,8 +475,8 @@
 
 **Это общее правило, а не только про очки:** глаза/зрачки говорящего человека должны быть видны
 и различимы. Причина, по которой это не так — тёмные непрозрачные очки, отражения на очках,
-посторонний предмет перед глазами, глубокая тень (например, от козырька кепки или шляпы) или
-слишком тёмное изображение, — не важна: результат один, сегмент не подходит.
+**оправа самих очков**, посторонний предмет перед глазами, глубокая тень (например, от козырька
+кепки или шляпы) или слишком тёмное изображение, — не важна: результат один, сегмент не подходит.
 `[Ответы на вопросы 2 этап, 09.10.2026]`
 
 </div>
@@ -504,8 +504,8 @@
 читается. Если блики держатся на протяжении всего видео и подходящего участка нет — это «Битое».
 `[Разметка ВК видео — ОС 2 этап, вердикт заказчика, 21.09.2026]`
 
-Тот же брак — если глаза/зрачки перекрыты **посторонним предметом в руках** (не очками) или
-**глубокой тенью от козырька** кепки/шляпы.
+Тот же брак — если глаза/зрачки перекрыты **оправой самих очков**, **посторонним предметом в
+руках** или **глубокой тенью от козырька** кепки/шляпы.
 `[Ответы на вопросы 2 этап, 09.10.2026]`
 
 **Исключение:** если человек, например, наклонился почитать книгу — и это не связано с
@@ -536,7 +536,7 @@
 - [❌ Очки с затемнением — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/79734b90-edf7-4fd9-8993-63fefbdebf47/trimmed/-15747675_456239023__segment_1_12_52.mp4).
 - [❌ Очки с бликами — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/891aaa7b-a9fb-4abe-846a-fb6517d1d86f/trimmed/-207557049_456239088__segment_1_0_72.mp4).
 - [❌ Блики закрывают глаз (правый глаз почти не виден) — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/2e27a696-5f02-4d90-9db5-893ba5a32136/downloaded_raw/jVcK4ur4Qxw.mp4).
-- [❌ Глаза/зрачки перекрыты посторонним предметом — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/710efe82-8f6e-40ca-b0fa-1913cb592bd3/downloaded_raw/RHxn1GFTIeo.mp4).
+- [❌ Оправа очков перекрывает глаз — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/710efe82-8f6e-40ca-b0fa-1913cb592bd3/downloaded_raw/RHxn1GFTIeo.mp4).
 - [❌ Глубокая тень от козырька скрывает глаз — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/51f72751-186f-403e-b186-3394ba9a1e29/downloaded_raw/KX2_pW85zPM.mp4).
 - [❌ Видео целиком «Битое»: очень яркие крупные отражения на линзах, часто перекрывают глаза, подходящего участка нет](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7162ceab-d65a-4b05-b5fa-d218981cc76e/downloaded_raw/oNT_Ky5iMB4.mp4).
 
