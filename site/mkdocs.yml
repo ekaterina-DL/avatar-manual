@@ -116,3 +116,6 @@ hooks:
   # Последним: работает по уже финальному markdown (текст ссылок friendly_md_link_text.py
   # мог переписать). No-op везде, кроме публичной сборки site/mkdocs-public.yml.
   - hooks/public_drop_stage3.py
+  # Только on_post_build: rules.json/version.json для программы «Помощник асессора»
+  # (assessor-helper/rules-map.yml -> <site_dir>/assessor-helper/). Markdown страниц не меняет.
+  - hooks/build_helper_rules.py
