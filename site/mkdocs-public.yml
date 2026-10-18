@@ -19,6 +19,7 @@ site_dir: ../../avatar-manual-build/build-public
 exclude_docs: |
   _raw-sources/
   АНАЛИЗ Ошибок/
+  assessor-helper/
   README.md
   voprosy-zakazchiku.md
   manual-2-etap/_sources-log.md
