@@ -125,13 +125,42 @@ def test_duplicate_heading_slug_gets_suffix(tmp_path):
     assert r["url"].endswith("#рамка_1")
 
 
-def test_long_text_cut_on_paragraph_boundary(tmp_path):
+def test_long_text_is_not_truncated(tmp_path):
     para = "Слово " * 150
-    page = "### Длинно\n\n" + "\n\n".join(f"{i}. {para.strip()}." for i in range(5)) + "\n"
+    page = "### Длинно\n\n" + "\n\n".join(f"Абзац {i}. {para.strip()}." for i in range(5)) + "\n"
     m = {"x": {"page": "manual-2-etap/05b.md", "heading": "Длинно", "title": "X"}}
     r = build_rules(_docs(tmp_path, m, page), m)["x"]
-    assert len(r["text"]) <= 1200
-    assert r["text"].endswith(".")
+    assert len(r["text"]) > 3000
+    assert "Абзац 4." in r["text"]
+
+
+def test_heading_list_joins_sections(tmp_path):
+    m = {"face_lost": {"page": "manual-2-etap/05b.md", "heading": ["Рамка", "Другое"],
+                       "title": "Лицо", "contains": None}}
+    r = build_rules(_docs(tmp_path, m), m)["face_lost"]
+    assert "Видео с рамками." in r["text"] and "сгенерированными ИИ" in r["text"]
+    assert r["url"].endswith("#рамка")     # ссылка - на первый раздел
+    urls = [e["url"] for e in r["examples"]]
+    assert "https://x/a.mp4" in urls and BASE_URL + "manual-2-etap/assets/s.mp4" in urls
+
+
+def test_examples_from_other_section(tmp_path):
+    m = {"camera_jump": {"page": "manual-2-etap/05b.md", "heading": "Другое", "title": "Камера",
+                         "contains": "ускоренное",
+                         "examples_from": [{"heading": "Рамка", "contains": "справа"}]}}
+    r = build_rules(_docs(tmp_path, m), m)["camera_jump"]
+    assert r["examples"] == [
+        {"title": "ускорение", "url": BASE_URL + "manual-2-etap/assets/s.mp4"},
+        {"title": "Рамка справа", "url": "https://x/a.mp4"},
+    ]
+    assert "Рамка справа" not in r["text"]
+
+
+def test_missing_rules_map_raises(tmp_path):
+    docs = _docs(tmp_path)
+    (docs / "assessor-helper" / "rules-map.yml").unlink()
+    with pytest.raises(PluginError, match="rules-map.yml"):
+        on_post_build(FakeConfig(docs, tmp_path / "site" / "build"))
 
 
 def test_table_and_html_list_become_plain_lines():
@@ -190,31 +219,25 @@ def test_on_post_build_checks_anchor_in_built_html(tmp_path):
 
 # --- реальный map и реальный мануал ---
 
-# Синхронно с helper/analysis/findings.py, segment_check.py (check_id, которые выдаёт код).
-# MANUAL_CHECKS читается из findings.py регуляркой, остальные перечислены здесь.
-CODE_CHECK_IDS = [
-    "duration_limit", "quality", "grayscale", "frame_border", "watermark", "overlay_text",
-    "vignette", "overexposure",
-    "cuts", "silence", "camera_jump", "face_lost", "glasses", "eyes_closed", "face_flash",
-    "people_count", "head_angle",
-    "seg_length", "seg_cut_inside", "seg_cut_margin", "seg_edge_silence", "seg_pause",
-    "seg_face_lost", "seg_glasses", "seg_text", "seg_camera_jump", "seg_overlap",
-    "broken_and_segments", "broken_but_candidates",
-]
-
-
-def _manual_checks():
-    src = (REPO / "assessor-helper" / "helper" / "analysis" / "findings.py").read_text(
-        encoding="utf-8")
-    block = re.search(r"MANUAL_CHECKS[^=]*=\s*\[(.*?)\]", src, re.S).group(1)
-    ids = re.findall(r'"([a-z_]+)"', block)
-    assert len(ids) >= 20
-    return ids
+def _code_check_ids():
+    """Все check_id, которые выдаёт код: первый строковый аргумент Finding(...), _res(...),
+    _or_none(...), _none_found(...) в findings.py и segment_check.py + MANUAL_CHECKS."""
+    ids = set()
+    for name in ("findings.py", "segment_check.py"):
+        src = (REPO / "assessor-helper" / "helper" / "analysis" / name).read_text(encoding="utf-8")
+        ids.update(re.findall(r'\b(?:Finding|_res|_or_none|_none_found)\(\s*"([a-z_]+)"', src))
+        m = re.search(r"MANUAL_CHECKS[^=]*=\s*\[(.*?)\]", src, re.S)
+        if m:
+            ids.update(re.findall(r'"([a-z_]+)"', m.group(1)))
+    # проверка самой регулярки: эти точно есть в коде (в т.ч. многострочный вызов)
+    assert {"duration_limit", "head_angle", "seg_pause", "broken_but_candidates",
+            "seg_overlap", "field_singing"} <= ids, ids
+    return sorted(ids)
 
 
 def test_real_map_covers_every_check_id():
     rules_map = load_rules_map(REPO)
-    missing = [c for c in CODE_CHECK_IDS + _manual_checks() if c not in rules_map]
+    missing = [c for c in _code_check_ids() if c not in rules_map]
     assert not missing, missing
 
 
@@ -222,13 +245,26 @@ def test_real_map_builds_from_real_manual():
     rules = build_rules(REPO, load_rules_map(REPO))
     for cid, r in rules.items():
         assert r["title"] and len(r["text"]) > 20, cid
-        assert len(r["text"]) <= 1200, cid
         assert r["url"].startswith(BASE_URL + "manual-2-etap/"), cid
         assert "<" not in r["text"] and "{:" not in r["text"], (cid, r["text"][:200])
     assert any(e["url"].endswith("RHxn1GFTIeo.mp4") for e in rules["glasses"]["examples"])
     assert "естественно опущенные" in rules["eyes_closed"]["text"]
     assert rules["seg_cut_margin"]["url"].endswith("#отступ-от-склейки")
     assert rules["field_gender"]["url"].endswith("#1-пол")
+    # тексты не обрезаются
+    assert "Диалог (ответы на вопросы)" in rules["field_speech_type"]["text"]
+    assert "Монолог (спонтанный)" in rules["field_speech_type"]["text"]
+    assert "потеря лица — это когда человек повернул голову ещё дальше" in rules["head_angle"]["text"]
+    # eyes_closed: оба исключения, а не «Ещё одно исключение» без первого
+    assert "наклонился почитать книгу" in rules["eyes_closed"]["text"]
+    # face_lost: поворот головы и смена кадра без человека
+    for cid in ("face_lost", "seg_face_lost"):
+        assert "нос «уходит за угол»" in rules[cid]["text"]
+        assert "человек исчезает из кадра" in rules[cid]["text"]
+        assert rules[cid]["url"].endswith("#потеря-лица")
+    for cid in ("camera_jump", "seg_camera_jump"):
+        assert any("Скачок камеры на 1:19" in e["title"] for e in rules[cid]["examples"])
+    assert "Правильно | Неправильно" not in rules["seg_overlap"]["text"]
 
 
 def test_read_version_from_real_repo():

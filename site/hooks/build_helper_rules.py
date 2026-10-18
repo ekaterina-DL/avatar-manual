@@ -35,7 +35,6 @@ DOWNLOAD_URL = "https://github.com/ekaterina-DL/avatar-manual/releases/latest"
 MAP_PATH = "assessor-helper/rules-map.yml"
 VERSION_PATH = "assessor-helper/helper/version.py"
 OUT_DIR = "assessor-helper"
-MAX_TEXT = 1200
 
 _heading_slug = _slugify_factory(case="lower")
 
@@ -188,19 +187,6 @@ def _join(blocks):
     return "".join(parts)
 
 
-def _truncate(blocks):
-    kept = []
-    for b in blocks:
-        if len(_join(kept + [b])) > MAX_TEXT:
-            break
-        kept.append(b)
-    if kept:
-        return _join(kept)
-    text = blocks[0]["text"][:MAX_TEXT]
-    cut = text.rfind(". ")
-    return text[:cut + 1] if cut > 0 else text
-
-
 def section_to_text(md, page, contains=None):
     """Текст раздела (дословно, без разметки) и примеры-видео [{title, url}].
     contains (строка или список) - оставить только блоки с этой подстрокой (без учёта регистра)
@@ -229,7 +215,7 @@ def section_to_text(md, page, contains=None):
                 seen.add(e["url"])
                 examples.append(e)
     visible = _visible(blocks)
-    return (_truncate(visible) if visible else ""), examples
+    return _join(visible), examples
 
 
 # --- заголовки и якоря ---
@@ -268,37 +254,80 @@ def _page_url(page):
     return BASE_URL + path
 
 
+def _section(docs_dir, check_id, page, heading, occurrence=1):
+    """(тело раздела, якорь); нет страницы/заголовка -> PluginError с check_id."""
+    src = Path(docs_dir) / page
+    if not src.is_file():
+        raise PluginError(f"build_helper_rules: {check_id}: нет страницы {page}")
+    text = src.read_text(encoding="utf-8")
+    found = _find_heading(text, heading, occurrence)
+    if found is None:
+        raise PluginError(f"build_helper_rules: {check_id}: на странице {page} нет "
+                          f"заголовка «{heading}» - поправьте {MAP_PATH}")
+    idx, raw_heading, anchor = found
+    return extract_section("\n".join(text.split("\n")[idx:]), raw_heading), anchor
+
+
+def _as_list(value):
+    if value is None:
+        return []
+    return [value] if isinstance(value, (str, dict)) else list(value)
+
+
 def build_rules(docs_dir, rules_map):
+    """heading - строка или список (тексты разделов идут подряд, примеры объединяются, ссылка -
+    на первый раздел). examples_from - [{page?, heading, contains?}]: добавить примеры из другого
+    раздела (contains фильтрует подписи примеров), их текст в правило не идёт."""
     docs_dir = Path(docs_dir)
     rules = {}
     for check_id, entry in rules_map.items():
-        page, heading = entry["page"], entry["heading"]
-        src = docs_dir / page
-        if not src.is_file():
-            raise PluginError(f"build_helper_rules: {check_id}: нет страницы {page}")
-        text = src.read_text(encoding="utf-8")
-        found = _find_heading(text, heading, entry.get("occurrence", 1))
-        if found is None:
-            raise PluginError(f"build_helper_rules: {check_id}: на странице {page} нет "
-                              f"заголовка «{heading}» - поправьте {MAP_PATH}")
-        idx, raw_heading, anchor = found
-        body = extract_section("\n".join(text.split("\n")[idx:]), raw_heading)
-        rule_text, examples = section_to_text(body, page, entry.get("contains"))
-        if not rule_text:
-            raise PluginError(f"build_helper_rules: {check_id}: в разделе «{heading}» ({page}) "
-                              f"нет текста" + (f" с «{entry['contains']}»"
-                                               if entry.get("contains") else ""))
+        page = entry["page"]
+        texts, examples, url = [], [], None
+        for heading in _as_list(entry["heading"]):
+            body, anchor = _section(docs_dir, check_id, page, heading,
+                                    entry.get("occurrence", 1))
+            url = url or f"{_page_url(page)}#{anchor}"
+            part, ex = section_to_text(body, page, entry.get("contains"))
+            if part:
+                texts.append(part)
+            examples += ex
+        if not texts:
+            raise PluginError(f"build_helper_rules: {check_id}: в разделе «{entry['heading']}» "
+                              f"({page}) нет текста" + (f" с «{entry['contains']}»"
+                                                        if entry.get("contains") else ""))
+        for extra in _as_list(entry.get("examples_from")):
+            xpage = extra.get("page", page)
+            body, _ = _section(docs_dir, check_id, xpage, extra["heading"])
+            _, ex = section_to_text(body, xpage)
+            needle = (extra.get("contains") or "").lower()
+            picked = [e for e in ex if needle in e["title"].lower()]
+            if not picked:
+                raise PluginError(f"build_helper_rules: {check_id}: examples_from «{extra}» - "
+                                  f"нет подходящих примеров")
+            examples += picked
+        seen, uniq = set(), []
+        for e in examples:
+            if e["url"] not in seen:
+                seen.add(e["url"])
+                uniq.append(e)
         rules[check_id] = {
             "title": entry["title"],
-            "text": rule_text,
-            "url": f"{_page_url(page)}#{anchor}",
-            "examples": examples,
+            "text": "\n\n".join(texts),
+            "url": url,
+            "examples": uniq,
         }
     return rules
 
 
 def load_rules_map(root):
-    return yaml.safe_load((Path(root) / MAP_PATH).read_text(encoding="utf-8"))
+    path = Path(root) / MAP_PATH
+    if not path.is_file():
+        raise PluginError(f"build_helper_rules: нет файла {MAP_PATH} (соответствие проверок "
+                          f"программы разделам мануала) в {root}")
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict) or not data:
+        raise PluginError(f"build_helper_rules: {MAP_PATH} пустой или не словарь")
+    return data
 
 
 def read_version(root):
