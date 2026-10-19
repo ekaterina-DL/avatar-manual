@@ -23,3 +23,9 @@ __pycache__/
 # мокапы визуального помощника brainstorming) — не публикуются в репозитории
 /.superpowers/
 /site/*.log
+
+# Помощник асессора: окружение, модели, сборка
+/assessor-helper/.venv/
+/assessor-helper/models/
+/assessor-helper/build/
+/assessor-helper/dist/
