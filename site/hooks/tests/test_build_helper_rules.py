@@ -59,11 +59,10 @@ def _docs(tmp_path, rules_map=MAP, page=PAGE):
     docs = tmp_path / "docs"
     (docs / "manual-2-etap").mkdir(parents=True)
     (docs / "manual-2-etap" / "05b.md").write_text(page, encoding="utf-8")
-    (docs / "assessor-helper" / "helper").mkdir(parents=True)
-    (docs / "assessor-helper" / "helper" / "version.py").write_text(
-        '__version__ = "0.3.1"\n', encoding="utf-8")
+    (docs / "site" / "hooks" / "helper").mkdir(parents=True)
+    (docs / "site" / "hooks" / "helper" / "version.txt").write_text("0.3.1\n", encoding="utf-8")
     import yaml
-    (docs / "assessor-helper" / "rules-map.yml").write_text(
+    (docs / "site" / "hooks" / "helper" / "rules-map.yml").write_text(
         yaml.safe_dump(rules_map, allow_unicode=True), encoding="utf-8")
     return docs
 
@@ -158,7 +157,7 @@ def test_examples_from_other_section(tmp_path):
 
 def test_missing_rules_map_raises(tmp_path):
     docs = _docs(tmp_path)
-    (docs / "assessor-helper" / "rules-map.yml").unlink()
+    (docs / "site" / "hooks" / "helper" / "rules-map.yml").unlink()
     with pytest.raises(PluginError, match="rules-map.yml"):
         on_post_build(FakeConfig(docs, tmp_path / "site" / "build"))
 
@@ -196,8 +195,7 @@ def test_on_post_build_writes_rules_and_version(tmp_path):
     assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", data["generated"])
     assert set(data["rules"]) == set(MAP)
     ver = json.loads((site / "assessor-helper" / "version.json").read_text(encoding="utf-8"))
-    assert ver == {"version": "0.3.1",
-                   "download": "https://github.com/ekaterina-DL/avatar-manual/releases/latest"}
+    assert ver == {"version": "0.3.1"}
 
 
 def test_on_post_build_noop_on_pdf(tmp_path):
@@ -222,9 +220,12 @@ def test_on_post_build_checks_anchor_in_built_html(tmp_path):
 def _code_check_ids():
     """Все check_id, которые выдаёт код: первый строковый аргумент Finding(...), _res(...),
     _or_none(...), _none_found(...) в findings.py и segment_check.py + MANUAL_CHECKS."""
+    code = REPO / "assessor-helper" / "helper" / "analysis"
+    if not code.is_dir():
+        pytest.skip("кода программы нет (он только на компьютере разработки, не в репозитории)")
     ids = set()
     for name in ("findings.py", "segment_check.py"):
-        src = (REPO / "assessor-helper" / "helper" / "analysis" / name).read_text(encoding="utf-8")
+        src = (code / name).read_text(encoding="utf-8")
         ids.update(re.findall(r'\b(?:Finding|_res|_or_none|_none_found)\(\s*"([a-z_]+)"', src))
         m = re.search(r"MANUAL_CHECKS[^=]*=\s*\[(.*?)\]", src, re.S)
         if m:

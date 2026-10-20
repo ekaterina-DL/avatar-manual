@@ -1,6 +1,6 @@
 """Хук: собирает rules.json для программы «Помощник асессора» (assessor-helper/).
 
-Для каждой проверки программы (check_id) файл assessor-helper/rules-map.yml говорит, какой
+Для каждой проверки программы (check_id) файл site/hooks/helper/rules-map.yml говорит, какой
 раздел мануала к ней относится: страница + заголовок (+ необязательно `contains` - взять из
 раздела только абзацы/пункты списка с этой подстрокой, и `occurrence` - какой по счёту
 одноимённый заголовок на странице). Хук берёт текст раздела ДОСЛОВНО (только убирает разметку:
@@ -31,9 +31,11 @@ from _build_profile import is_pdf_build
 from _section_utils import extract_section
 
 BASE_URL = "https://ekaterina-dl.github.io/avatar-manual/"
-DOWNLOAD_URL = "https://github.com/ekaterina-DL/avatar-manual/releases/latest"
-MAP_PATH = "assessor-helper/rules-map.yml"
-VERSION_PATH = "assessor-helper/helper/version.py"
+# Код программы в репозиторий не входит (хранится только локально). Здесь - только то, что
+# нужно сайту: соответствие проверок разделам мануала и номер последней версии программы
+# (держать равным helper/version.py программы). Ссылку на архив координатор рассылает сам.
+MAP_PATH = "site/hooks/helper/rules-map.yml"
+VERSION_PATH = "site/hooks/helper/version.txt"
 OUT_DIR = "assessor-helper"
 
 _heading_slug = _slugify_factory(case="lower")
@@ -332,7 +334,7 @@ def load_rules_map(root):
 
 def read_version(root):
     src = (Path(root) / VERSION_PATH).read_text(encoding="utf-8")
-    m = re.search(r"""^(?:__version__|VERSION)\s*=\s*["']([^"']+)["']""", src, re.M)
+    m = re.fullmatch(r"\s*(\d+\.\d+\.\d+)\s*", src)
     if not m:
         raise PluginError(f"build_helper_rules: в {VERSION_PATH} нет номера версии")
     return m.group(1)
@@ -364,5 +366,5 @@ def on_post_build(config):
         {"generated": datetime.date.today().isoformat(), "rules": rules},
         ensure_ascii=False, indent=1), encoding="utf-8")
     (out / "version.json").write_text(json.dumps(
-        {"version": read_version(docs_dir), "download": DOWNLOAD_URL},
+        {"version": read_version(docs_dir)},
         ensure_ascii=False, indent=1), encoding="utf-8")

@@ -1,0 +1,86 @@
+# Соответствие «проверка программы (check_id) -> раздел мануала».
+# Читает хук site/hooks/build_helper_rules.py при сборке сайта и кладёт тексты разделов
+# (дословно) в <сайт>/assessor-helper/rules.json.
+#
+# Поля:
+#   page      - страница мануала (путь от корня репозитория)
+#   heading   - текст заголовка раздела без "#" и без "{: …}" (как видно на сайте)
+#   title     - короткое название для окна программы
+#   contains  - (необязательно) взять из раздела только абзацы/пункты с этой подстрокой
+#               (строка или список; без учёта регистра) - для разделов, где про проверку
+#               только часть текста (например, пункты «Другое»)
+#   occurrence - (необязательно) какой по счёту одноимённый заголовок на странице, по умолчанию 1
+#   heading может быть списком: тексты разделов идут подряд, примеры объединяются,
+#               ссылка ведёт на первый раздел
+#   examples_from - (необязательно) [{page?, heading, contains?}]: добавить примеры-видео из
+#               другого раздела (contains - подстрока в подписи примера); текст оттуда не берётся
+#
+# Текст правила не обрезается: в окне программы правило свёрнуто, видно начало.
+#
+# Раздел переименован в мануале -> сборка сайта падает с именем check_id: поправьте здесь.
+# Каждый check_id, который выдаёт программа, должен быть здесь (проверяет тест программы
+# assessor-helper/tests/test_rules_map.py: запускает проверки на синтетических данных и ищет
+# check_id в коде helper/analysis).
+
+# --- Общая оценка видео (helper/analysis/findings.py: build_general_findings) ---
+duration_limit: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Что не размечаем / Битое", title: "Длина исходного видео", contains: "длина исходного видео"}
+quality: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Пиксельность", title: "Разрешение и пиксельность"}
+grayscale: {page: manual-2-etap/01-general-requirements.md, heading: "Качество и формат видео", title: "Чёрно-белое видео", contains: "Чёрно-белые видео"}
+frame_border: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Рамка", title: "Рамка"}
+watermark: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Монтажное наложение", title: "Водяной знак"}
+overlay_text: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Монтажное наложение", title: "Текст поверх видео"}
+intro_outro: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Монтажное наложение", title: "Монтажное наложение"}
+vignette: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Виньетка", title: "Виньетка"}
+overexposure: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Другое", title: "Пересвет на лице", contains: "сильный пересвет"}
+
+# --- По критериям (build_criteria_findings) ---
+cuts: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Склейки", title: "Склейки"}
+silence: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Молчание", title: "Молчание"}
+camera_jump: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Зум", title: "Скачок камеры и резкий зум", examples_from: [{heading: "Склейки", contains: "Скачок камеры"}]}
+face_lost: {page: manual-2-etap/05b-what-not-to-label.md, heading: ["Потеря лица", "Смена кадра/сцены"], title: "Потеря лица"}
+eyes_closed: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Перекрытие глаз", title: "Глаза закрыты или не видны", contains: ["Это общее правило", "наклонился почитать книгу", "естественно опущенные"]}
+face_flash: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Блики/вспышки/солнечные лучи", title: "Блики и вспышки на лице"}
+people_count: {page: manual-2-etap/04-classifier.md, heading: "12. Количество людей, одновременно находящихся в кадре", title: "Количество людей в кадре"}
+head_angle: {page: manual-2-etap/04-classifier.md, heading: "4. Преобладающий ракурс", title: "Ракурс"}
+offscreen_voice: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Закадровый голос", title: "Закадровый голос"}
+
+# --- Проверка сегментов (helper/analysis/segment_check.py) ---
+seg_length: {page: manual-2-etap/02-segments.md, heading: "Длительность и границы сегмента", title: "Длина сегмента"}
+seg_cut_inside: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Склейки", title: "Склейка внутри сегмента"}
+seg_cut_margin: {page: manual-2-etap/02-segments.md, heading: "Отступ от склейки", title: "Отступ от склейки"}
+seg_edge_silence: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Молчание", title: "Тишина на краю сегмента", contains: "На границах"}
+seg_pause: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Молчание", title: "Пауза внутри сегмента", contains: "Молчание внутри сегмента"}
+seg_face_lost: {page: manual-2-etap/05b-what-not-to-label.md, heading: ["Потеря лица", "Смена кадра/сцены"], title: "Потеря лица"}
+seg_offscreen_voice: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Закадровый голос", title: "Закадровый голос"}
+seg_text: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Монтажное наложение", title: "Текст поверх видео"}
+seg_camera_jump: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Зум", title: "Скачок камеры и резкий зум", examples_from: [{heading: "Склейки", contains: "Скачок камеры"}]}
+seg_overlap: {page: manual-2-etap/02-segments.md, heading: "Зазор между сегментами", title: "Зазор между сегментами", contains: "Между сегментами должен быть зазор"}
+broken_and_segments: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Когда видео помечается «Битое»", title: "Битое и сегменты одновременно", contains: "взаимоисключающих"}
+broken_but_candidates: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Когда видео помечается «Битое»", title: "Битое при подходящих отрезках", contains: ["нет ни одного сегмента", "Перед отправкой в «Битое»"]}
+
+# --- Проверьте сами (MANUAL_CHECKS в helper/analysis/findings.py) ---
+ai_generated: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Другое", title: "ИИ-генерация, нейро-аватар", contains: "сгенерированными ИИ"}
+cartoon: {page: manual-2-etap/01-general-requirements.md, heading: "Мультики и антропоморфы", title: "Мультфильм, антропоморф"}
+chromakey: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Другое", title: "Хромакей с артефактами", contains: "хромакей"}
+dubbing: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Дубляж", title: "Дубляж"}
+desync: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Синхронизация", title: "Рассинхрон звука и видео"}
+speed_change: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Другое", title: "Ускорение или замедление", contains: "Замедленное или ускоренное"}
+compression: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Пережатие", title: "Пережатие"}
+color_breakdown: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Другое", title: "Распад цветов", contains: "Распад цветов"}
+mouth_cover: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Перекрытие рта", title: "Перекрытие рта"}
+microphone: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Перекрытие лица", title: "Микрофон у лица", contains: ["микрофон", "подбородок"]}
+glasses: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Перекрытие глаз", title: "Очки и глаза"}
+laughter: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Смех в кадре", title: "Смех в кадре"}
+music: {page: manual-2-etap/01-general-requirements.md, heading: "Требования к аудио", title: "Музыка"}
+background_noise: {page: manual-2-etap/05b-what-not-to-label.md, heading: "Фоновый шум и ветер", title: "Фоновый шум и ветер"}
+field_gender: {page: manual-2-etap/04-classifier.md, heading: "1. Пол", title: "Поле \"Пол\""}
+field_age: {page: manual-2-etap/04-classifier.md, heading: "2. Возраст", title: "Поле \"Возраст\""}
+field_pose: {page: manual-2-etap/04-classifier.md, heading: "3. Объём и поза тела человека в кадре", title: "Поле \"Объём и поза\""}
+field_lighting: {page: manual-2-etap/04-classifier.md, heading: "5. Освещение", title: "Поле \"Освещение\""}
+field_background: {page: manual-2-etap/04-classifier.md, heading: "6. Фон", title: "Поле \"Фон\""}
+field_emotion: {page: manual-2-etap/04-classifier.md, heading: "7. Эмоции и выражение лица", title: "Поле \"Эмоции\""}
+field_speech_type: {page: manual-2-etap/04-classifier.md, heading: "8. Тип речи", title: "Поле \"Тип речи\""}
+field_tempo: {page: manual-2-etap/04-classifier.md, heading: "9. Темп речи", title: "Поле \"Темп речи\""}
+field_language: {page: manual-2-etap/04-classifier.md, heading: "10. Язык и акценты", title: "Поле \"Язык и акценты\""}
+field_group: {page: manual-2-etap/04-classifier.md, heading: "11. Группа данных", title: "Поле \"Группа данных\""}
+field_singing: {page: manual-2-etap/04-classifier.md, heading: "13. Баланс по пению/говорению", title: "Поле \"Пение/говорение\""}
