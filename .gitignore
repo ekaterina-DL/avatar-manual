@@ -33,3 +33,4 @@ __pycache__/
 # Обратная связь асессоров по программе - содержит имена, не публиковать
 /assessor-helper/ОС*
 /assessor-helper/log*.txt
+/assessor-helper/vendor/
