@@ -29,3 +29,6 @@ __pycache__/
 /assessor-helper/models/
 /assessor-helper/build/
 /assessor-helper/dist/
+
+# Обратная связь асессоров по программе - содержит имена, не публиковать
+/assessor-helper/ОС*
