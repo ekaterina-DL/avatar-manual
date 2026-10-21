@@ -298,6 +298,28 @@ body, .md-typeset {
   box-shadow: var(--card-shadow-hover);
 }
 
+/* Пример «размытый фон» (04-classifier.md) — тот же приём, что у пережатия выше: смысл
+   примера в том, чтобы разглядеть именно размытые силуэты холмов/построек на фоне, миниатюра
+   220px их не показывает. В покое — во всю ширину текста, по наведению — сильный zoom через
+   position: fixed. */
+.md-typeset img[src$="fon-razmytyj-primer.jpeg"] {
+  max-width: 100%;
+  max-height: none;
+  border-radius: 8px;
+}
+.md-typeset img[src$="fon-razmytyj-primer.jpeg"]:hover {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: min(94vw, 2400px);
+  height: auto;
+  max-height: 92vh;
+  transform: translate(-50%, -50%);
+  transition: none;
+  z-index: 1000;
+  box-shadow: var(--card-shadow-hover);
+}
+
 /* Списки значений полей классификатора — квадратик перед каждым вариантом, как чекбоксы
    в интерфейсе разметки (декоративные, не интерактивные). */
 .value-checklist {
