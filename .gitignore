@@ -30,3 +30,6 @@ __pycache__/
 # "Помощник асессора": код и документы о нём только на компьютере, не на GitHub
 /assessor-helper/
 /docs/superpowers/**/*assessor-helper*
+
+# Планы и описания доработок сайта — только на компьютере, не на GitHub
+/docs/

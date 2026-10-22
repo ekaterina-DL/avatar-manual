@@ -25,6 +25,8 @@ exclude_docs: |
   manual-2-etap/_sources-log.md
   manual-2-etap/_quiz-manual.yml
   manual-3-etap/
+  manual-2-etap/assets/tagme.png
+  manual-2-etap/assets/Mattermost.png
   site/PLAN.md
   site/requirements.txt
   site/mkdocs.yml
@@ -41,7 +43,7 @@ exclude_docs: |
 # nav при INHERIT заменяется целиком — повторяем блок 2 этапа без раздела «3 этап».
 nav:
   - Главная: index.md
-  - 2 этап (заявки 26-28):
+  - 2 этап:
       - Обзор проекта: manual-2-etap/00-overview.md
       - Общие требования к видео и аудио: manual-2-etap/01-general-requirements.md
       - Сегменты: manual-2-etap/02-segments.md

@@ -36,9 +36,9 @@
 
 ## Структура проекта
 
-<div class="tagme-intro" markdown="1">
-<div class="tagme-intro-media"><img src="../assets/tagme.png" alt="Логотип платформы Tagme"></div>
-<div class="tagme-intro-text" markdown="1">
+<div class="platform-intro" markdown="1">
+<div class="platform-intro-media"><img src="../assets/tagme.png" alt="Логотип платформы Tagme"></div>
+<div class="platform-intro-text" markdown="1">
 Работа (включая экзамен) выполняется на платформе **Tagme**, в личном кабинете каждого асессора;
 доступ к ней выдаёт **руководитель группы Data Light**.
 </div>
@@ -66,9 +66,9 @@ Tagme она выглядит так:
 > Снятие асессора с одного из этапов **не затрагивает автоматически** его доступ ко второму.
 > `[Переписка в Telegram с заказчиком, 30.03–02.07.2026]`
 
-<div class="tagme-intro" markdown="1">
-<div class="tagme-intro-media"><img src="../assets/Mattermost.png" alt="Логотип платформы Mattermost"></div>
-<div class="tagme-intro-text" markdown="1">
+<div class="platform-intro" markdown="1">
+<div class="platform-intro-media"><img src="../assets/Mattermost.png" alt="Логотип платформы Mattermost"></div>
+<div class="platform-intro-text" markdown="1">
 Рабочее общение с руководителем группы и остальными асессорами, обратная связь и треды по
 оспариванию ошибок ведутся на платформе **Mattermost** (см.
 [«Обратная связь по выполненным заданиям»](#обратная-связь-по-выполненным-заданиям)).
@@ -133,8 +133,7 @@ Tagme она выглядит так:
   будем возвращаться к 3 этапу».
 - **18.05.2026, «Итоги встречи»** — требования по качеству с 3 этапа официально **объединены**
   с требованиями к сегментам на 2 этапе (поэтому в переписке по 2 этапу после этой даты
-  иногда встречаются более строгие/детальные формулировки — см.
-  [00-overview.md](../manual-2-etap/00-overview.md#история-проекта-этапы-во-времени) 2 этапа).
+  иногда встречаются более строгие/детальные формулировки).
 - **25.05 – июль 2026** — 3 этап периодически возобновляется небольшими партиями пулов,
   наравне со 2 этапом; к 05.08.2026 оба этапа шли параллельно.
 

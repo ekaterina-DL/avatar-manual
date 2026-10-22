@@ -27,7 +27,8 @@ from markdown.extensions.toc import unique
 from mkdocs.exceptions import PluginError
 from pymdownx.slugs import slugify as _slugify_factory
 
-from _build_profile import is_pdf_build
+from _build_profile import is_pdf_build, is_public_build
+from wrap_source_tags import SOURCE_TAG_RE
 from _section_utils import extract_section
 
 BASE_URL = "https://ekaterina-dl.github.io/avatar-manual/"
@@ -276,8 +277,9 @@ def _as_list(value):
     return [value] if isinstance(value, (str, dict)) else list(value)
 
 
-def build_rules(docs_dir, rules_map):
-    """heading - строка или список (тексты разделов идут подряд, примеры объединяются, ссылка -
+def build_rules(docs_dir, rules_map, strip_sources=False):
+    """strip_sources=True (публичная сборка) - метки-источники `[...]` в текст правил не идут.
+    heading - строка или список (тексты разделов идут подряд, примеры объединяются, ссылка -
     на первый раздел). examples_from - [{page?, heading, contains?}]: добавить примеры из другого
     раздела (contains фильтрует подписи примеров), их текст в правило не идёт."""
     docs_dir = Path(docs_dir)
@@ -288,6 +290,8 @@ def build_rules(docs_dir, rules_map):
         for heading in _as_list(entry["heading"]):
             body, anchor = _section(docs_dir, check_id, page, heading,
                                     entry.get("occurrence", 1))
+            if strip_sources:
+                body = SOURCE_TAG_RE.sub("", body)
             url = url or f"{_page_url(page)}#{anchor}"
             part, ex = section_to_text(body, page, entry.get("contains"))
             if part:
@@ -358,7 +362,8 @@ def on_post_build(config):
         return
     docs_dir = Path(config["docs_dir"])
     site_dir = Path(str(config["site_dir"]))
-    rules = build_rules(docs_dir, load_rules_map(docs_dir))
+    rules = build_rules(docs_dir, load_rules_map(docs_dir),
+                        strip_sources=is_public_build(config))
     _check_anchors(site_dir, rules)
     out = site_dir / OUT_DIR
     out.mkdir(parents=True, exist_ok=True)

@@ -93,6 +93,14 @@ def test_contains_selects_only_matching_blocks(tmp_path):
     assert r["examples"] == [{"title": "ускорение", "url": BASE_URL + "manual-2-etap/assets/s.mp4"}]
 
 
+def test_strip_sources_removes_source_tags(tmp_path):
+    rules = build_rules(_docs(tmp_path), MAP, strip_sources=True)
+    assert "Инструкция заказчика" not in rules["speed_change"]["text"]
+    assert "Замедленное или ускоренное видео — недопустимо." in rules["speed_change"]["text"]
+    assert "Инструкция заказчика" not in rules["duration_limit"]["text"]
+    assert "Максимальная длина исходного видео — 20 минут." in rules["duration_limit"]["text"]
+
+
 def test_contains_on_top_heading_takes_following_source_tag(tmp_path):
     r = build_rules(_docs(tmp_path), MAP)["duration_limit"]
     assert r["text"].startswith("- Максимальная длина исходного видео — 20 минут.")

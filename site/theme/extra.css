@@ -1020,12 +1020,12 @@ body, .md-typeset {
   grid-column: 1 / -1;
 }
 
-/* Логотип слева — текст справа (00b-exam.md, абзац про Tagme). Картинка и текст — в именованных
-   div (.tagme-intro-media/.tagme-intro-text), а не сырым <img> прямо во флекс-контейнере: у
+/* Логотип слева — текст справа (00b-exam.md, абзац про платформу разметки). Картинка и текст — в именованных
+   div (.platform-intro-media/.platform-intro-text), а не сырым <img> прямо во флекс-контейнере: у
    python-markdown поведение вокруг такого <img> непредсказуемо зависит от пустых строк рядом
    (то оборачивает его в <p>, то добавляет ещё и пустой <p> — оба варианта на практике проверены
    вживую) — именованные div снимают эту случайность раз и навсегда.
-   .tagme-intro-media — ФИКСИРОВАННОЙ ширины (не auto): если оставить ширину картинки в auto и
+   .platform-intro-media — ФИКСИРОВАННОЙ ширины (не auto): если оставить ширину картинки в auto и
    тянуть только высоту под текст (align-items:stretch), браузер считает ширину РАНЬШЕ, чем
    высоту (по auto flex-basis, т.е. по исходным 162px), и потом пересчитывает img по пропорциям
    уже под растянутую высоту — картинка выходит шире контейнера и наезжает на текст (проверено
@@ -1034,18 +1034,18 @@ body, .md-typeset {
    остаться небольшой отступ, если строка текста выше, чем нужно логотипу при такой ширине).
    Логотип плоский, поэтому карточное оформление общего .md-typeset img (рамка/тень/зум по
    наведению) здесь не нужно — снимаем его отдельно. */
-.tagme-intro {
+.platform-intro {
   display: flex;
   align-items: stretch;
   gap: 12px;
   margin: 1.2em 0;
 }
-.tagme-intro-media {
+.platform-intro-media {
   flex: 0 0 auto;
   width: 150px;
   overflow: hidden;
 }
-.tagme-intro-media img {
+.platform-intro-media img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -1057,19 +1057,19 @@ body, .md-typeset {
   cursor: default;
   transition: none;
 }
-.tagme-intro-media img:hover {
+.platform-intro-media img:hover {
   transform: none;
   box-shadow: none;
 }
-.tagme-intro-text {
+.platform-intro-text {
   flex: 1;
 }
-.tagme-intro-text p {
+.platform-intro-text p {
   margin: 0;
 }
 @media (max-width: 560px) {
-  .tagme-intro { flex-direction: column; align-items: flex-start; }
-  .tagme-intro-media { width: 130px; height: 50px; }
+  .platform-intro { flex-direction: column; align-items: flex-start; }
+  .platform-intro-media { width: 130px; height: 50px; }
 }
 
 /* Заметное предупреждение "прочитайте инструкцию перед экзаменом" (00b-exam.md) — заметнее
@@ -1157,7 +1157,7 @@ body, .md-typeset {
    серая вместо персиковой — --gray-100 вместо --accent-bg, тёмный текст вместо --accent-ink. */
 .md-typeset h2[id="базовые-термины-и-роли"] + .md-typeset__scrollwrap table thead th,
 .md-typeset h2[id="базовые-термины-и-роли"] + .md-typeset__scrollwrap + .md-typeset__scrollwrap table thead th,
-.md-typeset h2[id="структура-проекта"] + .tagme-intro + p + .md-typeset__scrollwrap table thead th {
+.md-typeset h2[id="структура-проекта"] + p + .notice-danger + p + .md-typeset__scrollwrap table thead th {
   background: var(--gray-100);
   color: var(--gray-900);
 }

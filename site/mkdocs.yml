@@ -54,7 +54,7 @@ extra_javascript:
 # Новая страница мануала должна быть добавлена сюда вручную — иначе будет собрана, но останется недоступной через меню/поиск
 nav:
   - Главная: index.md
-  - 2 этап (заявки 26-28):
+  - 2 этап:
       - Обзор проекта: manual-2-etap/00-overview.md
       - Общие требования к видео и аудио: manual-2-etap/01-general-requirements.md
       - Сегменты: manual-2-etap/02-segments.md
@@ -64,7 +64,7 @@ nav:
       - Частые ошибки: manual-2-etap/06-common-mistakes.md
       - Банк примеров: manual-2-etap/11-example-library.md
       - Тестирование: manual-2-etap/07-testirovanie.md
-  - 3 этап (заявка 46):
+  - 3 этап:
       - Обзор проекта: manual-3-etap/00-overview.md
       - Общие правила: manual-3-etap/06-general-requirements.md
       - Классификатор: manual-3-etap/01-classifier.md
@@ -116,6 +116,8 @@ hooks:
   # Последним: работает по уже финальному markdown (текст ссылок friendly_md_link_text.py
   # мог переписать). No-op везде, кроме публичной сборки site/mkdocs-public.yml.
   - hooks/public_drop_stage3.py
+  # Только в публичной сборке: вырезает метки-источники из готового HTML страниц.
+  - hooks/public_strip_source_tags.py
   # Только on_post_build: rules.json/version.json для программы «Помощник асессора»
   # (assessor-helper/rules-map.yml -> <site_dir>/assessor-helper/). Markdown страниц не меняет.
   - hooks/build_helper_rules.py
