@@ -1,0 +1,201 @@
+// Проверки входа: node --test site/cloudflare/tests
+// База — настоящий SQLite в памяти (node:sqlite) с той же схемой, что в D1.
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { DatabaseSync } from "node:sqlite";
+import {
+  handle, hashPassword, verifyPassword, signSession, readSession, canAccess, safeNext,
+  COOKIE, MAX_FAILS, LOCK_MINUTES, SESSION_DAYS,
+} from "../lib/auth.js";
+
+const SCHEMA = readFileSync(new URL("../schema.sql", import.meta.url), "utf8");
+const SECRET = "x".repeat(48);
+const T0 = 1_800_000_000_000;
+
+function d1(db) {
+  return {
+    prepare(sql) {
+      let args = [];
+      const stmt = {
+        bind(...a) { args = a; return stmt; },
+        async first() { return db.prepare(sql).get(...args) ?? null; },
+        async run() { db.prepare(sql).run(...args); return { success: true }; },
+        async all() { return { results: db.prepare(sql).all(...args) }; },
+      };
+      return stmt;
+    },
+  };
+}
+
+async function setup(users = [["Assessor1", "Pass-word-1", "stage2"]]) {
+  const db = new DatabaseSync(":memory:");
+  db.exec(SCHEMA);
+  for (const [login, pw, groups, active = 1] of users) {
+    db.prepare("INSERT INTO users (login, pw, groups, active, created) VALUES (?, ?, ?, ?, ?)")
+      .run(login, await hashPassword(pw), groups, active, T0);
+  }
+  return { db, env: { DB: d1(db), SESSION_SECRET: SECRET } };
+}
+
+const passthrough = async () => new Response("SECRET CONTENT", { headers: { "Cache-Control": "public, max-age=0" } });
+const noWait = () => {};
+
+function req(path, { method = "GET", cookie, form } = {}) {
+  const init = { method, headers: {} };
+  if (cookie) init.headers.Cookie = `${COOKIE}=${cookie}`;
+  if (form) init.body = new URLSearchParams(form);
+  return new Request(`https://site.test${path}`, init);
+}
+
+async function login(env, loginName, password, now = T0, next = "/") {
+  return handle(req("/__login", { method: "POST", form: { login: loginName, password, next } }), env, passthrough, noWait, now);
+}
+
+function cookieFrom(res) {
+  const m = /__Host-s=([^;]*)/.exec(res.headers.get("Set-Cookie") || "");
+  return m ? m[1] : null;
+}
+
+test("пароль: хэш проверяется, чужой пароль нет", async () => {
+  const h = await hashPassword("abc-DEF-123");
+  assert.ok(h.startsWith("pbkdf2$"));
+  assert.equal(await verifyPassword("abc-DEF-123", h), true);
+  assert.equal(await verifyPassword("abc-DEF-124", h), false);
+  assert.equal(await verifyPassword("x", "мусор"), false);
+});
+
+test("без входа: любая страница и файл уводят на вход, содержимое не отдаётся", async () => {
+  const { env } = await setup();
+  for (const p of ["/", "/manual-2-etap/00-overview/", "/manual-2-etap/assets/a.mp4", "/search/search_index.json", "/assessor-helper/rules.json"]) {
+    const res = await handle(req(p), env, passthrough, noWait, T0);
+    assert.equal(res.status, 303, p);
+    assert.match(res.headers.get("Location"), /^\/__login\?next=/);
+    assert.doesNotMatch(await res.text(), /SECRET CONTENT/);
+  }
+});
+
+test("POST без входа получает 401", async () => {
+  const { env } = await setup();
+  const res = await handle(req("/x", { method: "POST" }), env, passthrough, noWait, T0);
+  assert.equal(res.status, 401);
+});
+
+test("верный логин и пароль: сеанс на 14 дней, доступ к сайту", async () => {
+  const { env, db } = await setup();
+  const res = await login(env, "Assessor1", "Pass-word-1", T0, "/manual-2-etap/");
+  assert.equal(res.status, 303);
+  assert.equal(res.headers.get("Location"), "/manual-2-etap/");
+  const sc = res.headers.get("Set-Cookie");
+  assert.match(sc, /HttpOnly/); assert.match(sc, /Secure/); assert.match(sc, new RegExp(`Max-Age=${SESSION_DAYS * 86400}`));
+  const page = await handle(req("/manual-2-etap/", { cookie: cookieFrom(res) }), env, passthrough, noWait, T0 + 1000);
+  assert.equal(page.status, 200);
+  assert.equal(await page.text(), "SECRET CONTENT");
+  assert.match(page.headers.get("Cache-Control"), /private/);
+  assert.equal(db.prepare("SELECT kind FROM events WHERE kind='login_ok'").all().length, 1);
+});
+
+test("логин без учёта регистра букв", async () => {
+  const { env } = await setup();
+  assert.equal((await login(env, "assessor1", "Pass-word-1")).status, 303);
+});
+
+test("сеанс истекает через 14 дней", async () => {
+  const { env } = await setup();
+  const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
+  const late = await handle(req("/", { cookie: c }), env, passthrough, noWait, T0 + SESSION_DAYS * 86400000 + 1);
+  assert.equal(late.status, 303);
+});
+
+test("неверный пароль и несуществующий логин дают одинаковый ответ", async () => {
+  const { env } = await setup();
+  const a = await login(env, "Assessor1", "wrong");
+  const b = await login(env, "Nobody", "wrong");
+  assert.equal(a.status, 401); assert.equal(b.status, 401);
+  assert.match(await a.text(), /Неверный логин или пароль/);
+  assert.match(await b.text(), /Неверный логин или пароль/);
+  assert.equal(a.headers.get("Set-Cookie"), null);
+});
+
+test(`после ${MAX_FAILS} неверных паролей логин блокируется на ${LOCK_MINUTES} мин, даже верный пароль не пускает`, async () => {
+  const { env } = await setup();
+  for (let i = 0; i < MAX_FAILS; i++) assert.equal((await login(env, "Assessor1", "bad", T0 + i)).status, 401);
+  const locked = await login(env, "Assessor1", "Pass-word-1", T0 + 10);
+  assert.equal(locked.status, 429);
+  assert.equal(locked.headers.get("Set-Cookie"), null);
+  const after = await login(env, "Assessor1", "Pass-word-1", T0 + LOCK_MINUTES * 60000 + 100);
+  assert.equal(after.status, 303);
+});
+
+test("заблокированный пользователь не входит даже с верным паролем", async () => {
+  const { env } = await setup([["Assessor2", "Pass-word-2", "stage2", 0]]);
+  assert.equal((await login(env, "Assessor2", "Pass-word-2")).status, 401);
+});
+
+test("блокировка и сброс сеанса выкидывают уже вошедшего сразу", async () => {
+  const { env, db } = await setup();
+  const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
+  db.prepare("UPDATE users SET active = 0, sv = sv + 1 WHERE login = 'Assessor1'").run();
+  assert.equal((await handle(req("/", { cookie: c }), env, passthrough, noWait, T0 + 1)).status, 303);
+  db.prepare("UPDATE users SET active = 1 WHERE login = 'Assessor1'").run();
+  // старый сеанс остаётся недействительным, нужен новый вход
+  assert.equal((await handle(req("/", { cookie: c }), env, passthrough, noWait, T0 + 2)).status, 303);
+});
+
+test("подделанный или чужой подписью сеанс не пускает", async () => {
+  const { env } = await setup();
+  const forged = await signSession({ l: "Assessor1", v: 1, e: T0 + 1e9 }, "y".repeat(48));
+  assert.equal((await handle(req("/", { cookie: forged }), env, passthrough, noWait, T0)).status, 303);
+  const good = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
+  const [body, sig] = good.split(".");
+  const tampered = Buffer.from(body, "base64url").toString().replace("Assessor1", "Admin");
+  const bad = `${Buffer.from(tampered).toString("base64url")}.${sig}`;
+  assert.equal((await handle(req("/", { cookie: bad }), env, passthrough, noWait, T0)).status, 303);
+  assert.equal(await readSession("мусор", SECRET, T0), null);
+});
+
+test("роли: 3 этап только для stage3 и admin", async () => {
+  assert.equal(canAccess("stage2", "/manual-3-etap/00-overview/"), false);
+  assert.equal(canAccess("stage2,stage3", "/manual-3-etap/00-overview/"), true);
+  assert.equal(canAccess("admin", "/manual-3-etap/"), true);
+  assert.equal(canAccess("stage2", "/manual-2-etap/"), true);
+  const { env } = await setup();
+  const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
+  assert.equal((await handle(req("/manual-3-etap/x/", { cookie: c }), env, passthrough, noWait, T0)).status, 403);
+});
+
+test("выход гасит сеанс в браузере", async () => {
+  const { env } = await setup();
+  const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
+  const out = await handle(req("/__logout", { cookie: c }), env, passthrough, noWait, T0);
+  assert.equal(out.status, 303);
+  assert.match(out.headers.get("Set-Cookie"), /Max-Age=0/);
+});
+
+test("после входа возвращаем только на страницы этого сайта", () => {
+  assert.equal(safeNext("/manual-2-etap/"), "/manual-2-etap/");
+  assert.equal(safeNext("https://evil.example/"), "/");
+  assert.equal(safeNext("//evil.example/"), "/");
+  assert.equal(safeNext("/\\evil.example"), "/");
+  assert.equal(safeNext("/__login"), "/");
+});
+
+test("страница входа экранирует next и не содержит названий проекта", async () => {
+  const { env } = await setup();
+  const res = await handle(req('/__login?next=/"><script>alert(1)</script>'), env, passthrough, noWait, T0);
+  const html = await res.text();
+  assert.doesNotMatch(html, /<script>/);
+  assert.doesNotMatch(html, /Аватар|Tagme|Data ?Light|Сбер/i);
+});
+
+test("просмотры страниц пишутся в журнал, файлы нет", async () => {
+  const { env, db } = await setup();
+  const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
+  const pending = [];
+  const wait = (p) => pending.push(p);
+  await handle(req("/manual-2-etap/", { cookie: c }), env, passthrough, wait, T0);
+  await handle(req("/manual-2-etap/assets/a.mp4", { cookie: c }), env, passthrough, wait, T0);
+  await Promise.all(pending);
+  const views = db.prepare("SELECT path FROM events WHERE kind='view'").all();
+  assert.deepEqual(views.map((v) => v.path), ["/manual-2-etap/"]);
+});

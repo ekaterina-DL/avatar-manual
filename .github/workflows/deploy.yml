@@ -37,16 +37,26 @@ jobs:
         run: |
           printf 'User-agent: *\nDisallow: /\n' > ../avatar-manual-build/build-public/robots.txt
 
-      # Та же сборка выкладывается на Cloudflare Pages (проект avatar-manual), где перед сайтом
-      # будет вход по коду на почту (Cloudflare Access). Ключи — в секретах репозитория.
-      # Первая команда создаёт проект, если его ещё нет (повторно — просто ошибка, её глушим).
+      # Node 24: проверкам нужна встроенная база node:sqlite.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      # Проверки кода входа на сайт (site/cloudflare) — до выкладки.
+      - name: Test site login
+        run: node --test site/cloudflare/tests/auth.test.mjs
+
+      # Та же сборка выкладывается на Cloudflare Pages (проект avatar-manual). Перед сайтом —
+      # вход по логину и паролю: site/cloudflare/functions/_middleware.js (wrangler берёт папку
+      # functions из текущей папки, поэтому запуск из site/cloudflare). База логинов D1 и
+      # SESSION_SECRET привязаны к проекту в Cloudflare. Ключи выкладки — в секретах репозитория.
       - name: Deploy to Cloudflare Pages
+        working-directory: site/cloudflare
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          npx --yes wrangler@3.112.0 pages project create avatar-manual --production-branch=main || true
-          npx --yes wrangler@3.112.0 pages deploy ../avatar-manual-build/build-public \
+          npx --yes wrangler@3.112.0 pages deploy ../../../avatar-manual-build/build-public \
             --project-name=avatar-manual --branch=main --commit-dirty=true
 
       - uses: actions/upload-pages-artifact@v3

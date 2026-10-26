@@ -36,6 +36,7 @@ exclude_docs: |
   site/hooks/
   site/pdf/render_pdf.py
   site/prototype-reference/
+  site/cloudflare/
   docs/
   .git/
   .github/
