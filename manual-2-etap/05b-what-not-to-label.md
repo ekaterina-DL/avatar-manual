@@ -382,11 +382,12 @@
 сегмента так, чтобы его не захватить. Слова и реплики закадрового человека недопустимы.
 `[ОС от заказчика, 26.10.2026]`
 
-**Пример ошибки:** [закадровый голос попал в начало сегмента](assets/0CRFA6w81ME__segment_12841482_50355926.mp4).
-`[Инструкция заказчика, 25.09.2026]`
+**Калибровочные примеры:**
 
-**Пример:** [❌ отрезок 00:48–01:01 не подходит — на 00:53–00:54 интервьюер за кадром произносит слово "ten"](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/2cf97a17-94f1-44e3-887c-523469d5238a/downloaded_raw/a0wOpIysSZ8.mp4).
-`[Разъяснения по вопросам. Аватар 2 этап, 15.10.2026]`
+- [❌ Ошибка: закадровый голос интервьюера попал в начало сегмента](assets/0CRFA6w81ME__segment_12841482_50355926.mp4)
+- [❌ Отрезок 00:48–01:01 не подходит — на 00:53–00:54 интервьюер за кадром произносит слово «ten»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/2cf97a17-94f1-44e3-887c-523469d5238a/downloaded_raw/a0wOpIysSZ8.mp4)
+
+`[Инструкция заказчика, 25.09.2026; Разъяснения по вопросам. Аватар 2 этап, 15.10.2026]`
 
 <div class="field-label-row" markdown="1">
 
@@ -499,7 +500,10 @@
 видимыми глазами**, такой кадр допустим.
 `[Комментарии для мануала ко 2 этапу Аватара, 04.09.2026]`
 
-**Пример:** [✅ сегмент 00:44–01:05 подходит — человек в очках молчит, говорит другой человек с видимыми глазами](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/b6d1b78f-4b05-4c96-88f7-dc13e8e8273b/downloaded_raw/Koj4nVsd-UU.mp4).
+**Пример:**
+
+- [✅ сегмент 00:44–01:05 подходит — человек в очках молчит, говорит другой человек с видимыми глазами](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/b6d1b78f-4b05-4c96-88f7-dc13e8e8273b/downloaded_raw/Koj4nVsd-UU.mp4)
+
 `[Разъяснения по вопросам. Аватар 2 этап, 15.10.2026]`
 
 Даже если **очки прозрачные и глаза видны** — в них ***не должно быть*** отражений (бликов,
@@ -571,7 +575,10 @@
 звуком ветра) очень мешают восприятию речи основного говорящего — такие сегменты выделять не
 нужно. Если на видео нет подходящего сегмента, его нужно отправить в **«Битое»**.
 
-**Пример:** [❌ Постоянные очень громкие разговоры и шум ветра мешают воспринимать речь](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/86272aa9-f5ad-4d11-90d4-08f2a3ca6382/downloaded_raw/w22-bdkT9lM.mp4).
+**Пример:**
+
+- [❌ Постоянные очень громкие разговоры и шум ветра мешают воспринимать речь](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/86272aa9-f5ad-4d11-90d4-08f2a3ca6382/downloaded_raw/w22-bdkT9lM.mp4)
+
 `[ОС от заказчика, 21.10.2026]`
 
 <div class="field-label-row" markdown="1">
