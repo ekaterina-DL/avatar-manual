@@ -12,14 +12,12 @@
 import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { hashPassword } from "./lib/auth.js";
+import { hashPassword, newPassword } from "./lib/auth.js";
 
 const DB = "manual-auth";
 const WRANGLER = ["--yes", "wrangler@3.112.0"];
 const LOGIN_RE = /^[A-Za-z0-9_-]{1,40}$/;
 const GROUPS_RE = /^[a-z0-9]+(,[a-z0-9]+)*$/;
-// Без похожих символов (0/O, 1/l/I), чтобы пароль легко перепечатать.
-const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 
 // npx запускаем через node без оболочки: так SQL-команда доходит одним аргументом
 // (в Windows через оболочку она разбивается по пробелам).
@@ -38,18 +36,6 @@ function sql(command) {
 
 function q(s) {
   return `'${String(s).replace(/'/g, "''")}'`;
-}
-
-function newPassword(len = 12) {
-  // Отбрасываем байты сверх кратного длине алфавита, чтобы все символы были равновероятны.
-  const limit = 256 - (256 % ALPHABET.length);
-  let out = "";
-  while (out.length < len) {
-    for (const b of crypto.getRandomValues(new Uint8Array(len * 2))) {
-      if (b < limit && out.length < len) out += ALPHABET[b % ALPHABET.length];
-    }
-  }
-  return out;
 }
 
 function checkLogin(login) {

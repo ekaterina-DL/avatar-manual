@@ -338,6 +338,103 @@ async function rangeResponse(request, res) {
   return new Response(body, { status: 206, headers });
 }
 
+// --- управление логинами из Google-таблицы -------------------------------------------------------
+// POST /__admin с заголовком «Authorization: Bearer <ADMIN_KEY>» и JSON {action, login?, groups?}.
+// Пароль создаётся и шифруется здесь, наружу уходит один раз — в ответе.
+
+const ADMIN_PATH = "/__admin";
+const GROUPS_RE = /^[a-z0-9]+(,[a-z0-9]+)*$/;
+const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
+
+export function newPassword(len = 12) {
+  // Отбрасываем байты сверх кратного длине алфавита, чтобы все символы были равновероятны.
+  const limit = 256 - (256 % ALPHABET.length);
+  let out = "";
+  while (out.length < len) {
+    for (const b of crypto.getRandomValues(new Uint8Array(len * 2))) {
+      if (b < limit && out.length < len) out += ALPHABET[b % ALPHABET.length];
+    }
+  }
+  return out;
+}
+
+async function sameSecret(a, b) {
+  if (!a || !b) return false;
+  const [ha, hb] = await Promise.all([a, b].map((s) => crypto.subtle.digest("SHA-256", enc.encode(s))));
+  return sameBytes(new Uint8Array(ha), new Uint8Array(hb));
+}
+
+function json(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status, headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
+  });
+}
+
+async function handleAdmin(request, env, now) {
+  if (request.method !== "POST") return json({ error: "Только POST" }, 405);
+  const auth = request.headers.get("Authorization") || "";
+  const key = auth.startsWith("Bearer ") ? auth.slice(7).trim() : "";
+  if (!env.ADMIN_KEY || env.ADMIN_KEY.length < 32 || !(await sameSecret(key, env.ADMIN_KEY))) {
+    return json({ error: "Неверный ключ" }, 403);
+  }
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: "Нужен JSON" }, 400);
+  }
+  const { action } = body || {};
+  const login = typeof body.login === "string" ? body.login.trim() : "";
+  const getUser = (l) => env.DB.prepare("SELECT login, groups, active FROM users WHERE login = ?").bind(l).first();
+  const audit = (l) => logEvent(env, now, l, `admin_${action}`);
+
+  if (action === "list") {
+    const { results } = await env.DB.prepare("SELECT login, groups, active, locked_until FROM users ORDER BY created, login").all();
+    return json({ users: results });
+  }
+
+  if (action === "add") {
+    const groups = body.groups || "stage2";
+    if (!GROUPS_RE.test(groups)) return json({ error: "Плохие группы" }, 400);
+    let name = login;
+    if (!name) {
+      const { results } = await env.DB.prepare("SELECT login FROM users WHERE login LIKE 'Assessor%'").all();
+      const max = Math.max(0, ...results.map((r) => Number(/^Assessor(\d+)$/i.exec(r.login)?.[1] || 0)));
+      name = `Assessor${max + 1}`;
+    }
+    if (!LOGIN_RE.test(name)) return json({ error: "Плохой логин" }, 400);
+    if (await getUser(name)) return json({ error: `Логин ${name} уже есть` }, 409);
+    const password = newPassword();
+    await env.DB.prepare("INSERT INTO users (login, pw, groups, created) VALUES (?, ?, ?, ?)")
+      .bind(name, await hashPassword(password), groups, now).run();
+    await audit(name);
+    return json({ login: name, password });
+  }
+
+  if (!LOGIN_RE.test(login)) return json({ error: "Плохой логин" }, 400);
+  const user = await getUser(login);
+  if (!user) return json({ error: `Логина ${login} нет` }, 404);
+
+  if (action === "reset") {
+    const password = newPassword();
+    await env.DB.prepare("UPDATE users SET pw = ?, sv = sv + 1, fails = 0, locked_until = 0 WHERE login = ?")
+      .bind(await hashPassword(password), user.login).run();
+    await audit(user.login);
+    return json({ login: user.login, password });
+  }
+  if (action === "block") {
+    await env.DB.prepare("UPDATE users SET active = 0, sv = sv + 1 WHERE login = ?").bind(user.login).run();
+    await audit(user.login);
+    return json({ login: user.login, active: 0 });
+  }
+  if (action === "unblock") {
+    await env.DB.prepare("UPDATE users SET active = 1, fails = 0, locked_until = 0 WHERE login = ?").bind(user.login).run();
+    await audit(user.login);
+    return json({ login: user.login, active: 1 });
+  }
+  return json({ error: "Неизвестное действие" }, 400);
+}
+
 // --- главный обработчик ------------------------------------------------------------------------
 
 export async function handle(request, env, next, waitUntil, now = Date.now()) {
@@ -345,6 +442,7 @@ export async function handle(request, env, next, waitUntil, now = Date.now()) {
   const path = url.pathname;
 
   if (path === LOGIN_PATH) return handleLogin(request, env, now);
+  if (path === ADMIN_PATH) return handleAdmin(request, env, now);
 
   const session = await readSession(getCookie(request, COOKIE), env.SESSION_SECRET, now);
   const user = session

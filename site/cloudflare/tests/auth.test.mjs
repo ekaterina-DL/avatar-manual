@@ -225,6 +225,56 @@ test("видео: запрос части файла получает ровно
   assert.equal(anon.status, 303);
 });
 
+const ADMIN_KEY = "k".repeat(48);
+function admin(env, payload, key = ADMIN_KEY) {
+  const r = new Request("https://site.test/__admin", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  return handle(r, env, passthrough, noWait, T0);
+}
+
+test("управление из таблицы: без ключа или с чужим ключом ничего нельзя", async () => {
+  const { env } = await setup();
+  env.ADMIN_KEY = ADMIN_KEY;
+  assert.equal((await admin(env, { action: "list" }, "wrong".repeat(10))).status, 403);
+  assert.equal((await admin(env, { action: "list" }, "")).status, 403);
+  const noKeyEnv = { ...env, ADMIN_KEY: undefined };
+  assert.equal((await admin(noKeyEnv, { action: "list" })).status, 403);
+  const get = await handle(new Request("https://site.test/__admin"), env, passthrough, noWait, T0);
+  assert.equal(get.status, 405);
+});
+
+test("управление из таблицы: выдать следующий логин, сбросить, заблокировать", async () => {
+  const { env, db } = await setup([["Assessor1", "Pass-word-1", "stage2"], ["Assessor7", "x-x-x-x-1", "stage2"]]);
+  env.ADMIN_KEY = ADMIN_KEY;
+  const added = await (await admin(env, { action: "add" })).json();
+  assert.equal(added.login, "Assessor8");
+  assert.match(added.password, /^[A-Za-z2-9]{12}$/);
+  assert.equal((await login(env, "Assessor8", added.password)).status, 303);
+  assert.equal((await admin(env, { action: "add", login: "Assessor8" })).status, 409);
+
+  const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
+  const reset = await (await admin(env, { action: "reset", login: "assessor1" })).json();
+  assert.equal(reset.login, "Assessor1");
+  assert.equal((await handle(req("/", { cookie: c }), env, passthrough, noWait, T0)).status, 303); // старый вход погас
+  assert.equal((await login(env, "Assessor1", "Pass-word-1")).status, 401);
+  assert.equal((await login(env, "Assessor1", reset.password)).status, 303);
+
+  assert.equal((await admin(env, { action: "block", login: "Assessor8" })).status, 200);
+  assert.equal((await login(env, "Assessor8", added.password)).status, 401);
+  assert.equal((await admin(env, { action: "unblock", login: "Assessor8" })).status, 200);
+  assert.equal((await login(env, "Assessor8", added.password)).status, 303);
+
+  assert.equal((await admin(env, { action: "block", login: "Nobody" })).status, 404);
+  assert.equal((await admin(env, { action: "add", login: "bad login!" })).status, 400);
+  const list = await (await admin(env, { action: "list" })).json();
+  assert.deepEqual(list.users.map((u) => u.login), ["Assessor1", "Assessor7", "Assessor8"]);
+  assert.ok(db.prepare("SELECT * FROM events WHERE kind = 'admin_add'").all().length === 1);
+  assert.ok(!JSON.stringify(list).includes("pbkdf2"));
+});
+
 test("просмотры страниц пишутся в журнал, файлы нет", async () => {
   const { env, db } = await setup();
   const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
