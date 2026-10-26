@@ -188,6 +188,35 @@ test("страница входа экранирует next и не содерж
   assert.doesNotMatch(html, /Аватар|Tagme|Data ?Light|Сбер/i);
 });
 
+test("видео: запрос части файла получает ровно эту часть (206), без входа ничего", async () => {
+  const { env } = await setup();
+  const data = new Uint8Array(1000).map((_, i) => i % 256);
+  // хранилище отдаёт файл кусками по 300 байт и игнорирует Range — как Pages за функцией
+  const video = async () => new Response(new ReadableStream({
+    start(c) { for (let i = 0; i < data.length; i += 300) c.enqueue(data.slice(i, i + 300)); c.close(); },
+  }), { headers: { "Content-Type": "video/mp4", "Content-Length": "1000" } });
+  const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
+  const get = (range) => {
+    const r = req("/manual-2-etap/assets/a.mp4", { cookie: c });
+    if (range) r.headers.set("Range", range);
+    return handle(r, env, video, noWait, T0);
+  };
+  const mid = await get("bytes=250-649");
+  assert.equal(mid.status, 206);
+  assert.equal(mid.headers.get("Content-Range"), "bytes 250-649/1000");
+  assert.deepEqual(new Uint8Array(await mid.arrayBuffer()), data.slice(250, 650));
+  const open = await get("bytes=900-");
+  assert.deepEqual(new Uint8Array(await open.arrayBuffer()), data.slice(900));
+  const tail = await get("bytes=-10");
+  assert.equal(tail.headers.get("Content-Range"), "bytes 990-999/1000");
+  assert.equal((await get("bytes=5000-")).status, 416);
+  const full = await get(null);
+  assert.equal(full.status, 200);
+  assert.equal(full.headers.get("Accept-Ranges"), "bytes");
+  const anon = await handle((() => { const r = req("/manual-2-etap/assets/a.mp4"); r.headers.set("Range", "bytes=0-9"); return r; })(), env, video, noWait, T0);
+  assert.equal(anon.status, 303);
+});
+
 test("просмотры страниц пишутся в журнал, файлы нет", async () => {
   const { env, db } = await setup();
   const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));

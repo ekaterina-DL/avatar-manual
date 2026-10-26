@@ -252,6 +252,71 @@ async function handleLogin(request, env, now) {
   return redirect(next, { "Set-Cookie": sessionCookie(token, SESSION_DAYS * 86400) });
 }
 
+// --- частичная отдача видео --------------------------------------------------------------------
+// Хранилище Pages за функцией отдаёт файл целиком (200) даже на запрос «Range: bytes=…»,
+// а без ответа 206 браузер не умеет перематывать видео, пока оно не скачано. Поэтому
+// нужный кусок вырезаем сами, потоком, не держа файл в памяти.
+
+function isMedia(path) {
+  return /\.(mp4|webm|mov|m4a|mp3)$/i.test(path);
+}
+
+export function parseRange(header, size) {
+  const m = /^bytes=(\d*)-(\d*)$/.exec(String(header || "").trim());
+  if (!m || (m[1] === "" && m[2] === "")) return null;
+  let start, end;
+  if (m[1] === "") {
+    const suffix = Number(m[2]);
+    if (suffix === 0) return null;
+    start = Math.max(0, size - suffix);
+    end = size - 1;
+  } else {
+    start = Number(m[1]);
+    end = m[2] === "" ? size - 1 : Math.min(Number(m[2]), size - 1);
+  }
+  if (start > end || start >= size) return "unsatisfiable";
+  return { start, end };
+}
+
+function sliceStream(body, start, end) {
+  let pos = 0;
+  return body.pipeThrough(new TransformStream({
+    transform(chunk, controller) {
+      const from = Math.max(start - pos, 0);
+      const to = Math.min(end + 1 - pos, chunk.byteLength);
+      if (from < to) controller.enqueue(chunk.subarray(from, to));
+      pos += chunk.byteLength;
+      if (pos > end) controller.terminate();
+    },
+  }));
+}
+
+function rangeResponse(request, res) {
+  const header = request.headers.get("Range");
+  const size = Number(res.headers.get("Content-Length"));
+  if (!header || res.status !== 200 || !res.body || !Number.isFinite(size) || size <= 0) return null;
+  const range = parseRange(header, size);
+  if (!range) return null;
+  const headers = new Headers(res.headers);
+  headers.set("Cache-Control", "private, max-age=0, must-revalidate");
+  headers.set("Accept-Ranges", "bytes");
+  if (range === "unsatisfiable") {
+    res.body.cancel();
+    headers.set("Content-Range", `bytes */${size}`);
+    headers.delete("Content-Length");
+    return new Response(null, { status: 416, headers });
+  }
+  headers.set("Content-Range", `bytes ${range.start}-${range.end}/${size}`);
+  headers.set("Content-Length", String(range.end - range.start + 1));
+  let body = request.method === "HEAD" ? null : sliceStream(res.body, range.start, range.end);
+  // В Cloudflare длина у потокового ответа сохраняется только через FixedLengthStream.
+  if (body && typeof FixedLengthStream === "function") {
+    body = body.pipeThrough(new FixedLengthStream(range.end - range.start + 1));
+  }
+  if (!body) res.body.cancel();
+  return new Response(body, { status: 206, headers });
+}
+
 // --- главный обработчик ------------------------------------------------------------------------
 
 export async function handle(request, env, next, waitUntil, now = Date.now()) {
@@ -287,7 +352,10 @@ export async function handle(request, env, next, waitUntil, now = Date.now()) {
   }
 
   const res = await next();
+  const ranged = rangeResponse(request, res);
+  if (ranged) return ranged;
   const out = new Response(res.body, res);
+  if (isMedia(path)) out.headers.set("Accept-Ranges", "bytes");
   // private: ответ только для этого браузера, промежуточным кэшам хранить нельзя.
   out.headers.set("Cache-Control", "private, max-age=0, must-revalidate");
   return out;
