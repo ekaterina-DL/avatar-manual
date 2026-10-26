@@ -32,8 +32,73 @@ function manualAccessAddMenu() {
     .addItem('Заблокировать выделенных', 'manualAccessBlock')
     .addItem('Разблокировать выделенных', 'manualAccessUnblock')
     .addSeparator()
+    .addItem('Журнал за 7 дней', 'manualAccessLog7')
+    .addItem('Журнал за 30 дней', 'manualAccessLog30')
+    .addItem('Журнал за 180 дней', 'manualAccessLog180')
+    .addSeparator()
     .addItem('Ввести секретный ключ', 'manualAccessSetKey')
     .addToUi();
+}
+
+function manualAccessLog7() { manualAccessLog_(7); }
+function manualAccessLog30() { manualAccessLog_(30); }
+function manualAccessLog180() { manualAccessLog_(180); }
+
+var MA_LOG_SHEET = 'Журнал мануала';
+var MA_EVENT_NAMES = {
+  login_ok: 'Вход', login_fail: 'Неверный пароль', locked: 'Пауза после 5 неверных паролей',
+  logout: 'Выход', view: 'Просмотр страницы', admin_add: 'Выдан логин', admin_reset: 'Сброшен пароль',
+  admin_block: 'Заблокирован', admin_unblock: 'Разблокирован',
+};
+
+// Выгружает журнал сайта на лист «Журнал мануала» (лист каждый раз перезаписывается).
+// ФИО подставляется по логину из колонки «Логин и пароль» основного листа.
+function manualAccessLog_(days) {
+  var ui = SpreadsheetApp.getUi();
+  if (!PropertiesService.getScriptProperties().getProperty(MA_KEY_PROPERTY)) {
+    ui.alert('Сначала: меню «Доступ к мануалу» → «Ввести секретный ключ».');
+    return;
+  }
+  var res = manualAccessCall_({ action: 'log', days: days });
+  if (res.error) { ui.alert('Журнал не получен: ' + res.error); return; }
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var names = manualAccessNames_(ss);
+  var sheet = ss.getSheetByName(MA_LOG_SHEET) || ss.insertSheet(MA_LOG_SHEET);
+  sheet.clear();
+  var header = [['Время', 'Логин', 'ФИО', 'Событие', 'Страница']];
+  var rows = res.events.map(function (e) {
+    return [new Date(e.ts), e.login, names[String(e.login).toLowerCase()] || '',
+      MA_EVENT_NAMES[e.kind] || e.kind, e.path ? decodeURIComponent(e.path) : ''];
+  });
+  sheet.getRange(1, 1, 1, 5).setValues(header).setFontWeight('bold');
+  if (rows.length) {
+    sheet.getRange(2, 1, rows.length, 5).setValues(rows);
+    sheet.getRange(2, 1, rows.length, 1).setNumberFormat('dd.MM.yyyy HH:mm');
+  }
+  sheet.setFrozenRows(1);
+  sheet.autoResizeColumns(1, 5);
+  ss.setActiveSheet(sheet);
+  ui.alert('Журнал за ' + days + ' дн.: ' + rows.length + ' записей' +
+    (res.truncated ? ' (показаны только последние 50 000)' : '') + '. Лист «' + MA_LOG_SHEET + '».');
+}
+
+// Логин → ФИО по всем листам, где есть колонки «ФИО» и «Логин…».
+function manualAccessNames_(ss) {
+  var map = {};
+  ss.getSheets().forEach(function (sh) {
+    if (sh.getName() === MA_LOG_SHEET || sh.getLastRow() <= MA_HEADER_ROW) return;
+    var cols = manualAccessColumns_(sh);
+    if (!cols) return;
+    var n = sh.getLastRow() - MA_HEADER_ROW;
+    var nameVals = sh.getRange(MA_HEADER_ROW + 1, cols.name, n, 1).getValues();
+    var loginVals = sh.getRange(MA_HEADER_ROW + 1, cols.login, n, 1).getValues();
+    for (var i = 0; i < n; i++) {
+      var login = manualAccessLogin_(String(loginVals[i][0]));
+      if (login) map[login.toLowerCase()] = String(nameVals[i][0]).trim();
+    }
+  });
+  return map;
 }
 
 function manualAccessSetKey() {

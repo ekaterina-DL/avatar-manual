@@ -275,6 +275,23 @@ test("управление из таблицы: выдать следующий 
   assert.ok(!JSON.stringify(list).includes("pbkdf2"));
 });
 
+test("управление из таблицы: журнал за N дней, свежие сверху, старые не попадают", async () => {
+  const { env, db } = await setup();
+  env.ADMIN_KEY = ADMIN_KEY;
+  const day = 86400000;
+  for (const [ago, kind] of [[1, "login_ok"], [5, "view"], [20, "login_fail"], [100, "logout"]]) {
+    db.prepare("INSERT INTO events (ts, login, kind, path) VALUES (?, 'Assessor1', ?, NULL)").run(T0 - ago * day, kind);
+  }
+  const week = await (await admin(env, { action: "log", days: 7 })).json();
+  assert.deepEqual(week.events.map((e) => e.kind), ["login_ok", "view"]);
+  const month = await (await admin(env, { action: "log", days: 30 })).json();
+  assert.equal(month.events.length, 3);
+  const all = await (await admin(env, { action: "log", days: 180 })).json();
+  assert.equal(all.events.length, 4);
+  assert.equal(all.truncated, false);
+  assert.equal((await admin(env, { action: "log", days: 7 }, "bad".repeat(20))).status, 403);
+});
+
 test("просмотры страниц пишутся в журнал, файлы нет", async () => {
   const { env, db } = await setup();
   const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));

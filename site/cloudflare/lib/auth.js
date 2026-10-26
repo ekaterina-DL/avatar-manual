@@ -393,6 +393,15 @@ async function handleAdmin(request, env, now) {
     return json({ users: results });
   }
 
+  if (action === "log") {
+    const days = Math.min(Math.max(Number(body.days) || 7, 1), EVENTS_KEEP_DAYS);
+    const limit = 50000;
+    const { results } = await env.DB.prepare(
+      "SELECT ts, login, kind, path FROM events WHERE ts > ? ORDER BY ts DESC LIMIT ?",
+    ).bind(now - days * 86400000, limit + 1).all();
+    return json({ days, events: results.slice(0, limit), truncated: results.length > limit });
+  }
+
   if (action === "add") {
     const groups = body.groups || "stage2";
     if (!GROUPS_RE.test(groups)) return json({ error: "Плохие группы" }, 400);
