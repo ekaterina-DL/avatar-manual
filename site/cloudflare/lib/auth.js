@@ -291,13 +291,34 @@ function sliceStream(body, start, end) {
   }));
 }
 
-function rangeResponse(request, res) {
+async function rangeResponse(request, res) {
   const header = request.headers.get("Range");
-  const size = Number(res.headers.get("Content-Length"));
-  if (!header || res.status !== 200 || !res.body || !Number.isFinite(size) || size <= 0) return null;
+  if (!header || res.status !== 200 || !res.body) return null;
+  let size = Number(res.headers.get("Content-Length") || NaN);
+  // Ответ хранилища внутри функции может прийти без длины — тогда читаем файл в память
+  // (видео на сайте не больше 25 МБ, это ограничение Pages).
+  let buffered = null;
+  if (!Number.isFinite(size) || size <= 0) {
+    buffered = new Uint8Array(await res.arrayBuffer());
+    size = buffered.byteLength;
+    if (size === 0) return null;
+  }
   const range = parseRange(header, size);
-  if (!range) return null;
+  if (!range) return buffered ? new Response(buffered, { status: 200, headers: res.headers }) : null;
   const headers = new Headers(res.headers);
+  if (buffered) {
+    headers.set("Cache-Control", "private, max-age=0, must-revalidate");
+    headers.set("Accept-Ranges", "bytes");
+    if (range === "unsatisfiable") {
+      headers.set("Content-Range", `bytes */${size}`);
+      headers.delete("Content-Length");
+      return new Response(null, { status: 416, headers });
+    }
+    headers.set("Content-Range", `bytes ${range.start}-${range.end}/${size}`);
+    headers.set("Content-Length", String(range.end - range.start + 1));
+    const part = request.method === "HEAD" ? null : buffered.subarray(range.start, range.end + 1);
+    return new Response(part, { status: 206, headers });
+  }
   headers.set("Cache-Control", "private, max-age=0, must-revalidate");
   headers.set("Accept-Ranges", "bytes");
   if (range === "unsatisfiable") {
@@ -352,7 +373,7 @@ export async function handle(request, env, next, waitUntil, now = Date.now()) {
   }
 
   const res = await next();
-  const ranged = rangeResponse(request, res);
+  const ranged = await rangeResponse(request, res);
   if (ranged) return ranged;
   const out = new Response(res.body, res);
   if (isMedia(path)) out.headers.set("Accept-Ranges", "bytes");

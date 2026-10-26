@@ -213,6 +213,14 @@ test("видео: запрос части файла получает ровно
   const full = await get(null);
   assert.equal(full.status, 200);
   assert.equal(full.headers.get("Accept-Ranges"), "bytes");
+  // хранилище без Content-Length: кусок всё равно вырезается верно
+  const noLen = async () => new Response(new ReadableStream({ start(c) { c.enqueue(data); c.close(); } }), { headers: { "Content-Type": "video/mp4" } });
+  const r2 = req("/manual-2-etap/assets/a.mp4", { cookie: c });
+  r2.headers.set("Range", "bytes=10-19");
+  const part = await handle(r2, env, noLen, noWait, T0);
+  assert.equal(part.status, 206);
+  assert.equal(part.headers.get("Content-Range"), "bytes 10-19/1000");
+  assert.deepEqual(new Uint8Array(await part.arrayBuffer()), data.slice(10, 20));
   const anon = await handle((() => { const r = req("/manual-2-etap/assets/a.mp4"); r.headers.set("Range", "bytes=0-9"); return r; })(), env, video, noWait, T0);
   assert.equal(anon.status, 303);
 });
