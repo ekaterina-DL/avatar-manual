@@ -286,13 +286,14 @@ def build_rules(docs_dir, rules_map, strip_sources=False):
     rules = {}
     for check_id, entry in rules_map.items():
         page = entry["page"]
-        texts, examples, url = [], [], None
+        texts, examples, url, links = [], [], None, []
         for heading in _as_list(entry["heading"]):
             body, anchor = _section(docs_dir, check_id, page, heading,
                                     entry.get("occurrence", 1))
             if strip_sources:
                 body = SOURCE_TAG_RE.sub("", body)
             url = url or f"{_page_url(page)}#{anchor}"
+            links.append({"title": heading, "url": f"{_page_url(page)}#{anchor}"})
             part, ex = section_to_text(body, page, entry.get("contains"))
             if part:
                 texts.append(part)
@@ -311,17 +312,26 @@ def build_rules(docs_dir, rules_map, strip_sources=False):
                 raise PluginError(f"build_helper_rules: {check_id}: examples_from «{extra}» - "
                                   f"нет подходящих примеров")
             examples += picked
+        for extra in _as_list(entry.get("see")):
+            xpage = extra.get("page", page)
+            _, anchor = _section(docs_dir, check_id, xpage, extra["heading"],
+                                 extra.get("occurrence", 1))
+            links.append({"title": extra["heading"], "url": f"{_page_url(xpage)}#{anchor}"})
         seen, uniq = set(), []
         for e in examples:
             if e["url"] not in seen:
                 seen.add(e["url"])
                 uniq.append(e)
-        rules[check_id] = {
+        rule = {
             "title": entry["title"],
             "text": "\n\n".join(texts),
             "url": url,
             "examples": uniq,
+            "links": links,
         }
+        if entry.get("short"):
+            rule["short"] = str(entry["short"]).strip()
+        rules[check_id] = rule
     return rules
 
 
@@ -348,10 +358,11 @@ def _check_anchors(site_dir, rules):
     """Якорь каждого правила должен быть в готовом HTML страницы (если страница собрана)."""
     bad = []
     for check_id, r in rules.items():
-        rel, anchor = r["url"][len(BASE_URL):].split("#", 1)
-        page_html = site_dir / rel / "index.html"
-        if page_html.is_file() and f'id="{anchor}"' not in page_html.read_text(encoding="utf-8"):
-            bad.append(f"{check_id} (#{anchor})")
+        for url in dict.fromkeys([r["url"]] + [x["url"] for x in r.get("links", [])]):
+            rel, anchor = url[len(BASE_URL):].split("#", 1)
+            page_html = site_dir / rel / "index.html"
+            if page_html.is_file() and f'id="{anchor}"' not in page_html.read_text(encoding="utf-8"):
+                bad.append(f"{check_id} (#{anchor})")
     if bad:
         raise PluginError("build_helper_rules: якоря не найдены в собранном сайте: "
                           + ", ".join(bad))

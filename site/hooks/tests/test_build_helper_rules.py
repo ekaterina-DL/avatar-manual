@@ -163,6 +163,25 @@ def test_examples_from_other_section(tmp_path):
     assert "Рамка справа" not in r["text"]
 
 
+def test_short_and_links(tmp_path):
+    """v0.2.5: короткое правило и ссылки на все разделы (heading-список + see)."""
+    m = {"face_lost": {"page": "manual-2-etap/05b.md", "heading": ["Рамка", "Другое"],
+                       "title": "Лицо", "short": " Коротко. ", "see": [{"heading": "Рамка"}]}}
+    r = build_rules(_docs(tmp_path, m), m)["face_lost"]
+    assert r["short"] == "Коротко."
+    assert [x["title"] for x in r["links"]] == ["Рамка", "Другое", "Рамка"]
+    assert r["links"][0]["url"] == r["url"] and r["links"][1]["url"].endswith("#другое")
+    m["face_lost"].pop("short")
+    assert "short" not in build_rules(tmp_path / "docs", m)["face_lost"]
+
+
+def test_see_missing_heading_raises(tmp_path):
+    m = {"cuts": {"page": "manual-2-etap/05b.md", "heading": "Рамка", "title": "Склейки",
+                  "see": [{"heading": "Нет такого"}]}}
+    with pytest.raises(PluginError, match="cuts"):
+        build_rules(_docs(tmp_path, m), m)
+
+
 def test_missing_rules_map_raises(tmp_path):
     docs = _docs(tmp_path)
     (docs / "site" / "hooks" / "helper" / "rules-map.yml").unlink()
@@ -274,6 +293,11 @@ def test_real_map_builds_from_real_manual():
     for cid in ("camera_jump", "seg_camera_jump"):
         assert any("Скачок камеры на 1:19" in e["title"] for e in rules[cid]["examples"])
     assert "Правильно | Неправильно" not in rules["seg_overlap"]["text"]
+    # v0.2.5: у каждой проверки короткое правило (окно программы) и ссылки на мануал
+    for cid, r in rules.items():
+        assert 10 < len(r.get("short", "")) <= 160, cid
+        assert r["links"] and r["links"][0]["url"] == r["url"], cid
+    assert [x["title"] for x in rules["camera_jump"]["links"]] == ["Зум", "Склейки", "Тряска камеры"]
 
 
 def test_read_version_from_real_repo():
