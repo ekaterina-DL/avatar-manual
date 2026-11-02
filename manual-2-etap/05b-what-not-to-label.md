@@ -63,7 +63,6 @@
 
 **Калибровочные примеры (реальная, подтверждённая рамка, брак не оспаривается):**
 
-- [Рамка справа](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/11_02_2026/-158416167_456239208/-158416167_456239208.mp4)
 - [Рамка снизу](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-225740964_456239040/-225740964_456239040.mp4)
 - [Рамка снизу](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-52000967_456244545/-52000967_456244545.mp4)
 - [Рамка снизу](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/vk/10_02_2026/-52000967_456244534/-52000967_456244534.mp4)
