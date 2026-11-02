@@ -444,6 +444,51 @@ async function handleAdmin(request, env, now) {
   return json({ error: "Неизвестное действие" }, 400);
 }
 
+// --- помощник асессора и презентации ------------------------------------------------------------
+
+const HELPER_FILES = new Set(["/assessor-helper/rules.json", "/assessor-helper/version.json"]);
+
+// Презентации созвонов лежат не в репозитории, а в хранилище KV (привязка REPORTS):
+// ключ — путь после /reports/, например «sozvon-2026-09-22/index.html». Загружаются
+// с компьютера Екатерины (site/cloudflare/reports.mjs), на GitHub не попадают.
+const REPORTS_PREFIX = "/reports/";
+const MIME = {
+  html: "text/html; charset=utf-8", css: "text/css; charset=utf-8", js: "text/javascript; charset=utf-8",
+  json: "application/json; charset=utf-8", png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg",
+  gif: "image/gif", svg: "image/svg+xml", webp: "image/webp", mp4: "video/mp4", webm: "video/webm",
+  pdf: "application/pdf",
+};
+
+export async function serveReport(env, path) {
+  let key;
+  try {
+    key = decodeURIComponent(path.slice(REPORTS_PREFIX.length));
+  } catch {
+    key = "";
+  }
+  if (key === "") return redirect("/manual-2-etap/08-sozvony/");
+  if (key.endsWith("/")) key += "index.html";
+  if (key.includes("..") || !env.REPORTS) return notFound();
+  const ext = (key.split(".").pop() || "").toLowerCase();
+  const { value, metadata } = await env.REPORTS.getWithMetadata(key, { type: "arrayBuffer" });
+  if (!value) {
+    // «/reports/sozvon-2026-09-22» без слэша в конце — это папка
+    if (!key.includes(".")) return redirect(`${REPORTS_PREFIX}${key}/`);
+    return notFound();
+  }
+  return new Response(value, {
+    status: 200,
+    headers: {
+      "Content-Type": (metadata && metadata.type) || MIME[ext] || "application/octet-stream",
+      "Content-Length": String(value.byteLength),
+    },
+  });
+}
+
+function notFound() {
+  return page("Не найдено", `<h1>Страница не найдена</h1><p><a href="/manual-2-etap/08-sozvony/">К списку созвонов</a></p>`, 404);
+}
+
 // --- главный обработчик ------------------------------------------------------------------------
 
 export async function handle(request, env, next, waitUntil, now = Date.now()) {
@@ -452,6 +497,17 @@ export async function handle(request, env, next, waitUntil, now = Date.now()) {
 
   if (path === LOGIN_PATH) return handleLogin(request, env, now);
   if (path === ADMIN_PATH) return handleAdmin(request, env, now);
+
+  // «Помощник асессора» берёт только свои два файла по отдельному ключу, без входа.
+  if (HELPER_FILES.has(path) && (request.method === "GET" || request.method === "HEAD")) {
+    const helperKey = request.headers.get("X-Helper-Key") || "";
+    if (helperKey && env.HELPER_KEY && env.HELPER_KEY.length >= 32 && (await sameSecret(helperKey, env.HELPER_KEY))) {
+      const res = await next();
+      const out = new Response(res.body, res);
+      out.headers.set("Cache-Control", "private, no-store");
+      return out;
+    }
+  }
 
   const session = await readSession(getCookie(request, COOKIE), env.SESSION_SECRET, now);
   const user = session
@@ -479,7 +535,7 @@ export async function handle(request, env, next, waitUntil, now = Date.now()) {
     waitUntil(logEvent(env, now, user.login, "view", path).catch(() => {}));
   }
 
-  const res = await next();
+  const res = path.startsWith(REPORTS_PREFIX) ? await serveReport(env, path) : await next();
   const ranged = await rangeResponse(request, res);
   if (ranged) return ranged;
   const out = new Response(res.body, res);

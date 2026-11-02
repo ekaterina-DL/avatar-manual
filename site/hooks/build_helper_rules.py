@@ -31,7 +31,7 @@ from _build_profile import is_pdf_build, is_public_build
 from wrap_source_tags import SOURCE_TAG_RE
 from _section_utils import extract_section
 
-BASE_URL = "https://ekaterina-dl.github.io/avatar-manual/"
+BASE_URL = "https://avatar-manual.pages.dev/"
 # Код программы в репозиторий не входит (хранится только локально). Здесь - только то, что
 # нужно сайту: соответствие проверок разделам мануала и номер последней версии программы
 # (держать равным helper/version.py программы). Ссылку на архив координатор рассылает сам.

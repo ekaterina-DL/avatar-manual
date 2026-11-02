@@ -292,6 +292,54 @@ test("управление из таблицы: журнал за N дней, с
   assert.equal((await admin(env, { action: "log", days: 7 }, "bad".repeat(20))).status, 403);
 });
 
+test("помощник: свои два файла по ключу без входа, остальное и чужой ключ — нет", async () => {
+  const { env } = await setup();
+  env.HELPER_KEY = "h".repeat(48);
+  const get = (p, key) => {
+    const r = req(p);
+    if (key) r.headers.set("X-Helper-Key", key);
+    return handle(r, env, passthrough, noWait, T0);
+  };
+  const ok = await get("/assessor-helper/rules.json", env.HELPER_KEY);
+  assert.equal(ok.status, 200);
+  assert.equal(await ok.text(), "SECRET CONTENT");
+  assert.equal((await get("/assessor-helper/version.json", env.HELPER_KEY)).status, 200);
+  assert.equal((await get("/assessor-helper/rules.json", "x".repeat(48))).status, 303);
+  assert.equal((await get("/assessor-helper/rules.json")).status, 303);
+  assert.equal((await get("/manual-2-etap/", env.HELPER_KEY)).status, 303);
+  const noKey = { ...env, HELPER_KEY: undefined };
+  assert.equal((await handle((() => { const r = req("/assessor-helper/rules.json"); r.headers.set("X-Helper-Key", "undefined"); return r; })(), noKey, passthrough, noWait, T0)).status, 303);
+});
+
+test("презентации: из хранилища, только после входа, видео частями", async () => {
+  const { env } = await setup();
+  const store = new Map([
+    ["sozvon/index.html", new TextEncoder().encode("<h1>Созвон</h1>")],
+    ["sozvon/assets/v.mp4", new Uint8Array(500).map((_, i) => i % 256)],
+  ]);
+  env.REPORTS = {
+    async getWithMetadata(k) {
+      const v = store.get(k);
+      return { value: v ? v.buffer.slice(v.byteOffset, v.byteOffset + v.byteLength) : null, metadata: null };
+    },
+  };
+  assert.equal((await handle(req("/reports/sozvon/"), env, passthrough, noWait, T0)).status, 303);
+  const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
+  const page = await handle(req("/reports/sozvon/", { cookie: c }), env, passthrough, noWait, T0);
+  assert.equal(page.status, 200);
+  assert.match(page.headers.get("Content-Type"), /text\/html/);
+  assert.equal(await page.text(), "<h1>Созвон</h1>");
+  const noSlash = await handle(req("/reports/sozvon", { cookie: c }), env, passthrough, noWait, T0);
+  assert.equal(noSlash.headers.get("Location"), "/reports/sozvon/");
+  const r = req("/reports/sozvon/assets/v.mp4", { cookie: c });
+  r.headers.set("Range", "bytes=100-199");
+  const part = await handle(r, env, passthrough, noWait, T0);
+  assert.equal(part.status, 206);
+  assert.equal((await part.arrayBuffer()).byteLength, 100);
+  assert.equal((await handle(req("/reports/nope/index.html", { cookie: c }), env, passthrough, noWait, T0)).status, 404);
+  assert.equal((await handle(req("/reports/..%2Fsecret", { cookie: c }), env, passthrough, noWait, T0)).status, 404);
+});
+
 test("просмотры страниц пишутся в журнал, файлы нет", async () => {
   const { env, db } = await setup();
   const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
