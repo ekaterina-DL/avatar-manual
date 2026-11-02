@@ -5,7 +5,7 @@
 // Хранилище — база D1 (привязка env.DB, схема в ../schema.sql). Подпись сеанса — секрет
 // env.SESSION_SECRET. Почт и имён нет: таблица «логин = человек» хранится только локально.
 
-export const SESSION_DAYS = 14;
+export const SESSION_DAYS = 30;
 export const MAX_FAILS = 5;
 export const LOCK_MINUTES = 15;
 export const PBKDF2_ITERATIONS = 10000; // пароли случайные и длинные, перебор отсекает блокировка

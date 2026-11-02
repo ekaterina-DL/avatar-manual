@@ -81,7 +81,7 @@ test("POST без входа получает 401", async () => {
   assert.equal(res.status, 401);
 });
 
-test("верный логин и пароль: сеанс на 14 дней, доступ к сайту", async () => {
+test("верный логин и пароль: сеанс на 30 дней, доступ к сайту", async () => {
   const { env, db } = await setup();
   const res = await login(env, "Assessor1", "Pass-word-1", T0, "/manual-2-etap/");
   assert.equal(res.status, 303);
@@ -100,7 +100,7 @@ test("логин без учёта регистра букв", async () => {
   assert.equal((await login(env, "assessor1", "Pass-word-1")).status, 303);
 });
 
-test("сеанс истекает через 14 дней", async () => {
+test("сеанс истекает через 30 дней", async () => {
   const { env } = await setup();
   const c = cookieFrom(await login(env, "Assessor1", "Pass-word-1"));
   const late = await handle(req("/", { cookie: c }), env, passthrough, noWait, T0 + SESSION_DAYS * 86400000 + 1);
