@@ -146,9 +146,10 @@
 
 - [✅ Умеренная тряска — сегмент годен](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/b60f390b-7303-41bb-9e9e-0e343784d30a/trimmed/xNQsedaNa9Y__segment_239139406_254170148.mp4).
 - [✅ Умеренная тряска — сегмент годен](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/stage2/video/avatars/b60f390b-7303-41bb-9e9e-0e343784d30a/trimmed/ufdhq0PS7Dw__segment_221050564_242622565.mp4).
+- [✅ Тряска допустимая, не мешает восприятию персонажа — видео не битое (вся запись, 00:00–02:47)](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7e18aeb8-276b-433b-991c-4f08da1575d0/downloaded_raw/L0VyMhqL75M.mp4).
 - [❌ Избыточная тряска — такой сегмент брать не нужно](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/4542bcd4-2e85-4d93-b5e5-2fe85f114c36/trimmed/AFEU3aCuYJ4__segment_1_0_98__seg1.mp4).
 
-`[Комментарии для мануала ко 2 этапу Аватара, 04.09.2026]`
+`[Комментарии для мануала ко 2 этапу Аватара, 04.09.2026; ОС 2 этап, пересмотр валидатора, 03.11.2026]`
 
 <div class="field-label-row" markdown="1">
 
@@ -528,6 +529,11 @@
 перекрыты посторонней причиной, они просто прикрыты естественным образом.
 `[Инструкция заказчика, 12.10.2026]`
 
+⚠️ **Прикрытые и на время закрытые глаза тоже подходят** (например, человек поёт, то закрывая,
+то открывая глаза). Не подходят только глаза, полностью «невидимые» из-за очков, или ситуация,
+когда глаза закрыты на протяжении всего видео.
+`[ОС 2 этап, пересмотр валидатора, 03.11.2026]`
+
 💡 **Частая сложность у асессоров — отличить допустимый блик от бракующего.** Смотрите на
 **размер и частоту** отражения, а не на сам факт его наличия: небольшой блик, который не
 закрывает зрачок — это нормально и не мешает разметке. Крупные, яркие отражения, которые часто
@@ -543,6 +549,8 @@
 - [✅ Блики небольшие, зрачки не закрывают (0–29 сек) — сегмент подходит](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7162ceab-d65a-4b05-b5fa-d218981cc76e/downloaded_raw/RD2nuxmOIjI.mp4).
 - [✅ Глаза хорошо видны, бликов нет (0–23 сек) — сегмент подходит](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/7162ceab-d65a-4b05-b5fa-d218981cc76e/downloaded_raw/Yr3iraZ9k_8.mp4).
 - [✅ Блики в очках допустимы (00:43–01:04) — сегмент подходит](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/a5e9b0fb-37fa-4762-9946-ed20ef96e664/downloaded_raw/ln5PiYginJU.mp4).
+- [✅ Певица поёт, иногда закрывая глаза: перед 00:29 и после 00:42 по несколько секунд глаза закрыты — это не брак, сегмент можно было начать раньше и закончить позже](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/b9a9c41c-a7cc-4443-9750-e49c6933c82e/downloaded_raw/QJOwalufjUs.mp4).
+- [✅ Девушка поёт, то закрывая, то открывая глаза — видео не битое, подходящий сегмент есть с 00:37](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/b9a9c41c-a7cc-4443-9750-e49c6933c82e/downloaded_raw/_GHi0MaW93c.mp4).
 - [❌ Очки с затемнением — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/79734b90-edf7-4fd9-8993-63fefbdebf47/trimmed/-15747675_456239023__segment_1_12_52.mp4).
 - [❌ Очки с бликами — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/ak/avatar/891aaa7b-a9fb-4abe-846a-fb6517d1d86f/trimmed/-207557049_456239088__segment_1_0_72.mp4).
 - [❌ Блики закрывают глаз (правый глаз почти не виден) — «Битое»](https://gigaeye-kandinsky-spark.obs.ru-moscow-1.hc.sbercloud.ru/kandi_de_team/post_train/pre_stage/video/avatars/2e27a696-5f02-4d90-9db5-893ba5a32136/downloaded_raw/jVcK4ur4Qxw.mp4).
