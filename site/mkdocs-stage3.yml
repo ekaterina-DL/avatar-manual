@@ -1,0 +1,36 @@
+# Сборка, из которой на сайт берутся ТОЛЬКО страницы 3 этапа (папка manual-3-etap/).
+# Их видит только admin (см. .github/workflows/deploy.yml, шаг «Add stage 3 pages»).
+#
+# Папка сборки кончается на build-public — поэтому работают те же хуки, что и в публичной
+# сборке: метки-источники вырезаются (public_strip_source_tags.py). Хук public_drop_stage3.py
+# тут ничего не ломает: страницы 3 этапа ссылаются друг на друга без «manual-3-etap/» в адресе.
+
+INHERIT: mkdocs.yml
+site_dir: ../../avatar-manual-build/stage3/build-public
+
+# При INHERIT exclude_docs заменяется целиком: список = site/mkdocs.yml + логотипы 3 этапа.
+exclude_docs: |
+  _raw-sources/
+  АНАЛИЗ Ошибок/
+  assessor-helper/
+  README.md
+  voprosy-zakazchiku.md
+  manual-2-etap/_sources-log.md
+  manual-2-etap/_quiz-manual.yml
+  manual-3-etap/_sources-log.md
+  manual-3-etap/assets/tagme.png
+  manual-3-etap/assets/Mattermost.png
+  site/PLAN.md
+  site/requirements.txt
+  site/mkdocs.yml
+  site/mkdocs-pdf.yml
+  site/mkdocs-public.yml
+  site/mkdocs-stage3.yml
+  site/theme/overrides/
+  site/hooks/
+  site/pdf/render_pdf.py
+  site/prototype-reference/
+  site/cloudflare/
+  docs/
+  .git/
+  .github/

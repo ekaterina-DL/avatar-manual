@@ -32,6 +32,7 @@ exclude_docs: |
   site/mkdocs.yml
   site/mkdocs-pdf.yml
   site/mkdocs-public.yml
+  site/mkdocs-stage3.yml
   site/theme/overrides/
   site/hooks/
   site/pdf/render_pdf.py

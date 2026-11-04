@@ -36,10 +36,11 @@ jobs:
       # 3 этап в работе: страницы /manual-3-etap/ кладутся в выкладку, но ссылок на них в
       # публичной сборке нет, а вход (lib/auth.js, canAccess) пускает туда только admin и stage3.
       # Сейчас группы stage3 ни у кого нет — раздел видит только Admin1.
+      # Профиль mkdocs-stage3.yml вырезает метки-источники и не берёт логотипы платформ.
       - name: Add stage 3 pages (admin only)
         run: |
-          python -m mkdocs build -f site/mkdocs.yml --strict
-          cp -r ../avatar-manual-build/build/manual-3-etap ../avatar-manual-build/build-public/
+          python -m mkdocs build -f site/mkdocs-stage3.yml --strict
+          cp -r ../avatar-manual-build/stage3/build-public/manual-3-etap ../avatar-manual-build/build-public/
 
       - name: Add robots.txt (no-index)
         run: |
