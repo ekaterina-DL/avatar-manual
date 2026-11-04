@@ -12,6 +12,10 @@
  *    3. Сохранить, обновить таблицу, меню «Доступ к мануалу» →
  *       «Ввести секретный ключ».
  *
+ *  Пункт «Отправить логин на почту» шлёт письмо с вашего Google-аккаунта
+ *  на адрес из колонки «Почта Tagme». При первом запуске Google спросит
+ *  разрешение «Отправлять письма от вашего имени» — его нужно дать.
+ *
  *  Все имена здесь начинаются с manualAccess / MA_, чтобы не пересекаться
  *  с другими файлами проекта. Действия применяются к выделенным строкам.
  * ================================================================
@@ -23,11 +27,15 @@ var MA_LOGIN_HEADER = 'Логин';      // колонка, где заголо�
 var MA_NAME_HEADER = 'ФИО';
 var MA_BLOCKED_MARK = 'ЗАБЛОКИРОВАН: ';
 var MA_KEY_PROPERTY = 'MANUAL_ADMIN_KEY';
+var MA_EMAIL_HEADER = 'Почта Tagme'; // куда отправлять логин
+var MA_SITE_URL = 'https://avatar-manual.pages.dev/';
+var MA_SESSION_DAYS = 30;           // как долго сайт помнит вход (задано в коде сайта)
 
 function manualAccessAddMenu() {
   SpreadsheetApp.getUi().createMenu('Доступ к мануалу')
     .addItem('Выдать логин выделенным', 'manualAccessIssue')
     .addItem('Сбросить пароль выделенным', 'manualAccessReset')
+    .addItem('Отправить логин на почту выделенным', 'manualAccessSendMail')
     .addSeparator()
     .addItem('Заблокировать выделенных', 'manualAccessBlock')
     .addItem('Разблокировать выделенных', 'manualAccessUnblock')
@@ -159,6 +167,74 @@ function manualAccessUnblock() {
   });
 }
 
+// Письмо с логином и паролем на почту из колонки «Почта Tagme».
+// Заблокированных и строки без логина или почты пропускает. После отправки ставит
+// на ячейку с логином примечание «Отправлено на почту ...».
+function manualAccessSendMail() {
+  var ui = SpreadsheetApp.getUi();
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var cols = manualAccessColumns_(sheet);
+  var emailCol = manualAccessColumn_(sheet, MA_EMAIL_HEADER);
+  if (!cols || !emailCol) {
+    ui.alert('Не нашла колонки «' + MA_NAME_HEADER + '», «' + MA_LOGIN_HEADER + '…» и «' + MA_EMAIL_HEADER + '» в строке ' + MA_HEADER_ROW + ' на этом листе.');
+    return;
+  }
+  var rows = manualAccessRows_(sheet);
+  if (rows.length === 0) { ui.alert('Выделите строки асессоров (ниже строки заголовков).'); return; }
+
+  var toSend = [], skipped = [];
+  rows.forEach(function (row) {
+    var name = String(sheet.getRange(row, cols.name).getValue()).trim() || ('строка ' + row);
+    var cell = sheet.getRange(row, cols.login);
+    var text = String(cell.getValue()).trim();
+    var email = String(sheet.getRange(row, emailCol).getValue()).trim();
+    var login = manualAccessLogin_(text);
+    var pw = /пароль\s+(\S+)/i.exec(text);
+    if (text.indexOf(MA_BLOCKED_MARK) === 0) skipped.push(name + ': заблокирован, пропущено');
+    else if (!login || !pw) skipped.push(name + ': нет логина и пароля, сначала «Выдать логин»');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) skipped.push(name + ': нет почты в колонке «' + MA_EMAIL_HEADER + '»');
+    else toSend.push({ name: name, email: email, login: login, password: pw[1].replace(/[,;.]+$/, ''), cell: cell });
+  });
+
+  if (toSend.length === 0) { ui.alert('Отправить некому', skipped.join('\n'), ui.ButtonSet.OK); return; }
+  var list = toSend.map(function (p) { return p.name + ' → ' + p.email + ' (' + p.login + ')'; }).join('\n');
+  if (!manualAccessConfirm_('Отправить письмо с логином и паролем?\n\n' + list +
+      (skipped.length ? '\n\nНе отправим:\n' + skipped.join('\n') : ''))) return;
+
+  var stamp = Utilities.formatDate(new Date(), 'Europe/Moscow', 'dd.MM.yyyy HH:mm');
+  var report = toSend.map(function (p) {
+    try {
+      MailApp.sendEmail({ to: p.email, subject: 'Доступ к сайту-мануалу проекта «Аватар»', body: manualAccessMailText_(p) });
+      p.cell.setNote('Отправлено на почту ' + p.email + ' ' + stamp);
+      return p.name + ': отправлено на ' + p.email;
+    } catch (e) {
+      return p.name + ': не отправлено (' + e.message + ')';
+    }
+  });
+  ui.alert('Отправка логинов', report.concat(skipped).join('\n') +
+    '\n\nОсталось писем на сегодня: ' + MailApp.getRemainingDailyQuota(), ui.ButtonSet.OK);
+}
+
+function manualAccessMailText_(p) {
+  return [
+    'Здравствуйте, ' + p.name + '!',
+    '',
+    'Ваш доступ к сайту-мануалу проекта «Аватар».',
+    '',
+    'Адрес сайта: ' + MA_SITE_URL,
+    'Логин: ' + p.login,
+    'Пароль: ' + p.password,
+    '',
+    'Логин и пароль личные, не передавайте их никому.',
+    '',
+    'После входа сайт запоминает вас на ' + MA_SESSION_DAYS + ' дней. Когда срок пройдёт, сайт сам попросит войти ещё раз: введите эти же логин и пароль. Новый пароль запрашивать не нужно.',
+    '',
+    'Если пароль потерялся или не подходит, напишите менеджеру проекта, вам выдадут новый.',
+    '',
+    'Это письмо отправлено автоматически.',
+  ].join('\n');
+}
+
 // --- служебное (имена с «_» в конце в меню не видны) -------------------------------------------
 
 function manualAccessForRows_(title, fn) {
@@ -193,6 +269,14 @@ function manualAccessColumns_(sheet) {
     if (!login && t.indexOf(MA_LOGIN_HEADER) === 0) login = i + 1;
   });
   return name && login ? { name: name, login: login } : null;
+}
+
+function manualAccessColumn_(sheet, title) {
+  var headers = sheet.getRange(MA_HEADER_ROW, 1, 1, sheet.getLastColumn()).getValues()[0];
+  for (var i = 0; i < headers.length; i++) {
+    if (String(headers[i]).replace(/\s+/g, ' ').trim().indexOf(title) === 0) return i + 1;
+  }
+  return 0;
 }
 
 function manualAccessRows_(sheet) {
