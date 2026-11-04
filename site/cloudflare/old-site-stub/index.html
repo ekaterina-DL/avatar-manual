@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Мануал переехал</title>
+<style>
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f5f6f8; color: #1d2330; }
+  main { max-width: 560px; margin: 15vh auto 0; padding: 32px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+  h1 { margin: 0 0 16px; font-size: 26px; }
+  p { font-size: 17px; line-height: 1.5; }
+  a.btn { display: inline-block; margin-top: 8px; padding: 12px 20px; background: #3f51b5; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; }
+  .small { color: #5b6475; font-size: 15px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Мануал переехал</h1>
+  <p>Мануал теперь находится по новому адресу. Вход по личному логину и паролю, которые пришли вам на почту.</p>
+  <p><a class="btn" id="go" href="https://avatar-manual.pages.dev/">Перейти на новый сайт</a></p>
+  <p class="small">Через несколько секунд откроется автоматически. Обновите закладки: этот адрес скоро перестанет работать.</p>
+</main>
+<script>
+  // Та же страница на новом сайте: /avatar-manual/manual-2-etap/02-segments/ → /manual-2-etap/02-segments/
+  var path = location.pathname.replace(/^\/avatar-manual/i, '') || '/';
+  var target = 'https://avatar-manual.pages.dev' + path + location.hash;
+  document.getElementById('go').href = target;
+  setTimeout(function () { location.replace(target); }, 5000);
+</script>
+</body>
+</html>
