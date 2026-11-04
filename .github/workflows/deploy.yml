@@ -59,9 +59,9 @@ jobs:
           npx --yes wrangler@3.112.0 pages deploy ../../../avatar-manual-build/build-public \
             --project-name=avatar-manual --branch=main --commit-dirty=true
 
-      # Старый адрес (github.io) с 04.11.2026: только страница «Мануал переехал» на 4 дня.
+      # Старый адрес (github.io) с 04.11.2026: только страница «Мануал переехал» до 06.11.2026 включительно.
       # Файлы помощника оставлены, чтобы старые версии помощника работали и показывали
-      # «Есть новая версия». После 08.11 эти шаги и job deploy удаляются целиком.
+      # «Есть новая версия». После 06.11 эти шаги и job deploy удаляются целиком.
       - name: Build old-site stub
         run: |
           mkdir -p ../old-site-stub/assessor-helper
