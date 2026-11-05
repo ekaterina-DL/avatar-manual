@@ -18,6 +18,8 @@ exclude_docs: |
   manual-2-etap/_sources-log.md
   manual-2-etap/_quiz-manual.yml
   manual-3-etap/_sources-log.md
+  manual-3-etap/02-open-questions.md
+  manual-3-etap/05-faq.md
   manual-3-etap/assets/tagme.png
   manual-3-etap/assets/Mattermost.png
   site/PLAN.md

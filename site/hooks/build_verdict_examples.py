@@ -2,7 +2,7 @@ import re
 
 from _build_profile import is_pdf_build
 
-TARGET_FILE = "manual-3-etap/03-common-mistakes.md"
+TARGET_FILE = "manual-3-etap/07-example-library.md"
 
 _HEADER_RE = re.compile(
     r'\| Вердикт заказчика \| Признак \| Пример \|\n'
@@ -63,8 +63,8 @@ def _transform(markdown):
 
 
 def on_page_markdown(markdown, page, config, files):
-    """Таблица "| Вердикт заказчика | Признак | Пример |" в manual-3-etap/03-common-mistakes.md
-    (раздел "Битое или артефакт калибровка по пикселизации и цвету", 18 строк) превращается в
+    """Таблица "| Вердикт заказчика | Признак | Пример |" в manual-3-etap/07-example-library.md
+    (раздел "Пикселизация, расстояние и цвет", 18 строк) превращается в
     .example-grid/.example-card с цветным тегом-вердиктом вместо голой ссылки на видео в ячейке.
     Матчит таблицу по заголовку колонок (устойчиво к правкам окружающей прозы — тот же принцип,
     что в build_compare_cards.py), а не по всему разделу целиком, поэтому вступительный и

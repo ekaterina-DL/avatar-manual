@@ -154,7 +154,8 @@ def test_mapping_with_hardcoded_items_skips_source_file():
 def test_mapping_table_covers_expected_targets():
     targets = {m["target_file"] for m in MAPPINGS}
     assert "manual-2-etap/04-classifier.md" in targets
-    assert "manual-3-etap/04-video-quality.md" in targets
+    # Записи для manual-3-etap убраны 05.11.2026 — примеры 3 этапа теперь прямо в тексте полей.
+    assert not any(t.startswith("manual-3-etap/") for t in targets)
 
 
 def test_mapping_table_has_label_for_every_entry():
@@ -171,20 +172,6 @@ def test_mapping_table_has_label_for_every_entry():
         "Группа данных",
         "Количество людей",
         "Баланс по пению/говорению",
-        "Эмоциональная окраска голоса",
-        "Насколько хорошо видно лицо говорящего",
-        "Использует ли персонаж микрофон или телефон",
-        "Непрерывная ли сцена",
-        "Количество говорящих",
-        "Субтитры/текст",
-        "Характеристика фона",
-        "Смена ракурса/движение камеры",
-        "Активность движения",
-        "Законченность фразы",
-        "Посторонние шумы",
-        "Вид съёмки",
-        "Битое",
-        "Артефакт",
     }
     assert len(MAPPINGS) == len(expected_labels)
     labels = [mapping.get("label") for mapping in MAPPINGS]

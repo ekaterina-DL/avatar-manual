@@ -21,7 +21,7 @@ TABLE_MD = (
 
 
 class FakeFile:
-    src_uri = "manual-3-etap/03-common-mistakes.md"
+    src_uri = "manual-3-etap/07-example-library.md"
 
 
 class FakePage:
@@ -84,7 +84,7 @@ def test_surrounding_text_preserved():
 
 def test_untouched_on_other_pages():
     class OtherFile:
-        src_uri = "manual-3-etap/07-example-library.md"
+        src_uri = "manual-3-etap/03-common-mistakes.md"
 
     class OtherPage:
         file = OtherFile()

@@ -12,6 +12,8 @@ exclude_docs: |
   manual-2-etap/_sources-log.md
   manual-2-etap/_quiz-manual.yml
   manual-3-etap/_sources-log.md
+  manual-3-etap/02-open-questions.md
+  manual-3-etap/05-faq.md
   site/PLAN.md
   site/requirements.txt
   site/mkdocs.yml
@@ -70,12 +72,11 @@ nav:
   - 3 этап:
       - Обзор проекта: manual-3-etap/00-overview.md
       - Общие правила: manual-3-etap/06-general-requirements.md
+      - Что размечаем: manual-3-etap/08-what-to-label.md
+      - Что не размечаем / Битое: manual-3-etap/04-video-quality.md
       - Классификатор: manual-3-etap/01-classifier.md
-      - Критерии качества: manual-3-etap/04-video-quality.md
-      - Банк примеров: manual-3-etap/07-example-library.md
-      - Открытые вопросы: manual-3-etap/02-open-questions.md
       - Частые ошибки: manual-3-etap/03-common-mistakes.md
-      - Разбор кейсов (FAQ): manual-3-etap/05-faq.md
+      - Банк примеров: manual-3-etap/07-example-library.md
 
 markdown_extensions:
   - tables
